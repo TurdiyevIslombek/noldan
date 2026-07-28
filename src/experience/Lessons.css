@@ -1,0 +1,400 @@
+.lessons {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* Calms the neural-net field behind this denser UI without hiding it. */
+.lessons__veil {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: rgba(238, 241, 238, 0.55);
+  pointer-events: none;
+}
+
+/* ---------- page frame ---------- */
+.lwrap {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 116px 34px 110px;
+}
+
+.lhead {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 34px;
+}
+.lhead__eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  background: var(--accent-wash);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  align-self: center;
+}
+.lhead__title {
+  font-family: var(--display);
+  font-size: clamp(30px, 3.4vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  margin: 0;
+  color: var(--ink);
+}
+.lhead__hint {
+  margin: 0 0 0 auto;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  align-self: center;
+}
+
+/* ---------- the tree ----------
+   Rows stack vertically; opening a row grows it, so the rows beneath
+   move down. Children sit to the RIGHT of their parent, joined by
+   measured SVG connectors. */
+.tree {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.tree__wires {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 0;
+}
+.twire {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.6;
+  opacity: 0.55;
+  stroke-linecap: round;
+  animation: wire-in 420ms var(--ease) both;
+}
+@keyframes wire-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.55;
+  }
+}
+
+/* rows */
+.trow,
+.crow {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 68px;
+}
+
+/* branch columns (children) */
+.branch {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 2px 0;
+}
+.branch--lessons {
+  gap: 8px;
+}
+
+/* ---------- track box ---------- */
+.tbox {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 268px;
+  flex: none;
+  padding: 20px 20px;
+  text-align: left;
+  border-radius: var(--r-xl);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  cursor: pointer;
+  transition: transform 260ms var(--ease), box-shadow 260ms var(--ease),
+    border-color 260ms var(--ease);
+}
+.tbox:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: var(--glass-shadow-lift);
+}
+.tbox.is-open {
+  border-color: var(--accent);
+  box-shadow: var(--glass-shadow-lift), 0 0 0 3px var(--accent-wash);
+}
+.tbox.is-open .tbox__chev {
+  transform: rotate(90deg);
+  color: var(--accent-strong);
+}
+.tbox__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  flex: none;
+  border-radius: var(--r-lg);
+  background: var(--accent-wash);
+  color: var(--accent-strong);
+}
+.tbox__glyph--ghost {
+  background: rgba(16, 32, 26, 0.05);
+  color: var(--dim);
+}
+.tbox__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.tbox__name {
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.tbox__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+.tbox__chev {
+  flex: none;
+  color: var(--dim);
+  transition: transform 300ms var(--ease), color 300ms var(--ease);
+}
+.tbox--soon {
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--line-hi);
+  box-shadow: none;
+  cursor: default;
+}
+.tbox--soon .tbox__name {
+  color: var(--muted);
+}
+
+/* ---------- course box ---------- */
+.cbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 244px;
+  flex: none;
+  padding: 15px 16px;
+  text-align: left;
+  border-radius: var(--r-lg);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  cursor: pointer;
+  transition: transform 240ms var(--ease), box-shadow 240ms var(--ease),
+    border-color 240ms var(--ease);
+  animation: pop-in 380ms var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 65ms);
+}
+.cbox:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: var(--glass-shadow-lift);
+}
+.cbox.is-open {
+  border-color: var(--accent);
+  box-shadow: var(--glass-shadow-lift), 0 0 0 3px var(--accent-wash);
+}
+.cbox.is-open .cbox__chev {
+  transform: rotate(90deg);
+  color: var(--accent-strong);
+}
+.cbox__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: var(--r-md);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-strong);
+  background: var(--accent-wash);
+  border: 1px solid rgba(5, 150, 105, 0.22);
+}
+.cbox__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.cbox__name {
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.cbox__meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+.cbox__chev {
+  flex: none;
+  color: var(--dim);
+  transition: transform 300ms var(--ease), color 300ms var(--ease);
+}
+
+/* ---------- lesson box ---------- */
+.lbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 262px;
+  flex: none;
+  padding: 11px 15px;
+  text-align: left;
+  border-radius: var(--r-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  cursor: pointer;
+  transition: transform 200ms var(--ease), border-color 200ms var(--ease);
+  animation: pop-in 340ms var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 34ms);
+}
+.lbox:hover {
+  transform: translateX(3px);
+  border-color: var(--accent);
+}
+.lbox__n {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-strong);
+}
+.lbox__title {
+  flex: 1;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.lbox__go {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: var(--r-pill);
+  background: var(--accent-wash);
+  color: var(--accent-strong);
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateX(-14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cbox,
+  .lbox,
+  .twire {
+    animation: none;
+  }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1100px) {
+  .trow,
+  .crow {
+    gap: 48px;
+  }
+  .tbox {
+    width: 236px;
+  }
+  .cbox,
+  .lbox {
+    width: 218px;
+  }
+}
+
+@media (max-width: 760px) {
+  .lwrap {
+    padding: 96px 16px 80px;
+  }
+  .lhead__hint {
+    margin-left: 0;
+  }
+  /* Stack the tree vertically on small screens; the connectors are
+     hidden because a left-to-right tree cannot fit. */
+  .tree__wires {
+    display: none;
+  }
+  .trow,
+  .crow {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .branch {
+    padding-left: 20px;
+    border-left: 1px solid var(--line-hi);
+    width: 100%;
+  }
+  .tbox,
+  .cbox,
+  .lbox {
+    width: 100%;
+  }
+}
+
+/* Registered in the syllabus, content still being written. */
+.lbox.is-soon {
+  opacity: 0.62;
+}
+.lbox.is-soon .lbox__go {
+  background: rgba(16, 32, 26, 0.06);
+  color: var(--dim);
+}

@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+/* Self-hosted variable fonts, bundled by Vite — no external request.
+   Manrope for display/body (soft geometric sans, rounded terminals);
+   JetBrains Mono strictly for machine-ish content: code, token ids,
+   byte values, counters, labels. */
+@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/jetbrains-mono";
+
+@theme {
+  --color-paper: #eef1ee;
+  --color-card: #ffffff;
+  --color-ink: #10201a;
+  --color-muted: #5d6f68;
+  --color-accent: #059669;
+
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo,
+    monospace;
+  --font-sans: "Manrope Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+
+  /* Lab paper: a cool off-white with a faint green-grey bias so the
+     ground is chosen, not a default white. Ink is a deep spruce, not
+     pure black. One emerald accent, in two weights for contrast safety
+     on a light ground. */
+  --paper: #eef1ee;
+  --paper-2: #e6eae7;
+  --card: #ffffff;
+  --ink: #10201a;
+  --ink-soft: #38473f;
+  --muted: #5d6f68;
+  --dim: #8a978f;
+
+  --line: rgba(16, 32, 26, 0.1);
+  --line-hi: rgba(16, 32, 26, 0.17);
+
+  /* accent        — decorative: particles, ticks, active states, glyphs
+     accent-strong — button fills and links, AA on paper / white on it
+     accent-wash   — soft chip and badge grounds */
+  --accent: #059669;
+  --accent-strong: #047857;
+  --accent-ink: #036448;
+  --accent-wash: #daf1e7;
+  --accent-wash-2: #eaf7f1;
+
+  --mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo,
+    monospace;
+  --sans: "Manrope Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+  --display: var(--sans);
+
+  --r-xs: 7px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  --shadow-soft: 0 1px 2px rgba(16, 32, 26, 0.04),
+    0 10px 30px -14px rgba(16, 32, 26, 0.16);
+  --shadow-lift: 0 2px 6px rgba(16, 32, 26, 0.06),
+    0 24px 60px -22px rgba(16, 32, 26, 0.22);
+
+  /* Liquid glass: translucent panels that let the neural-net field blur
+     through, with a bright top edge and a soft drop, the way frosted
+     glass catches light. Applied to cards, pills, the rail and the tour. */
+  --glass-bg: rgba(255, 255, 255, 0.5);
+  --glass-bg-strong: rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.7);
+  --glass-blur: blur(18px) saturate(180%);
+  --glass-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(16, 32, 26, 0.04),
+    0 1px 2px rgba(16, 32, 26, 0.04), 0 14px 40px -18px rgba(16, 32, 26, 0.24);
+  --glass-shadow-lift: inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 2px 6px rgba(16, 32, 26, 0.06), 0 26px 60px -22px rgba(16, 32, 26, 0.3);
+
+  /* Motion system. Arrivals decelerate confidently; exits leave faster
+     than they arrived; durations express distance and consequence:
+     feedback 120ms · state 220ms · layout 380ms · focal 620ms. */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --t-feedback: 120ms;
+  --t-state: 220ms;
+  --t-layout: 380ms;
+  --t-focal: 620ms;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto;
+}
+
+body {
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+#root {
+  isolation: isolate;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+  border-radius: var(--r-xs);
+}
+
+::selection {
+  background: var(--accent-wash);
+  color: var(--ink);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 24px;
+  z-index: 100;
+  padding: 12px 22px;
+  background: var(--accent-strong);
+  color: #ffffff;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--r-pill);
+  transition: top 200ms var(--ease);
+}
+.skip-link:focus {
+  top: 24px;
+}
+
+/* SplitText line-reveal masking. The wrapper clips, the line rises out
+   of it. Kept here because SplitText injects these class names globally. */
+.split-line-mask {
+  overflow: hidden;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Route chunk loading — deliberately blank, not a spinner: chunks arrive
+   in well under a frame budget on a warm cache and a flash of spinner
+   reads as breakage. */
+.route-wait {
+  min-height: 100vh;
+}

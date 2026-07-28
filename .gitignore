@@ -1,0 +1,21 @@
+node_modules
+dist
+dist-ssr
+.DS_Store
+*.local
+
+# secrets — never commit
+.env
+.env.*
+!.env.example
+
+# tooling
+.vercel
+.vite
+*.tsbuildinfo
+
+# Local agent tooling (installed via `npx skills add` / claude plugins).
+# Not part of the site; keep it out of the project history.
+.agents
+.claude
+skills-lock.json

@@ -1,0 +1,325 @@
+.lsn {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* The reading surface needs calm — damp the field further than elsewhere. */
+.lsn__veil {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: rgba(238, 241, 238, 0.8);
+  pointer-events: none;
+}
+
+.lsn__stage {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 104px 30px 100px;
+  display: grid;
+  grid-template-columns: 264px minmax(0, 1fr);
+  gap: 44px;
+  align-items: start;
+}
+
+/* ---------- sidebar ---------- */
+.lsn__side {
+  position: sticky;
+  top: 104px;
+  padding: 20px 18px;
+  border-radius: var(--r-xl);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+}
+
+.lsn__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  transition: color 200ms var(--ease);
+}
+.lsn__back:hover {
+  color: var(--accent-strong);
+}
+
+.lsn__course {
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 14px 0 2px;
+}
+.lsn__progress {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+.toc {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.toc__item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 11px;
+  border-radius: var(--r-md);
+  transition: background 200ms var(--ease), color 200ms var(--ease);
+}
+.toc__item:hover {
+  background: var(--accent-wash-2);
+}
+.toc__n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-hi);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--muted);
+  background: #fff;
+}
+.toc__t {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+.toc__item.is-done .toc__n {
+  background: var(--accent-wash);
+  border-color: rgba(5, 150, 105, 0.3);
+  color: var(--accent-strong);
+}
+.toc__item.is-here {
+  background: var(--accent-wash);
+}
+.toc__item.is-here .toc__n {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: #fff;
+}
+.toc__item.is-here .toc__t {
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+
+/* ---------- lesson body ---------- */
+.lsn__main {
+  min-width: 0;
+}
+
+.lsn__head {
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 28px;
+}
+.lsn__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+  padding: 7px 14px;
+  border-radius: var(--r-pill);
+  background: var(--accent-wash);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+.lsn__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: var(--r-pill);
+  background: rgba(5, 150, 105, 0.5);
+}
+.lsn__title {
+  font-family: var(--display);
+  font-size: clamp(30px, 3.8vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.038em;
+  line-height: 1.05;
+  color: var(--ink);
+  margin: 18px 0 10px;
+  text-wrap: balance;
+}
+.lsn__sub {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+  max-width: 62ch;
+}
+
+.lsn__intro {
+  margin-bottom: 8px;
+}
+
+.lsn__section {
+  padding-top: 26px;
+  margin-bottom: 14px;
+  scroll-margin-top: 100px;
+}
+.lsn__h2 {
+  font-family: var(--display);
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.026em;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+.lsn__h2::before {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 3px;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  margin-bottom: 14px;
+}
+
+.lsn__exlead {
+  font-size: 15px;
+  color: var(--muted);
+  margin: -6px 0 18px;
+}
+.lsn__exlist {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 76ch;
+}
+
+/* ---------- prev / next ---------- */
+.lsn__foot {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  transition: transform 240ms var(--ease), border-color 240ms var(--ease),
+    box-shadow 240ms var(--ease);
+}
+.pager:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: var(--glass-shadow-lift);
+}
+.pager--next {
+  justify-content: flex-end;
+  text-align: right;
+}
+.pager svg {
+  flex: none;
+  color: var(--accent-strong);
+}
+.pager__k {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+.pager__t {
+  display: block;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1000px) {
+  .lsn__stage {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    padding: 92px 20px 80px;
+  }
+  .lsn__side {
+    position: static;
+    max-height: none;
+  }
+  .toc {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+}
+
+@media (max-width: 620px) {
+  .toc {
+    grid-template-columns: 1fr;
+  }
+  .lsn__foot {
+    grid-template-columns: 1fr;
+  }
+  .pager--next {
+    justify-content: flex-start;
+    text-align: left;
+    flex-direction: row-reverse;
+  }
+}
+
+/* Part heading inside the contents list (multi-part courses). */
+.toc__part {
+  display: block;
+  margin: 14px 0 6px;
+  padding: 0 4px;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.toc li:first-child .toc__part {
+  margin-top: 0;
+}
+.toc__item.is-soon {
+  opacity: 0.55;
+}
