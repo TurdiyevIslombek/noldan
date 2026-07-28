@@ -20,7 +20,7 @@ function Shell() {
   return (
     <>
       <a className="skip-link" href="#main">
-        Skip to content
+        Asosiy qismga oʻtish
       </a>
 
       {/* One page-wide neural-net field behind everything. */}

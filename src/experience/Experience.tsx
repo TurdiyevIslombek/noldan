@@ -17,10 +17,10 @@ gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
 const DEMO_VOCAB = 700;
 
 const CHAPTERS = [
-  { id: "bytes", num: "00", name: "Bytes" },
-  { id: "tokens", num: "01", name: "Tokens" },
-  { id: "vocabulary", num: "02", name: "Vocabulary" },
-  { id: "training", num: "03", name: "Training" },
+  { id: "bytes", num: "00", name: "Baytlar" },
+  { id: "tokens", num: "01", name: "Tokenlar" },
+  { id: "vocabulary", num: "02", name: "Lugʻat" },
+  { id: "training", num: "03", name: "Oʻqitish" },
   { id: "model", num: "04", name: "Model" },
 ] as const;
 
@@ -30,7 +30,7 @@ function ByteStrip({ text }: { text: string }) {
     [text]
   );
   return (
-    <div className="strip" aria-label={`${text} encoded as ${bytes.length} bytes`}>
+    <div className="strip" aria-label={`${text} — ${bytes.length} bayt`}>
       {bytes.map((b, i) => (
         <span className="strip__cell" key={i}>
           {b}
@@ -104,7 +104,8 @@ function CompressionCurve({
     <div className="curve" ref={wrapRef}>
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-labelledby="curve-title">
         <title id="curve-title">
-          Tokens needed for a held-out sentence, falling as merges are learned
+          Korpusdan tashqaridagi jumla uchun kerak boʻlgan tokenlar soni —
+          birlashmalar oʻrganilgani sari kamayadi
         </title>
         <line className="curve__axis" x1={PADL} y1={PADT} x2={PADL} y2={H - PADB} />
         <line className="curve__axis" x1={PADL} y1={H - PADB} x2={W - PADR} y2={H - PADB} />
@@ -122,10 +123,10 @@ function CompressionCurve({
         <path ref={pathRef} className="curve__line" d={line} />
         <circle className="curve__end" cx={x(maxMerges)} cy={y(minTokens)} r="3.5" />
         <text className="curve__lab" x={PADL} y={H - 10}>
-          0 merges
+          0 birlashma
         </text>
         <text className="curve__lab curve__lab--end" x={W - PADR} y={H - 10}>
-          {maxMerges} merges
+          {maxMerges} birlashma
         </text>
         <text className="curve__lab" x={4} y={PADT + 8}>
           {base}
@@ -135,10 +136,10 @@ function CompressionCurve({
         </text>
       </svg>
       <p className="curve__caption">
-        Measured in your browser just now, on a sentence held out of the training
-        corpus: &ldquo;{probe}&rdquo;. {base} bytes become {minTokens} tokens after{" "}
-        {maxMerges} merges &mdash; {ratio}&times; fewer positions for the model to
-        attend over.
+        &laquo;{probe}&raquo; &mdash; oʻqitish korpusiga kirmagan jumla. Hozir
+        sizning brauzeringizda oʻlchandi: {base} bayt {maxMerges} ta
+        birlashmadan keyin {minTokens} tokenga aylandi, ya&rsquo;ni model diqqat
+        qaratadigan pozitsiyalar {ratio}&times; kam.
       </p>
     </div>
   );
@@ -156,7 +157,7 @@ function Tokenizer() {
   return (
     <div className="tok">
       <label className="tok__label" htmlFor="tok-input">
-        Type anything
+        Istalgan matnni yozing
       </label>
       <input
         id="tok-input"
@@ -168,7 +169,7 @@ function Tokenizer() {
       />
       <div className="tok__out" aria-live="polite">
         {tokens.length === 0 ? (
-          <span className="tok__empty">Waiting for input</span>
+          <span className="tok__empty">Matn kutilmoqda</span>
         ) : (
           tokens.map((t, i) => (
             <span className="tok__chip" key={i} title={`token id ${t.id}`}>
@@ -180,19 +181,19 @@ function Tokenizer() {
       </div>
       <dl className="tok__stats">
         <div>
-          <dt>Bytes in</dt>
+          <dt>Kirgan bayt</dt>
           <dd>{byteLength}</dd>
         </div>
         <div>
-          <dt>Tokens out</dt>
+          <dt>Chiqqan token</dt>
           <dd>{tokens.length}</dd>
         </div>
         <div>
-          <dt>Merges learned</dt>
+          <dt>Oʻrganilgan birlashma</dt>
           <dd>{model.mergeCount}</dd>
         </div>
         <div>
-          <dt>Vocabulary</dt>
+          <dt>Lugʻat hajmi</dt>
           <dd>{model.vocabSize}</dd>
         </div>
       </dl>
@@ -335,7 +336,7 @@ export default function Experience() {
         <a className="exp__brand" href="#top">
           Nol<span>dan</span>
         </a>
-        <nav className="exp__rail" aria-label="Chapters">
+        <nav className="exp__rail" aria-label="Boʻlimlar">
           {CHAPTERS.map((c, i) => (
             <a
               key={c.id}
@@ -365,20 +366,21 @@ export default function Experience() {
         <section className="hero" id="top" aria-labelledby="hero-h">
           <div className="hero__inner">
             <p className="hero__eyebrow" data-reveal="words">
-              Free &middot; Open source &middot; From zero
+              Bepul &middot; Ochiq kodli &middot; Noldan
             </p>
             <h1 className="hero__title" data-reveal="words" id="hero-h">
-              Build a language model from scratch.
+              Til modelini noldan quring.
             </h1>
             <p className="hero__sub" data-reveal="lines">
-              The tokenizer, the attention, the training loop &mdash; every line
-              written by you. Not prompt engineering. Not somebody else&rsquo;s API.
+              Tokenizator, diqqat mexanizmi, oʻqitish sikli &mdash; har bir
+              satrni oʻzingiz yozasiz. Prompt muhandisligi emas. Birovning API
+              si ham emas.
             </p>
             <div className="hero__actions" data-rise>
               <Link className="btn" to="/learn">
-                Start learning
+                Oʻrganishni boshlash
               </Link>
-              <span className="hero__hint">Scroll to run the pipeline</span>
+              <span className="hero__hint">Pastga suring &mdash; bosqichlar ishga tushadi</span>
             </div>
           </div>
         </section>
@@ -386,23 +388,24 @@ export default function Experience() {
         <section className="chapter" id="bytes" aria-labelledby="bytes-h">
           <div className="chapter__panel">
             <p className="chapter__meta" data-rise>
-              <span className="chapter__num">00</span> Bytes
+              <span className="chapter__num">00</span> Baytlar
             </p>
             <h2 className="chapter__title" data-reveal="words" id="bytes-h">
-              A model never sees words.
+              Model soʻzlarni hech qachon koʻrmaydi.
             </h2>
             <p className="chapter__body" data-reveal="lines">
-              It sees bytes. Before anything else exists &mdash; before attention,
-              before weights &mdash; text is a flat sequence of integers between 0
-              and 255. Uzbek, English, punctuation and emoji all arrive the same
-              way. Nothing is ever out&#8209;of&#8209;vocabulary because there is no
-              vocabulary yet.
+              U baytlarni koʻradi. Hamma narsadan oldin &mdash; diqqat
+              mexanizmidan ham, vaznlardan ham oldin &mdash; matn 0 dan 255 gacha
+              boʻlgan butun sonlar ketma-ketligi. Oʻzbekcha, inglizcha, tinish
+              belgilari va emoji bir xil yoʻl bilan keladi. Hech narsa lugʻatdan
+              tashqarida qolmaydi, chunki hali lugʻatning oʻzi yoʻq.
             </p>
             <div data-rise>
               <ByteStrip text="noldan" />
             </div>
             <p className="chapter__note" data-rise>
-              The word above, as UTF&#8209;8. That is the entire input format.
+              Yuqoridagi soʻz &mdash; UTF&#8209;8 da. Kirish formati shundan
+              iborat.
             </p>
           </div>
         </section>
@@ -410,17 +413,17 @@ export default function Experience() {
         <section className="chapter" id="tokens" aria-labelledby="tokens-h">
           <div className="chapter__panel chapter__panel--wide">
             <p className="chapter__meta" data-rise>
-              <span className="chapter__num">01</span> Tokens
+              <span className="chapter__num">01</span> Tokenlar
             </p>
             <h2 className="chapter__title" data-reveal="words" id="tokens-h">
-              Find the pair that repeats. Merge it. Repeat.
+              Takrorlanadigan juftlikni toping. Birlashtiring. Yana takrorlang.
             </h2>
             <p className="chapter__body" data-reveal="lines">
-              That single rule is byte&#8209;pair encoding. Count every adjacent
-              pair, merge the most frequent one into a new symbol, and do it again a
-              few thousand times. The tokenizer below is real: it trained on a
-              sample corpus when this page loaded, and it is encoding whatever you
-              type.
+              Shu bitta qoida &mdash; byte&#8209;pair encoding. Har bir yonma-yon
+              juftlikni sanang, eng koʻp uchraganini yangi belgiga birlashtiring
+              va buni bir necha ming marta takrorlang. Quyidagi tokenizator
+              haqiqiy: bu sahifa ochilganda haqiqiy oʻzbekcha matnda oʻqidi va
+              hozir siz yozgan har qanday matnni kodlaydi.
             </p>
             <div data-rise>
               <Tokenizer />
@@ -431,23 +434,24 @@ export default function Experience() {
         <section className="chapter" id="vocabulary" aria-labelledby="vocab-h">
           <div className="chapter__panel">
             <p className="chapter__meta" data-rise>
-              <span className="chapter__num">02</span> Vocabulary
+              <span className="chapter__num">02</span> Lugʻat
             </p>
             <h2 className="chapter__title" data-reveal="words" id="vocab-h">
-              Vocabulary size is a budget, not a setting.
+              Lugʻat hajmi &mdash; sozlama emas, byudjet.
             </h2>
             <p className="chapter__body" data-reveal="lines">
-              Every merge buys shorter sequences and costs embedding parameters. Too
-              few and the model wastes its context on fragments; too many and most
-              of the table is dead weight the gradient never touches. For a language
-              with productive agglutinative morphology, where a single stem carries
-              a stack of suffixes, this trade&#8209;off is sharper than it is for
-              English &mdash; which is why an inherited tokenizer usually fits badly.
+              Har bir birlashma ketma-ketlikni qisqartiradi, lekin embedding
+              parametrlarini talab qiladi. Kam boʻlsa, model kontekstini
+              boʻlaklarga sarflaydi; koʻp boʻlsa, jadvalning katta qismi gradient
+              hech qachon tegmaydigan oʻlik yukka aylanadi. Bitta oʻzakka
+              qoʻshimchalar ketma-ket ulanadigan agglutinativ tillarda bu tanlov
+              ingliz tilidagidan keskinroq &mdash; shuning uchun tayyor olingan
+              tokenizator odatda yaxshi moslashmaydi.
             </p>
             <p className="chapter__note" data-rise>
-              The published tokenizer settled at 16,000. Module 02 covers how to
-              choose that number for your own corpus rather than copying
-              someone else&rsquo;s.
+              Nashr qilingan tokenizator 16 000 da toʻxtadi. Bu raqamni birovdan
+              nusxa koʻchirmasdan, oʻz korpusingiz uchun qanday tanlashni
+              &laquo;Tokenizator qurish&raquo; kursi koʻrsatadi.
             </p>
           </div>
         </section>
@@ -455,29 +459,30 @@ export default function Experience() {
         <section className="chapter" id="training" aria-labelledby="training-h">
           <div className="chapter__panel">
             <p className="chapter__meta" data-rise>
-              <span className="chapter__num">03</span> Training
+              <span className="chapter__num">03</span> Oʻqitish
             </p>
             <h2 className="chapter__title" data-reveal="words" id="training-h">
-              The loop is smaller than you think.
+              Sikl siz oʻylagandan kichik.
             </h2>
             <p className="chapter__body" data-reveal="lines">
-              Forward pass, loss, backward pass, step. Everything else is logistics:
-              batching, checkpointing, learning&#8209;rate schedules and the
-              discipline to read a loss curve honestly instead of hoping. You do not
-              need a cluster. You need the loop to be correct.
+              Oldinga yurish, yoʻqotish, orqaga yurish, qadam. Qolgani &mdash;
+              logistika: partiyalash, nazorat nuqtalari, oʻqish tezligi jadvali
+              va yoʻqotish egri chizigʻini umid bilan emas, halol oʻqish
+              intizomi. Sizga klaster kerak emas. Sizga siklning toʻgʻri
+              boʻlishi kerak.
             </p>
             <div className="gauges" data-rise>
               <div className="gauge">
                 <span className="gauge__value">
                   <span ref={paramRef}>0</span>M
                 </span>
-                <span className="gauge__label">Parameters trained</span>
+                <span className="gauge__label">Oʻqitilgan parametr</span>
               </div>
               <div className="gauge">
                 <span className="gauge__value">
                   $<span ref={costRef}>0.00</span>
                 </span>
-                <span className="gauge__label">Total training cost</span>
+                <span className="gauge__label">Umumiy oʻqitish narxi</span>
               </div>
             </div>
           </div>
@@ -489,13 +494,13 @@ export default function Experience() {
               <span className="chapter__num">04</span> Model
             </p>
             <h2 className="chapter__title" data-reveal="words" id="model-h">
-              You finish with weights you can publish.
+              Yakunda nashr qilsa boʻladigan vaznlar qoladi.
             </h2>
             <p className="chapter__body" data-reveal="lines">
-              Not a notebook full of API calls. A tokenizer and a set of trained
-              parameters that belong to you, that run without a network connection,
-              and that anyone can download. Both artifacts below came out of this
-              exact pipeline.
+              API chaqiruvlariga toʻla daftar emas. Oʻzingizga tegishli
+              tokenizator va oʻqitilgan parametrlar &mdash; internetsiz ishlaydi,
+              istagan odam yuklab oladi. Quyidagi ikkala artefakt ham xuddi shu
+              yoʻldan chiqqan.
             </p>
             <div className="artifacts" data-rise>
               <a
@@ -505,8 +510,8 @@ export default function Experience() {
                 rel="noopener noreferrer"
               >
                 <span className="artifact__name">uzbek-gpt-103m</span>
-                <span className="artifact__spec">103M parameters</span>
-                <span className="artifact__spec">Trained on FineWeb-2</span>
+                <span className="artifact__spec">103M parametr</span>
+                <span className="artifact__spec">FineWeb-2 da oʻqitilgan</span>
                 <span className="artifact__spec">Apache-2.0</span>
                 <span className="artifact__go">
                   Hugging Face
@@ -520,8 +525,8 @@ export default function Experience() {
                 rel="noopener noreferrer"
               >
                 <span className="artifact__name">uzbek-bpe-16k</span>
-                <span className="artifact__spec">16,000 vocabulary</span>
-                <span className="artifact__spec">Byte-level BPE</span>
+                <span className="artifact__spec">16 000 lugʻat</span>
+                <span className="artifact__spec">Bayt darajasidagi BPE</span>
                 <span className="artifact__spec">Apache-2.0</span>
                 <span className="artifact__go">
                   Hugging Face
@@ -535,43 +540,44 @@ export default function Experience() {
         <section className="finale" aria-labelledby="finale-h">
           <div className="finale__inner">
             <h2 className="finale__title" data-reveal="words" id="finale-h">
-              Start with the tokenizer.
+              Tokenizatordan boshlang.
             </h2>
             <p className="finale__sub" data-reveal="lines">
-              Eight modules. Every one free, in the open, with code that runs.
+              Ikki kurs, 27 dars &mdash; 18 tasi hozir tayyor, qolgani
+              yozilmoqda. Hammasi bepul, ochiq va ishlaydigan kod bilan.
             </p>
             <div data-rise>
               <Link className="btn btn--lg" to="/learn">
-                Start learning
+                Oʻrganishni boshlash
               </Link>
             </div>
             <div className="finale__fit" data-rise>
               <div>
-                <h3>Read this if</h3>
+                <h3>Bu sizga mos, agar</h3>
                 <ul>
-                  <li>You can write Python and read a stack trace.</li>
-                  <li>You want what happens inside the model, not around it.</li>
-                  <li>You will debug a run that outputs garbage for two days.</li>
+                  <li>Kod yozishni noldan oʻrganmoqchi boʻlsangiz.</li>
+                  <li>Modelning ichida nima boʻlayotganini bilmoqchi boʻlsangiz.</li>
+                  <li>Natija chiqmaganda xatoni ikki kun qidirishga tayyor boʻlsangiz.</li>
                 </ul>
               </div>
               <div>
-                <h3>Skip this if</h3>
+                <h3>Bu sizga mos emas, agar</h3>
                 <ul>
-                  <li>You want to ship a chatbot this weekend.</li>
-                  <li>You are looking for prompt engineering tutorials.</li>
-                  <li>You expect to skip the math.</li>
+                  <li>Shu hafta chatbot chiqarmoqchi boʻlsangiz.</li>
+                  <li>Prompt muhandisligi darslarini izlayotgan boʻlsangiz.</li>
+                  <li>Matematikani chetlab oʻtmoqchi boʻlsangiz.</li>
                 </ul>
               </div>
             </div>
             <footer className="finale__foot">
-              <span>Noldan &mdash; written for Uzbekistan and Central Asia.</span>
+              <span>Noldan &mdash; Oʻzbekiston va Markaziy Osiyo uchun.</span>
               <span className="finale__foot-links">
                 <a href="https://huggingface.co/IslombekT" target="_blank" rel="noopener noreferrer">
                   Hugging Face
                 </a>
                 <button type="button" className="finale__top" onClick={() => scrollToProgress(0)}>
                   <CornerLeftUp size={12} strokeWidth={2.2} aria-hidden="true" />
-                  Back to the start
+                  Boshiga qaytish
                 </button>
               </span>
             </footer>

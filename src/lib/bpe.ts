@@ -4,8 +4,8 @@
    This is not a simulation for the page. It trains actual merges over a
    corpus and encodes arbitrary input with them, which is the whole point
    of showing it: a reader can type Uzbek and watch where the boundaries
-   land. It is the same algorithm module 01 walks through, written small
-   enough to run in a browser on every keystroke.
+   land. It is the same algorithm the Tokenizator course walks through,
+   written small enough to run in a browser on every keystroke.
 
    Two decisions worth keeping if you edit this:
 
@@ -15,49 +15,131 @@
    2. The compression curve is measured on PROBE, which does NOT appear
       in the corpus. Measuring compression on your own training data is
       how you end up quoting a number that means nothing.
+   3. The text keeps its oʻ and gʻ. Those are U+02BB, two bytes each in
+      UTF-8, and watching the encoder handle them is half the point of a
+      BYTE-level demo — stripping them to plain o and g would hide the
+      exact thing this page is teaching.
 
-   AUTHOR NOTE: DEMO_CORPUS is placeholder Uzbek written to exercise the
-   algorithm, not vetted prose — replace it with a real slice of your
-   training data and both the demo and the curve get sharper. Same for
-   PROBE.
+   SOURCE: real human-written Uzbek, sampled from the Uzbek Corpus Sample
+   (https://github.com/elmurod1202/Uzbek-Corpus-Sample), CC BY 4.0. Lines
+   were hand-picked for register and normalised from U+2018 to U+02BB so
+   the orthography matches the rest of the site; otherwise verbatim.
    -------------------------------------------------------------------- */
 
 export const DEMO_CORPUS = `
-noldan boshlaymiz va modelni ozimiz quramiz
-til modeli sozlarni emas baytlarni oqiydi
-har bir belgi son bolib ifodalanadi
-tokenizator matnni bolaklarga ajratadi
-eng kop uchraydigan juftlik birlashtiriladi
-bu jarayon lugat toldirilguncha davom etadi
-model ozbek tilida yozilgan matnlarni organadi
-har bir qadam kodda yoziladi va tekshiriladi
-kod ishlaydi natija ekranda korinadi
-biz tayyor apidan foydalanmaymiz
-sozlar bolaklarga ajraladi keyin sonlarga aylanadi
-sonlar modelga kiradi va vazn yangilanadi
-model keyingi belgini bashorat qiladi
-oqitish sekin boradi lekin natija aniq boladi
-kichik model ham yaxshi ishlashi mumkin
-lugat hajmi juda katta bolsa xotira yetmaydi
-lugat hajmi kichik bolsa matn uzun boladi
-qoshimchalar sozga ulanadi va yangi shakl hosil qiladi
-ozbek tilida qoshimchalar kop uchraydi
-shuning uchun tokenizator alohida tayyorlanadi
-matn tayyorlash eng muhim bosqich hisoblanadi
-sifatli matn sifatli model beradi
-xato kod jim turmaydi darrov korinadi
-har bir satr tushunarli bolishi kerak
-oddiy kod murakkab koddan yaxshiroq
-tajriba qilish orqali organiladi
-kutubxona emas algoritm organiladi
-diqqat mexanizmi belgilar orasidagi boglanishni topadi
-model kontekstni hisobga oladi
-yozilgan kod qayta ishlatiladi
-natijalar solishtiriladi va tanlanadi
+Oʻqituvchi kirib kelganida gapirishni toʻxtating.
+Ogʻzaki nutq kundalik suhbatda qoʻllaniladi.
+Buni oddiy soʻzlar bilan tushuntiring.
+Bu soʻz nimani anglatishini bilmayman.
+Bu soʻz oxirgi boʻgʻinga urgʻu berilgan.
+Gap oxirida nuqta qoʻyish kerak.
+U ingliz tilidagi qoʻshiqlarni oʻrganmoqchi.
+U bor kuchini ispan tilini oʻrganishga bagʻishladi.
+Ingliz tili butun mamlakat boʻylab tarqaldi.
+Men ibroniy tilida koʻp soʻzlarni bilmayman.
+Oʻtgan yil davomida sizdan koʻp narsani oʻrgandim.
+Biz har oyda kamida bitta kitob oʻqishimiz kerak.
+Maktabda oʻqib yurgan paytlarim ham astoydil oʻqiganman.
+Sinfingizga yetib olish uchun siz qattiq oʻrganishingiz kerak.
+Odatdagidek fizika oʻqituvchisi darsga kechikib qoldi.
+Talabalaringizni koʻproq oʻylaydigan kitoblarni oʻqing.
+Yigirma nafar talabadan faqat bittasi kitobni oʻqigan.
+Ushbu kutubxonada juda koʻp kitoblar mavjud.
+Uning kitoblari mendan ikki barobar koʻp.
+Ular tarix kitoblariga koʻchib oʻtishgan.
+Men kitoblarni yuklab olishni yaxshi koʻraman.
+Kitob doʻkoni ham kech yopilganga oʻxshaydi.
+Oʻtgan yakshanbani roman oʻqish bilan oʻtkazdim.
+Men bu romanni oʻqishdan zavq oldim.
+Har kuni hech kim oʻqimaydigan narsalarni oʻqing.
+U gazeta oʻqishni yaxshi koʻradi.
+Bu haqda u oʻz kundaligida yozgan.
+Biz kelajak uchun oʻtmishni oʻrganamiz.
+Dadam meni pianino chalishni oʻrganishga undagan.
+Otam nihoyat ellik yoshida mashina haydashni oʻrgandi.
+Men maktabdan keyin tennis oʻynamayman.
+Oʻrmonda koʻplab baland daraxtlar va turli xil oʻtlar bor.
+Gullar orasida koʻplab begona oʻtlar oʻsib chiqdi.
+Qalin tuman tufayli yoʻlni koʻrish qiyin edi.
+Bu xonada koʻp quyosh nuri tushmaydi.
+Nihoyat togʻ choʻqqisiga yetib keldik.
+Bahorda hamma yer goʻzal koʻrinadi.
+Mening uyim yonidan kichik bir oqim oqib oʻtadi.
+Biz osmonda minglab yulduzlarni koʻrishimiz mumkin.
+Yozda terlaganda koʻp suv ichish kerak.
+Men gullarni sugʻorishim shart emas edi.
+Otam yakshanba kunlari bogʻlar quradi.
+Men sohilda oʻtirishni yaxshi koʻraman.
+Men plyajda koʻplab sayyohlarni koʻrdim.
+Men hozir tulkining yoʻldan oʻtib ketayotganini koʻrdim.
+Koʻrshapalaklar kalamush kabi qush emas.
+Bobom erta tongda sayr qilishni yaxshi koʻradi.
+Stansiya shu ikki shahar oʻrtasida joylashgan.
+Orol iqtisodiyoti baliqchilik sanoatiga bogʻliq.
+Doʻst tanlashda ehtiyot boʻlish kerak.
+Koʻpchilik doʻstlari kabi u juda koʻp sayohat qilgan.
+Men sayohat qilishni yaxshi koʻraman.
+Menga yordam beradigan doʻstlarim koʻp.
+Doʻstlarim mening tugʻilgan kunimni nishonlashdi.
+Bir kuni men eski doʻstimga tashrif buyurdim.
+Biz amakivachchamni tugʻilgan kuni bilan ajablantirdik.
+Tez orada koʻplab tugʻilgan kun kartalari keladi.
+Men uni oʻgʻli tugʻilishi bilan tabrikladim.
+Dadam kulgili narsalarni aytishni yaxshi koʻradi.
+U menga boshqalarga mehribon boʻlishni aytdi.
+Jiyanim kech oʻtirishga odatlangan edi.
+Akam rasmni teskari osib qoʻydi.
+Uning xonasida juda koʻp mebel bor.
+Men xonamdagi mebellarning tartibini oʻzgartirdim.
+Bir nechta xonalar hali ham boʻsh edi.
+Bu xona ellik kishini sigʻdira oladi.
+Men har kuni televizor koʻraman.
+Men musiqa tinglashni yaxshi koʻraman.
+Bu xalq qoʻshiqlarining hammasi menga yoqmaydi.
+Men uning qoʻshiq aytishini hech qachon eshitmaganman.
+Bu qoʻshiq men bir necha daqiqa oldin eshitganimga oʻxshaydi.
+Idishdagi shoʻrva juda mazali edi.
+Menga nondan koʻra guruch koʻproq yoqadi.
+U kartoshka salatini yaxshi koʻradi.
+Uygʻurlarning oshxonasida har xil taomlar mavjud.
+Tovuqlarim oʻtgan yili kamroq tuxum qoʻydi.
+Men engilroq rangni afzal koʻraman.
+U shlyapa oldi va qanday koʻrinishini koʻrish uchun uni kiydi.
+Ular oʻsha doʻkonda poyabzal va kiyimlar bilan shugʻullanadilar.
+Koʻcha odamlar bilan gavjum edi.
+Menga avtobus bekatiga boradigan yoʻlni koʻrsating.
+Yoʻlni kesib oʻtayotganda ehtiyot boʻlishingiz kerak.
+U odatdagi avtobusini oʻtkazib yuborgan boʻlishi mumkin.
+Ertaga menga qoʻngʻiroq qilishni unutmang.
+Men uni telefon bilan bogʻlay olmadim.
+U belgilangan vaqtdan bir soat oʻtib keldi.
+Men bu hafta juda koʻp ishladim.
+Ishni toʻxtatish unga qiyin edi.
+U oʻz biznesini yoʻlga qoʻymoqchi.
+Men oʻzimga real maqsadlar qoʻydim.
+Har kimning maqsadi boʻlishi kerak.
+Kelgusi yili u oʻn yetti yoshga toʻladi.
+Oʻzingizni onangizning oʻrniga qoʻyishga harakat qiling.
+Hikoyada bundan ham koʻproq narsa boʻlishi kerak.
+Men buni sinab koʻrishga arziydi deb oʻyladim.
+U oʻyinda gʻalaba qozonishi mumkin.
+Biz qoidalar boʻyicha oʻynashimiz kerak.
+Yomgʻir tufayli beysbol oʻyini toʻxtatildi.
+Oynani ochganimda beysbol oʻynayotgan bolalarni koʻrdim.
+U unga qanday qilib sogʻlom boʻlishni maslahat beradi.
+Faqat erkin odamlar baxtli boʻlishi mumkin.
+Ikki davlat oʻrtasidagi savdo murakkab boʻlishi mumkin.
+Uning sevimli mashgʻulotlaridan biri futbolkalarni yigʻishdir.
+Men shunchaki nima boʻlishini koʻrmoqchi edim.
+Men birga koʻproq vaqt oʻtkazishimizni istardim.
+Siz qor toʻxtaguncha shu yerda qolishingiz mumkin.
+U odatdagidan koʻproq ishlagani uchun charchaganini his qildi.
+Narxlar oʻn yil avvalgidan ikki baravar koʻp.
 `;
 
-/** Held-out probe. Deliberately absent from the corpus above. */
-export const PROBE = "ozbek tilida model qurish uchun kod yozamiz";
+/** Held-out probe. Real Uzbek from the same source, deliberately kept
+ *  out of the corpus above so the compression figure means something. */
+export const PROBE = "Men qadimgi tillarni oʻrganishni yaxshi koʻraman.";
 
 const PAIR_SEP = ",";
 

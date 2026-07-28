@@ -19,3 +19,9 @@ dist-ssr
 .agents
 .claude
 skills-lock.json
+
+# generated intermediate from scripts/make-og.mjs
+og.svg
+
+# local design-tooling cache
+.impeccable/

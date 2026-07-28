@@ -103,7 +103,7 @@ export default function Intro({ onDone }: { onDone: () => void }) {
         <div className="intro__word">
           Nol<span>dan</span>
         </div>
-        <div className="intro__tag">Build a language model from scratch</div>
+        <div className="intro__tag">Til modelini noldan quramiz</div>
         <button
           type="button"
           className="intro__skip"

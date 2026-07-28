@@ -38,7 +38,16 @@ Before the first deploy, add under **Settings → Environment Variables**:
 | Name | Value | Environments |
 |---|---|---|
 | `GROQ_API_KEY` | your key | Production, Preview |
+| `SITE_URL` | `https://<your-app>.vercel.app` | Production |
 | `ALLOWED_ORIGINS` | `https://<your-domain>` | Production |
+| `VITE_GITHUB_URL` | `https://github.com/<you>/noldan` | Production, Preview |
+
+`SITE_URL` is the one that is easy to forget. It is baked into
+`canonical`, `og:image`, `robots.txt` and `sitemap.xml` at build time and
+defaults to `https://noldan.uz`. Until that domain actually resolves,
+leaving the default means **every shared link previews a dead host** and
+canonical points somewhere that does not exist. Set it to the
+`*.vercel.app` URL now, change it when the domain is live, redeploy.
 
 `ALLOWED_ORIGINS` is comma-separated and only needed once you attach a
 custom domain — the `*.vercel.app` URL is allowed automatically.
@@ -62,25 +71,39 @@ misconfigured — fix it before sharing the link anywhere.
 Then open the site and ask the tutor a question in a lesson. It should
 answer with no key setup on the visitor's side.
 
-## 5. Custom domain (optional)
+## 5. Check the link preview
 
-Vercel → Settings → Domains → add `noldan.uz`. Then update the absolute
-URLs in `index.html` (`canonical`, `og:url`, `og:image`) and
-`public/sitemap.xml`, which currently assume `https://noldan.uz/`.
+Paste the deployed URL into <https://cards-dev.twitter.com/validator> or
+just into a Telegram chat with yourself. You should see the green
+`og.png` card. If the image is missing, `SITE_URL` was wrong at build
+time — fix it and redeploy (the value is baked in, not read at runtime).
+
+## 6. Custom domain (optional)
+
+Vercel → Settings → Domains → add `noldan.uz`. Then set `SITE_URL` to
+`https://noldan.uz`, add the domain to `ALLOWED_ORIGINS`, and redeploy.
+Nothing in the source needs editing.
+
+## Regenerating the social card
+
+`public/og.png` is generated, not hand-drawn:
+
+```bash
+node scripts/make-og.mjs && rsvg-convert -w 1200 -h 630 og.svg -o public/og.png
+```
+
+Needs `librsvg` (`brew install librsvg`) and Manrope + JetBrains Mono
+visible to fontconfig — see the header comment in `scripts/make-og.mjs`.
+Redo it whenever the headline changes.
 
 ## Before you share the link widely
 
-- [ ] `og.png` — a 1200×630 social preview image in `public/`. The meta
-      tags reference it; without the file, links share with no image.
-- [ ] `DEMO_CORPUS` in `src/lib/bpe.ts` is placeholder Uzbek written by
-      an AI. A native speaker should read those ~30 lines, or replace
-      them with a slice of real training data. It runs live on the
-      homepage demo.
-- [ ] Homepage copy is English while the rest of the site is Uzbek.
-      Decide whether that is intended.
 - [ ] Transformer lessons 10–18 are `status: "soon"` and land on a
       near-empty page. They are linkable — consider whether that is the
       impression you want during a demo.
+- [ ] The homepage says "27 dars — 18 tasi hozir tayyor". If you write
+      more lessons, that sentence in `src/experience/Experience.tsx` does
+      not update itself.
 
 ## Known, accepted
 
@@ -96,3 +119,11 @@ per-IP window, but edge instances are ephemeral and not shared, so it
 thins abuse rather than stopping it. If the site gets real traffic, put
 Vercel's WAF/rate-limit in front of `/api/tutor`, or move the counter to
 Upstash/Vercel KV.
+
+**The demo corpus is 108 sentences.** `src/lib/bpe.ts` trains the
+homepage tokenizer on real Uzbek sampled from the
+[Uzbek Corpus Sample](https://github.com/elmurod1202/Uzbek-Corpus-Sample)
+(CC BY 4.0), normalised to `ʻ` (U+02BB). It is enough to reach the 700
+vocab ceiling and show honest compression on a held-out sentence, but it
+is a demo, not a training set. Attribution is in the file header and
+must stay there.

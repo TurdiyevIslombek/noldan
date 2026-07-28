@@ -103,6 +103,16 @@
   color: var(--accent-strong);
   border-color: var(--accent);
 }
+/* Placeholder until VITE_GITHUB_URL is set: reads as unavailable rather
+   than as a control that silently does nothing. */
+.snav__icon.is-inert {
+  cursor: default;
+  opacity: 0.45;
+}
+.snav__icon.is-inert:hover {
+  color: var(--muted);
+  border-color: var(--glass-border);
+}
 .snav__avatar {
   display: inline-flex;
   align-items: center;

@@ -181,12 +181,12 @@ export default function AutoTour() {
 
   const label =
     phase === "running"
-      ? "Pause"
+      ? "Toʻxtatib turish"
       : phase === "paused"
-        ? "Resume"
+        ? "Davom ettirish"
         : phase === "done"
-          ? "Replay"
-          : "Start tour";
+          ? "Qaytadan"
+          : "Avtomatik koʻrish";
 
   const Icon =
     phase === "running" ? Pause : phase === "done" ? RotateCcw : Play;
@@ -202,7 +202,7 @@ export default function AutoTour() {
           type="button"
           className="tour__primary"
           onClick={onPrimary}
-          aria-label={`${label} the guided tour`}
+          aria-label={label}
         >
           <Icon size={13} strokeWidth={2.2} aria-hidden="true" />
           <span>{label}</span>
@@ -212,7 +212,7 @@ export default function AutoTour() {
           0%
         </span>
 
-        <div className="tour__speeds" role="group" aria-label="Tour speed">
+        <div className="tour__speeds" role="group" aria-label="Koʻrish tezligi">
           {([1, 2] as const).map((s) => (
             <button
               key={s}
@@ -236,7 +236,7 @@ export default function AutoTour() {
             type="button"
             className="tour__ghost"
             onClick={restart}
-            aria-label="Restart the tour from the beginning"
+            aria-label="Boshidan qayta koʻrish"
           >
             <RotateCcw size={12} strokeWidth={2.2} aria-hidden="true" />
           </button>
@@ -247,7 +247,7 @@ export default function AutoTour() {
             type="button"
             className="tour__ghost"
             onClick={stop}
-            aria-label="Stop the tour and stay here"
+            aria-label="Toʻxtatish va shu yerda qolish"
           >
             <Square size={11} strokeWidth={2.4} aria-hidden="true" />
           </button>
@@ -255,7 +255,14 @@ export default function AutoTour() {
       </div>
 
       <p className="sr-only" aria-live="polite">
-        Guided tour {phase === "running" ? "playing" : phase}
+        Avtomatik koʻrish:{" "}
+        {phase === "running"
+          ? "davom etmoqda"
+          : phase === "paused"
+            ? "toʻxtatildi"
+            : phase === "done"
+              ? "tugadi"
+              : "boshlanmagan"}
       </p>
     </div>
   );
