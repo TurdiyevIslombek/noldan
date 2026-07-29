@@ -20,6 +20,7 @@ const ROUTES = [
   { path: "/", priority: "1.0" },
   { path: "/learn", priority: "0.9" },
   { path: "/playground", priority: "0.8" },
+  { path: "/loyiha", priority: "0.8" },
 ];
 
 function siteUrl(): Plugin {

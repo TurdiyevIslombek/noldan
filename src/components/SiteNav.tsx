@@ -32,9 +32,13 @@ export default function SiteNav() {
           {pathname === "/playground" && <span className="snav__dot" aria-hidden="true" />}
           Mashq maydoni
         </Link>
-        <span className="snav__item is-soon" title="Tez orada">
+        <Link
+          className={`snav__item${pathname === "/loyiha" ? " is-active" : ""}`}
+          to="/loyiha"
+        >
+          {pathname === "/loyiha" && <span className="snav__dot" aria-hidden="true" />}
           Loyiha
-        </span>
+        </Link>
       </div>
 
       <div className="snav__right">

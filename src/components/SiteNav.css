@@ -72,11 +72,6 @@
   border-radius: var(--r-pill);
   background: var(--accent);
 }
-.snav__item.is-soon {
-  color: var(--dim);
-  cursor: default;
-}
-
 .snav__right {
   justify-self: end;
   display: flex;

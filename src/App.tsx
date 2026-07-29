@@ -12,6 +12,7 @@ const Experience = lazy(() => import("./experience/Experience"));
 const Lessons = lazy(() => import("./experience/Lessons"));
 const Lesson = lazy(() => import("./experience/Lesson"));
 const Playground = lazy(() => import("./experience/Playground"));
+const Project = lazy(() => import("./experience/Project"));
 import { SHOW_INTRO } from "./lib/intro";
 
 function Shell() {
@@ -32,6 +33,7 @@ function Shell() {
         <Route path="/learn" element={<Lessons />} />
         <Route path="/learn/:courseId/:lessonId" element={<Lesson />} />
         <Route path="/playground" element={<Playground />} />
+        <Route path="/loyiha" element={<Project />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       </Suspense>
