@@ -25,3 +25,10 @@ og.svg
 
 # local design-tooling cache
 .impeccable/
+
+# local development database (npm run db:dev)
+.pglite/
+
+# private notes and old material, kept on this machine only
+notes/
+archive/
