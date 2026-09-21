@@ -72,10 +72,10 @@ about 8 MB.
 ## Google and updates — what to expect
 
 - **You never have to ask Google to re-check the site.** Google comes
-  back on its own, and reads `sitemap.xml` — which lists every lesson
-  with the date it last changed — to see what is new. The sitemap is
-  submitted once, at launch (section 11); after that it keeps itself
-  up to date.
+  back on its own, and reads `sitemap.xml` — rebuilt on every deploy
+  with every page and every lesson in it — to find what is new. The
+  sitemap is submitted once, at launch (section 11); after that it keeps
+  itself up to date.
 - **Updating the site never takes it out of Google.** Pages already in
   search stay there while Google re-reads them. There is no "wait for
   approval" after a change.
