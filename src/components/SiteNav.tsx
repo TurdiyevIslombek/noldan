@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Github, MessagesSquare } from "lucide-react";
+import { useAuth } from "../auth/AuthProvider";
 import "./SiteNav.css";
 
 /* Set VITE_GITHUB_URL once the repo is public and the icon becomes a
@@ -8,7 +9,20 @@ const GITHUB_URL = import.meta.env.VITE_GITHUB_URL as string | undefined;
 
 export default function SiteNav() {
   const { pathname } = useLocation();
+  const { session, name, email } = useAuth();
   const onLessons = pathname.startsWith("/learn");
+
+  /* Initials from the name — Telegram and Google both give one — or the
+     email's local part as a fallback. Two letters, because one looks like
+     a typo. */
+  const label = name || email || "";
+  const initials = (name || (email ?? "").split("@")[0])
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase() ?? "")
+    .join("");
 
   return (
     <nav className="snav" aria-label="Asosiy menyu">
@@ -73,9 +87,20 @@ export default function SiteNav() {
             <Github size={16} strokeWidth={2} aria-hidden="true" />
           </button>
         )}
-        <span className="snav__avatar" aria-hidden="true">
-          IS
-        </span>
+        {session ? (
+          <Link
+            className={`snav__avatar${pathname === "/hisobim" ? " is-active" : ""}`}
+            to="/hisobim"
+            aria-label={`Hisobim — ${label}`}
+            title={label || "Hisobim"}
+          >
+            {initials}
+          </Link>
+        ) : (
+          <Link className="snav__signin" to="/kirish">
+            Kirish
+          </Link>
+        )}
       </div>
     </nav>
   );

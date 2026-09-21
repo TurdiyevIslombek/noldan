@@ -24,6 +24,8 @@
 
 export const config = { runtime: "edge" };
 
+import { clientIp, originAllowed, rateLimited } from "./_lib/http";
+
 const MAX_MESSAGES = 12;
 const MAX_CHARS_PER_MESSAGE = 4000;
 const MAX_TOTAL_CHARS = 12000;
@@ -83,59 +85,17 @@ function pickUpstream(): Upstream | null {
   return null;
 }
 
-/** Same-origin check. Browsers always send Origin on cross-origin POSTs,
- *  so this stops the casual `curl` and any other site embedding us. */
-function originAllowed(req: Request): boolean {
-  const origin = req.headers.get("origin");
-  if (!origin) return true; // same-origin form posts and server-side calls
-
-  const configured = (process.env.ALLOWED_ORIGINS ?? "")
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
-
-  const allowed = new Set(configured);
-  if (process.env.VERCEL_URL) allowed.add(`https://${process.env.VERCEL_URL}`);
-  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
-    allowed.add(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`);
-  }
-  // Local development.
-  if (process.env.NODE_ENV !== "production") {
-    allowed.add("http://localhost:5188");
-    allowed.add("http://localhost:5173");
-  }
-  // Nothing configured anywhere: fail closed rather than open.
-  if (allowed.size === 0) return false;
-  return allowed.has(origin);
-}
-
-/* Best-effort rate limit. Edge instances are ephemeral and not shared, so
-   this thins abuse rather than eliminating it — put Vercel's firewall or
-   a KV-backed limiter in front if the site gets real traffic. */
-const hits = new Map<string, number[]>();
-
-function rateLimited(ip: string): boolean {
-  const now = Date.now();
-  const recent = (hits.get(ip) ?? []).filter((t) => now - t < RATE_WINDOW_MS);
-  recent.push(now);
-  hits.set(ip, recent);
-  if (hits.size > 5000) hits.clear(); // crude memory bound
-  return recent.length > RATE_LIMIT;
-}
-
 type ClientMsg = { role: string; content: unknown };
 
 export default async function handler(req: Request): Promise<Response> {
   if (req.method !== "POST") {
     return new Response("Method not allowed", { status: 405 });
   }
-  if (!originAllowed(req)) {
+  if (!originAllowed(req.headers.get("origin"))) {
     return Response.json({ error: "Ruxsat berilmagan manba." }, { status: 403 });
   }
 
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
-  if (rateLimited(ip)) {
+  if (rateLimited(clientIp(req.headers), RATE_LIMIT, RATE_WINDOW_MS)) {
     return Response.json(
       { error: "Juda koʻp soʻrov. Bir daqiqadan keyin qayta urinib koʻring." },
       { status: 429 }

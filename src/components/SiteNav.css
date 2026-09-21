@@ -1,134 +1,177 @@
+/* ====================================================================
+   Site chrome, in the V8 «Kunduz» system.
+
+   The landing page's nav is a single hairline-free bar: wordmark left,
+   links right, nothing floating. This is the same bar with the section
+   links added, so moving from the homepage into the course does not
+   feel like moving to a different site.
+   ==================================================================== */
+
 .snav {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 40;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 24px;
-  padding: 16px 30px;
-  pointer-events: none;
-}
-.snav > * {
-  pointer-events: auto;
+  height: 68px;
+  padding: 0 clamp(20px, 4vw, 54px);
+  background: rgba(236, 238, 234, 0.82);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+  border-bottom: 1px solid var(--line);
 }
 
 .snav__brand {
-  justify-self: start;
-  font-family: var(--display);
+  font-family: var(--sans);
   font-size: 17px;
-  font-weight: 800;
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
   color: var(--ink);
-  padding: 9px 18px;
-  border-radius: var(--r-pill);
-  background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  box-shadow: var(--glass-shadow);
 }
+/* The wordmark is one word, in one colour. Splitting it across two
+   colours was the old identity's habit. */
 .snav__brand span {
-  color: var(--accent-strong);
+  color: inherit;
 }
 
 .snav__center {
-  justify-self: center;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px;
-  border-radius: var(--r-pill);
-  background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  box-shadow: var(--glass-shadow);
+  gap: 4px;
 }
 .snav__item {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 8px 16px;
-  border-radius: var(--r-pill);
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: var(--r-sm);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
   color: var(--muted);
-  transition: color 200ms var(--ease), background 200ms var(--ease);
+  transition: color var(--t-state) var(--ease),
+    background var(--t-state) var(--ease);
 }
 .snav__item:hover {
   color: var(--ink);
+  background: rgba(23, 28, 32, 0.05);
 }
 .snav__item.is-active {
-  color: var(--accent-strong);
-  background: var(--accent-wash);
+  color: var(--ink);
 }
-.snav__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: var(--r-pill);
+/* The current section is marked by a rule under it, not by a dot and a
+   colour change. One accent, used where it means something. */
+.snav__item.is-active::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 1px;
+  height: 1px;
   background: var(--accent);
 }
+.snav__dot {
+  display: none;
+}
+
 .snav__right {
-  justify-self: end;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 .snav__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: var(--r-pill);
-  background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  box-shadow: var(--glass-shadow);
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: none;
   color: var(--muted);
   cursor: pointer;
-  transition: color 200ms var(--ease), border-color 200ms var(--ease);
+  transition: color var(--t-state) var(--ease),
+    border-color var(--t-state) var(--ease);
 }
 .snav__icon:hover {
-  color: var(--accent-strong);
-  border-color: var(--accent);
+  color: var(--ink);
+  border-color: var(--line-hi);
 }
-/* Placeholder until VITE_GITHUB_URL is set: reads as unavailable rather
-   than as a control that silently does nothing. */
 .snav__icon.is-inert {
+  opacity: 0.4;
   cursor: default;
-  opacity: 0.45;
-}
-.snav__icon.is-inert:hover {
-  color: var(--muted);
-  border-color: var(--glass-border);
 }
 .snav__avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: var(--r-pill);
-  background: var(--accent-strong);
-  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-sm);
+  background: var(--ink);
+  color: var(--paper-2);
   font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 600;
-  box-shadow: var(--glass-shadow);
+  font-size: 10px;
+  letter-spacing: 0.04em;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 820px) {
   .snav {
-    grid-template-columns: auto 1fr;
-    padding: 12px 16px;
+    height: 60px;
+    gap: 12px;
   }
   .snav__center {
+    order: 3;
+    width: 100%;
+  }
+  .snav__item {
+    padding: 6px 8px;
+    font-size: 9.5px;
+  }
+  .snav__right .snav__icon {
     display: none;
   }
+}
+@media (max-width: 620px) {
+  .snav {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 12px clamp(16px, 4vw, 54px);
+  }
+}
+
+/* The avatar is a link once there is an account behind it, and a plain
+   "Kirish" pill before that — an avatar for a signed-out visitor is a
+   button that lies about what it does. */
+a.snav__avatar {
+  text-decoration: none;
+  transition: border-color var(--t-feedback) var(--ease),
+    color var(--t-feedback) var(--ease);
+}
+a.snav__avatar:hover,
+a.snav__avatar.is-active {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.snav__signin {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink);
+  border: 1px solid var(--line-hi);
+  border-radius: var(--r-pill);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--t-feedback) var(--ease),
+    border-color var(--t-feedback) var(--ease);
+}
+.snav__signin:hover {
+  background: var(--paper-2);
+  border-color: var(--ink-soft);
 }

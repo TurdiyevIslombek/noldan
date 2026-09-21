@@ -1,0 +1,175 @@
+/* --------------------------------------------------------------------
+   Kirish / Hisobim — «Kunduz» system.
+
+   One centred card on the paper ground. No field, no canvas: two
+   buttons and a sentence, and nothing competing with the one decision
+   the visitor came here to make.
+   -------------------------------------------------------------------- */
+
+.auth {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 48px 20px 80px;
+  background: var(--paper);
+  position: relative;
+}
+
+.auth__card {
+  width: min(100%, 400px);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 34px 30px 30px;
+  box-shadow: var(--shadow-lift);
+}
+
+.auth__brand {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  margin-bottom: 22px;
+}
+.auth__brand span {
+  color: var(--accent);
+}
+
+.auth__title {
+  font-family: var(--sans);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+
+.auth__lead {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 22px;
+}
+.auth__lead code {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  padding: 1px 4px;
+}
+
+/* ---------------------------------------------------------- oauth */
+
+.auth__oauth {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 11px 14px;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line-hi);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: background var(--t-feedback) var(--ease),
+    border-color var(--t-feedback) var(--ease);
+}
+.auth__oauth:hover {
+  background: var(--paper-2);
+  border-color: var(--ink-soft);
+}
+
+.auth__oauth:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+.auth__oauth:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.auth__providers {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.auth__error {
+  margin: 0;
+  padding: 9px 11px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--accent-ink);
+  background: var(--accent-wash-2);
+  border: 1px solid var(--accent-wash);
+  border-radius: var(--r-sm);
+}
+
+.auth__fine {
+  margin: 18px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.auth__wait {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.auth__spin {
+  animation: auth-spin 0.8s linear infinite;
+}
+@keyframes auth-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.auth__ghost {
+  font: inherit;
+  color: var(--accent-ink);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.auth__ghost {
+  display: block;
+  margin-top: 18px;
+}
+
+.auth__back {
+  position: absolute;
+  bottom: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-decoration: none;
+}
+.auth__back:hover {
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth__spin {
+    animation: none;
+  }
+}
