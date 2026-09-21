@@ -1,0 +1,659 @@
+/* ====================================================================
+   The landing page. Night, one sky, and type that stays out of the way
+   of it: set small beside the pictures, never over them.
+   ==================================================================== */
+
+html[data-page="stars"],
+html[data-page="stars"] body {
+  background: #04060b;
+  color: #eef2f8;
+  color-scheme: dark;
+}
+
+.st {
+  --sky: #04060b;
+  --ink: #eef2f8;
+  --ink-2: #b7c0cf;
+  --ink-3: #7f8a9d;
+  --hair: rgba(238, 242, 248, 0.12);
+  --hair-2: rgba(238, 242, 248, 0.22);
+  --glass: rgba(255, 255, 255, 0.035);
+  --ember: #ffb487;
+  --ice: #9fd0ff;
+  --sans: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+  --mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: relative;
+  min-height: 100dvh;
+  font-family: var(--sans);
+  color: var(--ink);
+}
+
+/* The night itself: a deep blue that falls to black at the edges, held
+   still behind everything that scrolls. */
+.st::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(70% 60% at 68% 48%, rgba(24, 38, 66, 0.55), transparent 70%),
+    radial-gradient(120% 90% at 50% 40%, #0a101c 0%, #060912 55%, #04060b 100%);
+}
+
+.st__sky {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Copy sits on the left third; this keeps the stars behind it from
+   competing with a paragraph, without dimming the picture on the right. */
+.st__shade {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(4, 6, 11, 0.8) 0%,
+    rgba(4, 6, 11, 0.5) 30%,
+    rgba(4, 6, 11, 0) 56%
+  );
+}
+
+.st main,
+.st-foot {
+  position: relative;
+  z-index: 3;
+}
+
+/* ---- nav -------------------------------------------------------------- */
+
+.st-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px clamp(22px, 5vw, 64px);
+  background: linear-gradient(to bottom, rgba(4, 6, 11, 0.85), rgba(4, 6, 11, 0));
+}
+.st-nav__mark {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.st-nav nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.4vw, 30px);
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.st-nav nav a {
+  transition: color 200ms var(--ease);
+}
+.st-nav nav a:hover {
+  color: var(--ink);
+}
+.st-nav__in {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--hair-2);
+  color: var(--ink) !important;
+  transition: background 200ms var(--ease), border-color 200ms var(--ease);
+}
+.st-nav__in:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.36);
+}
+
+/* ---- sections --------------------------------------------------------- */
+
+.st-hero,
+.st-sec {
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(22px, 7vw, 120px);
+}
+.st-hero {
+  position: relative;
+  min-height: 100svh;
+}
+.st-sec {
+  min-height: 130vh;
+}
+.st-final {
+  min-height: 150vh;
+}
+
+.st-copy {
+  max-width: 33rem;
+  will-change: opacity, transform;
+}
+.st-copy:focus-within {
+  /* A reader tabbing through the page is never typing into a block
+     that has faded out. */
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+.st-hero .st-copy {
+  max-width: 40rem;
+}
+
+/* ---- type ------------------------------------------------------------- */
+
+.st-meta,
+.st-kicker {
+  margin: 0 0 22px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  letter-spacing: 0.01em;
+  color: var(--ink-3);
+}
+.st-kicker {
+  color: var(--ember);
+}
+
+.st h1 {
+  margin: 0 0 26px;
+  font-size: clamp(2.6rem, 6.2vw, 5.4rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+.st h2 {
+  margin: 0 0 20px;
+  font-size: clamp(1.9rem, 3.7vw, 3.1rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.038em;
+  text-wrap: balance;
+}
+.st-copy > p {
+  margin: 0 0 18px;
+  font-size: 17px;
+  line-height: 1.66;
+  color: var(--ink-2);
+}
+.st-copy em {
+  font-style: normal;
+  color: var(--ink);
+}
+.st-lede {
+  font-size: clamp(17px, 1.5vw, 19px) !important;
+  max-width: 34rem;
+}
+.st-note {
+  font-size: 14.5px !important;
+  color: var(--ink-3) !important;
+}
+.st-note b {
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+/* The hero arrives after the stars have had a moment to light. */
+.st-hero .st-meta,
+.st-hero h1,
+.st-hero .st-lede,
+.st-hero .st-actions {
+  animation: st-rise 1100ms var(--ease) both;
+}
+.st-hero .st-meta { animation-delay: 500ms; }
+.st-hero h1 { animation-delay: 620ms; }
+.st-hero .st-lede { animation-delay: 760ms; }
+.st-hero .st-actions { animation-delay: 900ms; }
+@keyframes st-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.st-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 34px;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  animation: st-cue 3.2s ease-in-out infinite;
+}
+.st-cue::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 26px;
+  margin: 10px auto 0;
+  background: linear-gradient(to bottom, var(--ink-3), transparent);
+}
+@keyframes st-cue {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.9; }
+}
+
+/* ---- actions ---------------------------------------------------------- */
+
+.st-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+.st-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: #f4f6fa;
+  color: #05070c;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 260ms var(--ease), box-shadow 260ms var(--ease),
+    background 260ms var(--ease);
+}
+.st-btn span {
+  transition: transform 260ms var(--ease);
+}
+.st-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.06),
+    0 16px 40px -14px rgba(159, 208, 255, 0.55);
+}
+.st-btn:hover span {
+  transform: translateX(3px);
+}
+.st-btn:active {
+  transform: scale(0.98);
+}
+.st-btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--hair-2);
+}
+.st-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+.st-btn--lg {
+  padding: 16px 28px;
+  font-size: 16px;
+}
+
+/* ---- 1 · try a word --------------------------------------------------- */
+
+.st-try {
+  display: block;
+  margin: 26px 0 16px;
+}
+.st-try span {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13.5px;
+  color: var(--ink-3);
+}
+.st-try input {
+  width: 100%;
+  max-width: 22rem;
+  padding: 13px 16px;
+  border: 1px solid var(--hair-2);
+  border-radius: 12px;
+  background: var(--glass);
+  font: inherit;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  caret-color: var(--ember);
+  outline: none;
+  transition: border-color 220ms var(--ease), background 220ms var(--ease);
+}
+.st-try input:focus {
+  border-color: rgba(255, 180, 135, 0.6);
+  background: rgba(255, 180, 135, 0.05);
+}
+
+.st-bytes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+}
+.st-bytes li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-width: 44px;
+  padding: 8px 9px 7px;
+  border: 1px solid var(--hair);
+  border-radius: 10px;
+  background: var(--glass);
+  animation: st-chip 360ms var(--ease) both;
+}
+.st-bytes li[data-wide] {
+  border-color: rgba(255, 180, 135, 0.45);
+}
+.st-bytes b {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+}
+.st-bytes i {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-style: normal;
+  color: var(--ember);
+}
+@keyframes st-chip {
+  from { opacity: 0; transform: translateY(6px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---- 2 · tokens ------------------------------------------------------- */
+
+.st-tokens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 26px 0 14px;
+}
+.st-tokens span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--hair-2);
+  background: var(--glass);
+  animation: st-chip 420ms var(--ease) both;
+}
+.st-tokens span:nth-child(2) { animation-delay: 80ms; }
+.st-tokens span:nth-child(3) { animation-delay: 160ms; }
+.st-tokens span:nth-child(4) { animation-delay: 240ms; }
+.st-tokens span[data-c="0"] { border-color: rgba(255, 180, 135, 0.55); }
+.st-tokens span[data-c="1"] { border-color: rgba(159, 208, 255, 0.55); }
+.st-tokens b {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.st-tokens span[data-c="0"] b { color: var(--ember); }
+.st-tokens span[data-c="1"] b { color: var(--ice); }
+.st-tokens i {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-style: normal;
+  color: var(--ink-3);
+}
+.st-wait {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/* ---- 3 · the measurement --------------------------------------------- */
+
+.st-measure {
+  margin: 26px 0 22px;
+  padding: 18px 18px 14px;
+  border: 1px solid var(--hair);
+  border-radius: 16px;
+  background: rgba(8, 12, 22, 0.55);
+}
+.st-measure figcaption {
+  margin-bottom: 16px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+.st-measure q {
+  color: var(--ink-2);
+}
+.st-measure__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 12px;
+  align-items: baseline;
+  margin-bottom: 14px;
+}
+.st-measure__row span {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.st-measure__row b {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.st-measure__row b i {
+  font-size: 11px;
+  font-style: normal;
+  color: var(--ink-3);
+}
+.st-measure__row[data-c="ember"] b { color: var(--ember); }
+.st-measure__row[data-c="ice"] b { color: var(--ice); }
+.st-measure__row em {
+  grid-column: 1 / -1;
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+.st-measure__row s {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  transform-origin: left;
+  transition: transform 1100ms var(--ease);
+}
+.st-measure__row[data-c="ember"] s { background: var(--ember); }
+.st-measure__row[data-c="ice"] s { background: var(--ice); }
+.st-measure__src {
+  margin: 4px 0 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+
+/* ---- 4 · the loop ---------------------------------------------------- */
+
+.st-loop {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 22px 0 18px;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+.st-loop li {
+  position: relative;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--hair);
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink-3);
+  animation: st-step 5.6s var(--ease) infinite;
+}
+.st-loop li:nth-child(2) { animation-delay: 1.4s; }
+.st-loop li:nth-child(3) { animation-delay: 2.8s; }
+.st-loop li:nth-child(4) { animation-delay: 4.2s; }
+/* One step lit at a time, going round: the loop, performed. */
+@keyframes st-step {
+  0%, 22% {
+    color: #05070c;
+    background: var(--ember);
+    border-color: var(--ember);
+  }
+  28%, 100% {
+    color: var(--ink-3);
+    background: transparent;
+    border-color: var(--hair);
+  }
+}
+
+/* ---- 5 · the path ---------------------------------------------------- */
+
+.st-path {
+  position: relative;
+  margin: 26px 0 22px;
+  padding: 0 0 0 22px;
+  list-style: none;
+}
+.st-path::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--ember), var(--ice));
+  opacity: 0.6;
+}
+.st-path li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 0;
+}
+.st-path li::before {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 15px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--sky);
+  box-shadow: inset 0 0 0 1.5px var(--ice), 0 0 12px rgba(159, 208, 255, 0.6);
+}
+.st-path li:first-child::before {
+  box-shadow: inset 0 0 0 1.5px var(--ember), 0 0 12px rgba(255, 180, 135, 0.6);
+}
+.st-path b {
+  font-size: 16.5px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.st-path span {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.st-first {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--hair);
+  background: var(--glass);
+  font-size: 15px !important;
+}
+.st-first b {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.st-arts {
+  margin-top: 26px !important;
+  font-family: var(--mono);
+  font-size: 12.5px !important;
+  color: var(--ink-3) !important;
+}
+.st-arts a {
+  color: var(--ink-2);
+  transition: color 200ms var(--ease);
+}
+.st-arts a:hover {
+  color: var(--ice);
+}
+
+/* ---- foot ------------------------------------------------------------- */
+
+.st-foot {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 0 clamp(22px, 7vw, 120px);
+  padding: 22px 0 36px;
+  border-top: 1px solid var(--hair);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.st-foot a:hover {
+  color: var(--ink);
+}
+
+/* ---- phones and narrow windows --------------------------------------- */
+
+@media (max-width: 899px) {
+  /* The picture takes the top half; the copy the bottom, on its own
+     shade, so neither covers the other. */
+  .st__shade {
+    background: linear-gradient(
+      to top,
+      rgba(4, 6, 11, 0.95) 0%,
+      rgba(4, 6, 11, 0.72) 42%,
+      rgba(4, 6, 11, 0) 64%
+    );
+  }
+  .st-sec {
+    align-items: flex-end;
+    min-height: 125vh;
+    padding-bottom: 12vh;
+  }
+  .st-final {
+    min-height: 140vh;
+  }
+  .st-copy {
+    max-width: none;
+  }
+  .st-nav nav a:not(.st-nav__in) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-hero .st-meta,
+  .st-hero h1,
+  .st-hero .st-lede,
+  .st-hero .st-actions,
+  .st-bytes li,
+  .st-tokens span,
+  .st-cue,
+  .st-loop li {
+    animation: none;
+  }
+}
