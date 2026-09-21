@@ -1,11 +1,48 @@
-import { useCallback, useState } from "react";
-import { Check, ChevronDown, Copy, Lightbulb, Key, TriangleAlert } from "lucide-react";
-import type { Block, Exercise } from "../lib/curriculum";
+import { createContext, useCallback, useContext, useState, type ReactNode } from "react";
+import {
+  Check,
+  ChevronDown,
+  CircleCheck,
+  Copy,
+  Dumbbell,
+  Key,
+  Lightbulb,
+  TriangleAlert,
+} from "lucide-react";
+import type { Block, Exercise } from "../lib/curriculum-types";
 import { Python, inline } from "../lib/highlight";
 import { VIZ } from "./viz/Viz";
+import TypeCode, { StaticCode } from "./TypeCode";
+import { MediaSlot } from "./Media";
 import "./Blocks.css";
 
-/* ---------- code, with copy ---------- */
+/* Which lesson these blocks belong to — media slots need it to find
+   their files. */
+const LessonCtx = createContext({ course: "", lesson: "" });
+export function LessonProvider({
+  course,
+  lesson,
+  children,
+}: {
+  course: string;
+  lesson: string;
+  children: ReactNode;
+}) {
+  return <LessonCtx.Provider value={{ course, lesson }}>{children}</LessonCtx.Provider>;
+}
+
+/** Inline formatting, with the author's deliberate line breaks kept. */
+function rich(text: string): ReactNode {
+  const parts = text.split("\n");
+  return parts.map((p, i) => (
+    <span key={i}>
+      {inline(p)}
+      {i < parts.length - 1 && <br />}
+    </span>
+  ));
+}
+
+/* ---------- code, with copy (paid course, legacy format) ---------- */
 export function CodeBlock({ code }: { code: string }) {
   const [copied, setCopied] = useState(false);
 
@@ -18,8 +55,6 @@ export function CodeBlock({ code }: { code: string }) {
       /* clipboard can be blocked; the code is selectable either way */
     }
   }, [code]);
-
-  const lines = code.split("\n");
 
   return (
     <figure className="cb">
@@ -41,7 +76,7 @@ export function CodeBlock({ code }: { code: string }) {
       </div>
       <pre className="cb__pre">
         <code>
-          {lines.map((line, i) => (
+          {code.split("\n").map((line, i) => (
             <span className="cb__line" key={i}>
               <span className="cb__ln" aria-hidden="true">
                 {i + 1}
@@ -57,20 +92,64 @@ export function CodeBlock({ code }: { code: string }) {
   );
 }
 
+/* ---------- collapsible answer ---------- */
+function Reveal({ summary, blocks }: { summary: string; blocks: Block[] }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className={`bk__reveal${open ? " is-open" : ""}`}>
+      <button
+        type="button"
+        className="bk__reveal-btn"
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+      >
+        <ChevronDown size={15} strokeWidth={2.2} aria-hidden="true" />
+        {open ? summary.replace(/koʻrsatish|ko'rsatish/i, "yashirish") : summary}
+      </button>
+      {open && (
+        <div className="bk__reveal-body">
+          <Blocks blocks={blocks} />
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ---------- one content block ---------- */
 function One({ b }: { b: Block }) {
+  const ctx = useContext(LessonCtx);
+
   switch (b.kind) {
     case "text":
-      return <p className="bk__p">{inline(b.text)}</p>;
+      return <p className="bk__p">{rich(b.text)}</p>;
 
     case "subhead":
       return <p className="bk__sub">{inline(b.text)}</p>;
+
+    case "h3":
+      return (
+        <h3 className="bk__h3" id={b.id}>
+          {inline(b.text)}
+        </h3>
+      );
 
     case "bullets":
       return (
         <ul className="bk__ul">
           {b.items.map((it, i) => (
             <li key={i}>{inline(it)}</li>
+          ))}
+        </ul>
+      );
+
+    case "goals":
+      return (
+        <ul className="bk__goals">
+          {b.items.map((it, i) => (
+            <li key={i}>
+              <CircleCheck size={17} strokeWidth={2} aria-hidden="true" />
+              <span>{inline(it)}</span>
+            </li>
           ))}
         </ul>
       );
@@ -97,28 +176,74 @@ function One({ b }: { b: Block }) {
           </span>
           <span className="bk__note-body">
             <span className="bk__note-label">{label}</span>
-            <span>{inline(b.text)}</span>
+            <span>{rich(b.text)}</span>
           </span>
         </aside>
       );
     }
 
-    case "code":
-      return <CodeBlock code={b.code} />;
+    case "table":
+      return (
+        <div className="bk__table">
+          <table>
+            <thead>
+              <tr>
+                {b.head.map((h, i) => (
+                  <th key={i}>{inline(h)}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {b.rows.map((r, i) => (
+                <tr key={i}>
+                  {r.map((c, j) => (
+                    <td key={j}>{inline(c)}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
 
-    case "viz": {
-      const Component = VIZ[b.id];
-      // An unknown id must not crash a lesson — skip it silently.
-      return Component ? <Component /> : null;
-    }
+    case "code":
+      if (b.mode === "static") return <StaticCode code={b.code} />;
+      if (b.mode === "template") return <StaticCode code={b.code} label="Colab'da oʻzingiz toʻldiring" />;
+      return <TypeCode code={b.code} lang={b.lang ?? "python"} />;
 
     case "output":
       return (
-        <div className="bk__out">
-          <span className="bk__out-label">Natija</span>
+        <div className={`bk__out${b.error ? " bk__out--err" : ""}`}>
+          <span className="bk__out-label">{b.label ?? (b.error ? "Xato" : "Natija")}</span>
           <pre>{b.text}</pre>
         </div>
       );
+
+    case "pre":
+      return <pre className="bk__pre">{b.text}</pre>;
+
+    case "reveal":
+      return <Reveal summary={b.summary} blocks={b.blocks} />;
+
+    case "exercise":
+      return (
+        <div className="bk__ex">
+          <p className="bk__ex-label">
+            <Dumbbell size={14} strokeWidth={2.2} aria-hidden="true" />
+            {b.label}
+          </p>
+          <Blocks blocks={b.blocks} />
+          {b.answer && <Reveal summary={b.answer.summary} blocks={b.answer.blocks} />}
+        </div>
+      );
+
+    case "media":
+      return <MediaSlot course={ctx.course} lesson={ctx.lesson} id={b.id} title={b.title} />;
+
+    case "viz": {
+      const Component = VIZ[b.id];
+      return Component ? <Component /> : null;
+    }
 
     case "flow":
       return (
@@ -151,7 +276,7 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
   );
 }
 
-/* ---------- exercise, answer hidden until asked ---------- */
+/* ---------- exercise, legacy format ---------- */
 export function ExerciseCard({ ex }: { ex: Exercise }) {
   const [open, setOpen] = useState(false);
 
@@ -173,7 +298,7 @@ export function ExerciseCard({ ex }: { ex: Exercise }) {
 
       {open && (
         <div className="ex__answer">
-          {ex.answerCode && <CodeBlock code={ex.answerCode} />}
+          {ex.answerCode && <StaticCode code={ex.answerCode} />}
           {ex.answerOutput && (
             <div className="bk__out">
               <span className="bk__out-label">Natija</span>

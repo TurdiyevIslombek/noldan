@@ -1,6 +1,9 @@
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import { devApi } from "./vite-dev-api";
+import { execFileSync } from "node:child_process";
+import path from "node:path";
 
 /* --------------------------------------------------------------------
    Absolute URLs (canonical, og:image, sitemap) have to name a real
@@ -16,12 +19,6 @@ import tailwindcss from "@tailwindcss/vite";
 
 const SITE_URL = (process.env.SITE_URL || "https://noldan.uz").replace(/\/+$/, "");
 
-const ROUTES = [
-  { path: "/", priority: "1.0" },
-  { path: "/learn", priority: "0.9" },
-  { path: "/playground", priority: "0.8" },
-  { path: "/loyiha", priority: "0.8" },
-];
 
 function siteUrl(): Plugin {
   return {
@@ -31,30 +28,44 @@ function siteUrl(): Plugin {
       order: "pre",
       handler: (html) => html.replaceAll("%SITE_URL%", SITE_URL),
     },
-    generateBundle() {
-      this.emitFile({
-        type: "asset",
-        fileName: "robots.txt",
-        source: `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`,
-      });
-      this.emitFile({
-        type: "asset",
-        fileName: "sitemap.xml",
-        source:
-          `<?xml version="1.0" encoding="UTF-8"?>\n` +
-          `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-          ROUTES.map(
-            (r) =>
-              `  <url><loc>${SITE_URL}${r.path}</loc><priority>${r.priority}</priority></url>`
-          ).join("\n") +
-          `\n</urlset>\n`,
-      });
+
+  };
+}
+
+/* Saving a lesson's Markdown in content/ rebuilds the generated lesson
+   files, which Vite then hot-reloads — no restart to see an edit. */
+function lessonContent(): Plugin {
+  return {
+    name: "noldan-lessons",
+    apply: "serve",
+    configureServer(server) {
+      const dir = path.resolve("content");
+      server.watcher.add(dir);
+      let t: ReturnType<typeof setTimeout> | undefined;
+      const run = (file: string) => {
+        if (!file.startsWith(dir) || !file.endsWith(".md")) return;
+        clearTimeout(t);
+        t = setTimeout(() => {
+          try {
+            execFileSync(process.execPath, ["scripts/build-catalog.mjs"], { stdio: "inherit" });
+          } catch {
+            server.config.logger.error("[noldan] lesson build failed — see above");
+          }
+        }, 150);
+      };
+      server.watcher.on("add", run);
+      server.watcher.on("change", run);
+      server.watcher.on("unlink", run);
     },
   };
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), siteUrl()],
+  // The public origin, for canonical URLs the app writes as it navigates.
+  define: { __SITE_URL__: JSON.stringify(SITE_URL) },
+  // devApi() is serve-only: it mounts the /api functions in `vite dev`
+  // so the backend can be exercised without deploying.
+  plugins: [react(), tailwindcss(), siteUrl(), devApi(), lessonContent()],
   build: {
     // Routes are code-split, so a chunk approaching this size means
     // something leaked into the shared bundle.

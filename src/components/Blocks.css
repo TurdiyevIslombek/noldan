@@ -29,7 +29,7 @@
   padding: 2px 6px;
   border-radius: var(--r-xs);
   background: var(--accent-wash-2);
-  border: 1px solid rgba(5, 150, 105, 0.16);
+  border: 1px solid rgba(47, 107, 220, 0.16);
   color: var(--accent-ink);
   white-space: nowrap;
 }
@@ -86,7 +86,7 @@
   margin-top: 2px;
   border-radius: var(--r-pill);
   background: var(--accent-wash);
-  border: 1px solid rgba(5, 150, 105, 0.22);
+  border: 1px solid rgba(47, 107, 220, 0.22);
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 700;
@@ -133,7 +133,7 @@
 }
 
 .bk__note--tip {
-  border-color: rgba(5, 150, 105, 0.28);
+  border-color: rgba(47, 107, 220, 0.28);
 }
 .bk__note--tip .bk__note-ico {
   background: var(--accent-wash);
@@ -144,7 +144,7 @@
 }
 
 .bk__note--key {
-  border-color: rgba(5, 150, 105, 0.4);
+  border-color: rgba(47, 107, 220, 0.4);
   background: var(--accent-wash-2);
 }
 .bk__note--key .bk__note-ico {
@@ -316,7 +316,7 @@
   margin: 0 0 22px;
   padding: 16px 18px;
   border-radius: var(--r-lg);
-  border: 1px solid rgba(5, 150, 105, 0.2);
+  border: 1px solid rgba(47, 107, 220, 0.2);
   background: var(--accent-wash-2);
 }
 .bk__flow-part {
@@ -345,7 +345,7 @@
   transition: border-color 240ms var(--ease);
 }
 .ex.is-open {
-  border-color: rgba(5, 150, 105, 0.34);
+  border-color: rgba(47, 107, 220, 0.34);
 }
 .ex__label {
   font-family: var(--mono);
@@ -418,4 +418,488 @@
   .ex__answer {
     animation: none;
   }
+}
+
+/* ====================================================================
+   The lesson page (light). Prose, notes and outputs retuned to the
+   learning palette, plus the block kinds the Markdown lessons add.
+   Everything here is scoped to .lx so older pages are untouched.
+   ==================================================================== */
+
+.lx .bk__p {
+  margin: 0 0 16px;
+  max-width: none;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--lx-ink2);
+}
+.lx .bk__p strong,
+.lx .bk__ul strong,
+.lx .bk__ol strong,
+.lx .bk__goals strong,
+.lx .bk__note strong,
+.lx .bk__table strong {
+  color: var(--lx-ink);
+  font-weight: 600;
+}
+.lx .bk__p a,
+.lx .bk__note a,
+.lx .bk__ul a {
+  text-decoration: underline;
+  text-decoration-color: #b9cdf3;
+  text-underline-offset: 3px;
+}
+.lx a strong {
+  color: var(--lx-accent-ink);
+}
+.lx .ic {
+  padding: 1px 6px;
+  border-radius: 6px;
+  border: 1px solid #e2ded3;
+  background: #f1efe9;
+  font-family: var(--lx-mono);
+  font-size: 0.86em;
+  color: var(--lx-ink);
+}
+
+.bk__h3 {
+  margin: 36px 0 12px;
+  font-size: 1.2rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: var(--lx-ink);
+  scroll-margin-top: 96px;
+}
+
+.lx .bk__ul li,
+.lx .bk__ol li {
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: var(--lx-ink2);
+}
+.lx .bk__ul li::before {
+  background: var(--lx-accent);
+  opacity: 0.6;
+}
+.lx .bk__step {
+  background: var(--lx-accent-wash);
+  border-color: #cfdcf6;
+  color: var(--lx-accent-ink);
+}
+
+/* ---- goals ------------------------------------------------------------ */
+.bk__goals {
+  display: grid;
+  gap: 10px;
+  margin: 4px 0 8px;
+  padding: 18px 20px;
+  list-style: none;
+  border-radius: 14px;
+  border: 1px solid var(--lx-line);
+  background: var(--lx-surface);
+}
+.bk__goals li {
+  display: flex;
+  gap: 12px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--lx-ink2);
+}
+.bk__goals svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--lx-ok);
+}
+
+/* ---- notes ------------------------------------------------------------ */
+.lx .bk__note {
+  display: flex;
+  gap: 12px;
+  margin: 22px 0;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.lx .bk__note-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--lx-ink2);
+}
+.lx .bk__note-label {
+  font-size: 12px;
+  font-weight: 600;
+}
+.lx .bk__note-ico {
+  margin-top: 3px;
+}
+.lx .bk__note--tip { background: #eef4fe; border-color: #d3e1fb; }
+.lx .bk__note--tip .bk__note-ico,
+.lx .bk__note--tip .bk__note-label { color: var(--lx-accent-ink); }
+.lx .bk__note--key { background: #fff8e8; border-color: #f1dcaa; }
+.lx .bk__note--key .bk__note-ico,
+.lx .bk__note--key .bk__note-label { color: #a16207; }
+.lx .bk__note--warn { background: #fff1ec; border-color: #f5cbbb; }
+.lx .bk__note--warn .bk__note-ico,
+.lx .bk__note--warn .bk__note-label { color: #c2410c; }
+
+/* ---- tables ----------------------------------------------------------- */
+.bk__table {
+  margin: 20px 0;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--lx-line);
+  background: var(--lx-surface);
+}
+.bk__table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.bk__table th {
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--lx-ink);
+  background: #f4f2ec;
+  border-bottom: 1px solid var(--lx-line);
+}
+.bk__table td {
+  padding: 10px 14px;
+  color: var(--lx-ink2);
+  border-bottom: 1px solid #f0ede6;
+}
+.bk__table tr:last-child td {
+  border-bottom: 0;
+}
+
+/* ---- what the code prints -------------------------------------------- */
+.lx .bk__out {
+  position: relative;
+  display: block;
+  margin: -12px 0 24px;
+  padding: 0;
+  border-radius: 12px;
+  border: 1px solid #d6e9dd;
+  background: #f3f8f5;
+}
+.lx .bk__out-label {
+  position: static;
+  display: inline-block;
+  margin: 10px 14px 0;
+  padding: 0;
+  background: none;
+  font-family: var(--lx-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--lx-ok);
+}
+.lx .bk__out pre {
+  margin: 0;
+  padding: 4px 14px 12px;
+  background: none;
+  font-family: var(--lx-mono);
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #1f3a2c;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.lx .bk__out--err {
+  border-color: #f3cdcd;
+  background: #fdf2f2;
+}
+.lx .bk__out--err .bk__out-label {
+  color: #c62828;
+}
+.lx .bk__out--err pre {
+  color: #8f1d1d;
+}
+
+.bk__pre {
+  margin: 20px 0;
+  padding: 14px 16px;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px dashed var(--lx-line2);
+  background: var(--lx-surface);
+  font-family: var(--lx-mono);
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--lx-ink);
+  white-space: pre;
+}
+
+/* ---- answers ---------------------------------------------------------- */
+.bk__reveal {
+  margin: 14px 0 20px;
+}
+.bk__reveal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--lx-line2);
+  background: var(--lx-surface);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--lx-ink2);
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+.bk__reveal-btn:hover {
+  border-color: #b9cdf3;
+  color: var(--lx-accent-ink);
+}
+.bk__reveal-btn svg {
+  transition: transform 200ms ease;
+}
+.bk__reveal.is-open .bk__reveal-btn svg {
+  transform: rotate(180deg);
+}
+.bk__reveal-body {
+  margin-top: 14px;
+  padding: 2px 0 2px 18px;
+  border-left: 3px solid #cfe5d8;
+  animation: bk-open 260ms ease both;
+}
+@keyframes bk-open {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---- exercises -------------------------------------------------------- */
+.bk__ex {
+  margin: 18px 0;
+  padding: 20px 22px 6px;
+  border-radius: 16px;
+  border: 1px solid var(--lx-line);
+  background: var(--lx-surface);
+}
+.bk__ex-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 12px;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: var(--lx-warn-wash);
+  color: var(--lx-warn);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+/* ---- animation slots -------------------------------------------------- */
+.mslot {
+  display: flex;
+  gap: 14px;
+  margin: 26px 0;
+  padding: 18px;
+  border-radius: 14px;
+  border: 2px dashed #c6d5f0;
+  background: #f5f8fe;
+}
+.mslot__ico {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #e3ecfc;
+  color: var(--lx-accent-ink);
+}
+.mslot__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--lx-ink2);
+}
+.mslot__k {
+  font-family: var(--lx-mono);
+  font-size: 11.5px;
+  color: var(--lx-accent-ink);
+}
+.mslot strong {
+  font-size: 16px;
+  color: var(--lx-ink);
+}
+.mslot code {
+  padding: 1px 6px;
+  border-radius: 6px;
+  border: 1px solid #d9e3f5;
+  background: #fff;
+  font-family: var(--lx-mono);
+  font-size: 12.5px;
+  word-break: break-all;
+}
+.mslot__note {
+  font-size: 12.5px;
+  color: var(--lx-muted);
+}
+.mslot--yt {
+  border-color: #f0c6be;
+  background: #fff6f4;
+}
+.mslot--yt .mslot__ico {
+  background: #fde3de;
+  color: #c4321b;
+}
+.mslot--yt .mslot__k {
+  color: #c4321b;
+}
+
+.mplay {
+  margin: 26px 0;
+}
+.mplay__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #0f1115;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 18px 40px -26px rgba(20, 30, 50, 0.5);
+}
+.mplay video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+.mplay__ctl {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.mplay__frame:hover .mplay__ctl,
+.mplay__frame:focus-within .mplay__ctl {
+  opacity: 1;
+}
+@media (hover: none) {
+  .mplay__ctl {
+    opacity: 1;
+  }
+}
+.mplay__ctl button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #1d2129;
+  cursor: pointer;
+}
+.mplay figcaption {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--lx-muted);
+}
+
+/* ---- the lesson's YouTube video --------------------------------------- */
+.yt {
+  aspect-ratio: 16 / 9;
+  margin: 28px 0 8px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #0f1115;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 22px 50px -30px rgba(20, 30, 50, 0.55);
+}
+.yt iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.yt__face {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+.yt__face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 12, 16, 0.6), rgba(10, 12, 16, 0.08) 60%);
+}
+.yt__play {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #fff;
+  color: #c4321b;
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.5);
+  transition: transform 200ms ease;
+}
+.yt__face:hover .yt__play {
+  transform: scale(1.06);
+}
+.yt__label {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  z-index: 1;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .lx .bk__p { font-size: 16.5px; }
+  .bk__ex { padding: 16px 16px 4px; }
+  .bk__table table { font-size: 14px; }
+}
+
+/* Notes on the lesson page drop the older label and icon treatment. */
+.lx .bk__note-label {
+  font-family: var(--lx-sans);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.lx .bk__note-ico {
+  display: block;
+  flex: none;
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+/* Code and program output are read character by character, and lessons
+   compare them with what Python prints: "->" must stay a hyphen and a
+   bracket, never turn into the mono font's arrow ligature. */
+.lx pre,
+.lx code {
+  font-variant-ligatures: none;
 }

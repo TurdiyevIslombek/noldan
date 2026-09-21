@@ -41,7 +41,7 @@
   padding: 6px 12px;
   border-radius: var(--r-pill);
   background: var(--accent-wash);
-  border: 1px solid rgba(5, 150, 105, 0.2);
+  border: 1px solid rgba(47, 107, 220, 0.2);
   align-self: center;
 }
 .lhead__title {
@@ -252,7 +252,7 @@
   font-weight: 700;
   color: var(--accent-strong);
   background: var(--accent-wash);
-  border: 1px solid rgba(5, 150, 105, 0.22);
+  border: 1px solid rgba(47, 107, 220, 0.22);
 }
 .cbox__body {
   display: flex;
@@ -397,4 +397,109 @@
 .lbox.is-soon .lbox__go {
   background: rgba(16, 32, 26, 0.06);
   color: var(--dim);
+}
+
+/* ====================================================================
+   V8 «Kunduz» pass.
+
+   The tree stays: track, course and lesson as nodes joined by measured
+   wires, expanding in place. Only the material changes. The lattice
+   field this page floated over is gone, so glass becomes solid stock,
+   the emerald leftovers take the one accent, and the wires read as
+   structure in ink rather than as highlighted signal.
+   ==================================================================== */
+.lessons {
+  --glass-bg: var(--paper-2);
+  --glass-bg-strong: var(--paper-2);
+  --glass-border: var(--line);
+  --glass-blur: none;
+  --glass-shadow: none;
+  --glass-shadow-lift: var(--shadow-lift);
+  background: var(--paper);
+}
+.lessons__veil {
+  display: none;
+}
+
+/* The eyebrow is a label, not a badge. */
+.lhead__eyebrow {
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 0;
+  color: var(--accent);
+  letter-spacing: 0.16em;
+}
+
+/* Wires are structure, so they carry ink, not the accent. The accent
+   stays on the one thing it means: the node you have opened. */
+.twire {
+  stroke: var(--line-hi);
+  opacity: 0.9;
+}
+@keyframes wire-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.9;
+  }
+}
+
+/* Old emerald tints, retuned to the system. */
+.tbox__glyph {
+  background: var(--accent-wash-2);
+  color: var(--accent);
+  border-radius: var(--r-md);
+}
+.cbox__badge {
+  border-color: var(--line);
+  color: var(--accent);
+  background: var(--accent-wash-2);
+}
+.tbox.is-open,
+.cbox.is-open {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lift);
+}
+.tbox:hover,
+.cbox:hover {
+  border-color: var(--line-hi);
+}
+.lbox__go {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.lbox:hover .lbox__go {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.lbox__n {
+  color: var(--muted);
+}
+.lbox:hover .lbox__n {
+  color: var(--accent);
+}
+
+/* Titles at V8 weight: 600, not 700–800. */
+.lhead__title,
+.tbox__name,
+.cbox__name {
+  font-weight: 600;
+}
+.lbox__title {
+  font-weight: 400;
+}
+
+/* Lighter learning palette, shared with the lesson page. */
+html[data-page="lessons"],
+html[data-page="lessons"] body {
+  background: #faf9f6;
+}
+.lessons__veil {
+  background: rgba(250, 249, 246, 0.96) !important;
+}
+.lessons .snav {
+  background: rgba(250, 249, 246, 0.9);
 }

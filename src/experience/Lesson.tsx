@@ -1,67 +1,130 @@
-import { useEffect } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Check, Clock, ListTree } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Link, Navigate, useLocation, useParams } from "react-router-dom";
+import { ArrowLeft, ArrowRight, Backpack, Check, Clock, Lock } from "lucide-react";
+import "@fontsource-variable/jetbrains-mono";
 import SiteNav from "../components/SiteNav";
-import { Blocks, ExerciseCard } from "../components/Blocks";
+import { Blocks, ExerciseCard, LessonProvider } from "../components/Blocks";
+import { VideoSlot } from "../components/Media";
 import Tutor from "../components/Tutor";
-import { findLesson } from "../lib/curriculum";
+import { lessonMeta } from "../lib/catalog.generated";
+import { useLessonBody } from "../lib/lesson-body";
+import { useAuth } from "../auth/AuthProvider";
+import { useSeo } from "../lib/seo";
+import { lessonPageMeta } from "../lib/seo-routes";
 import "./Lesson.css";
+
+/* --------------------------------------------------------------------
+   One lesson — a bright, quiet page to learn to code on.
+
+   Three columns on a wide screen: the course on the left, the lesson
+   in the middle at a comfortable reading width, and "Bu darsda" on the
+   right, following the reader down the page. Everything that is not
+   the lesson is held in soft greys so the code and the prose carry the
+   colour.
+
+   The shell (title, contents, prev/next) comes from the catalog and
+   always renders; the body comes from useLessonBody, which reads free
+   courses from the bundle and fetches paid ones from /api/lesson.
+   -------------------------------------------------------------------- */
+
+const pad = (n: number | null) => (n === null ? "Kirish" : `Dars ${String(n).padStart(2, "0")}`);
+
+/** "1. Bitta savol" → a numbered heading. */
+function splitTitle(t: string): [string | null, string] {
+  const m = /^(\d+)\.\s+(.+)$/.exec(t);
+  return m ? [m[1], m[2]] : [null, t];
+}
 
 export default function Lesson() {
   const { courseId = "", lessonId = "" } = useParams();
-  const found = findLesson(courseId, lessonId);
+  const found = lessonMeta(courseId, lessonId);
+  const { session } = useAuth();
+  const body = useLessonBody(courseId, lessonId, session?.user?.id ?? null);
+  const barRef = useRef<HTMLElement | null>(null);
+  const [here, setHere] = useState<string>("");
 
-  // A new lesson starts at the top, not wherever the last one was left.
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [courseId, lessonId]);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    root.setAttribute("data-page", "lesson");
+    return () => root.removeAttribute("data-page");
+  }, []);
+
+  // Reading progress, written straight to the bar.
+  useEffect(() => {
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+      if (barRef.current) barRef.current.style.transform = `scaleX(${p})`;
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Which section is being read, for the outline on the right.
+  const ready = body.state === "ready" ? body.lesson : null;
+  useEffect(() => {
+    if (!ready) return;
+    const els = ready.sections
+      .map((s) => document.getElementById(s.id))
+      .filter(Boolean) as HTMLElement[];
+    const io = new IntersectionObserver(
+      (entries) => {
+        const top = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (top) setHere(top.target.id);
+      },
+      { rootMargin: "-20% 0px -65% 0px" }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [ready]);
+
+  useSeo(
+    found ? lessonPageMeta(found.course.name, ready ?? found.lesson) : null,
+    `/learn/${courseId}/${lessonId}`
+  );
+
   if (!found) return <Navigate to="/learn" replace />;
   const { course, lesson, prev, next, index } = found;
 
-  const label = (n: number | null) => (n === null ? "Start" : `Dars ${n}`);
-
   return (
-    <div className="lsn">
-      <div className="lsn__veil" aria-hidden="true" />
+    <div className="lx">
       <SiteNav />
+      <div className="lx__progress" aria-hidden="true">
+        <i ref={barRef as never} />
+      </div>
 
-      <div className="lsn__stage">
-        {/* course contents */}
-        <aside className="lsn__side" aria-label="Kurs mundarijasi">
-          <Link className="lsn__back" to="/learn">
-            <ArrowLeft size={13} strokeWidth={2.2} aria-hidden="true" />
+      <div className="lx__stage">
+        {/* ---- the course ---------------------------------------- */}
+        <aside className="lx__side" aria-label="Kurs mundarijasi">
+          <Link className="lx__back" to="/learn">
+            <ArrowLeft size={14} strokeWidth={2.2} aria-hidden="true" />
             Barcha darslar
           </Link>
-
-          <p className="lsn__course">{course.name}</p>
-          <p className="lsn__progress">
-            {index + 1} / {course.lessons.length}
+          <p className="lx__course">{course.name}</p>
+          <p className="lx__count">
+            {index + 1} / {course.lessons.length} dars
           </p>
-
-          <ol className="toc">
+          <ol className="lx__lessons">
             {course.lessons.map((l, i) => {
-              const here = l.id === lesson.id;
-              const done = i < index;
-              const newPart = l.part && l.part !== course.lessons[i - 1]?.part;
+              const cur = l.id === lesson.id;
               return (
                 <li key={l.id}>
-                  {newPart && <span className="toc__part">{l.part}</span>}
                   <Link
-                    className={`toc__item${here ? " is-here" : ""}${done ? " is-done" : ""}${l.status === "soon" ? " is-soon" : ""}`}
                     to={`/learn/${course.id}/${l.id}`}
-                    aria-current={here ? "page" : undefined}
+                    className={`lx__lesson${cur ? " is-here" : ""}${i < index ? " is-done" : ""}`}
+                    aria-current={cur ? "page" : undefined}
                   >
-                    <span className="toc__n">
-                      {done ? (
-                        <Check size={11} strokeWidth={3} aria-hidden="true" />
-                      ) : l.n === null ? (
-                        "·"
-                      ) : (
-                        l.n
-                      )}
+                    <span className="lx__lesson-n">
+                      {i < index ? <Check size={12} strokeWidth={3} aria-hidden="true" /> : l.n ?? "·"}
                     </span>
-                    <span className="toc__t">{l.title}</span>
+                    <span>{l.title}</span>
                   </Link>
                 </li>
               );
@@ -69,80 +132,150 @@ export default function Lesson() {
           </ol>
         </aside>
 
-        {/* lesson body */}
-        <main id="main" className="lsn__main">
-          <header className="lsn__head">
-            <span className="lsn__eyebrow">
-              <ListTree size={12} strokeWidth={2.2} aria-hidden="true" />
-              {label(lesson.n)}
-              <span className="lsn__dot" aria-hidden="true" />
-              <Clock size={12} strokeWidth={2.2} aria-hidden="true" />
-              {lesson.minutes} daqiqa
-            </span>
-            <h1 className="lsn__title">{lesson.title}</h1>
-            <p className="lsn__sub">{lesson.subtitle}</p>
+        {/* ---- the lesson ---------------------------------------- */}
+        <main id="main" className="lx__main">
+          <header className="lx__head">
+            <p className="lx__eyebrow">
+              {course.name} · {pad(lesson.n)}
+            </p>
+            <h1>{lesson.title}</h1>
+            <div className="lx__meta">
+              <span>
+                <Clock size={14} strokeWidth={2.2} aria-hidden="true" />~{lesson.minutes} daqiqa
+              </span>
+              {ready?.needs && (
+                <span>
+                  <Backpack size={14} strokeWidth={2.2} aria-hidden="true" />
+                  Kerak: {ready.needs}
+                </span>
+              )}
+            </div>
           </header>
 
-          <div className="lsn__intro">
-            <Blocks blocks={lesson.intro} />
-          </div>
+          {body.state === "loading" && <Skeleton />}
+          {body.state === "error" && (
+            <p className="lx__error" role="alert">
+              {body.message}
+            </p>
+          )}
+          {body.state === "locked" && <Paywall courseName={course.name} needsAuth={body.needsAuth} />}
 
-          {lesson.sections.map((s) => (
-            <section className="lsn__section" key={s.id} id={s.id}>
-              <h2 className="lsn__h2">{s.title}</h2>
-              <Blocks blocks={s.blocks} />
-            </section>
-          ))}
+          {ready && (
+            <LessonProvider course={course.id} lesson={lesson.id}>
+              <VideoSlot video={ready.video} title={`${pad(lesson.n)} — ${lesson.title}`} />
 
-          {lesson.exercises.length > 0 && (
-            <section className="lsn__section" id="mashqlar">
-              <h2 className="lsn__h2">Mashqlar</h2>
-              <p className="lsn__exlead">
-                Avval oʻzingiz yechib koʻring — keyingina javobni oching.
-              </p>
-              <div className="lsn__exlist">
-                {lesson.exercises.map((ex) => (
-                  <ExerciseCard key={ex.id} ex={ex} />
-                ))}
-              </div>
-            </section>
+              {ready.intro.length > 0 && (
+                <div className="lx__intro">
+                  <Blocks blocks={ready.intro} />
+                </div>
+              )}
+
+              {ready.sections.map((s) => {
+                const [num, title] = splitTitle(s.title);
+                return (
+                  <section className="lx__section" key={s.id} id={s.id}>
+                    <h2 className="lx__h2">
+                      {num && <span className="lx__h2-n">{num}</span>}
+                      {title}
+                    </h2>
+                    <Blocks blocks={s.blocks} />
+                  </section>
+                );
+              })}
+
+              {ready.exercises.length > 0 && (
+                <section className="lx__section" id="mashqlar">
+                  <h2 className="lx__h2">Mashqlar</h2>
+                  {ready.exercises.map((ex) => (
+                    <ExerciseCard key={ex.id} ex={ex} />
+                  ))}
+                </section>
+              )}
+            </LessonProvider>
           )}
 
-          <nav className="lsn__foot" aria-label="Darslar orasida yurish">
+          <nav className="lx__pager" aria-label="Darslar orasida yurish">
             {prev ? (
-              <Link className="pager pager--prev" to={`/learn/${course.id}/${prev.id}`}>
-                <ArrowLeft size={15} strokeWidth={2.2} aria-hidden="true" />
+              <Link className="lx__page" to={`/learn/${course.id}/${prev.id}`}>
+                <ArrowLeft size={16} strokeWidth={2.2} aria-hidden="true" />
                 <span>
-                  <span className="pager__k">Oldingi</span>
-                  <span className="pager__t">{prev.title}</span>
+                  <small>Oldingi</small>
+                  {prev.title}
                 </span>
               </Link>
             ) : (
               <span />
             )}
             {next ? (
-              <Link className="pager pager--next" to={`/learn/${course.id}/${next.id}`}>
+              <Link className="lx__page lx__page--next" to={`/learn/${course.id}/${next.id}`}>
                 <span>
-                  <span className="pager__k">Keyingi</span>
-                  <span className="pager__t">{next.title}</span>
+                  <small>Keyingi dars</small>
+                  {next.title}
                 </span>
-                <ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" />
+                <ArrowRight size={16} strokeWidth={2.2} aria-hidden="true" />
               </Link>
             ) : (
-              <Link className="pager pager--next" to="/learn">
+              <span className="lx__page lx__page--next lx__page--soon">
                 <span>
-                  <span className="pager__k">Kurs tugadi</span>
-                  <span className="pager__t">Barcha darslar</span>
+                  <small>Keyingi dars</small>
+                  Tez orada qoʻshiladi
                 </span>
-                <ArrowRight size={15} strokeWidth={2.2} aria-hidden="true" />
-              </Link>
+              </span>
             )}
           </nav>
         </main>
+
+        {/* ---- this lesson -------------------------------------- */}
+        {ready && ready.sections.length > 2 && (
+          <nav className="lx__outline" aria-label="Bu darsda">
+            <p>Bu darsda</p>
+            <ol>
+              {ready.sections.map((s) => (
+                <li key={s.id}>
+                  <a href={`#${s.id}`} className={here === s.id ? "is-here" : undefined}>
+                    {splitTitle(s.title)[1]}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
       </div>
 
-      {/* Answers questions about THIS lesson, in Uzbek. */}
-      <Tutor lesson={`${label(lesson.n)} — ${lesson.title}`} course={course.name} />
+      {ready && <Tutor lesson={`${pad(lesson.n)} — ${lesson.title}`} course={course.name} />}
+    </div>
+  );
+}
+
+function Skeleton() {
+  return (
+    <div className="lx__skel" aria-hidden="true">
+      {[92, 84, 61, 0, 88, 72].map((w, i) =>
+        w ? <span key={i} style={{ width: `${w}%` }} /> : <span key={i} className="is-block" />
+      )}
+    </div>
+  );
+}
+
+function Paywall({ courseName, needsAuth }: { courseName: string; needsAuth: boolean }) {
+  const { pathname } = useLocation();
+  return (
+    <div className="lx__paywall">
+      <Lock size={18} strokeWidth={2.2} aria-hidden="true" />
+      <h2>Bu dars pullik kursda</h2>
+      <p>
+        <strong>{courseName}</strong> kursini bir marta sotib olsangiz, barcha darslari umrbod
+        ochiq boʻladi — kelajakda qoʻshiladiganlari ham.
+      </p>
+      {needsAuth ? (
+        <Link className="lx__cta" to="/kirish" state={{ from: pathname }}>
+          Kirish yoki roʻyxatdan oʻtish
+        </Link>
+      ) : (
+        <Link className="lx__cta" to="/hisobim">
+          Kursni sotib olish
+        </Link>
+      )}
     </div>
   );
 }

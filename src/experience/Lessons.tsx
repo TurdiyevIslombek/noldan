@@ -1,9 +1,10 @@
-import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Braces, Brain, ChevronRight, Dumbbell, Lock } from "lucide-react";
 import SiteNav from "../components/SiteNav";
-import { TOKENIZER_COURSE, type Course } from "../lib/curriculum";
-import { TRANSFORMER_COURSE } from "../lib/curriculum-transformer";
+import { courseMeta } from "../lib/catalog.generated";
+import type { CourseMeta } from "../lib/curriculum-types";
+import { useAuth } from "../auth/AuthProvider";
 import "./Lessons.css";
 
 /* --------------------------------------------------------------------
@@ -24,6 +25,10 @@ import "./Lessons.css";
    AUTHOR: Tokenizator (9 lessons) and Til modeli (transformer, 9 of 18
    written) carry real content. Oʻqitish is a placeholder named after
    Noldan's own stated scope — rename or replace it freely.
+
+   The tree is drawn from catalog.generated.ts — titles and counts, no
+   lesson text — so it can show the full paid syllabus to someone who
+   has not bought it without shipping them a word of it.
    -------------------------------------------------------------------- */
 
 type Track = {
@@ -31,7 +36,7 @@ type Track = {
   name: string;
   glyph: ReactNode;
   status: "available" | "soon";
-  courses: Course[];
+  courses: CourseMeta[];
 };
 
 const TRACKS: Track[] = [
@@ -40,14 +45,15 @@ const TRACKS: Track[] = [
     name: "Tokenizator",
     glyph: <Braces size={22} strokeWidth={2} aria-hidden="true" />,
     status: "available",
-    courses: [TOKENIZER_COURSE],
+    courses: [courseMeta("tokenizator")!],
   },
   {
     id: "til-modeli",
     name: "Til modeli",
     glyph: <Brain size={22} strokeWidth={2} aria-hidden="true" />,
-    status: "available",
-    courses: [TRANSFORMER_COURSE],
+    // Opens once its first lesson exists.
+    status: (courseMeta("transformer")?.lessons.length ?? 0) > 0 ? "available" : "soon",
+    courses: [courseMeta("transformer")!],
   },
   {
     id: "oqitish",
@@ -59,6 +65,13 @@ const TRACKS: Track[] = [
 ];
 
 export default function Lessons() {
+  const { owns } = useAuth();
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.setAttribute("data-page", "lessons");
+    return () => root.removeAttribute("data-page");
+  }, []);
   const [openTrack, setOpenTrack] = useState<string | null>(null);
   const [openCourse, setOpenCourse] = useState<string | null>(null);
   const [wires, setWires] = useState<string[]>([]);
@@ -203,7 +216,16 @@ export default function Lessons() {
                             <span className="cbox__badge">{c.short}</span>
                             <span className="cbox__body">
                               <span className="cbox__name">{c.name}</span>
-                              <span className="cbox__meta">{c.lessons.length} dars</span>
+                              <span className="cbox__meta">
+                                {c.lessons.length} dars
+                                {c.access === "paid" && !owns(c.id) && (
+                                  <>
+                                    {" "}&middot;{" "}
+                                    <Lock size={10} strokeWidth={2.4} aria-hidden="true" />{" "}
+                                    Pullik
+                                  </>
+                                )}
+                              </span>
                             </span>
                             <ChevronRight
                               size={16}

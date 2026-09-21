@@ -140,7 +140,18 @@ export function inline(text: string): ReactNode[] {
     if (m.index > last) out.push(text.slice(last, m.index));
     const tok = m[0];
     if (tok.startsWith("**")) {
-      out.push(<strong key={key++}>{tok.slice(2, -2)}</strong>);
+      const inner = tok.slice(2, -2);
+      // "**colab.research.google.com**" — the author names a site; make
+      // it one click away rather than something to retype.
+      if (/^(?=[^.]*[a-z])[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}(\/\S*)?$/i.test(inner)) {
+        out.push(
+          <a key={key++} href={`https://${inner}`} target="_blank" rel="noopener noreferrer">
+            <strong>{inner}</strong>
+          </a>
+        );
+      } else {
+        out.push(<strong key={key++}>{inner}</strong>);
+      }
     } else if (tok.startsWith("*")) {
       out.push(<em key={key++}>{tok.slice(1, -1)}</em>);
     } else {

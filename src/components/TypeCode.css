@@ -1,0 +1,289 @@
+/* ====================================================================
+   The typing trainer. Pale placeholder, real colour once typed, red
+   while wrong. Calm on purpose: a student will look at this for most
+   of a lesson.
+   ==================================================================== */
+
+.tc {
+  --tc-ink: var(--lx-ink, #1d2129);
+  --tc-ghost: #a9afb8;
+  --tc-line: var(--lx-line, #e7e3d9);
+  --tc-accent: var(--lx-accent, #2f6bdc);
+  --tc-ok: var(--lx-ok, #1e8a52);
+  --tc-bad: #c62828;
+
+  margin: 24px 0;
+  border: 1px solid var(--tc-line);
+  border-radius: 12px;
+  background: var(--lx-code, #f8f7f3);
+  overflow: hidden;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+.tc.is-focus {
+  border-color: #a9c1ef;
+  box-shadow: 0 0 0 4px rgba(47, 107, 220, 0.12);
+}
+.tc.is-done {
+  border-color: #b9dfc8;
+}
+
+/* ---- bar ------------------------------------------------------------ */
+
+.tc__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 8px 7px 14px;
+  border-bottom: 1px solid var(--tc-line);
+  background: #fdfcf9;
+}
+.tc__lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  font-family: var(--lx-mono, ui-monospace, monospace);
+  font-size: 11.5px;
+  color: #7b818b;
+}
+.tc__status {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 12.5px;
+  color: #6b7280;
+  font-variant-numeric: tabular-nums;
+}
+.tc.is-done .tc__status {
+  color: var(--tc-ok);
+  font-weight: 500;
+}
+.tc.has-errors .tc__status {
+  color: #b54708;
+}
+.tc__actions {
+  display: flex;
+  gap: 6px;
+  flex: none;
+}
+.tc__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border: 1px solid var(--tc-line);
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #414856;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+.tc__btn:hover:not(:disabled) {
+  border-color: #cfd6e2;
+  background: #f6f8fc;
+}
+.tc__copy:disabled {
+  color: #9aa0a8;
+  cursor: not-allowed;
+}
+.tc__copy.is-open {
+  border-color: var(--tc-ok);
+  background: var(--tc-ok);
+  color: #fff;
+}
+.tc__copy.is-open:hover {
+  background: #197a48;
+  border-color: #197a48;
+}
+
+/* ---- the code ------------------------------------------------------- */
+
+.tc__body {
+  position: relative;
+}
+.tc__pre {
+  margin: 0;
+  padding: 14px 0 16px;
+  overflow-x: auto;
+  font-family: var(--lx-mono, ui-monospace, monospace);
+  font-size: 15px;
+  line-height: 1.8;
+  tab-size: 4;
+}
+.tc__line {
+  display: flex;
+  min-height: 1.8em;
+}
+.tc__ln {
+  flex: none;
+  width: 46px;
+  padding-right: 16px;
+  text-align: right;
+  color: #c6cad1;
+  user-select: none;
+}
+.tc__code {
+  white-space: pre;
+  padding-right: 24px;
+}
+
+.c-todo {
+  color: var(--tc-ghost);
+}
+.c-ok {
+  color: var(--tc-ink);
+}
+.c-bad {
+  color: var(--tc-bad);
+  background: #fde2e2;
+  border-radius: 2px;
+  box-shadow: inset 0 -2px 0 rgba(198, 40, 40, 0.5);
+}
+.c-bad.c-sp {
+  background: #f9c0c0;
+}
+
+/* Line ends ask for Enter while they are still ahead of the caret. */
+.c-nl {
+  font-size: 0.78em;
+  color: transparent;
+  user-select: none;
+}
+.c-nl.c-todo {
+  color: #d2d5da;
+}
+.c-nl.c-bad {
+  color: var(--tc-bad);
+}
+
+.is-caret {
+  position: relative;
+}
+.is-caret::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 0.2em;
+  bottom: 0.2em;
+  width: 2px;
+  border-radius: 1px;
+  background: var(--tc-accent);
+  animation: tc-blink 1.05s steps(1) infinite;
+}
+.c-end {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+}
+@keyframes tc-blink {
+  0%, 55% { opacity: 1; }
+  56%, 100% { opacity: 0; }
+}
+
+/* Typed-in syntax colours. Soft enough for an hour of reading. */
+.tc .py-kw { color: #7c3aed; }
+.tc .py-str { color: #177245; }
+.tc .py-num { color: #b45309; }
+.tc .py-com { color: #8b919b; font-style: italic; }
+.tc .py-builtin,
+.tc .py-fn { color: #2563eb; }
+.tc .py-op { color: #5b6170; }
+
+/* The keyboard lives in a textarea laid over the code: invisible, but
+   real — it is what summons the keyboard on a phone. */
+.tc__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  resize: none;
+  opacity: 0;
+  color: transparent;
+  background: transparent;
+  caret-color: transparent;
+  font-size: 16px;
+  cursor: text;
+}
+
+/* A strip under the code, not a pill over it: it must never cover the
+   line a student is about to type. */
+.tc__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 12px 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--lx-accent-wash, #edf3fd);
+  color: var(--lx-accent-ink, #2456b5);
+  font-size: 13px;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.tc__meter {
+  height: 3px;
+  background: #eeece5;
+}
+.tc__meter i {
+  display: block;
+  height: 100%;
+  background: var(--tc-accent);
+  transform-origin: left;
+  transition: transform 160ms ease;
+}
+.tc.is-done .tc__meter i {
+  background: var(--tc-ok);
+}
+
+.tc__hint {
+  margin: 0;
+  padding: 8px 14px 10px;
+  border-top: 1px solid var(--tc-line);
+  background: #fdfcf9;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+/* ---- read-only ------------------------------------------------------ */
+
+.tc--static {
+  background: #fbfaf7;
+}
+.tc--static .tc__pre {
+  padding: 12px 0 14px;
+}
+.tc--static .tc__code {
+  color: var(--tc-ink);
+}
+
+@media (max-width: 640px) {
+  .tc__pre {
+    font-size: 13.5px;
+  }
+  .tc__ln {
+    width: 34px;
+    padding-right: 10px;
+  }
+  .tc__btn-t {
+    display: none;
+  }
+  .tc__status {
+    font-size: 11.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .is-caret::before {
+    animation: none;
+  }
+}
