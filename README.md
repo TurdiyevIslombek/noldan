@@ -2,6 +2,8 @@
 
 ![Noldan — build AI from scratch, in Uzbek](public/og.png)
 
+**Live: [noldan.fun](https://noldan.fun)**
+
 **Noldan** ("from zero") is a free course, in Uzbek, that teaches people with no
 programming background to build a language model from scratch — starting with
 the part every AI system has and almost nobody explains: the tokenizer.

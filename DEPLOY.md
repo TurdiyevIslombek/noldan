@@ -149,7 +149,7 @@ Accounts and payments need more variables — see sections 4 and 5, and
 `SITE_URL` is the one that is easy to forget. It is baked into
 `canonical`, `og:image`, `robots.txt`, `sitemap.xml` and every
 pre-rendered page at build time and
-defaults to `https://noldan.uz`. Until that domain actually resolves,
+defaults to `https://noldan.fun`. Until that domain actually resolves,
 leaving the default means **every shared link previews a dead host** and
 canonical points somewhere that does not exist. Set it to the
 `*.vercel.app` URL now, change it when the domain is live, redeploy.

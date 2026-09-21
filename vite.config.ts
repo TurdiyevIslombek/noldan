@@ -17,7 +17,7 @@ import path from "node:path";
    sitemap.xml all agree.
    -------------------------------------------------------------------- */
 
-const SITE_URL = (process.env.SITE_URL || "https://noldan.uz").replace(/\/+$/, "");
+const SITE_URL = (process.env.SITE_URL || "https://noldan.fun").replace(/\/+$/, "");
 
 
 function siteUrl(): Plugin {

@@ -18,7 +18,7 @@ import { pathToFileURL } from "node:url";
 
 const W = 1200;
 const H = 630;
-const host = (process.env.SITE_URL || "https://noldan.uz").replace(/^https?:\/\//, "").replace(/\/+$/, "");
+const host = (process.env.SITE_URL || "https://noldan.fun").replace(/^https?:\/\//, "").replace(/\/+$/, "");
 const font = (dir, file) => pathToFileURL(resolve("node_modules/@fontsource-variable", dir, "files", file)).href;
 
 let seed = 11;

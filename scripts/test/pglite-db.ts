@@ -52,7 +52,7 @@ export async function reset(): Promise<void> {
     truncate transactions, orders, entitlements, progress;
     delete from "user";
     insert into "user" ("id", "name", "email", "emailVerified")
-      values ('${TEST_USER}', 'Test', 'test@noldan.uz', true);
+      values ('${TEST_USER}', 'Test', 'test@noldan.fun', true);
   `);
 }
 

@@ -24,7 +24,7 @@ import { execFileSync } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
-const SITE = (process.env.SITE_URL || "https://noldan.uz").replace(/\/+$/, "");
+const SITE = (process.env.SITE_URL || "https://noldan.fun").replace(/\/+$/, "");
 const HF = "https://huggingface.co/IslombekT";
 
 const bundled = await build({
