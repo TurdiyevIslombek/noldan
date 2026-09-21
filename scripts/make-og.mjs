@@ -1,132 +1,93 @@
-import { writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 
 /* --------------------------------------------------------------------
-   Generates public/og.png — the 1200x630 card social platforms show
-   when someone shares a link. Same palette, type and lattice motif as
-   the site, so the preview looks like the page it opens.
+   public/og.png — the 1200×630 card shown when a link is shared
+   (Telegram, X, Facebook, search results that use it).
 
-   Regenerate after changing the headline. Needs `rsvg-convert`
-   (brew install librsvg) and Manrope + JetBrains Mono reachable by
-   fontconfig — both are OFL and already vendored as woff2 under
-   node_modules/@fontsource-variable, but fontconfig needs TTF:
+   Drawn in the landing page's look: night sky, the same three star
+   colours, a spiral of stars, the headline in Geist. Rendered by the
+   Chrome already on this machine in headless mode, loading Geist
+   straight from node_modules — no font installation, no extra tools.
 
-     node scripts/make-og.mjs                       # writes og.svg
-     rsvg-convert -w 1200 -h 630 og.svg -o public/og.png
-
-   If the type comes out as a fallback sans, fontconfig did not find
-   Manrope — point FONTCONFIG_FILE at a conf with a <dir> holding the
-   TTFs from github.com/google/fonts.
+     npm run og           # SITE_URL=https://yourdomain npm run og
    -------------------------------------------------------------------- */
 
-const W = 1200, H = 630;
-const PAPER = "#eef1ee";
-const INK = "#10201a";
-const MUTED = "#5d6f68";
-const ACCENT = "#047857";
-const LINE = "rgba(16,32,26,0.10)";
+const W = 1200;
+const H = 630;
+const host = (process.env.SITE_URL || "https://noldan.uz").replace(/^https?:\/\//, "").replace(/\/+$/, "");
+const font = (dir, file) => pathToFileURL(resolve("node_modules/@fontsource-variable", dir, "files", file)).href;
 
-// ---- lattice ------------------------------------------------------
-// A shallow feed-forward net, echoing LatticeField on the live page.
-// Every layer spans the SAME vertical extent regardless of how many
-// units it holds — that is what makes fan-in and fan-out legible.
-// Scaling the spread by unit count instead produces an even diamond
-// mesh that reads as wallpaper.
-const LAYERS = [4, 7, 7, 4];
-const X0 = 812, DX = 116, CY = 300, SPAN = 300;
+let seed = 11;
+const r = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+const COLOURS = ["236,244,255", "148,204,255", "255,172,122"];
+const colour = () => COLOURS[r() < 0.62 ? 0 : r() < 0.62 ? 1 : 2];
+const dot = (x, y, s, c, a) =>
+  `<i style="left:${(x - s / 2).toFixed(1)}px;top:${(y - s / 2).toFixed(1)}px;width:${s.toFixed(1)}px;height:${s.toFixed(1)}px;` +
+  `background:radial-gradient(circle,rgba(255,255,255,${a}) 0,rgba(${c},${(a * 0.8).toFixed(2)}) 20%,rgba(${c},0) 70%)"></i>`;
 
-const nodes = LAYERS.map((count, li) =>
-  Array.from({ length: count }, (_, ni) => {
-    const t = count === 1 ? 0.5 : ni / (count - 1);
-    // Perspective: middle layers sit nearer the viewer.
-    const depth = 1 - Math.abs(li - (LAYERS.length - 1) / 2) / LAYERS.length;
-    return {
-      x: X0 + li * DX,
-      y: CY + (t - 0.5) * SPAN,
-      r: 3.6 + depth * 2.4,
-      o: 0.36 + depth * 0.46,
-    };
-  })
-);
+let stars = "";
+for (let i = 0; i < 240; i++) stars += dot(r() * W, r() * H, 2 + r() * 5, colour(), 0.2 + r() * 0.5);
 
-// Weight each edge by how far it travels vertically, so the net has the
-// dense-core / sparse-fringe look of a real weight matrix.
-let edges = "";
-for (let li = 0; li < nodes.length - 1; li++)
-  for (const a of nodes[li])
-    for (const b of nodes[li + 1]) {
-      const near = 1 - Math.min(1, Math.abs(a.y - b.y) / 260);
-      edges += `<path d="M${a.x} ${a.y.toFixed(1)}L${b.x} ${b.y.toFixed(1)}" stroke="${ACCENT}" stroke-width="${(0.45 + near * 0.55).toFixed(2)}" opacity="${(0.05 + near * 0.2).toFixed(3)}"/>`;
-    }
-
-// One lit path front to back — the forward pulse, frozen.
-const PULSE = [1, 2, 4, 2];
-let pulse = "";
-for (let li = 0; li < nodes.length - 1; li++) {
-  const a = nodes[li][PULSE[li]], b = nodes[li + 1][PULSE[li + 1]];
-  pulse += `<path d="M${a.x} ${a.y.toFixed(1)}L${b.x} ${b.y.toFixed(1)}" stroke="${ACCENT}" stroke-width="1.9" opacity=".62"/>`;
+// The training spiral from the landing page: two arms and a bright core.
+const cx = 935;
+const cy = 318;
+for (let i = 0; i < 700; i++) {
+  const arm = r() < 0.5 ? 0 : Math.PI;
+  const s = Math.pow(r(), 0.8);
+  const a = s * 3.2 * Math.PI + arm;
+  const rad = 16 + s * 235;
+  const off = (2 + 14 * s) * (r() - 0.5) * 2;
+  const x = cx + Math.cos(a) * rad + Math.cos(a + Math.PI / 2) * off;
+  const y = cy + (Math.sin(a) * rad + Math.sin(a + Math.PI / 2) * off) * 0.62;
+  const big = r() < 0.1;
+  stars += dot(x, y, big ? 16 + r() * 6 : 4 + r() * 3, colour(), big ? 0.95 : 0.7);
 }
-pulse += PULSE.map((ni, li) => {
-  const n = nodes[li][ni];
-  return `<circle cx="${n.x}" cy="${n.y.toFixed(1)}" r="${(n.r + 2.4).toFixed(1)}" fill="${ACCENT}"/>`;
-}).join("");
 
-const dots = nodes
-  .flat()
-  .map((n) => `<circle cx="${n.x}" cy="${n.y.toFixed(1)}" r="${n.r.toFixed(1)}" fill="${ACCENT}" opacity="${n.o.toFixed(2)}"/>`)
-  .join("");
+const html = `<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:G;src:url("${font("geist", "geist-latin-wght-normal.woff2")}") format("woff2");font-weight:100 900}
+@font-face{font-family:GM;src:url("${font("geist-mono", "geist-mono-latin-wght-normal.woff2")}") format("woff2");font-weight:100 900}
+html,body{margin:0;width:${W}px;height:${H}px;overflow:hidden}
+body{position:relative;font-family:G,sans-serif;color:#eef2f8;
+ background:radial-gradient(55% 70% at 78% 50%,rgba(26,40,70,.6),transparent 70%),
+ radial-gradient(120% 100% at 50% 40%,#0a101c 0%,#060912 55%,#04060b 100%)}
+i{position:absolute;display:block;border-radius:50%}
+.core{position:absolute;left:${cx - 130}px;top:${cy - 80}px;width:260px;height:160px;border-radius:50%;
+ background:radial-gradient(closest-side,rgba(255,240,228,.55),rgba(255,210,180,.16) 45%,transparent)}
+.shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,6,11,.88) 0,rgba(4,6,11,.55) 44%,transparent 64%)}
+.copy{position:absolute;left:72px;top:0;bottom:0;width:640px;display:flex;flex-direction:column;justify-content:center}
+.mark{font-weight:600;font-size:30px;letter-spacing:-.03em;margin-bottom:54px}
+.meta{font-family:GM,monospace;font-size:20px;color:#ffb487;margin-bottom:22px}
+h1{margin:0;font-weight:560;font-size:78px;line-height:.98;letter-spacing:-.045em}
+.sub{margin-top:26px;font-size:25px;line-height:1.45;color:#b7c0cf;max-width:560px}
+.host{position:absolute;left:72px;bottom:44px;font-family:GM,monospace;font-size:18px;color:#7f8a9d}
+</style></head><body>${stars}<div class="core"></div><div class="shade"></div>
+<div class="copy"><div class="mark">Noldan</div>
+<div class="meta">Oʻzbek tilida · bepul · kod bilish shart emas</div>
+<h1>Sunʼiy intellektni<br>noldan quring.</h1>
+<div class="sub">Tokenizatordan oʻz modelingizgacha — har bir satrni oʻzingiz yozasiz.</div></div>
+<div class="host">${host}</div></body></html>`;
 
-// ---- byte strip ---------------------------------------------------
-// "noldan" as UTF-8, the same figure chapter 00 opens with.
-const BYTES = [...new TextEncoder().encode("noldan")];
-const cellW = 52, cellH = 40, stripX = 74, stripY = 478;
-const strip = BYTES.map((b, i) => {
-  const x = stripX + i * (cellW + 8);
-  return `<rect x="${x}" y="${stripY}" width="${cellW}" height="${cellH}" rx="10" fill="#ffffff" stroke="${LINE}"/>` +
-    `<text x="${x + cellW / 2}" y="${stripY + 26}" font-family="JetBrains Mono" font-size="15" font-weight="500" fill="${MUTED}" text-anchor="middle">${b}</text>`;
-}).join("");
-
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
-  <defs>
-    <radialGradient id="glow" cx="72%" cy="48%" r="52%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity=".85"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-
-  <rect width="${W}" height="${H}" fill="${PAPER}"/>
-  <rect width="${W}" height="${H}" fill="url(#glow)"/>
-
-  <g>${edges}${dots}${pulse}</g>
-
-  <!-- brand pill -->
-  <rect x="74" y="66" width="150" height="46" rx="23" fill="#ffffff" stroke="rgba(255,255,255,.7)"/>
-  <text x="99" y="96" font-family="Manrope" font-size="21" font-weight="800" letter-spacing="-0.2" fill="${INK}">Nol<tspan fill="${ACCENT}">dan</tspan></text>
-
-  <!-- headline -->
-  <text font-family="Manrope" font-size="74" font-weight="800" letter-spacing="-3" fill="${INK}">
-    <tspan x="74" y="228">Til modelini</tspan>
-    <tspan x="74" y="306">noldan quring.</tspan>
-  </text>
-
-  <!-- sub -->
-  <text font-family="Manrope" font-size="25" font-weight="500" fill="${MUTED}">
-    <tspan x="76" y="366">Tokenizator, diqqat mexanizmi, oʻqitish sikli —</tspan>
-    <tspan x="76" y="400">har bir satrni oʻzingiz yozasiz.</tspan>
-  </text>
-
-  <!-- the figure chapter 00 opens with, captioned so it is not just digits -->
-  <text x="76" y="456" font-family="JetBrains Mono" font-size="15" font-weight="500" fill="${MUTED}">noldan <tspan fill="${ACCENT}">&#8594;</tspan> UTF-8</text>
-  ${strip}
-
-  <!-- footer chips -->
-  <text x="76" y="566" font-family="JetBrains Mono" font-size="17" font-weight="500" fill="${ACCENT}">Bepul</text>
-  <circle cx="152" cy="561" r="2.4" fill="${MUTED}" opacity=".5"/>
-  <text x="166" y="566" font-family="JetBrains Mono" font-size="17" font-weight="500" fill="${ACCENT}">Ochiq kodli</text>
-  <circle cx="290" cy="561" r="2.4" fill="${MUTED}" opacity=".5"/>
-  <text x="304" y="566" font-family="JetBrains Mono" font-size="17" font-weight="500" fill="${ACCENT}">Oʻzbek tilida</text>
-
-  <text x="${W - 74}" y="566" font-family="JetBrains Mono" font-size="17" font-weight="500" fill="${MUTED}" text-anchor="end">noldan.uz</text>
-</svg>`;
-
-writeFileSync("og.svg", svg);
-console.log("og.svg written,", svg.length, "bytes");
+const dir = mkdtempSync(join(tmpdir(), "noldan-og-"));
+const file = join(dir, "og.html");
+writeFileSync(file, html);
+const chrome = process.env.CHROME || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+execFileSync(
+  chrome,
+  [
+    "--headless=new",
+    "--disable-gpu",
+    "--hide-scrollbars",
+    "--allow-file-access-from-files",
+    "--force-device-scale-factor=1",
+    `--window-size=${W},${H}`,
+    "--virtual-time-budget=4000",
+    `--screenshot=${resolve("public/og.png")}`,
+    pathToFileURL(file).href,
+  ],
+  { stdio: "ignore" }
+);
+console.log("public/og.png written for", host);
