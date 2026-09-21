@@ -14,7 +14,7 @@
    rate-limits these routes itself.
    -------------------------------------------------------------------- */
 
-import { authConfigured, getAuth } from "./_lib/auth";
+import { authConfigured, getAuth } from "./_lib/auth.js";
 
 export default {
   async fetch(req: Request): Promise<Response> {

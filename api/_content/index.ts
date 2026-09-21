@@ -13,9 +13,9 @@
    never drift apart.
    -------------------------------------------------------------------- */
 
-import { TOKENIZER_COURSE } from "../../src/lib/curriculum";
-import { TRANSFORMER_COURSE } from "./transformer";
-import type { Course, Lesson } from "../../src/lib/curriculum-types";
+import { TOKENIZER_COURSE } from "../../src/lib/curriculum.js";
+import { TRANSFORMER_COURSE } from "./transformer.js";
+import type { Course, Lesson } from "../../src/lib/curriculum-types.js";
 
 export const ALL_COURSES: Course[] = [TOKENIZER_COURSE, TRANSFORMER_COURSE];
 

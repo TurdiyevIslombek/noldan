@@ -10,9 +10,9 @@
    cookie — the body cannot name a user.
    -------------------------------------------------------------------- */
 
-import { guard } from "./_lib/http";
-import { authConfigured, sessionUser } from "./_lib/auth";
-import { q } from "./_lib/db";
+import { guard } from "./_lib/http.js";
+import { authConfigured, sessionUser } from "./_lib/auth.js";
+import { q } from "./_lib/db.js";
 
 export default {
   async fetch(req: Request): Promise<Response> {

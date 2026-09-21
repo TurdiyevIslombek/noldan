@@ -21,7 +21,7 @@
 import { betterAuth, type BetterAuthOptions } from "better-auth";
 import { genericOAuth } from "better-auth/plugins";
 import { decodeJwt } from "jose";
-import { db, dbConfigured } from "./db";
+import { db, dbConfigured } from "./db.js";
 
 export type Provider = "google" | "telegram";
 

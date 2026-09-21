@@ -11,9 +11,9 @@
    anonymous traffic never wakes the database.
    -------------------------------------------------------------------- */
 
-import { guard } from "./_lib/http";
-import { authConfigured, providers, sessionUser, type SessionUser } from "./_lib/auth";
-import { q } from "./_lib/db";
+import { guard } from "./_lib/http.js";
+import { authConfigured, providers, sessionUser, type SessionUser } from "./_lib/auth.js";
+import { q } from "./_lib/db.js";
 
 type Me = {
   configured: boolean;

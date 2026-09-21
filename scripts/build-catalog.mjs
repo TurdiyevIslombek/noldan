@@ -38,14 +38,14 @@ const banner = "/* GENERATED from content/*.md by scripts/build-catalog.mjs — 
 writeFileSync(
   "src/lib/lessons.generated.ts",
   banner +
-    'import type { Lesson } from "./curriculum-types";\n\n' +
+    'import type { Lesson } from "./curriculum-types.js";\n\n' +
     `export const FREE_LESSONS: Record<string, Lesson[]> = ${JSON.stringify(free, null, 2)};\n`,
   "utf8"
 );
 writeFileSync(
   "api/_content/lessons.generated.ts",
   banner +
-    'import type { Lesson } from "../../src/lib/curriculum-types";\n\n' +
+    'import type { Lesson } from "../../src/lib/curriculum-types.js";\n\n' +
     `export const PAID_LESSONS: Record<string, Lesson[]> = ${JSON.stringify(paid, null, 2)};\n`,
   "utf8"
 );
@@ -92,7 +92,7 @@ const out = `/* GENERATED FILE — do not edit.
  * Regenerate with:  npm run catalog
  */
 
-import type { CourseMeta } from "./curriculum-types";
+import type { CourseMeta } from "./curriculum-types.js";
 
 export const CATALOG: CourseMeta[] = ${JSON.stringify(meta, null, 2)};
 

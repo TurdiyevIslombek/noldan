@@ -10,10 +10,10 @@
    The previous hand-written lessons are kept in archive/lessons-v1.
    -------------------------------------------------------------------- */
 
-import type { Course } from "./curriculum-types";
-import { FREE_LESSONS } from "./lessons.generated";
+import type { Course } from "./curriculum-types.js";
+import { FREE_LESSONS } from "./lessons.generated.js";
 
-export type { Block, Course, Exercise, Lesson, Section } from "./curriculum-types";
+export type { Block, Course, Exercise, Lesson, Section } from "./curriculum-types.js";
 
 export const TOKENIZER_COURSE: Course = {
   id: "tokenizator",

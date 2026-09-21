@@ -7,7 +7,7 @@
  * Regenerate with:  npm run catalog
  */
 
-import type { CourseMeta } from "./curriculum-types";
+import type { CourseMeta } from "./curriculum-types.js";
 
 export const CATALOG: CourseMeta[] = [
   {

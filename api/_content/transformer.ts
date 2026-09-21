@@ -1,5 +1,5 @@
-import type { Course } from "../../src/lib/curriculum-types";
-import { PAID_LESSONS } from "./lessons.generated";
+import type { Course } from "../../src/lib/curriculum-types.js";
+import { PAID_LESSONS } from "./lessons.generated.js";
 
 /* The paid course. Its lessons are Markdown in content/transformer/,
    generated server-side only. Empty until the new lessons are added —

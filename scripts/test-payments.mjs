@@ -52,7 +52,7 @@ await build({
         // while payments.ts and access.ts — already inside _lib — import
         // "./db". Matching only one of them silently leaves half the code
         // looking for a real DATABASE_URL.
-        b.onResolve({ filter: /(^|\/)db$/ }, (args) =>
+        b.onResolve({ filter: /(^|\/)db(\.js)?$/ }, (args) =>
           args.importer.includes("/api/")
             ? { path: new URL("./test/pglite-db.ts", import.meta.url).pathname }
             : undefined

@@ -13,9 +13,9 @@
      SITE_URL — where the payer comes back to
    -------------------------------------------------------------------- */
 
-import { guard } from "./_lib/http";
-import { authConfigured, sessionUser } from "./_lib/auth";
-import { one } from "./_lib/db";
+import { guard } from "./_lib/http.js";
+import { authConfigured, sessionUser } from "./_lib/auth.js";
+import { one } from "./_lib/db.js";
 
 type Provider = "payme" | "click";
 

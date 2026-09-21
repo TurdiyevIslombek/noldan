@@ -22,8 +22,8 @@
    and nowhere else.
    -------------------------------------------------------------------- */
 
-import { grantEntitlement, revokeEntitlement } from "./access";
-import { one, q } from "./db";
+import { grantEntitlement, revokeEntitlement } from "./access.js";
+import { one, q } from "./db.js";
 
 export type Provider = "payme" | "click" | "uzum" | "stripe";
 

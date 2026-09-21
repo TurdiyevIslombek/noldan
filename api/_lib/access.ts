@@ -7,7 +7,7 @@
    in exactly one place — the payment path (payments.ts).
    -------------------------------------------------------------------- */
 
-import { one, q } from "./db";
+import { one, q } from "./db.js";
 
 export async function hasCourseAccess(
   userId: string | null,

@@ -39,8 +39,8 @@ import {
   markOrderCancelled,
   markOrderPaid,
   updateTxn,
-} from "./_lib/payments";
-import { dbConfigured } from "./_lib/db";
+} from "./_lib/payments.js";
+import { dbConfigured } from "./_lib/db.js";
 
 /** Click's error vocabulary. `0` is success; everything else is a code
  *  Click displays to the payer, so the notes stay human. */

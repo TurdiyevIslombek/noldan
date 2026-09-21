@@ -11,10 +11,10 @@
    gain.
    -------------------------------------------------------------------- */
 
-import { guard } from "./_lib/http";
-import { findLessonBody } from "./_content/index";
-import { hasCourseAccess } from "./_lib/access";
-import { authConfigured, sessionUser } from "./_lib/auth";
+import { guard } from "./_lib/http.js";
+import { findLessonBody } from "./_content/index.js";
+import { hasCourseAccess } from "./_lib/access.js";
+import { authConfigured, sessionUser } from "./_lib/auth.js";
 
 export default {
   async fetch(req: Request): Promise<Response> {

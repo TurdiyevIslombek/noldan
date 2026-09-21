@@ -24,7 +24,7 @@
 
 export const config = { runtime: "edge" };
 
-import { clientIp, originAllowed, rateLimited } from "./_lib/http";
+import { clientIp, originAllowed, rateLimited } from "./_lib/http.js";
 
 const MAX_MESSAGES = 12;
 const MAX_CHARS_PER_MESSAGE = 4000;

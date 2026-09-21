@@ -7,8 +7,8 @@
    into JavaScript is a price that eventually disagrees with the till.
    -------------------------------------------------------------------- */
 
-import { guard } from "./_lib/http";
-import { dbConfigured, q } from "./_lib/db";
+import { guard } from "./_lib/http.js";
+import { dbConfigured, q } from "./_lib/db.js";
 
 export default {
   async fetch(req: Request): Promise<Response> {

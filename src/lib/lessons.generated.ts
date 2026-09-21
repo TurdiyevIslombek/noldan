@@ -1,5 +1,5 @@
 /* GENERATED from content/*.md by scripts/build-catalog.mjs — do not edit. */
-import type { Lesson } from "./curriculum-types";
+import type { Lesson } from "./curriculum-types.js";
 
 export const FREE_LESSONS: Record<string, Lesson[]> = {
   "tokenizator": [

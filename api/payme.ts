@@ -44,8 +44,8 @@ import {
   markOrderPaid,
   refundOrder,
   updateTxn,
-} from "./_lib/payments";
-import { dbConfigured } from "./_lib/db";
+} from "./_lib/payments.js";
+import { dbConfigured } from "./_lib/db.js";
 
 /** Payme's own numbering — do not renumber to something tidier. */
 const enum State {
