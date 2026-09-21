@@ -1,87 +1,90 @@
 @import "tailwindcss";
 
-/* Self-hosted variable fonts, bundled by Vite — no external request.
-   Manrope for display/body (soft geometric sans, rounded terminals);
-   JetBrains Mono strictly for machine-ish content: code, token ids,
-   byte values, counters, labels. */
-@import "@fontsource-variable/manrope";
-@import "@fontsource-variable/jetbrains-mono";
+/* Self-hosted variable fonts, bundled by Vite, no external request.
+   Geist carries display and body; Martian Mono carries every number,
+   label and readout. This is the V8 «Kunduz» pairing, applied site-wide
+   so the landing page and the course are demonstrably one product. */
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/martian-mono";
 
 @theme {
-  --color-paper: #eef1ee;
-  --color-card: #ffffff;
-  --color-ink: #10201a;
-  --color-muted: #5d6f68;
-  --color-accent: #059669;
+  --color-paper: #eceeea;
+  --color-card: #f5f6f3;
+  --color-ink: #171c20;
+  --color-muted: #7d868d;
+  --color-accent: #2f6bdc;
 
-  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo,
+  --font-mono: "Martian Mono Variable", ui-monospace, SFMono-Regular, Menlo,
     monospace;
-  --font-sans: "Manrope Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  --font-sans: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
     system-ui, sans-serif;
 }
 
 :root {
+
   color-scheme: light;
 
-  /* Lab paper: a cool off-white with a faint green-grey bias so the
-     ground is chosen, not a default white. Ink is a deep spruce, not
-     pure black. One emerald accent, in two weights for contrast safety
-     on a light ground. */
-  --paper: #eef1ee;
-  --paper-2: #e6eae7;
-  --card: #ffffff;
-  --ink: #10201a;
-  --ink-soft: #38473f;
-  --muted: #5d6f68;
-  --dim: #8a978f;
+  /* ==================================================================
+     The V8 «Kunduz» system, hoisted to the root so every page inherits
+     it. Cool paper, ink that is never pure black, and exactly one
+     accent. The variable names are unchanged from the old mint system,
+     so the page stylesheets retune without being rewritten.
+     ================================================================== */
+  --paper: #eceeea;
+  --paper-2: #f5f6f3;
+  --card: #f5f6f3;
+  --ink: #171c20;
+  --ink-soft: #4c555c;
+  --muted: #7d868d;
+  --dim: #98a0a6;
 
-  --line: rgba(16, 32, 26, 0.1);
-  --line-hi: rgba(16, 32, 26, 0.17);
+  --line: #cdd1cb;
+  --line-hi: #b3b8b1;
 
-  /* accent        — decorative: particles, ticks, active states, glyphs
-     accent-strong — button fills and links, AA on paper / white on it
-     accent-wash   — soft chip and badge grounds */
-  --accent: #059669;
-  --accent-strong: #047857;
-  --accent-ink: #036448;
-  --accent-wash: #daf1e7;
-  --accent-wash-2: #eaf7f1;
+  /* One accent. It marks a measured value worth noticing, or the single
+     action that commits. Never decoration. */
+  --accent: #2f6bdc;
+  --accent-strong: #2456b5;
+  --accent-ink: #1d4796;
+  --accent-wash: rgba(47, 107, 220, 0.1);
+  --accent-wash-2: rgba(47, 107, 220, 0.05);
 
-  --mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo,
+  --mono: "Martian Mono Variable", ui-monospace, SFMono-Regular, Menlo,
     monospace;
-  --sans: "Manrope Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  --sans: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
     system-ui, sans-serif;
   --display: var(--sans);
 
-  --r-xs: 7px;
-  --r-sm: 10px;
-  --r-md: 14px;
-  --r-lg: 20px;
-  --r-xl: 28px;
+  /* Tight radii. Data surfaces are square, the committing button is a
+     pill, and nothing in between drifts. */
+  --r-xs: 3px;
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 10px;
+  --r-xl: 12px;
   --r-pill: 999px;
 
-  --shadow-soft: 0 1px 2px rgba(16, 32, 26, 0.04),
-    0 10px 30px -14px rgba(16, 32, 26, 0.16);
-  --shadow-lift: 0 2px 6px rgba(16, 32, 26, 0.06),
-    0 24px 60px -22px rgba(16, 32, 26, 0.22);
+  /* Hairlines do the separating on this ground, so shadows only lift
+     things that are genuinely floating. */
+  --shadow-soft: 0 1px 1px rgba(23, 28, 32, 0.03);
+  --shadow-lift: 0 1px 2px rgba(23, 28, 32, 0.05),
+    0 18px 40px -26px rgba(23, 28, 32, 0.35);
 
-  /* Liquid glass: translucent panels that let the neural-net field blur
-     through, with a bright top edge and a soft drop, the way frosted
-     glass catches light. Applied to cards, pills, the rail and the tour. */
+  /* Liquid glass, for surfaces that float over the field. A bright top
+     edge is light catching the lip of the material. */
   --glass-bg: rgba(255, 255, 255, 0.5);
-  --glass-bg-strong: rgba(255, 255, 255, 0.62);
-  --glass-border: rgba(255, 255, 255, 0.7);
-  --glass-blur: blur(18px) saturate(180%);
+  --glass-bg-strong: rgba(255, 255, 255, 0.68);
+  --glass-border: rgba(255, 255, 255, 0.62);
+  --glass-blur: blur(22px) saturate(160%);
   --glass-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 rgba(16, 32, 26, 0.04),
-    0 1px 2px rgba(16, 32, 26, 0.04), 0 14px 40px -18px rgba(16, 32, 26, 0.24);
+    inset 0 -1px 0 rgba(23, 28, 32, 0.04),
+    0 1px 1px rgba(23, 28, 32, 0.04), 0 18px 44px -24px rgba(23, 28, 32, 0.4);
   --glass-shadow-lift: inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    0 2px 6px rgba(16, 32, 26, 0.06), 0 26px 60px -22px rgba(16, 32, 26, 0.3);
+    0 2px 5px rgba(23, 28, 32, 0.06), 0 26px 58px -26px rgba(23, 28, 32, 0.45);
 
-  /* Motion system. Arrivals decelerate confidently; exits leave faster
-     than they arrived; durations express distance and consequence:
-     feedback 120ms · state 220ms · layout 380ms · focal 620ms. */
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Motion. Arrivals decelerate confidently; exits leave faster than
+     they arrived. */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-exit: cubic-bezier(0.4, 0, 1, 1);
   --t-feedback: 120ms;
   --t-state: 220ms;
@@ -155,8 +158,8 @@ button {
   left: 24px;
   z-index: 100;
   padding: 12px 22px;
-  background: var(--accent-strong);
-  color: #ffffff;
+  background: var(--ink);
+  color: var(--paper-2);
   font-family: var(--mono);
   font-size: 13px;
   font-weight: 600;
@@ -189,4 +192,86 @@ button {
    reads as breakage. */
 .route-wait {
   min-height: 100vh;
+}
+
+/* ---- what a crawler sees (and anyone, for the moment before the app
+   loads): the page as plain, readable HTML ------------------------- */
+.seo-snap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px 22px 80px;
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.seo-snap nav {
+  margin-bottom: 32px;
+  font-size: 14px;
+}
+.seo-snap a {
+  color: var(--accent-strong);
+}
+.seo-snap h1 {
+  font-size: 2.2rem;
+  line-height: 1.15;
+}
+.seo-snap pre {
+  overflow-x: auto;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #f5f4ef;
+  font-size: 14px;
+}
+.seo-snap td,
+.seo-snap th {
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+}
+/* The landing's first frame is night; so is its snapshot. */
+html:has(.seo-snap--night),
+html:has(.seo-snap--night) body {
+  background: #04060b;
+}
+.seo-snap--night {
+  color: #eef2f8;
+}
+.seo-snap--night a {
+  color: #ffb487;
+}
+
+/* ---- 404 ------------------------------------------------------------- */
+.nf__main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 120px 24px;
+}
+.nf__code {
+  margin: 0 0 12px;
+  font-family: var(--mono);
+  color: var(--accent-strong);
+}
+.nf h1 {
+  margin: 0 0 12px;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+}
+.nf p {
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.nf__go {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.nf__go a {
+  padding: 10px 16px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-hi);
+}
+.nf__go a:first-child {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
 }

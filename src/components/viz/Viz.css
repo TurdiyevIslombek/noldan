@@ -118,7 +118,7 @@
   color: #8a5d0b;
 }
 .vz__stats .is-good {
-  border-color: rgba(5, 150, 105, 0.4);
+  border-color: rgba(47, 107, 220, 0.4);
   background: var(--accent-wash-2);
   color: var(--accent-strong);
 }
@@ -138,7 +138,7 @@
   padding: 2px 7px;
   border-radius: var(--r-xs);
   background: var(--accent-wash-2);
-  border: 1px solid rgba(5, 150, 105, 0.16);
+  border: 1px solid rgba(47, 107, 220, 0.16);
   color: var(--accent-ink);
 }
 .vz__result b {
@@ -218,7 +218,7 @@ input[type="range"] {
   background: rgba(16, 32, 26, 0.05);
 }
 .bv__cell.is-multi .bv__byte {
-  background: rgba(5, 150, 105, 0.14);
+  background: rgba(47, 107, 220, 0.14);
   color: var(--accent-strong);
 }
 
@@ -460,7 +460,7 @@ input[type="range"] {
 .sv__track {
   height: 12px;
   border-radius: var(--r-pill);
-  background: rgba(5, 150, 105, 0.1);
+  background: rgba(47, 107, 220, 0.1);
   overflow: hidden;
 }
 .sv__fill {
@@ -535,7 +535,7 @@ input[type="range"] {
   border-color: transparent;
 }
 .av__cell.is-active {
-  border-color: rgba(5, 150, 105, 0.5);
+  border-color: rgba(47, 107, 220, 0.5);
 }
 
 /* the attention grid needs room; let it scroll rather than squeeze */
@@ -592,7 +592,7 @@ input[type="range"] {
   color: var(--dim);
 }
 .sp__piece--letter {
-  border-color: rgba(5, 150, 105, 0.4);
+  border-color: rgba(47, 107, 220, 0.4);
   background: var(--accent-wash-2);
 }
 .sp__piece--letter .sp__kind {

@@ -125,7 +125,7 @@
 }
 
 .step.is-done {
-  border-color: rgba(5, 150, 105, 0.32);
+  border-color: rgba(47, 107, 220, 0.32);
 }
 
 .step__tick {
@@ -343,7 +343,7 @@
   padding: 18px 20px;
   border-radius: var(--r-md);
   background: var(--accent-wash-2);
-  border: 1px solid rgba(5, 150, 105, 0.2);
+  border: 1px solid rgba(47, 107, 220, 0.2);
 }
 .lb__empty p {
   margin: 0;
@@ -427,7 +427,7 @@
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: rgba(5, 150, 105, 0.35);
+  text-decoration-color: rgba(47, 107, 220, 0.35);
 }
 .pj__link:hover {
   text-decoration-color: var(--accent);
@@ -451,4 +451,39 @@
   .pj__main {
     padding: 112px 20px 100px;
   }
+}
+
+/* ====================================================================
+   V8 «Kunduz» pass. See the note in Playground.css: no field behind
+   these pages any more, so the glass becomes solid stock and hairlines
+   do the separating.
+   ==================================================================== */
+.pj {
+  --glass-bg: var(--paper-2);
+  --glass-bg-strong: var(--paper-2);
+  --glass-border: var(--line);
+  --glass-blur: none;
+  --glass-shadow: none;
+  --glass-shadow-lift: none;
+  background: var(--paper);
+}
+.pj__veil {
+  display: none;
+}
+
+/* Same as the playground: the eyebrow is a label, not a badge. */
+.pj__eyebrow {
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.pj__eyebrow svg {
+  display: none;
 }
