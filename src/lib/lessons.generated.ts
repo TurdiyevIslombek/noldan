@@ -7715,7 +7715,7 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
     {
       "id": "dars-09",
       "n": 9,
-      "title": "Birlashtirish (`merge`)",
+      "title": "Birlashtirish (merge)",
       "subtitle": "",
       "minutes": 55,
       "status": "ready",

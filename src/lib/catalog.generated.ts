@@ -84,7 +84,7 @@ export const CATALOG: CourseMeta[] = [
       {
         "id": "dars-09",
         "n": 9,
-        "title": "Birlashtirish (`merge`)",
+        "title": "Birlashtirish (merge)",
         "subtitle": "",
         "minutes": 55,
         "status": "ready"

@@ -304,7 +304,9 @@ export function parseLesson(source, id) {
   const lesson = {
     id,
     n: tm ? Number(tm[1]) : null,
-    title: (tm ? tm[2] : titleLine.replace(/^#\s+/, "")).trim(),
+    // The title is used as plain text everywhere — the browser tab, search
+    // results, the course list — so Markdown marks like `merge` are dropped.
+    title: (tm ? tm[2] : titleLine.replace(/^#\s+/, "")).replace(/[`*]/g, "").trim(),
     subtitle: "",
     minutes: Number(/\d+/.exec(meta["vaqt"] ?? "")?.[0] ?? 20),
     status: "ready",

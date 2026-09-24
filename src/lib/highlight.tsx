@@ -150,10 +150,11 @@ export function inline(text: string): ReactNode[] {
           </a>
         );
       } else {
-        out.push(<strong key={key++}>{inner}</strong>);
+        // Inner marks too: "**`merge`**" is bold code, not bold backticks.
+        out.push(<strong key={key++}>{inline(inner)}</strong>);
       }
     } else if (tok.startsWith("*")) {
-      out.push(<em key={key++}>{tok.slice(1, -1)}</em>);
+      out.push(<em key={key++}>{inline(tok.slice(1, -1))}</em>);
     } else {
       out.push(
         <code key={key++} className="ic">

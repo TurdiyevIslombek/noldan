@@ -7,6 +7,7 @@ import { Blocks, ExerciseCard, LessonProvider } from "../components/Blocks";
 import { VideoSlot } from "../components/Media";
 import Tutor from "../components/Tutor";
 import { lessonMeta } from "../lib/catalog.generated";
+import { inline } from "../lib/highlight";
 import { useLessonBody } from "../lib/lesson-body";
 import { useAuth } from "../auth/AuthProvider";
 import { useSeo } from "../lib/seo";
@@ -146,7 +147,7 @@ export default function Lesson() {
               {ready?.needs && (
                 <span>
                   <Backpack size={14} strokeWidth={2.2} aria-hidden="true" />
-                  Kerak: {ready.needs}
+                  <span>Kerak: {inline(ready.needs)}</span>
                 </span>
               )}
             </div>
@@ -176,7 +177,7 @@ export default function Lesson() {
                   <section className="lx__section" key={s.id} id={s.id}>
                     <h2 className="lx__h2">
                       {num && <span className="lx__h2-n">{num}</span>}
-                      {title}
+                      <span>{inline(title)}</span>
                     </h2>
                     <Blocks blocks={s.blocks} />
                   </section>
@@ -233,7 +234,7 @@ export default function Lesson() {
               {ready.sections.map((s) => (
                 <li key={s.id}>
                   <a href={`#${s.id}`} className={here === s.id ? "is-here" : undefined}>
-                    {splitTitle(s.title)[1]}
+                    {splitTitle(s.title)[1].replace(/[`*]/g, "")}
                   </a>
                 </li>
               ))}

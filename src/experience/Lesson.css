@@ -177,7 +177,7 @@ html[data-page="lesson"] body {
   flex-wrap: wrap;
   gap: 8px;
 }
-.lx__meta span {
+.lx__meta > span {
   display: inline-flex;
   align-items: center;
   gap: 7px;
