@@ -179,6 +179,19 @@ export function askTutor(
     .then(async (res) => {
       if (!res.ok) {
         const body = await res.text().catch(() => "");
+        // Our own proxy answers {"error": "…"} in words written for
+        // students; show those as they are, not as raw JSON.
+        let own = "";
+        try {
+          const j = JSON.parse(body) as { error?: unknown };
+          if (typeof j.error === "string") own = j.error;
+        } catch {
+          /* not JSON — a provider's own error page */
+        }
+        if (own && cfg.provider === "proxy") {
+          h.onError(own);
+          return;
+        }
         // Surface the real reason — a silent failure teaches nobody.
         const hint =
           res.status === 401 || res.status === 403
@@ -190,7 +203,7 @@ export function askTutor(
                 : res.status === 500 && cfg.provider === "proxy"
                   ? "Serverda kalit sozlanmagan."
                   : "";
-        h.onError(`${res.status} — ${hint || body.slice(0, 160) || "soʻrov bajarilmadi"}`);
+        h.onError(`${res.status} — ${hint || own || body.slice(0, 160) || "soʻrov bajarilmadi"}`);
         return;
       }
       if (!res.body) {

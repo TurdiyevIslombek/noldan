@@ -104,12 +104,16 @@ export default async function handler(req: Request): Promise<Response> {
 
   const upstream = pickUpstream();
   if (!upstream) {
+    // Students read this, so it says what they can do — not which
+    // environment variable the site owner forgot. (That is GROQ_API_KEY,
+    // or OPENROUTER_API_KEY / HF_TOKEN; see DEPLOY.md, section 2.)
     return Response.json(
       {
         error:
-          "Server kaliti sozlanmagan. GROQ_API_KEY (yoki OPENROUTER_API_KEY / HF_TOKEN) ni environment variable sifatida qoʻshing.",
+          "Noldan yordamchisi hozircha yoqilmagan. Tez orada ishlaydi. Hozir ham foydalanmoqchi boʻlsangiz, ⚙ sozlamalarda bepul Groq kalitingizni kiriting.",
+        unconfigured: true,
       },
-      { status: 500 }
+      { status: 503 }
     );
   }
 
