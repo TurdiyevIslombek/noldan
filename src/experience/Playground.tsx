@@ -16,14 +16,8 @@ import {
 import SiteNav from "../components/SiteNav";
 import { CodeBlock } from "../components/Blocks";
 import { VIZ } from "../components/viz/Viz";
-import {
-  PRESETS,
-  encode,
-  loadFromHub,
-  measure,
-  type LoadedTokenizer,
-  type Token,
-} from "../lib/hf-tokenizer";
+import { PRESETS, measure, type Token } from "../lib/hf-tokenizer";
+import { loadTokenizer, tokenize, type TokenizerInfo } from "../lib/tokenizers";
 import "./Playground.css";
 
 /* --------------------------------------------------------------------
@@ -49,10 +43,13 @@ const SAMPLE =
 type Slot = {
   key: string;
   repo: string;
-  tk: LoadedTokenizer | null;
+  tk: TokenizerInfo | null;
   loading: boolean;
   error: string | null;
 };
+
+/** What one tokenizer made of one version of the text. */
+type Enc = { text: string; tokens: Token[]; normalized: string };
 
 const newSlot = (repo: string): Slot => ({
   key: `${repo}-${Math.random().toString(36).slice(2, 7)}`,
@@ -101,7 +98,7 @@ export default function Playground() {
       s.map((x) => (x.key === key ? { ...x, loading: true, error: null } : x))
     );
     try {
-      const tk = await loadFromHub(repo);
+      const tk = await loadTokenizer(repo, PRESETS.find((p) => p.repo === repo)?.label);
       setSlots((s) => s.map((x) => (x.key === key ? { ...x, tk, loading: false } : x)));
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
@@ -120,14 +117,43 @@ export default function Playground() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Tokenizing happens in a worker (lib/tokenizers.ts), so typing never
+  // waits on it. Replies for text that has since changed are dropped;
+  // the previous tokens stay on screen until the new ones arrive.
+  const [enc, setEnc] = useState<Record<string, Enc>>({});
+  useEffect(() => {
+    let live = true;
+    for (const s of slots) {
+      if (!s.tk) continue;
+      tokenize(s.repo, text)
+        .then((r) => {
+          if (live) {
+            setEnc((prev) => ({
+              ...prev,
+              [s.key]: { text, tokens: r.tokens, normalized: r.normalized },
+            }));
+          }
+        })
+        .catch(() => undefined);
+    }
+    return () => {
+      live = false;
+    };
+  }, [slots, text]);
+
   const results = useMemo(
     () =>
       slots.map((s) => {
-        if (!s.tk) return { slot: s, tokens: [] as Token[], stats: null };
-        const tokens = encode(text, s.tk);
-        return { slot: s, tokens, stats: measure(text, tokens) };
+        const e = s.tk ? enc[s.key] : undefined;
+        if (!e) return { slot: s, tokens: [] as Token[], stats: null, normalized: null };
+        return {
+          slot: s,
+          tokens: e.tokens,
+          stats: measure(e.text, e.tokens),
+          normalized: e.normalized !== e.text ? e.normalized : null,
+        };
       }),
-    [slots, text]
+    [slots, enc]
   );
 
   const best = useMemo(() => {
@@ -273,6 +299,13 @@ export default function Playground() {
                     strong
                   />
                 </div>
+                {primary.normalized && (
+                  <p className="pg__hint pg__hint--norm">
+                    Bu tokenizator matnni avval oʻz qoidasi bilan tozalaydi —
+                    masalan <code>o'</code> → <code>oʻ</code>, <code>g'</code> →{" "}
+                    <code>gʻ</code>. Tokenlar tozalangan matndan olindi.
+                  </p>
+                )}
                 <p className="pg__hint">
                   Har bir rangli boʻlak — bitta token. Ostidagi son — uning
                   lugʻatdagi ID si. <code>␣</code> boʻsh joyni bildiradi.
