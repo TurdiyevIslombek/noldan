@@ -48,6 +48,12 @@ export type Def = {
   /** Radius, in layout units, of a soft glow at the picture's centre. */
   core?: number;
   net?: Net | null;
+  /** Size of the picture's stars relative to their own (1). Type needs
+   *  fine grain to stay legible; a galaxy wants the full sparkle. */
+  grain?: number;
+  /** No diffraction spikes and a gentler twinkle — for pictures that
+   *  have to be read, like words and numbers. */
+  calm?: boolean;
 };
 
 export type Field = {
@@ -199,6 +205,9 @@ export function createField(
   let W = 1;
   let H = 1;
   let dpr = 1;
+  /** Highest canvas resolution allowed. Soft light does not need the
+   *  screen's full density, and every pixel is paid for each frame. */
+  let dprCap = innerWidth < 700 ? 1.25 : 1.5;
   let drawN = N;
   let ema = 16;
   let slow = 0;
@@ -211,15 +220,31 @@ export function createField(
     fwd: true,
   }));
 
-  const resize = () => {
-    dpr = Math.min(window.devicePixelRatio || 1, innerWidth < 700 ? 1.25 : 1.5);
+  const size_ = () => {
+    dpr = Math.min(window.devicePixelRatio || 1, dprCap);
     W = Math.max(1, Math.round(canvas.clientWidth * dpr));
     H = Math.max(1, Math.round(canvas.clientHeight * dpr));
     canvas.width = W;
     canvas.height = H;
+  };
+  const resize = () => {
+    size_();
     inited = false;
   };
   resize();
+
+  /** Drop to a coarser canvas without the stars jumping: their positions
+   *  are in canvas pixels, so they are rescaled rather than re-snapped. */
+  const lowerResolution = () => {
+    const prev = dpr;
+    dprCap = Math.max(1, dprCap - 0.25);
+    size_();
+    const k = dpr / prev;
+    for (let j = 0; j < N; j++) {
+      px[j] *= k;
+      py[j] *= k;
+    }
+  };
 
   // ---- projection ------------------------------------------------------
   const project = (
@@ -385,6 +410,12 @@ export function createField(
     const intro = reduced ? 1 : Math.min(1, t / 1.8);
     const d0 = defs[i0];
     const d1 = defs[i1];
+    // How the two pictures want their stars drawn. A star in flight
+    // between them blends from one to the other as it travels.
+    const g0 = d0?.grain ?? 1;
+    const g1 = pair ? (d1?.grain ?? 1) : g0;
+    const c0 = d0?.calm ? 1 : 0;
+    const c1 = pair ? (d1?.calm ? 1 : 0) : c0;
 
     for (let j = 0; j < drawN; j++) {
       let x = ax[j];
@@ -413,7 +444,20 @@ export function createField(
       py[j] += (y - py[j]) * follow;
       ps[j] += (s - ps[j]) * follow;
 
-      const sz = size[j] * ps[j] * dpr;
+      let base = size[j];
+      let kind = cls[j];
+      let calm = 0;
+      if (j >= A) {
+        // In a calm picture a spiked star is drawn as a plain bead, and
+        // every star at the picture's grain.
+        const b0 = c0 && kind === 2 ? 14 : base;
+        const b1 = c1 && kind === 2 ? 14 : base;
+        base = (b0 + (b1 - b0) * e) * (g0 + (g1 - g0) * e);
+        calm = c0 + (c1 - c0) * e;
+        if (kind === 2 && calm > 0.5) kind = 1;
+      }
+
+      const sz = base * ps[j] * dpr;
       const X = px[j];
       const Y = py[j];
       if (X < -sz || Y < -sz || X > W + sz || Y > H + sz) continue;
@@ -425,25 +469,32 @@ export function createField(
         if (o !== NO_COLOR) c = o;
       }
 
-      const tw = reduced ? 1 : 0.68 + 0.32 * Math.sin(t * twinkle[j] + phase[j]);
+      // Twinkle is life in open sky and noise inside a letter.
+      const amp = 0.32 * (1 - 0.62 * calm);
+      const tw = reduced ? 1 : 1 - amp + amp * Math.sin(t * twinkle[j] + phase[j]);
       const depth = Math.min(1, 0.4 + 0.6 * ps[j]);
-      let a = alpha[j] * tw * depth * intro;
+      // Finer stars in a calm picture burn a little brighter, so a letter
+      // stays as luminous as the sky around it.
+      let a = alpha[j] * tw * depth * intro * (1 + 0.4 * calm);
       // Background stars step back once there is a picture to look at.
       if (j < A && m > 0.4) a *= 0.55;
+      if (a < 0.015) continue;
       ctx.globalAlpha = a > 1 ? 1 : a;
-      ctx.drawImage(sprites[cls[j]][c], X - sz / 2, Y - sz / 2, sz, sz);
+      ctx.drawImage(sprites[kind][c], X - sz / 2, Y - sz / 2, sz, sz);
     }
 
     ctx.globalAlpha = 1;
     ctx.globalCompositeOperation = "source-over";
     inited = true;
 
-    // Shrink the budget on a machine that cannot hold frame rate. The
-    // tail of the list is formation stars in random order, so thinning it
-    // thins every picture evenly instead of deleting part of one.
+    // A machine that cannot hold frame rate first gets a coarser canvas —
+    // soft light hides it — and only then fewer stars. The tail of the
+    // list is formation stars in random order, so thinning it thins every
+    // picture evenly instead of deleting part of one.
     ema = ema * 0.95 + dt * 0.05;
-    if (ema > 24 && ++slow > 90 && drawN > 700) {
-      drawN = Math.max(700, Math.floor(drawN * 0.85));
+    if (ema > 24 && ++slow > 90) {
+      if (dpr > 1) lowerResolution();
+      else if (drawN > 700) drawN = Math.max(700, Math.floor(drawN * 0.85));
       slow = 0;
       ema = 16;
     }

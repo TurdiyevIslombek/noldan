@@ -1,15 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "@fontsource-variable/geist-mono";
-import {
-  DEMO_CORPUS,
-  PROBE,
-  encode as encodeBpe,
-  trainBPE,
-  type BpeModel,
-} from "../lib/bpe";
-import { PRESETS, encode as encodeHub, loadFromHub } from "../lib/hf-tokenizer";
-import { ARTIFACTS, DEMO_VOCAB, FACTS, HF_USER } from "../home/content";
+import { PROBE } from "../lib/bpe";
+import { PRESETS } from "../lib/hf-tokenizer";
+import { DEMO, loadTokenizer, tokenize } from "../lib/tokenizers";
+import { ARTIFACTS, FACTS, HF_USER } from "../home/content";
 import { CATALOG } from "../lib/catalog.generated";
 import { useAuth } from "../auth/AuthProvider";
 import { scrollToY } from "../components/SmoothScroll";
@@ -32,14 +27,43 @@ import "./landing.css";
      4  a turning spiral      — training: guess, measure, correct, repeat
      5  a brain, wired        — what you end up with: your own model
 
-   Nothing drawn as a measurement is invented. The word is whatever the
-   reader types. The tokens come from a tokenizer that trains in this
-   browser when the page opens. The comparison downloads GPT-2's and the
-   course's own tokenizer from Hugging Face and counts, live.
+   Nothing drawn as a measurement is invented. The words are whatever the
+   reader types. The tokens come from uzbek-bpe-16k — the tokenizer the
+   course ends with — downloaded from Hugging Face and run in this
+   browser; offline, a small one trained right here stands in. The
+   comparison runs GPT-2's tokenizer and the course's side by side and
+   counts, live. All tokenizer work happens in a Web Worker, so none of
+   it can stall the sky.
    ==================================================================== */
 
 const TOKEN_WORD = "oʻrganamiz";
+const UZ = PRESETS.find((p) => p.id === "uzbek")!;
+const GPT2 = PRESETS.find((p) => p.id === "gpt2")!;
 const enc = new TextEncoder();
+
+type Tokens = {
+  word: string;
+  list: Array<{ text: string; id: number }>;
+  /** "hub": the real uzbek-bpe-16k · "local": the in-browser stand-in */
+  source: "hub" | "local";
+};
+
+/** A word on its own is tokenized as it would sit inside a sentence —
+ *  after a space — because that is how the tokenizer met it in training.
+ *  The space is then taken off the first piece for display. */
+async function tokensFor(word: string): Promise<Tokens> {
+  const shown = (list: Array<{ text: string; id: number }>) =>
+    list
+      .map((t, i) => (i === 0 ? { ...t, text: t.text.replace(/^ /, "") } : t))
+      .filter((t) => t.text !== "");
+  try {
+    const r = await tokenize(UZ.repo, " " + word);
+    return { word, list: shown(r.tokens), source: "hub" };
+  } catch {
+    const r = await tokenize(DEMO, word);
+    return { word, list: shown(r.tokens), source: "local" };
+  }
+}
 
 const tokCourse = CATALOG.find((c) => c.id === "tokenizator");
 const gptCourse = CATALOG.find((c) => c.id === "transformer");
@@ -68,14 +92,21 @@ const smooth = (a: number, b: number, x: number) => {
 
 /* ---- pictures that depend on content ------------------------------------ */
 
+/* Type drawn in stars reads only if the stars are fine: the big glowing
+   beads and spiked stars that make the galaxy sparkle smear a letter's
+   stroke. So text pictures ask the field for fine grain and no spikes. */
+const TEXT_GRAIN = 0.78;
+
+const TRY_WORDS = ["kitoblarimizdan", "oʻqituvchilarimiz", "yozganlaringiz"];
+
 function wordDef(w: string, K: number): Def {
   const bytes = Array.from(enc.encode(w));
-  const shown = bytes.slice(0, 6).join(" ") + (bytes.length > 6 ? " …" : "");
+  const shown = bytes.slice(0, 5).join(" ") + (bytes.length > 5 ? " …" : "");
   const built = lines(
     K,
     [
       { parts: [{ text: w, group: 0 }], px: 200, gap: 0 },
-      { parts: [{ text: shown, group: 1 }], px: 74, gap: 0 },
+      { parts: [{ text: shown, group: 1 }], px: 88, gap: 0 },
     ],
     { maxW: 2.35, maxH: 1.6, color: (g) => (g === 1 ? 2 : NO_COLOR) }
   );
@@ -83,6 +114,8 @@ function wordDef(w: string, K: number): Def {
     kind: "space",
     pts: built.pts,
     colors: built.colors,
+    grain: TEXT_GRAIN,
+    calm: true,
     rot: (t) => [Math.sin(t * 0.35) * 0.1, Math.sin(t * 0.27) * 0.06, 0],
   };
 }
@@ -90,13 +123,15 @@ function wordDef(w: string, K: number): Def {
 function tokenDef(tokens: string[], K: number): Def {
   const built = lines(
     K,
-    [{ parts: tokens.slice(0, 10).map((text, group) => ({ text, group })), px: 190, gap: 0.5 }],
+    [{ parts: tokens.slice(0, 8).map((text, group) => ({ text, group })), px: 190, gap: 0.5 }],
     { maxW: 2.35, maxH: 1.0, color: (g) => [2, 1, 0][g % 3] }
   );
   return {
     kind: "space",
     pts: built.pts,
     colors: built.colors,
+    grain: TEXT_GRAIN,
+    calm: true,
     rot: (t) => [Math.sin(t * 0.3) * 0.12, 0.05, 0],
   };
 }
@@ -133,7 +168,8 @@ export default function Landing() {
   const K = N - A;
 
   const [word, setWord] = useState("salom");
-  const [model, setModel] = useState<BpeModel | null>(null);
+  const [tokWord, setTokWord] = useState(TOKEN_WORD);
+  const [tokens, setTokens] = useState<Tokens | null>(null);
   const [fonts, setFonts] = useState(false);
   const [measure, setMeasure] = useState<Measure>({ status: "idle" });
 
@@ -150,13 +186,19 @@ export default function Landing() {
     };
   }, []);
 
-  /* Training blocks the main thread for a few hundred milliseconds, so
-     it waits until the first frame is on screen. */
+  /* Fetch the course's tokenizer as soon as the page is idle — in the
+     worker, so the download and parsing cost the sky nothing — and the
+     reader's first word is split without a wait. */
   useEffect(() => {
-    const id = window.setTimeout(
-      () => setModel(trainBPE(DEMO_CORPUS, DEMO_VOCAB, PROBE)),
-      140
-    );
+    const start = () => void loadTokenizer(UZ.repo, UZ.label).catch(() => undefined);
+    // Safari has no requestIdleCallback.
+    const idle: Partial<Pick<Window, "requestIdleCallback" | "cancelIdleCallback">> = window;
+    if (idle.requestIdleCallback && idle.cancelIdleCallback) {
+      const cancel = idle.cancelIdleCallback.bind(window);
+      const id = idle.requestIdleCallback.call(window, start, { timeout: 2500 });
+      return () => cancel(id);
+    }
+    const id = window.setTimeout(start, 900);
     return () => window.clearTimeout(id);
   }, []);
 
@@ -201,6 +243,28 @@ export default function Landing() {
     const words = PROBE.split(/\s+/).length;
     field.setDef(3, compareDef(K, words, words, true));
 
+    // Where the middle of each section sits on the page. Measured on load
+    // and whenever a section changes size — never inside the frame, where
+    // reading layout makes the browser recompute it sixty times a second.
+    let mids: number[] = [];
+    const centers: number[] = [];
+    const measureSections = () => {
+      const sy = window.scrollY;
+      mids = secRefs.current.map((s) => {
+        if (!s) return 0;
+        const r = s.getBoundingClientRect();
+        return r.top + sy + r.height * 0.5;
+      });
+      centers.length = mids.length;
+    };
+    measureSections();
+    const ro = new ResizeObserver(measureSections);
+    secRefs.current.forEach((s) => s && ro.observe(s));
+
+    // The copy's fade and drift are written only when they change.
+    const lastO: string[] = [];
+    const lastT: string[] = [];
+
     let raf = 0;
     const t0 = performance.now();
     let last = t0;
@@ -213,14 +277,10 @@ export default function Landing() {
       // Which picture: the two sections either side of the middle of the
       // screen, and how far between them. Each picture holds while its
       // section is being read, and travels only in the gap between.
-      const secs = secRefs.current;
       const vh = innerHeight;
       const vc = vh * 0.5;
-      const centers = secs.map((s) => {
-        if (!s) return 0;
-        const r = s.getBoundingClientRect();
-        return r.top + r.height * 0.5;
-      });
+      const sy = window.scrollY;
+      for (let i = 0; i < mids.length; i++) centers[i] = mids[i] - sy;
       const lastI = centers.length - 1;
       let m = 0;
       if (vc >= centers[lastI]) m = lastI;
@@ -241,9 +301,19 @@ export default function Landing() {
         let o = 1 - Math.max(0, Math.abs(d) - 0.14) / 0.3;
         if (i === lastI && d < 0) o = 1;
         o = Math.max(0, Math.min(1, o));
-        el.style.opacity = o.toFixed(3);
-        el.style.pointerEvents = o < 0.2 ? "none" : "";
-        if (!reduced) el.style.transform = `translate3d(0, ${(d * -36).toFixed(1)}px, 0)`;
+        const os = o.toFixed(3);
+        if (lastO[i] !== os) {
+          lastO[i] = os;
+          el.style.opacity = os;
+          el.style.pointerEvents = o < 0.2 ? "none" : "";
+        }
+        if (!reduced) {
+          const ts = `translate3d(0, ${(d * -36).toFixed(1)}px, 0)`;
+          if (lastT[i] !== ts) {
+            lastT[i] = ts;
+            el.style.transform = ts;
+          }
+        }
       });
 
       field.frame((now - t0) / 1000, dt);
@@ -265,6 +335,7 @@ export default function Landing() {
 
     return () => {
       cancelAnimationFrame(raf);
+      ro.disconnect();
       window.clearTimeout(rt);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("resize", onResize);
@@ -287,15 +358,29 @@ export default function Landing() {
     return () => window.clearTimeout(id);
   }, [fonts, word, K]);
 
-  /* ---- 2: tokens --------------------------------------------------------- */
-  const tokens = useMemo(
-    () => (model ? encodeBpe(TOKEN_WORD, model) : null),
-    [model]
-  );
+  /* ---- 2: the reader's word, in tokens ---------------------------------- */
+  useEffect(() => {
+    const w = tokWord.trim();
+    let live = true;
+    if (!w) {
+      setTokens({ word: "", list: [], source: "hub" });
+      return;
+    }
+    const id = window.setTimeout(() => {
+      tokensFor(w)
+        .then((t) => live && setTokens(t))
+        .catch(() => undefined);
+    }, 90);
+    return () => {
+      live = false;
+      window.clearTimeout(id);
+    };
+  }, [tokWord]);
   useEffect(() => {
     if (!fonts) return;
-    const pieces = tokens ? tokens.map((t) => t.text) : [TOKEN_WORD];
-    fieldRef.current?.setDef(2, tokenDef(pieces, K));
+    const pieces = !tokens ? [TOKEN_WORD] : tokens.list.length ? tokens.list.map((t) => t.text) : ["·"];
+    const id = window.setTimeout(() => fieldRef.current?.setDef(2, tokenDef(pieces, K)), 60);
+    return () => window.clearTimeout(id);
   }, [fonts, tokens, K]);
 
   /* ---- 3: measured, not asserted ---------------------------------------- */
@@ -304,27 +389,28 @@ export default function Landing() {
     const el = compareRef.current;
     if (!el) return;
     let started = false;
-    const ctrl = new AbortController();
+    let live = true;
     const io = new IntersectionObserver(
       async (entries) => {
         if (started || !entries.some((e) => e.isIntersecting)) return;
         started = true;
         io.disconnect();
         setMeasure({ status: "loading" });
-        const gpt = PRESETS.find((p) => p.id === "gpt2")!;
-        const uz = PRESETS.find((p) => p.id === "uzbek")!;
         try {
-          const [a, b] = await Promise.all([
-            loadFromHub(gpt.repo, gpt.label, ctrl.signal),
-            loadFromHub(uz.repo, uz.label, ctrl.signal),
-          ]);
-          setMeasure({
-            status: "ok",
-            top: encodeHub(PROBE, a).length,
-            bottom: encodeHub(PROBE, b).length,
-          });
+          const [a, b] = await Promise.all([tokenize(GPT2.repo, PROBE), tokenize(UZ.repo, PROBE)]);
+          if (live) setMeasure({ status: "ok", top: a.tokens.length, bottom: b.tokens.length });
         } catch {
-          if (!ctrl.signal.aborted) setMeasure({ status: "local", top: 0, bottom: 0 });
+          // Offline, the comparison falls back to something this browser
+          // can still measure honestly: raw bytes against the tokenizer it
+          // trains itself.
+          const local = await tokenize(DEMO, PROBE).catch(() => null);
+          if (live) {
+            setMeasure({
+              status: "local",
+              top: enc.encode(PROBE).length,
+              bottom: local ? local.tokens.length : 0,
+            });
+          }
         }
       },
       // Start downloading well before the section arrives, so the numbers
@@ -333,24 +419,12 @@ export default function Landing() {
     );
     io.observe(el);
     return () => {
+      live = false;
       io.disconnect();
-      ctrl.abort();
     };
   }, []);
 
-  /* Offline, the comparison falls back to something this browser can
-     still measure honestly: raw bytes against the tokenizer it trained. */
-  const shown = useMemo(() => {
-    if (measure.status === "ok") return measure;
-    if (measure.status === "local") {
-      return {
-        status: "local" as const,
-        top: enc.encode(PROBE).length,
-        bottom: model ? encodeBpe(PROBE, model).length : 0,
-      };
-    }
-    return measure;
-  }, [measure, model]);
+  const shown = measure;
 
   useEffect(() => {
     if ((shown.status === "ok" || shown.status === "local") && shown.bottom > 0) {
@@ -479,24 +553,52 @@ export default function Landing() {
               tokenizator hal qiladi.
             </p>
 
+            <label className="st-try" htmlFor="st-tok">
+              <span>Soʻz yozing — tokenizator uni boʻlaklarga boʻladi</span>
+              <input
+                id="st-tok"
+                value={tokWord}
+                maxLength={28}
+                spellCheck={false}
+                autoComplete="off"
+                autoCapitalize="off"
+                onChange={(e) => setTokWord(e.target.value)}
+              />
+            </label>
+
             <div className="st-tokens" aria-live="polite">
               {tokens ? (
-                tokens.map((t, i) => (
-                  <span key={i} data-c={i % 3}>
-                    <b>{t.text}</b>
+                tokens.list.map((t, i) => (
+                  <span key={`${tokens.word}-${i}`} data-c={i % 3}>
+                    <b>{t.text.replace(/ /g, "␣")}</b>
                     <i>{t.id}</i>
                   </span>
                 ))
               ) : (
-                <span className="st-wait">tokenizator oʻqitilmoqda…</span>
+                <span className="st-wait">tokenizator yuklanmoqda…</span>
               )}
             </div>
-            <p className="st-note">
-              «{TOKEN_WORD}» shunday boʻlindi — buni hozirgina, shu sahifada,
-              brauzeringizda oʻqitilgan tokenizator qildi.
-              {tokens?.[0]?.text === "oʻrgan" &&
-                " Eʼtibor bering: soʻz oʻzagi «oʻrgan» alohida chiqdi."}
-            </p>
+            {tokens && tokens.word && (
+              <p className="st-note">
+                «{tokens.word}» — {tokens.list.length}{" "}
+                {tokens.list.length === 1 ? "boʻlak: butun soʻz lugʻatda bor" : "boʻlak"}.{" "}
+                {tokens.source === "hub"
+                  ? "Buni kurs oxirida oʻzingiz quradigan tokenizator — Hugging Face'dagi uzbek-bpe-16k — hozir brauzeringizda boʻldi."
+                  : "Hugging Face'ga ulanib boʻlmadi, shuning uchun shu sahifada oʻqitilgan kichik tokenizator boʻldi."}{" "}
+                Yana sinang:{" "}
+                {TRY_WORDS.filter((w) => w !== tokens.word)
+                  .slice(0, 2)
+                  .map((w, i) => (
+                    <span key={w}>
+                      {i > 0 && ", "}
+                      <button type="button" className="st-link" onClick={() => setTokWord(w)}>
+                        {w}
+                      </button>
+                    </span>
+                  ))}
+                .
+              </p>
+            )}
             <p>
               Kursning birinchi qismi aynan shu: tokenizatorni noldan, oʻz
               qoʻlingiz bilan yozasiz.

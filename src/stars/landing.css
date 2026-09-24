@@ -85,7 +85,21 @@ html[data-page="stars"] body {
   align-items: center;
   justify-content: space-between;
   padding: 20px clamp(22px, 5vw, 64px);
-  background: linear-gradient(to bottom, rgba(4, 6, 11, 0.85), rgba(4, 6, 11, 0));
+}
+/* Deeper than the bar itself, so copy scrolling up under the header fades
+   out before it reaches the logo instead of running into it. */
+.st-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -64px 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(4, 6, 11, 0.94) 0%,
+    rgba(4, 6, 11, 0.78) 48%,
+    rgba(4, 6, 11, 0) 100%
+  );
 }
 .st-nav__mark {
   font-size: 18px;
@@ -197,6 +211,27 @@ html[data-page="stars"] body {
 .st-note {
   font-size: 14.5px !important;
   color: var(--ink-3) !important;
+}
+/* A word to try, set into the sentence: reads as text, acts as a button. */
+.st-link {
+  font: inherit;
+  color: var(--ink-2, #c9d3e6);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(148, 204, 255, 0.45);
+  text-underline-offset: 3px;
+}
+.st-link:hover {
+  color: #fff;
+  text-decoration-color: rgba(148, 204, 255, 0.9);
+}
+.st-link:focus-visible {
+  outline: 2px solid rgba(148, 204, 255, 0.8);
+  outline-offset: 2px;
+  border-radius: 3px;
 }
 .st-note b {
   font-weight: 500;
