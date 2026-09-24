@@ -2,7 +2,8 @@
 
 ![Noldan — build AI from scratch, in Uzbek](public/og.png)
 
-**Live: [noldan.fun](https://noldan.fun)**
+**Live: [noldan.fun](https://noldan.fun)** ·
+[![CI](https://github.com/TurdiyevIslombek/noldan/actions/workflows/ci.yml/badge.svg)](https://github.com/TurdiyevIslombek/noldan/actions/workflows/ci.yml)
 
 **Noldan** ("from zero") is a free course, in Uzbek, that teaches people with no
 programming background to build a language model from scratch — starting with
@@ -32,6 +33,12 @@ tokenizer for Uzbek themselves, line by line.
 - **Every example is checked.** `npm run check:lessons` runs all the course's
   code in order, as a student would, and compares it with the output printed
   in the lessons.
+- **A real tokenizer in the browser.** The landing page and the playground
+  run actual byte-level BPE tokenizers downloaded from Hugging Face — the
+  one the course builds (`uzbek-bpe-16k`) and GPT-2's — in a Web Worker, so
+  loading them never stalls the page. The tokenizer applies the file's own
+  normalizer, so `o'` typed on an ordinary keyboard becomes `oʻ`, exactly as
+  the Python `tokenizers` library does.
 - **Readable by search engines.** Every page is pre-rendered to static HTML
   at build time, with its own title, description, structured data and the
   full lesson text; the sitemap updates itself.
@@ -60,8 +67,10 @@ scripts/        lesson pipeline, pre-rendering, checks, deploy helpers
 
 ```bash
 npm install
-npm run dev          # http://localhost:5173
+npm run dev          # prints the local address, usually http://localhost:5173
 ```
+
+Node 22 or newer. The lesson check also needs Python 3.13.
 
 The free course, the playground and the landing page work with nothing else
 set up. For accounts locally, `npm run db:dev` starts a throwaway Postgres;
@@ -77,13 +86,33 @@ npm run check:lessons
 
 Push to `main` and the site redeploys itself.
 
-## Checks
+## Tests
 
 ```bash
-npm run check:lessons   # every lesson's code against its printed output
+npm test                # everything below except the build
+npm run test:units      # tokenizer, BPE trainer, lesson parser
 npm run test:payments   # 41 assertions on the Payme and Click state machines
-npm run build           # type-check, build, pre-render
+npm run check:lessons   # every lesson's code against its printed output
+npm run build           # type-check, build, pre-render every page
 ```
+
+- **Tokenizer** ([`scripts/test-units.mjs`](scripts/test-units.mjs)) — merges
+  apply in the order they were learned; both merge formats in
+  `tokenizer.json` agree; the file's normalizer runs first; decoding
+  restores text exactly, even when a token splits a multi-byte character.
+- **BPE trainer** — finds the same first merge the lessons compute by hand
+  (`l` + `a`), never loses a byte, and never makes held-out text longer.
+- **Lesson parser** — the author's production notes (animation prompts,
+  video scripts) are never published; code, output, errors and exercises
+  are recognised.
+- **Payments** ([`scripts/test-payments.mjs`](scripts/test-payments.mjs)) —
+  replayed callbacks, wrong amounts, forged signatures, refunds and
+  timeouts, against an in-process Postgres (PGlite) loaded with the real
+  schema.
+- **Lessons** ([`scripts/check-lessons.py`](scripts/check-lessons.py)) —
+  155 code blocks across nine lessons, run in order in one Python session.
+
+GitHub Actions runs all of it, plus the production build, on every push.
 
 ## Deploying
 

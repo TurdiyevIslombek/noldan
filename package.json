@@ -17,7 +17,9 @@
     "db:migrate": "node scripts/db-migrate.mjs",
     "check:lessons": "python3 scripts/check-lessons.py",
     "add:lesson": "node scripts/add-lesson.mjs",
-    "add:video": "node scripts/add-video.mjs"
+    "add:video": "node scripts/add-video.mjs",
+    "test:units": "node scripts/test-units.mjs",
+    "test": "npm run test:units && npm run test:payments && npm run check:lessons"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",

@@ -1,0 +1,46 @@
+# Every push and pull request: run every test, then build the site
+# exactly as Vercel does. A red mark here means something a student
+# would hit is broken.
+
+name: CI
+
+on:
+  push:
+  pull_request:
+
+# Reads the code; writes nothing, holds no secrets.
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      # The lesson check runs every lesson's Python and compares it with
+      # the output printed in the lesson; error messages differ slightly
+      # between Python versions, so it is pinned to the one lessons use.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - run: npm ci
+
+      - name: Unit tests — tokenizer, BPE trainer, lesson parser
+        run: npm run test:units
+
+      - name: Payment state machines — Payme and Click, on a real Postgres
+        run: npm run test:payments
+
+      - name: Every lesson's code against its printed output
+        run: npm run check:lessons
+
+      - name: Type-check, build and pre-render every page
+        run: npm run build
