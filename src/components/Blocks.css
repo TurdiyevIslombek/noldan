@@ -770,41 +770,148 @@
   background: #0f1115;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 18px 40px -26px rgba(20, 30, 50, 0.5);
 }
+.mplay__frame:focus-visible {
+  outline: 3px solid var(--lx-accent, #2f6bdc);
+  outline-offset: 3px;
+}
 .mplay video {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   cursor: pointer;
 }
-.mplay__ctl {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  display: flex;
-  gap: 6px;
-  opacity: 0;
-  transition: opacity 200ms ease;
+
+/* Fullscreen: the frame fills the screen, the video letterboxes. */
+.mplay__frame.is-full,
+.mplay__frame:fullscreen {
+  aspect-ratio: auto;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  background: #000;
 }
-.mplay__frame:hover .mplay__ctl,
-.mplay__frame:focus-within .mplay__ctl {
+
+/* Big play button while paused. */
+.mplay__big {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #151a22;
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: transform 160ms ease;
+}
+.mplay__big:hover {
+  transform: scale(1.06);
+}
+.mplay__big svg {
+  margin-left: 3px;
+}
+
+/* The control bar: always there while paused, on a touch screen or when
+   the player has focus; on hover otherwise, so a playing animation is
+   not covered. */
+.mplay__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 26px 10px 8px;
+  background: linear-gradient(to top, rgba(8, 11, 17, 0.78), rgba(8, 11, 17, 0));
+  color: #fff;
   opacity: 1;
+  transition: opacity 220ms ease;
+}
+.mplay__frame.is-playing:not(:hover):not(:focus-within) .mplay__bar {
+  opacity: 0;
 }
 @media (hover: none) {
-  .mplay__ctl {
+  .mplay__frame.is-playing .mplay__bar {
     opacity: 1;
   }
 }
-.mplay__ctl button {
+.mplay__bar button {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  flex: none;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 6px;
   border: 0;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  color: #1d2129;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
   cursor: pointer;
+}
+.mplay__bar button:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+.mplay__bar button:focus-visible,
+.mplay__track input:focus-visible + .mplay__rail,
+.mplay__big:focus-visible {
+  outline: 2px solid #9cc6ff;
+  outline-offset: 1px;
+}
+.mplay__rate {
+  font: 600 12.5px/1 var(--lx-mono, ui-monospace, monospace);
+  font-variant-numeric: tabular-nums;
+}
+.mplay__time {
+  flex: none;
+  padding: 0 6px;
+  font: 500 12px/1 var(--lx-mono, ui-monospace, monospace);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.9;
+}
+
+/* Timeline: a native range input on top of a drawn rail, so dragging,
+   clicking and the arrow keys all work as a browser's own would. */
+.mplay__track {
+  position: relative;
+  flex: 1;
+  min-width: 60px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+}
+.mplay__rail {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+  overflow: hidden;
+}
+.mplay__fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  background: #fff;
+}
+.mplay__track input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+@media (max-width: 480px) {
+  .mplay__time {
+    display: none;
+  }
 }
 .mplay figcaption {
   margin-top: 10px;
