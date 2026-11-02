@@ -75,6 +75,8 @@ html[data-page="lesson"] body {
   align-self: start;
   max-height: calc(100vh - 124px);
   overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
 }
 .lx__back {
   display: inline-flex;
@@ -318,6 +320,10 @@ html[data-page="lesson"] body {
   position: sticky;
   top: 100px;
   align-self: start;
+  max-height: calc(100vh - 124px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
   padding-left: 16px;
   border-left: 1px solid var(--lx-line);
 }

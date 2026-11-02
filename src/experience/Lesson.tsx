@@ -36,6 +36,14 @@ function splitTitle(t: string): [string | null, string] {
   return m ? [m[1], m[2]] : [null, t];
 }
 
+function reveal(panel: HTMLElement | null, item?: Element | null) {
+  if (!panel || !item) return;
+  const p = panel.getBoundingClientRect();
+  const i = item.getBoundingClientRect();
+  if (i.top < p.top) panel.scrollTop += i.top - p.top - 12;
+  else if (i.bottom > p.bottom) panel.scrollTop += i.bottom - p.bottom + 12;
+}
+
 export default function Lesson() {
   const { courseId = "", lessonId = "" } = useParams();
   const found = lessonMeta(courseId, lessonId);
@@ -43,6 +51,17 @@ export default function Lesson() {
   const body = useLessonBody(courseId, lessonId, session?.user?.id ?? null);
   const barRef = useRef<HTMLElement | null>(null);
   const [here, setHere] = useState<string>("");
+  const sideRef = useRef<HTMLElement | null>(null);
+  const outlineRef = useRef<HTMLElement | null>(null);
+
+  // Keep the current lesson and the current section in view inside their
+  // panels. Only the panel moves: scrollIntoView would drag the page too.
+  useEffect(() => {
+    reveal(sideRef.current, sideRef.current?.querySelector(".lx__lesson.is-here"));
+  }, [lessonId]);
+  useEffect(() => {
+    reveal(outlineRef.current, outlineRef.current?.querySelector("a.is-here"));
+  }, [here]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -103,7 +122,9 @@ export default function Lesson() {
 
       <div className="lx__stage">
         {/* ---- the course ---------------------------------------- */}
-        <aside className="lx__side" aria-label="Kurs mundarijasi">
+        {/* data-lenis-prevent: smooth scrolling takes every wheel event on
+            the page, so a panel that scrolls on its own has to opt out. */}
+        <aside className="lx__side" aria-label="Kurs mundarijasi" ref={sideRef} data-lenis-prevent>
           <Link className="lx__back" to="/learn">
             <ArrowLeft size={14} strokeWidth={2.2} aria-hidden="true" />
             Barcha darslar
@@ -228,7 +249,7 @@ export default function Lesson() {
 
         {/* ---- this lesson -------------------------------------- */}
         {ready && ready.sections.length > 2 && (
-          <nav className="lx__outline" aria-label="Bu darsda">
+          <nav className="lx__outline" aria-label="Bu darsda" ref={outlineRef} data-lenis-prevent>
             <p>Bu darsda</p>
             <ol>
               {ready.sections.map((s) => (

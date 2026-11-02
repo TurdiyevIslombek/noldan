@@ -268,7 +268,7 @@ export default function Tutor({
             </div>
           )}
 
-          <div className="tt__feed" ref={feedRef}>
+          <div className="tt__feed" ref={feedRef} data-lenis-prevent>
             {msgs.length === 0 && !error && (
               <div className="tt__welcome">
                 <p>
