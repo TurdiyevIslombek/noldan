@@ -13,13 +13,15 @@
    -------------------------------------------------------------------- */
 
 import { build } from "esbuild";
-import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseLesson } from "./lessons-md.mjs";
 
 /* ---- 1. Markdown lessons → generated TypeScript ----------------------
-   Free courses are generated into src/ (they ship in the bundle); every
-   other course into api/_content/, where only the server can read it. */
+   Free courses are generated into src/, and every other course into
+   api/_content/, where only the server can read it. The browser gets a
+   free lesson as its own JSON chunk, so reading one lesson does not mean
+   downloading the whole course. */
 const FREE = new Set(["tokenizator"]);
 const free = {};
 const paid = {};
@@ -33,6 +35,11 @@ if (existsSync("content")) {
       .sort((a, b) => (a.n ?? -1) - (b.n ?? -1));
     (FREE.has(dir.name) ? free : paid)[dir.name] = lessons;
   }
+}
+rmSync("src/lib/lessons", { recursive: true, force: true });
+for (const [course, lessons] of Object.entries(free)) {
+  mkdirSync(`src/lib/lessons/${course}`, { recursive: true });
+  for (const l of lessons) writeFileSync(`src/lib/lessons/${course}/${l.id}.json`, JSON.stringify(l), "utf8");
 }
 const banner = "/* GENERATED from content/*.md by scripts/build-catalog.mjs — do not edit. */\n";
 writeFileSync(

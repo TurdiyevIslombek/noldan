@@ -1,10 +1,10 @@
 /* --------------------------------------------------------------------
    Getting the text of one lesson.
 
-   Free courses are already in this bundle, so they resolve
-   synchronously — no spinner for content the visitor has had since
-   first paint. Paid courses are fetched from /api/lesson, which is
-   where the entitlement is actually enforced.
+   A free lesson is a chunk of this build, loaded when it is opened: the
+   course is too long to download whole for one lesson. Paid courses are
+   fetched from /api/lesson, which is where the entitlement is actually
+   enforced.
 
    The distinction is deliberate and visible: if a lesson body can be
    read from a local import, it was never protected in the first place,
@@ -12,10 +12,11 @@
    -------------------------------------------------------------------- */
 
 import { useEffect, useState } from "react";
-import { findLesson } from "./curriculum";
 import { courseMeta } from "./catalog.generated";
 import type { Lesson } from "./curriculum-types";
 import { apiFetch } from "./api";
+
+const FREE = import.meta.glob<{ default: Lesson }>("./lessons/*/*.json");
 
 export type BodyState =
   | { state: "loading" }
@@ -34,29 +35,25 @@ export function useLessonBody(
 ): BodyState {
   const access = courseMeta(courseId)?.access ?? "paid";
 
-  const [body, setBody] = useState<BodyState>(() => {
-    if (access === "free") {
-      const local = findLesson(courseId, lessonId);
-      return local
-        ? { state: "ready", lesson: local.lesson }
-        : { state: "error", message: "Dars topilmadi." };
-    }
-    return { state: "loading" };
-  });
+  const [body, setBody] = useState<BodyState>({ state: "loading" });
 
   useEffect(() => {
-    if (access === "free") {
-      const local = findLesson(courseId, lessonId);
-      setBody(
-        local
-          ? { state: "ready", lesson: local.lesson }
-          : { state: "error", message: "Dars topilmadi." }
-      );
-      return;
-    }
-
     let alive = true;
     setBody({ state: "loading" });
+
+    if (access === "free") {
+      const load = FREE[`./lessons/${courseId}/${lessonId}.json`];
+      if (!load) {
+        setBody({ state: "error", message: "Dars topilmadi." });
+        return;
+      }
+      load()
+        .then((m) => alive && setBody({ state: "ready", lesson: m.default }))
+        .catch(() => alive && setBody({ state: "error", message: "Darsni yuklab boʻlmadi." }));
+      return () => {
+        alive = false;
+      };
+    }
 
     apiFetch(
       `/api/lesson?course=${encodeURIComponent(courseId)}&lesson=${encodeURIComponent(lessonId)}`,

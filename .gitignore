@@ -23,6 +23,9 @@ skills-lock.json
 # generated intermediate from scripts/make-og.mjs
 og.svg
 
+# one JSON chunk per free lesson, written by scripts/build-catalog.mjs
+src/lib/lessons/
+
 # local design-tooling cache
 .impeccable/
 
