@@ -15,8 +15,8 @@ export type Block =
   | { kind: "note"; tone: "tip" | "warn" | "key"; text: string }
   /** `mode`: "type" (default) must be typed out before it can be copied;
    *  "static" is shown read-only (answers); "template" has blanks the
-   *  student fills in themselves. */
-  | { kind: "code"; code: string; lang?: string; mode?: "type" | "static" | "template" }
+   *  student fills in themselves; "copy" is setup code to paste and run. */
+  | { kind: "code"; code: string; lang?: string; mode?: "type" | "static" | "template" | "copy" }
   | { kind: "output"; text: string; label?: string; error?: boolean }
   | { kind: "pre"; text: string }
   | { kind: "flow"; text: string }

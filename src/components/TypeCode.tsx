@@ -42,11 +42,12 @@ const EQUIV: Record<string, string> = {
   "–": "-—",
 };
 
-/* Past Latin, anything without a stand-in above — a Chinese character,
-   an emoji, an arrow, Cyrillic on a Latin layout — has no key to press,
-   so any key types it. Otherwise a lesson about Unicode could never be
+/* Past ASCII, anything without a stand-in above — a Chinese character,
+   an emoji, an arrow, Cyrillic on a Latin layout, the ö of the new
+   alphabet, the Ä of a mojibake example — has no key to press, so any
+   key types it. Otherwise a lesson about Unicode could never be
    finished. */
-const typeable = (ch: string) => (ch.codePointAt(0) ?? 0) <= 0x024f || ch in EQUIV;
+const typeable = (ch: string) => (ch.codePointAt(0) ?? 0) <= 0x7e || ch in EQUIV;
 
 const accepts = (want: string, got: string) =>
   want === got || (EQUIV[want]?.includes(got) ?? false) || !typeable(want);
@@ -396,13 +397,32 @@ export default function TypeCode({ code, lang = "python" }: { code: string; lang
 }
 
 /** Read-only code: answers and fill-in templates. Deliberately without a
- *  copy button — the student writes these in Colab themselves. */
-export function StaticCode({ code, label }: { code: string; label?: string }) {
+ *  copy button — the student writes these in Colab themselves. The one
+ *  exception is `copy`: setup cells that restore an earlier lesson's code,
+ *  which are there to be run, not learned. */
+export function StaticCode({ code, label, copy }: { code: string; label?: string; copy?: boolean }) {
+  const [copied, setCopied] = useState(false);
+  const onCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      /* clipboard can be blocked; the code is selectable either way */
+    }
+  };
+
   return (
     <figure className="tc tc--static">
-      {label && (
+      {(label || copy) && (
         <div className="tc__bar">
-          <span className="tc__lang">{label}</span>
+          <span className="tc__lang">{label ?? "Tayyor kod"}</span>
+          {copy && (
+            <button type="button" className="tc__btn tc__copy is-open" onClick={onCopy}>
+              {copied ? <Check size={14} aria-hidden="true" /> : <Copy size={14} aria-hidden="true" />}
+              {copied ? "Nusxa olindi" : "Nusxa olish"}
+            </button>
+          )}
         </div>
       )}
       <pre className="tc__pre">

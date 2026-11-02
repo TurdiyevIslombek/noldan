@@ -7,7 +7,8 @@
      · the BPE trainer (src/lib/bpe.ts) — the algorithm the course
        teaches, checked against the numbers the lessons print;
      · the lesson parser (scripts/lessons-md.mjs) — including the rule
-       that an author's production notes are never published.
+       that an author's production notes are never published;
+     · the inline text renderer (src/lib/highlight.tsx).
 
    No network: the tokenizers here are built inline, so the tests run the
    same on a laptop, in CI, or offline.
@@ -25,6 +26,8 @@ const entry = `
   export { parseTokenizerJson, encode, decode, preSplit } from "../src/lib/hf-tokenizer";
   export { trainBPE, encode as encodeBpe, DEMO_CORPUS, PROBE } from "../src/lib/bpe";
   export { parseLesson } from "./lessons-md.mjs";
+  export { inline } from "../src/lib/highlight";
+  export { renderToStaticMarkup } from "react-dom/server";
 `;
 const outdir = "node_modules/.cache/noldan-tests";
 mkdirSync(outdir, { recursive: true });
@@ -35,6 +38,8 @@ await build({
   format: "esm",
   platform: "node",
   outfile,
+  jsx: "automatic",
+  external: ["react", "react/jsx-runtime", "react-dom/server"],
   logLevel: "warning",
 });
 const T = await import(pathToFileURL(outfile).href);
@@ -266,4 +271,51 @@ test("code, printed output, errors, animations, exercises", () => {
   assert.equal(ex.answer.blocks[0].mode, "static"); // answers are read-only
   const template = second.blocks.flatMap((b) => (b.kind === "exercise" ? b.blocks : [b])).find((b) => b.mode === "template");
   assert.ok(template, "code with ___ is a fill-in template, not a typing exercise");
+});
+
+test("a note about timing stays attached to its output", () => {
+  const lesson = T.parseLesson(
+    "# Dars 16 — T\n\n## 1. A\n\n```python\nprint(1)\n```\n\n**Natija** (sizda boshqacha boʻladi):\n\n```\n1\n```\n",
+    "dars-16"
+  );
+  const out = lesson.sections[0].blocks.find((b) => b.kind === "output");
+  assert.equal(out.label, "Natija (sizda boshqacha boʻladi)");
+});
+
+test("only setup cells the author says to copy can be copied", () => {
+  const lesson = T.parseLesson(
+    [
+      "# Dars 17 — T\n\n## 1. A\n",
+      "<details>\n<summary>Dars 14–16 dagi kod (ochib, nusxa qiling)</summary>\n\n```python\nprint(1)\n```\n\n</details>\n",
+      "<details>\n<summary>Javobni koʻrsatish</summary>\n\n```python\nprint(2)\n```\n\n</details>\n",
+    ].join("\n"),
+    "dars-17"
+  );
+  const [setup, answer] = lesson.sections[0].blocks;
+  assert.equal(setup.blocks[0].mode, "copy");
+  assert.equal(answer.blocks[0].mode, "static");
+});
+
+/* ---- inline text -------------------------------------------------------- */
+
+const html = (text) => T.renderToStaticMarkup(T.inline(text));
+
+test("double backticks hold a backtick", () => {
+  assert.equal(html("`` ` `` belgi"), '<code class="ic">`</code> belgi');
+});
+
+test("italic inside bold stays inside bold", () => {
+  assert.equal(html("**Koʻproq *iflos* matn**"), "<strong>Koʻproq <em>iflos</em> matn</strong>");
+});
+
+test("a link to a file on the site downloads it", () => {
+  assert.equal(html("[fayl](/data/x.jsonl)"), '<a href="/data/x.jsonl" download="">fayl</a>');
+});
+
+test("a link that is not http or a site path stays plain text", () => {
+  assert.equal(html("[x](javascript:alert(1))"), "[x](javascript:alert(1))");
+});
+
+test("brackets inside code are code, not a link", () => {
+  assert.equal(html("`a[0](1)`"), '<code class="ic">a[0](1)</code>');
 });

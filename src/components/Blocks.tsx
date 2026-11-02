@@ -208,6 +208,7 @@ function One({ b }: { b: Block }) {
 
     case "code":
       if (b.mode === "static") return <StaticCode code={b.code} />;
+      if (b.mode === "copy") return <StaticCode code={b.code} copy />;
       if (b.mode === "template") return <StaticCode code={b.code} label="Colab'da oʻzingiz toʻldiring" />;
       return <TypeCode code={b.code} lang={b.lang ?? "python"} />;
 

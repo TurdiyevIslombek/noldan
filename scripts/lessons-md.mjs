@@ -61,7 +61,7 @@ function listItems(lines, i, marker) {
   return { items, i };
 }
 
-function parseBlocks(lines, inReveal) {
+function parseBlocks(lines, inReveal = null) {
   const out = [];
   const para = [];
   let pendingOut = null;
@@ -71,8 +71,8 @@ function parseBlocks(lines, inReveal) {
     if (!para.length) return;
     const text = joinPara(para);
     para.length = 0;
-    const nat = /^\*\*(Natija|Kutilgan natija):\*\*$/.exec(text);
-    if (nat) pendingOut = nat[1];
+    const nat = /^\*\*(Natija|Kutilgan natija)(?::\*\*|\*\* (\(.*\)):)$/.exec(text);
+    if (nat) pendingOut = nat[2] ? `${nat[1]} ${nat[2]}` : nat[1];
     else out.push({ kind: "text", text });
   };
 
@@ -119,7 +119,7 @@ function parseBlocks(lines, inReveal) {
       // ("|  k  |  o  |") is a picture of the text, not something printed.
       const diagram = /^\s*-?\d+(?:\s{2,}-?\d+){2,}\s*(?:←.*)?$|^\s*\|.*\|\s*$/m.test(code);
       if (lang) {
-        const mode = inReveal ? "static" : code.includes("___") ? "template" : "type";
+        const mode = inReveal || (code.includes("___") ? "template" : "type");
         out.push({ kind: "code", code, lang, mode });
       } else if (
         pendingOut ||
@@ -161,7 +161,10 @@ function parseBlocks(lines, inReveal) {
         else inner.push(lines[i]);
         i++;
       }
-      out.push({ kind: "reveal", summary, blocks: parseBlocks(inner, true) });
+      // "(ochib, nusxa qiling)": setup code the student runs rather than
+      // learns, so it may be copied. Every other answer stays read-only.
+      const mode = /nusxa/i.test(summary) ? "copy" : "static";
+      out.push({ kind: "reveal", summary, blocks: parseBlocks(inner, mode) });
       continue;
     }
 
@@ -283,7 +286,7 @@ export function parseLesson(source, id) {
   let cur = null;
   let buf = [];
   const flush = () => {
-    const blocks = parseBlocks(buf, false);
+    const blocks = parseBlocks(buf);
     if (cur) sections.push({ ...cur, blocks: finishSection(cur.title, blocks) });
     else intro.push(...blocks);
     buf = [];

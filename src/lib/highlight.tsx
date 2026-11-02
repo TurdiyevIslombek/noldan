@@ -128,10 +128,11 @@ export function Python({ code }: { code: string }) {
   );
 }
 
-/** Renders **bold**, *italic* and `code` spans from the curriculum copy. */
+/** Renders **bold**, *italic*, `code` and [links](/path) from the curriculum
+ *  copy. ``double backticks`` hold code that contains a backtick. */
 export function inline(text: string): ReactNode[] {
   const out: ReactNode[] = [];
-  const re = /(\*\*[^*]+\*\*|\*[^*\n]+\*|`[^`]+`)/g;
+  const re = /(``.+?``|\*\*(?:[^*]|\*(?!\*))+\*\*|\*[^*\n]+\*|`[^`]+`|\[[^\]]+\]\((?:https?:\/\/|\/)[^)\s]+\))/g;
   let last = 0;
   let m: RegExpExecArray | null;
   let key = 0;
@@ -139,7 +140,26 @@ export function inline(text: string): ReactNode[] {
   while ((m = re.exec(text)) !== null) {
     if (m.index > last) out.push(text.slice(last, m.index));
     const tok = m[0];
-    if (tok.startsWith("**")) {
+    if (tok.startsWith("``")) {
+      out.push(
+        <code key={key++} className="ic">
+          {tok.slice(2, -2).trim()}
+        </code>
+      );
+    } else if (tok.startsWith("[")) {
+      const [, label, href] = /^\[(.+)\]\((.+)\)$/.exec(tok)!;
+      out.push(
+        href.startsWith("/") ? (
+          <a key={key++} href={href} download>
+            {label}
+          </a>
+        ) : (
+          <a key={key++} href={href} target="_blank" rel="noopener noreferrer">
+            {label}
+          </a>
+        )
+      );
+    } else if (tok.startsWith("**")) {
       const inner = tok.slice(2, -2);
       // "**colab.research.google.com**" — the author names a site; make
       // it one click away rather than something to retype.
