@@ -83,9 +83,12 @@ token kerakligi **fertility** deb ataladi (kam bo'lgani yaxshi):
 
 | Tokenizator | Lug'at hajmi | Fertility |
 |---|---|---|
-| **uzbek-bpe-16k** (biz quradigan turi) | 16 384 | **1.839** |
-| GPT-4o | 200 019 | 2.724 |
-| GPT-2 | 50 257 | 3.584 |
+| **uzbek-bpe-16k** (biz quradigan turi) | 16 384 | **1.749** |
+| GPT-4o | 200 019 | 2.578 |
+| GPT-2 | 50 257 | 3.426 |
+
+Bu raqamlar 474 ta oʻzbekcha veb-hujjatda oʻlchangan — tokenizator ularni oʻqish
+paytida hech qachon koʻrmagan. Nima uchun bu shart — Dars 17 da koʻrasiz.
 
 O'zbek tili uchun qurilgan kichkina tokenizator, lug'ati **12 barobar kichik** bo'lsa
 ham, GPT-4o nikidan yaxshiroq. Chunki u to'g'ri til uchun qurilgan.
@@ -593,13 +596,13 @@ O'zbekcha jumlada esa so'zlar lug'atda yo'q. ChatGPT ularni bo'laklarga maydalay
 `koʻraman` bitta so'z, lekin uning uchun 3-4 ta token ketadi. Natijada 4 so'z → 9 token.
 
 **Mana shu farq — butun kursning sababi.** Fertility (so'zga to'g'ri keladigan token
-soni) GPT-4o uchun o'zbek tilida 2.724. Ya'ni har bir so'z o'rtacha 2.7 ta tokenga
+soni) GPT-4o uchun o'zbek tilida 2.578. Ya'ni har bir so'z o'rtacha 2.6 ta tokenga
 bo'linadi.
 
-Biz quradigan tokenizatorda bu raqam **1.839** bo'ladi — chunki uning lug'ati o'zbek
+Biz quradigan tokenizatorda bu raqam **1.749** bo'ladi — chunki uning lug'ati o'zbek
 so'zlaridan qurilgan.
 
-Dars 15 da siz bu raqamni **o'z tokenizatoringizda o'zingiz o'lchaysiz**.
+Dars 16 da siz bu raqamni **o'z tokenizatoringizda o'zingiz o'lchaysiz**.
 </details>
 
 ---

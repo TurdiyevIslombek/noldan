@@ -141,19 +141,23 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
                 [
                   "**uzbek-bpe-16k** (biz quradigan turi)",
                   "16 384",
-                  "**1.839**"
+                  "**1.749**"
                 ],
                 [
                   "GPT-4o",
                   "200 019",
-                  "2.724"
+                  "2.578"
                 ],
                 [
                   "GPT-2",
                   "50 257",
-                  "3.584"
+                  "3.426"
                 ]
               ]
+            },
+            {
+              "kind": "text",
+              "text": "Bu raqamlar 474 ta oʻzbekcha veb-hujjatda oʻlchangan — tokenizator ularni oʻqish paytida hech qachon koʻrmagan. Nima uchun bu shart — Dars 17 da koʻrasiz."
             },
             {
               "kind": "text",
@@ -795,15 +799,15 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
                   },
                   {
                     "kind": "text",
-                    "text": "**Mana shu farq — butun kursning sababi.** Fertility (so'zga to'g'ri keladigan token soni) GPT-4o uchun o'zbek tilida 2.724. Ya'ni har bir so'z o'rtacha 2.7 ta tokenga bo'linadi."
+                    "text": "**Mana shu farq — butun kursning sababi.** Fertility (so'zga to'g'ri keladigan token soni) GPT-4o uchun o'zbek tilida 2.578. Ya'ni har bir so'z o'rtacha 2.6 ta tokenga bo'linadi."
                   },
                   {
                     "kind": "text",
-                    "text": "Biz quradigan tokenizatorda bu raqam **1.839** bo'ladi — chunki uning lug'ati o'zbek so'zlaridan qurilgan."
+                    "text": "Biz quradigan tokenizatorda bu raqam **1.749** bo'ladi — chunki uning lug'ati o'zbek so'zlaridan qurilgan."
                   },
                   {
                     "kind": "text",
-                    "text": "Dars 15 da siz bu raqamni **o'z tokenizatoringizda o'zingiz o'lchaysiz**."
+                    "text": "Dars 16 da siz bu raqamni **o'z tokenizatoringizda o'zingiz o'lchaysiz**."
                   }
                 ]
               }
@@ -2140,10 +2144,8 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
               "text": "**Naqsh (pattern) — buni yodlab oling:**"
             },
             {
-              "kind": "code",
-              "code": "natija = []              # 1. boʻsh roʻyxat yasa\n# ... bu yerda toʻldirasan ...\nnatija.append(nimadir)   # 2. har safar bittadan qoʻsh",
-              "lang": "python",
-              "mode": "type"
+              "kind": "pre",
+              "text": "natija = []              # 1. boʻsh roʻyxat yasa\n# ... bu yerda toʻldirasan ...\nnatija.append(nimadir)   # 2. har safar bittadan qoʻsh"
             },
             {
               "kind": "text",
@@ -3723,7 +3725,7 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
             },
             {
               "kind": "text",
-              "text": "Dars 15 da siz tokenizatorni haqiqiy katta o'zbek matnida o'qitasiz. U birinchi o'rganadigan tokenlar taxminan shular bo'ladi:"
+              "text": "Dars 16 da siz tokenizatorni haqiqiy katta o'zbek matnida o'qitasiz. U birinchi o'rganadigan tokenlar taxminan shular bo'ladi:"
             },
             {
               "kind": "pre",
@@ -4034,7 +4036,7 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
                   },
                   {
                     "kind": "text",
-                    "text": "Dars 01 dagi `1.839` va `2.724` raqamlari — aynan shu farqning o'lchovi."
+                    "text": "Dars 01 dagi `1.749` va `2.578` raqamlari — aynan shu farqning o'lchovi."
                   }
                 ]
               }
@@ -4961,11 +4963,54 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
                   },
                   {
                     "kind": "text",
-                    "text": "**Nima uchun bu falokat:** tasavvur qiling, internetdagi o'zbek matnining 40% ida `'` (39), 30% ida `‘` (8216), 30% ida `ʻ` (699) ishlatilgan. Tokenizator bu uchtasini uch xil so'z deb o'rganadi, va har birini uchdan bir ma'lumot bilan o'rganadi."
+                    "text": "**Nima uchun bu muammo:** buning haqiqiy raqamlari bor. 3 000 ta haqiqiy oʻzbekcha veb-hujjatda `oʻ` va `gʻ` dagi belgi shunday yozilgan:"
+                  },
+                  {
+                    "kind": "table",
+                    "head": [
+                      "Belgi",
+                      "Raqami",
+                      "Ulushi"
+                    ],
+                    "rows": [
+                      [
+                        "`‘`",
+                        "8216",
+                        "**34%**"
+                      ],
+                      [
+                        "`ʻ` — toʻgʻri",
+                        "699",
+                        "23%"
+                      ],
+                      [
+                        "`'`",
+                        "39",
+                        "19%"
+                      ],
+                      [
+                        "`’`",
+                        "8217",
+                        "18%"
+                      ],
+                      [
+                        "`` ` ``",
+                        "96",
+                        "6%"
+                      ]
+                    ]
                   },
                   {
                     "kind": "text",
-                    "text": "Normalizatsiyadan keyin esa uchalasi **bitta** so'z bo'ladi va butun ma'lumot bir joyga yig'iladi. Shuning uchun Dars 14 dagi ikki qator kod tokenizator sifatini sezilarli oshiradi — u modelga uch barobar ko'p ma'lumot beradi, hech narsa qo'shmasdan."
+                    "text": "Toʻgʻri belgi — atigi **23%**. Eng koʻp ishlatiladigani esa umuman boshqa belgi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Normalizatsiyasiz tokenizator `oʻ` haqidagi bilimini besh xil variantga boʻlib oʻrganadi, va toʻgʻri yozilgani uchun maʼlumotning faqat toʻrtdan biri qoladi. Normalizatsiyadan keyin beshalasi **bitta** boʻladi va hamma maʼlumot bir joyga yigʻiladi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Bu amalda qanchalik farq qiladi — Dars 14 da raqam bilan oʻlchaymiz."
                   }
                 ]
               }
@@ -5645,11 +5690,11 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
             },
             {
               "kind": "text",
-              "text": "Dars 01 dagi jadvalni eslang: yaxshi tokenizatorda `fertility` **1.839** edi, ya'ni har bir so'z uchun ~2 token. Bu jumlada 3 ta so'z bor, demak yaxshi tokenizator ~6 token ishlatishi kerak."
+              "text": "Dars 01 dagi jadvalni eslang: yaxshi tokenizatorda `fertility` **1.749** edi, ya'ni har bir so'z uchun ~2 tokendan kam. Bu jumlada 3 ta so'z bor, demak yaxshi tokenizator ~5 token ishlatishi kerak."
             },
             {
               "kind": "text",
-              "text": "Bizniki 29 ta ishlatyapti. **Besh barobar ko'p.**"
+              "text": "Bizniki 29 ta ishlatyapti. **Besh barobardan ko'p.**"
             },
             {
               "kind": "text",
@@ -6234,23 +6279,23 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
                 [
                   "GPT-2",
                   "50 257",
-                  "3.584"
+                  "3.426"
                 ],
                 [
                   "GPT-4o",
                   "200 019",
-                  "2.724"
+                  "2.578"
                 ],
                 [
                   "uzbek-bpe-16k",
                   "16 384",
-                  "**1.839**"
+                  "**1.749**"
                 ]
               ]
             },
             {
               "kind": "text",
-              "text": "Bizniki eng yomoni. GPT-4o dan **uch barobar**, maqsaddan **besh barobar** yomon."
+              "text": "Bizniki eng yomoni. GPT-4o dan **uch yarim barobar**, maqsaddan **besh barobar** yomon."
             }
           ]
         },
@@ -6273,13 +6318,13 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
             },
             {
               "kind": "code",
-              "code": "print(\"bayt tokenizator :\", round(1024 / 8.938), \"ta soʻz\")\nprint(\"GPT-4o           :\", round(1024 / 2.724), \"ta soʻz\")\nprint(\"uzbek-bpe-16k    :\", round(1024 / 1.839), \"ta soʻz\")",
+              "code": "print(\"bayt tokenizator :\", round(1024 / 8.938), \"ta soʻz\")\nprint(\"GPT-4o           :\", round(1024 / 2.578), \"ta soʻz\")\nprint(\"uzbek-bpe-16k    :\", round(1024 / 1.749), \"ta soʻz\")",
               "lang": "python",
               "mode": "type"
             },
             {
               "kind": "output",
-              "text": "bayt tokenizator : 115 ta soʻz\nGPT-4o           : 376 ta soʻz\nuzbek-bpe-16k    : 557 ta soʻz"
+              "text": "bayt tokenizator : 115 ta soʻz\nGPT-4o           : 397 ta soʻz\nuzbek-bpe-16k    : 585 ta soʻz"
             },
             {
               "kind": "text",
@@ -6287,7 +6332,7 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
             },
             {
               "kind": "text",
-              "text": "Bir xil model, bir xil xotira — lekin yaxshi tokenizator bilan **beshdan bir ko'proq matn** sig'adi. Hech qanday qo'shimcha hisob, hech qanday qo'shimcha parametr. Faqat tokenizator."
+              "text": "Bir xil model, bir xil xotira — lekin yaxshi tokenizator bilan **besh barobar ko'proq matn** sig'adi. Hech qanday qo'shimcha hisob, hech qanday qo'shimcha parametr. Faqat tokenizator."
             },
             {
               "kind": "media",
@@ -6301,7 +6346,7 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
             },
             {
               "kind": "text",
-              "text": "Model har bir tokenni **alohida** ishlaydi. 29 ta token = 29 ta qadam. 6 ta token = 6 ta qadam."
+              "text": "Model har bir tokenni **alohida** ishlaydi. 29 ta token = 29 ta qadam. 5 ta token = 5 ta qadam."
             },
             {
               "kind": "text",
@@ -6660,7 +6705,7 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
                   },
                   {
                     "kind": "text",
-                    "text": "Shuning uchun natija 8.938 dan 1.839 gacha tushadi — chizig'iy emas, to'planib boradi."
+                    "text": "Shuning uchun natija 8.938 dan 1.749 gacha tushadi — chizig'iy emas, to'planib boradi."
                   }
                 ]
               }
@@ -6703,7 +6748,7 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
                   },
                   {
                     "kind": "text",
-                    "text": "`uzbek-bpe-16k` bilan esa 300 so'z = 552 token — **sig'adi**, hatto yarmidan ko'p joy qoladi."
+                    "text": "`uzbek-bpe-16k` bilan esa 300 so'z = 525 token — **sig'adi**, va kontekstning deyarli yarmi bo'sh qoladi."
                   },
                   {
                     "kind": "text",
@@ -6730,7 +6775,7 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
               "kind": "steps",
               "items": [
                 "Bizda **to'liq ishlaydigan tokenizator** bor: 256 token, `kodla`, `dekodla`, round-trip to'g'ri, hamma tilda ishlaydi.",
-                "**Fertility** — sifat o'lchovi. Bizniki **8.938**, GPT-4o 2.724, maqsad **1.839**.",
+                "**Fertility** — sifat o'lchovi. Bizniki **8.938**, GPT-4o 2.578, maqsad **1.749**.",
                 "Uchta zarar: kontekst 5 barobar kam (115 so'z), hisob 5 barobar qimmat, model so'zni umuman ko'rmaydi.",
                 "O'zbek tili bayt darajasida ham 50% ko'proq to'laydi (8.938 vs 5.962).",
                 "`get_stats` **raqamlar ustida ham** ishlaydi va yana `la` ni topdi.",
@@ -6882,10 +6927,8 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
               "text": "Endi shunday:"
             },
             {
-              "kind": "code",
-              "code": "for juftlik in zip(tokenlar, tokenlar[1:]):",
-              "lang": "python",
-              "mode": "type"
+              "kind": "pre",
+              "text": "for juftlik in zip(tokenlar, tokenlar[1:]):"
             },
             {
               "kind": "text",
@@ -7666,7 +7709,7 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
                   },
                   {
                     "kind": "text",
-                    "text": "Dars 01 dagi `1.839` va `2.724` farqining haqiqiy sababi shu."
+                    "text": "Dars 01 dagi `1.749` va `2.578` farqining haqiqiy sababi shu."
                   }
                 ]
               }
@@ -7976,10 +8019,8 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
               "text": "Shart — uchta qism"
             },
             {
-              "kind": "code",
-              "code": "if i < len(tokenlar) - 1 and tokenlar[i] == juftlik[0] and tokenlar[i + 1] == juftlik[1]:",
-              "lang": "python",
-              "mode": "type"
+              "kind": "pre",
+              "text": "if i < len(tokenlar) - 1 and tokenlar[i] == juftlik[0] and tokenlar[i + 1] == juftlik[1]:"
             },
             {
               "kind": "text",
@@ -7999,10 +8040,8 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
               "text": "Ha bo'lsa"
             },
             {
-              "kind": "code",
-              "code": "yangi.append(yangi_id)\ni += 2",
-              "lang": "python",
-              "mode": "type"
+              "kind": "pre",
+              "text": "yangi.append(yangi_id)\ni += 2"
             },
             {
               "kind": "text",
@@ -8014,10 +8053,8 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
               "text": "Yo'q bo'lsa"
             },
             {
-              "kind": "code",
-              "code": "yangi.append(tokenlar[i])\ni += 1",
-              "lang": "python",
-              "mode": "type"
+              "kind": "pre",
+              "text": "yangi.append(tokenlar[i])\ni += 1"
             },
             {
               "kind": "text",
@@ -8306,7 +8343,7 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
             },
             {
               "kind": "text",
-              "text": "**16 128 marta takrorlansa**, sizning lug'atingizda `lar`, `lari`, `larida`, `bolalar`, `kitoblar` kabi tokenlar paydo bo'ladi. Aynan shuning uchun `fertility` 8.938 dan 1.839 gacha tushadi."
+              "text": "**16 128 marta takrorlansa**, sizning lug'atingizda `lar`, `lari`, `larida`, `bolalar`, `kitoblar` kabi tokenlar paydo bo'ladi. Aynan shuning uchun `fertility` 8.938 dan 1.749 gacha tushadi."
             },
             {
               "kind": "media",
@@ -8700,6 +8737,11198 @@ export const FREE_LESSONS: Record<string, Lesson[]> = {
       ],
       "exercises": [],
       "needs": "Dars 01–08. `get_stats`, ro'yxat, `if`, funksiya"
+    },
+    {
+      "id": "dars-10",
+      "n": 10,
+      "title": "Trening tsikli",
+      "subtitle": "",
+      "minutes": 50,
+      "status": "ready",
+      "intro": [],
+      "sections": [
+        {
+          "id": "bu-darsdan-keyin-siz",
+          "title": "Bu darsdan keyin siz...",
+          "blocks": [
+            {
+              "kind": "bullets",
+              "items": [
+                "**yozasiz** BPE trening tsiklini — tokenizatoringiz shu yerda \"o'qiydi\";",
+                "**tushunasiz** `merges` jadvali nima uchun **butun tokenizator** ekanini;",
+                "**ko'rasiz** o'zbek qo'shimchalari qadam-baqadam qurilishini — 20 ta birlashtirishda;",
+                "**kashf qilasiz** algoritm `ʻ` belgisini o'zi qayta yig'ishini;",
+                "**ko'rasiz** chiroyli raqam qanday qilib yolg'on gapirishi mumkinligini."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Oxirgi punkt — bu darsning eng muhim qismi."
+            }
+          ]
+        },
+        {
+          "id": "1-bitta-savol",
+          "title": "1. Bitta savol",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 09 oxirida savol qoldirgan edim:"
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Birlashtirishlar **tartibini** eslab qolish nima uchun shart?"
+            },
+            {
+              "kind": "text",
+              "text": "Javob Dars 09 dagi natijada turibdi. Ikkinchi birlashtirish shunday edi:"
+            },
+            {
+              "kind": "pre",
+              "text": "257 = (256, 114)"
+            },
+            {
+              "kind": "text",
+              "text": "Diqqat qiling: `256` — bu **bizning yangi tokenimiz**. U birinchi birlashtirishda yasalgan edi."
+            },
+            {
+              "kind": "text",
+              "text": "Ya'ni 257-tokenni yasash uchun 256-token **allaqachon mavjud bo'lishi shart**. Agar tartibni almashtirsangiz — 257 ni birinchi qilsangiz — `(256, 114)` juftligini matnda umuman topa olmaysiz, chunki hali `256` degan token yo'q."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Birlashtirishlar — bu ro'yxat emas, bu zanjir.** Har bir halqa oldingisiga tayanadi."
+            },
+            {
+              "kind": "text",
+              "text": "Shuning uchun biz ularni **tartib bilan** saqlashimiz kerak. Bu jadvalning nomi — **`merges`**, va u aslida butun tokenizatoringiz."
+            }
+          ]
+        },
+        {
+          "id": "2-merges-tokenizatorning-butun-bilimi",
+          "title": "2. `merges` — tokenizatorning butun bilimi",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Tokenizator o'qiganidan keyin nima saqlanadi? Modelning vaznlari emas, matn emas. Faqat bitta jadval:"
+            },
+            {
+              "kind": "pre",
+              "text": "(108, 97)  → 256\n(256, 114) → 257\n(115, 104) → 258\n..."
+            },
+            {
+              "kind": "text",
+              "text": "Chapda — juftlik, o'ngda — u qaysi tokenga aylanadi."
+            },
+            {
+              "kind": "text",
+              "text": "**Shu jadval bo'lsa, tokenizator to'liq tiklanadi:**"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "yangi matnni kodlash uchun — juftliklarni shu tartibda qidirib almashtirasiz (Dars 12)",
+                "tokenlarni matnga qaytarish uchun — jadvaldan `vocab` ni qurasiz (Dars 11)"
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Sizning `uzbek-bpe-16k` tokenizatoringizda bu jadvalda **16 128 ta qator** bor. Faylning butun hajmi bir necha yuz kilobayt. **Butun tokenizator shu.**"
+            },
+            {
+              "kind": "media",
+              "id": "l1",
+              "title": "Zanjir"
+            }
+          ]
+        },
+        {
+          "id": "3-yangi-narsa-break",
+          "title": "3. Yangi narsa: `break`",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Tsiklni **erta to'xtatish** uchun:"
+            },
+            {
+              "kind": "code",
+              "code": "for i in range(10):\n    if i == 3:\n        break\n    print(i, end=\" \")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "0 1 2"
+            },
+            {
+              "kind": "text",
+              "text": "`break` — \"tsiklni hoziroq tugat\". Qolgan aylanishlar bajarilmaydi."
+            },
+            {
+              "kind": "text",
+              "text": "Bizga u nima uchun kerak? Chunki ba'zan **birlashtiradigan narsa qolmaydi**: matn juda qisqa bo'lsa yoki hamma juftlik allaqachon birlashtirilgan bo'lsa. Unday holda tsiklni davom ettirishning ma'nosi yo'q."
+            }
+          ]
+        },
+        {
+          "id": "4-trening-tsikli",
+          "title": "4. Trening tsikli",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi hammasini birlashtiramiz. Bu funksiya Dars 09 dagi qo'lda qilgan ishimizni avtomatlashtiradi:"
+            },
+            {
+              "kind": "code",
+              "code": "jurnal = True\n\n\ndef train(matn, vocab_size):\n    tokenlar = kodla(matn)\n    merges = {}\n\n    vocab = {}\n    for i in range(256):\n        vocab[i] = bytes([i])\n\n    for yangi_id in range(256, vocab_size):\n        stats = get_stats(tokenlar)\n\n        if len(stats) == 0:\n            if jurnal:\n                print(\"  juftlik qolmadi, toʻxtadik\")\n            break\n\n        eng = max(stats, key=stats.get)\n        soni = stats[eng]\n\n        tokenlar = merge(tokenlar, eng, yangi_id)\n        merges[eng] = yangi_id\n        vocab[yangi_id] = vocab[eng[0]] + vocab[eng[1]]\n\n        if jurnal:\n            print(f\"  {yangi_id}: {eng} ({soni} marta) -> {vocab[yangi_id]!r}   | {len(tokenlar)} token\")\n\n    return merges, vocab, tokenlar",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "**Qatorma-qator:**"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Qator",
+                "Nima qiladi",
+                "Qayerdan"
+              ],
+              "rows": [
+                [
+                  "`tokenlar = kodla(matn)`",
+                  "matnni baytlarga",
+                  "Dars 06"
+                ],
+                [
+                  "`merges = {}`",
+                  "bo'sh jadval",
+                  "Dars 04"
+                ],
+                [
+                  "`for i in range(256): vocab[i] = bytes([i])`",
+                  "256 ta boshlang'ich token",
+                  "Dars 07"
+                ],
+                [
+                  "`for yangi_id in range(256, vocab_size)`",
+                  "**256 dan boshlanadi**",
+                  "Dars 03"
+                ],
+                [
+                  "`stats = get_stats(tokenlar)`",
+                  "juftliklarni sana",
+                  "Dars 08"
+                ],
+                [
+                  "`if len(stats) == 0: break`",
+                  "qoladigan narsa yo'q — to'xta",
+                  "shu dars"
+                ],
+                [
+                  "`eng = max(stats, key=stats.get)`",
+                  "eng ko'p uchraganini top",
+                  "Dars 08"
+                ],
+                [
+                  "`tokenlar = merge(...)`",
+                  "almashtir",
+                  "Dars 09"
+                ],
+                [
+                  "`merges[eng] = yangi_id`",
+                  "**jadvalga yoz**",
+                  "shu dars"
+                ],
+                [
+                  "`vocab[yangi_id] = ... + ...`",
+                  "yangi token nimadan iborat",
+                  "Dars 09"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "**Yangi kod — atigi uchta qator.** Qolgani oldingi olti darsdan."
+            },
+            {
+              "kind": "text",
+              "text": "`jurnal` — har bir birlashtirishni ekranga chiqarish kerakmi? Hozir `True`: algoritm nima qilayotganini koʻrmoqchimiz."
+            },
+            {
+              "kind": "h3",
+              "id": "range-256-vocab-size-nima-uchun-256-dan",
+              "text": "`range(256, vocab_size)` — nima uchun 256 dan?"
+            },
+            {
+              "kind": "text",
+              "text": "Chunki 0–255 **allaqachon band** (baytlar, Dars 06). Birinchi bo'sh raqam — 256."
+            },
+            {
+              "kind": "text",
+              "text": "Agar `vocab_size = 276` desangiz, `range(256, 276)` → 20 ta aylanish, ya'ni **20 ta birlashtirish**. Lug'at 256 dan 276 gacha o'sadi."
+            },
+            {
+              "kind": "text",
+              "text": "Umumiy formula: **birlashtirishlar soni = `vocab_size` − 256.**"
+            },
+            {
+              "kind": "text",
+              "text": "Sizning tokenizatoringizda: 16 384 − 256 = **16 128 ta birlashtirish**."
+            }
+          ]
+        },
+        {
+          "id": "5-ishga-tushiramiz",
+          "title": "5. Ishga tushiramiz",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "O'quv matnimiz (etti qatorlik o'zbekcha matn):"
+            },
+            {
+              "kind": "code",
+              "code": "matn = \"\"\"Bolalar maktabga borishdi. Ular kitoblarni oʻqishdi va daftarlarga yozishdi.\nOʻqituvchi darsni tushuntirdi. Oʻquvchilar savollarga javob berishdi.\nKechqurun bolalar uyga qaytishdi. Onalar ovqat tayyorlashdi.\nOtalar ishdan kelishdi. Hamma birga dasturxonga oʻtirishdi.\nErtalab bolalar yana maktabga borishdi. Ular yangi darslarni oʻrganishdi.\nKitoblarda qiziqarli hikoyalar bor edi. Bolalar hikoyalarni yoqtirishdi.\nOʻqituvchilar savollar berishdi. Oʻquvchilar javoblarni yozishdi.\"\"\"\n\nprint(\"belgilar:\", len(matn), \"| soʻzlar:\", len(matn.split()), \"| tokenlar:\", len(kodla(matn)))\n\nmerges, vocab, tokenlar = train(matn, 276)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "belgilar: 480 | soʻzlar: 53 | tokenlar: 487\n  256: (108, 97) (26 marta) -> b'la'   | 461 token\n  257: (256, 114) (20 marta) -> b'lar'   | 441 token\n  258: (115, 104) (15 marta) -> b'sh'   | 426 token\n  259: (100, 105) (15 marta) -> b'di'   | 411 token\n  260: (259, 46) (14 marta) -> b'di.'   | 397 token\n  261: (257, 32) (13 marta) -> b'lar '   | 384 token\n  262: (105, 258) (13 marta) -> b'ish'   | 371 token\n  263: (97, 32) (11 marta) -> b'a '   | 360 token\n  264: (262, 260) (11 marta) -> b'ishdi.'   | 349 token\n  265: (105, 32) (8 marta) -> b'i '   | 341 token\n  266: (103, 263) (7 marta) -> b'ga '   | 334 token\n  267: (202, 187) (7 marta) -> b'\\xca\\xbb'   | 327 token\n  268: (116, 97) (6 marta) -> b'ta'   | 321 token\n  269: (114, 264) (6 marta) -> b'rishdi.'   | 315 token\n  270: (98, 111) (5 marta) -> b'bo'   | 310 token\n  271: (110, 265) (5 marta) -> b'ni '   | 305 token\n  272: (267, 113) (5 marta) -> b'\\xca\\xbbq'   | 300 token\n  273: (100, 97) (5 marta) -> b'da'   | 295 token\n  274: (99, 104) (5 marta) -> b'ch'   | 290 token\n  275: (256, 261) (4 marta) -> b'lalar '   | 286 token"
+            },
+            {
+              "kind": "text",
+              "text": "**487 tokendan 286 tokenga.** 20 ta birlashtirish bilan."
+            },
+            {
+              "kind": "text",
+              "text": "Endi bu jurnalni **satr-satr o'qiymiz** — unda uchta muhim narsa yashiringan."
+            }
+          ]
+        },
+        {
+          "id": "6-birinchi-kashfiyot-qoshimchalar-qadam-baqadam-quriladi",
+          "title": "6. Birinchi kashfiyot: qo'shimchalar qadam-baqadam quriladi",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "O'ng ustunni kuzating:"
+            },
+            {
+              "kind": "pre",
+              "text": "256: la\n257: lar        ← la + r\n261: \"lar \"     ← lar + boʻshliq\n275: \"lalar \"   ← la + \"lar \""
+            },
+            {
+              "kind": "pre",
+              "text": "258: sh\n262: ish        ← i + sh\n264: ishdi.     ← ish + \"di.\"\n269: rishdi.    ← r + \"ishdi.\""
+            },
+            {
+              "kind": "text",
+              "text": "Har bir yangi token **oldingilaridan** qurilgan. Bu **inshoot**, ro'yxat emas."
+            },
+            {
+              "kind": "text",
+              "text": "To'liq zanjirni chizing:"
+            },
+            {
+              "kind": "pre",
+              "text": "l  a  →  la\nla r  →  lar\nlar ␣ →  \"lar \""
+            },
+            {
+              "kind": "pre",
+              "text": "d  i  →  di\ndi .  →  \"di.\"\ni  sh →  ish\nish \"di.\" → \"ishdi.\"\nr \"ishdi.\" → \"rishdi.\""
+            },
+            {
+              "kind": "text",
+              "text": "Uchta harfdan boshlab, algoritm **`-rishdi.`** ni yasadi — bu o'zbek fe'lining o'tgan zamon, ko'plik shakli va jumla oxiri, birgalikda."
+            },
+            {
+              "kind": "text",
+              "text": "Yana bir bor: hech kim unga grammatika o'rgatmagan. U 20 marta \"eng ko'p uchraydigan juftlikni birlashtir\" degan buyruqni bajardi, xolos."
+            }
+          ]
+        },
+        {
+          "id": "7-ikkinchi-kashfiyot-qayta-yigildi",
+          "title": "7. Ikkinchi kashfiyot: `ʻ` qayta yig'ildi",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "267-qatorga qarang:"
+            },
+            {
+              "kind": "pre",
+              "text": "267: (202, 187) (7 marta) -> b'\\xca\\xbb'"
+            },
+            {
+              "kind": "text",
+              "text": "`202` va `187` — tanish raqamlar. Dars 06 dan: bular **`ʻ` belgisining ikkita bayti**."
+            },
+            {
+              "kind": "code",
+              "code": "print(vocab[267].decode(\"utf-8\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "ʻ"
+            },
+            {
+              "kind": "text",
+              "text": "**To'xtang va nima bo'lganini o'ylang.**"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "Dars 05: Unicode'da yagona `oʻ` belgisi yo'q, shuning uchun `ʻ` alohida belgi (699).",
+                "Dars 06: UTF-8 uni ikkita baytga bo'ldi — 202 va 187.",
+                "Dars 07: bizning tokenizatorimiz uchun `ʻ` **ikkita alohida token** edi.",
+                "**Dars 10: BPE ularni qaytadan bitta tokenga yig'di.**"
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Algoritm buni nima uchun qildi? Chunki 202 va 187 matnda **har doim birga** uchraydi — 7 marta ketma-ket. Boshqa hech qanday kombinatsiyada emas."
+            },
+            {
+              "kind": "text",
+              "text": "Statistika ularning ajralmas ekanini **o'zi payqadi**. Va keyingi qadamda (272-token) u `ʻ` va `q` ni birlashtirib, `ʻq` ni yasadi — `oʻqish`, `oʻqituvchi` so'zlarining o'zagiga yaqinlashib."
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Bu — UTF-8 bo'lgan zararni BPE ning **qisman tuzatishi**. To'liq emas: `ʻ` baribir bitta token yeydi, va uni yasash uchun lug'atdan joy ketdi. Lekin keyingi safar `ʻ` uchrasa, u ikkita emas, bitta token bo'ladi."
+            },
+            {
+              "kind": "media",
+              "id": "l2",
+              "title": "ʻ qayta yigʻildi"
+            }
+          ]
+        },
+        {
+          "id": "8-siqilishni-olchaymiz",
+          "title": "8. Siqilishni o'lchaymiz",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "w = len(matn.split())\nprint(\"boshlangʻich:\", 487, \"token | fertility:\", round(487 / w, 3))\nprint(\"oxirgi      :\", len(tokenlar), \"token | fertility:\", round(len(tokenlar) / w, 3))\nprint(\"siqilish    :\", round(487 / len(tokenlar), 3), \"barobar\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "boshlangʻich: 487 token | fertility: 9.189\noxirgi      : 286 token | fertility: 5.396\nsiqilish    : 1.703 barobar"
+            },
+            {
+              "kind": "text",
+              "text": "Atigi 20 ta yangi token — va fertility 9.189 dan **5.396** ga tushdi."
+            },
+            {
+              "kind": "text",
+              "text": "Davom etsak nima bo'ladi? Jurnalni oʻchirib qoʻyamiz — endi u yuzlab qator boʻladi:"
+            },
+            {
+              "kind": "code",
+              "code": "jurnal = False\n\nprint(\"vocab_size | tokenlar | fertility\")\nfor vs in [256, 276, 306, 356, 406]:\n    _, v, t = train(matn, vs)\n    print(f\"{vs:10d} | {len(t):8d} | {len(t)/w:.3f}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "vocab_size | tokenlar | fertility\n       256 |      487 | 9.189\n       276 |      286 | 5.396\n       306 |      202 | 3.811\n       356 |      128 | 2.415\n       406 |       78 | 1.472"
+            }
+          ]
+        },
+        {
+          "id": "9-uchinchi-kashfiyot-raqam-yolgon-gapiryapti",
+          "title": "9. Uchinchi kashfiyot: raqam yolg'on gapiryapti",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Oxirgi qatorga qarang: **fertility 1.472**."
+            },
+            {
+              "kind": "text",
+              "text": "Dars 01 dagi jadvalni eslang:"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Tokenizator",
+                "Fertility"
+              ],
+              "rows": [
+                [
+                  "**bizniki, 406 ta token**",
+                  "**1.472**"
+                ],
+                [
+                  "uzbek-bpe-16k",
+                  "1.749"
+                ],
+                [
+                  "GPT-4o",
+                  "2.578"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Bizning o'yinchoq tokenizatorimiz — 406 ta token bilan, 40 barobar kichik lug'at bilan — haqiqiy tokenizatordan **yaxshiroq** natija ko'rsatyapti."
+            },
+            {
+              "kind": "text",
+              "text": "**Bu mumkinmi?** Yo'q. Tekshiramiz — u nimalarni o'rgangan ekan:"
+            },
+            {
+              "kind": "code",
+              "code": "_, v, t = train(matn, 356)\nprint(\"280 =\", repr(v[280]))\nprint(\"300 =\", repr(v[300]))\nprint(\"355 uzunligi:\", len(v[355]), \"bayt\")\nprint(\"355 =\", repr(v[355])[:100])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "280 = b'O\\xca\\xbbq'\n300 = b'maktabga borishdi. U'\n355 uzunligi: 106 bayt\n355 = b'Bolalar maktabga borishdi. Ular kitoblarni o\\xca\\xbbqishdi va daftarlarga yozishdi.\\nO\\xca\\xbbqitu"
+            },
+            {
+              "kind": "text",
+              "text": "**355-token — bu 106 baytlik matn bo'lagi.** Butun birinchi jumla va ikkinchisining yarmi. Bitta token sifatida."
+            },
+            {
+              "kind": "text",
+              "text": "300-token esa `maktabga borishdi. U` — ikki so'z, tinish belgisi va uchinchi so'zning boshi."
+            },
+            {
+              "kind": "h3",
+              "id": "nima-boldi",
+              "text": "Nima bo'ldi"
+            },
+            {
+              "kind": "text",
+              "text": "Tokenizator matnni **yodlab oldi**."
+            },
+            {
+              "kind": "text",
+              "text": "Bizning matnimizda atigi 53 ta so'z bor. 150 ta birlashtirish uchun bu juda kam. Haqiqiy qo'shimchalar tugagandan keyin, algoritm boshqa takror topa olmadi — va butun jumlalarni birlashtirishga o'tdi, chunki ular ham \"takrorlanadi\" (aynan bir marta, matnning o'zida)."
+            },
+            {
+              "kind": "text",
+              "text": "**Fertility 1.472 — bu chiroyli raqam, va u yolg'on.**"
+            },
+            {
+              "kind": "text",
+              "text": "U faqat **shu matnda** to'g'ri. Yangi o'zbekcha jumla bering — 355-token u yerda hech qachon uchramaydi, va tokenizator butunlay foydasiz bo'ladi."
+            },
+            {
+              "kind": "media",
+              "id": "l3",
+              "title": "Chiroyli yolgʻon"
+            },
+            {
+              "kind": "h3",
+              "id": "ikkita-xulosa",
+              "text": "Ikkita xulosa"
+            },
+            {
+              "kind": "text",
+              "text": "**1. Ko'p ma'lumot kerak.** 53 ta so'zli matnda 150 ta birlashtirish qilib bo'lmaydi. Haqiqiy tokenizator uchun **millionlab** so'z kerak. Buni Dars 15 da ko'ramiz."
+            },
+            {
+              "kind": "text",
+              "text": "**2. Raqamga ishonmang — uni qayerda o'lchaganingizni so'rang.**"
+            },
+            {
+              "kind": "text",
+              "text": "Biz fertility ni **tokenizator o'qigan matnda** o'lchadik. Bu — imtihon savollarini oldindan ko'rib olgan talabaga baho qo'ygandek. Baho ajoyib chiqadi, lekin u hech narsani anglatmaydi."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**To'g'ri usul: tokenizatorni bir matnda o'qiting, boshqa matnda o'lchang.** Bu qoida oddiy ko'rinadi, lekin uni buzish juda oson — va buzilganda natija **yaxshiroq** ko'rinadi, shuning uchun hech kim shubhalanmaydi. **Dars 17 to'liq shu mavzuga bag'ishlangan.** Hozircha shuni bilib qo'ying: bu sizning birinchi marta yolg'on raqam ko'rishingiz. Oxirgisi bo'lmaydi."
+            }
+          ]
+        },
+        {
+          "id": "10-chekka-holat-juftlik-tugaganda",
+          "title": "10. Chekka holat: juftlik tugaganda",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "jurnal = True\nmerges, vocab, tokenlar = train(\"aaaa\", 300)\njurnal = False\nprint(tokenlar)\nfor tid in range(256, len(vocab)):\n    print(tid, \"=\", vocab[tid])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  256: (97, 97) (3 marta) -> b'aa'   | 2 token\n  257: (256, 256) (1 marta) -> b'aaaa'   | 1 token\n  juftlik qolmadi, toʻxtadik\n[257]\n256 = b'aa'\n257 = b'aaaa'"
+            },
+            {
+              "kind": "text",
+              "text": "`vocab_size = 300` so'radik — 44 ta birlashtirish. Lekin atigi **ikkitasi** bo'ldi."
+            },
+            {
+              "kind": "text",
+              "text": "Uchinchisida matn bitta tokenga aylanib qolgan edi, `get_stats([257])` bo'sh lug'at qaytardi (Dars 08), va `break` ishladi."
+            },
+            {
+              "kind": "text",
+              "text": "**`break` bo'lmasa nima bo'lardi?** `max({})` — bo'sh lug'atdan eng kattasini topishga urinish — `ValueError` beradi va dastur qulab tushadi."
+            }
+          ]
+        },
+        {
+          "id": "11-qancha-vaqt-oladi",
+          "title": "11. Qancha vaqt oladi?",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "import time\n\nt0 = time.perf_counter()\nmerges, vocab, tokenlar = train(matn, 276)\nprint(f\"vaqt: {time.perf_counter() - t0:.4f} soniya\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "vaqt: 0.0020 soniya"
+            },
+            {
+              "kind": "text",
+              "text": "480 baytda 20 ta birlashtirish — bir zumda."
+            },
+            {
+              "kind": "text",
+              "text": "Lekin o'ylab ko'ring. Har bir birlashtirishda biz **butun matnni ikki marta** aylanib chiqamiz: bir marta `get_stats` uchun, bir marta `merge` uchun."
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "20 ta birlashtirish × 480 bayt = 9 600 qadam. Hech narsa.",
+                "**16 128 ta birlashtirish × 100 000 000 bayt** = 1.6 trillion qadam."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Bu sof Python'da **haftalab** ishlaydi. Dars 16 da haqiqiy korpusda o'qitganingizda bu muammoga duch kelasiz, va u yerda uni qanday hal qilishni ko'ramiz."
+            }
+          ]
+        },
+        {
+          "id": "12-muammo",
+          "title": "12. Muammo",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Bizda endi `merges` va `vocab` bor. Tokenizator o'qidi."
+            },
+            {
+              "kind": "text",
+              "text": "Lekin u hali **ishlatib bo'lmaydigan** holatda:"
+            },
+            {
+              "kind": "text",
+              "text": "**1. Tokenlarni matnga qaytara olmaymiz.** `tokenlar` ro'yxatida `257` bor. `vocab[257]` bizga `b'lar'` beradi — lekin butun ro'yxatni matnga aylantiradigan funksiya hali yo'q. Dars 06 dagi `dekodla` faqat baytlar bilan ishlaydi, 257 esa bayt emas."
+            },
+            {
+              "kind": "text",
+              "text": "**2. Yangi matnni kodlay olmaymiz.** `train` faqat o'z matnini kodladi. Boshqa jumla bersangiz — uni `merges` jadvali bo'yicha qayta ishlash kerak, va bu alohida funksiya."
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi ikki dars aynan shu ikkitasi haqida: **`decode`** va **`encode`**."
+            }
+          ]
+        },
+        {
+          "id": "13-toliq-kod",
+          "title": "13. To'liq kod",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "import time\n\njurnal = True\n\n\ndef kodla(matn):\n    return list(matn.encode(\"utf-8\"))\n\n\ndef dekodla(raqamlar):\n    return bytes(raqamlar).decode(\"utf-8\")\n\n\ndef get_stats(tokenlar):\n    hisob = {}\n    for juftlik in zip(tokenlar, tokenlar[1:]):\n        hisob[juftlik] = hisob.get(juftlik, 0) + 1\n    return hisob\n\n\ndef merge(tokenlar, juftlik, yangi_id):\n    yangi = []\n    i = 0\n    while i < len(tokenlar):\n        if i < len(tokenlar) - 1 and tokenlar[i] == juftlik[0] and tokenlar[i + 1] == juftlik[1]:\n            yangi.append(yangi_id)\n            i += 2\n        else:\n            yangi.append(tokenlar[i])\n            i += 1\n    return yangi\n\n\ndef train(matn, vocab_size):\n    tokenlar = kodla(matn)\n    merges = {}\n\n    vocab = {}\n    for i in range(256):\n        vocab[i] = bytes([i])\n\n    for yangi_id in range(256, vocab_size):\n        stats = get_stats(tokenlar)\n        if len(stats) == 0:\n            if jurnal:\n                print(\"  juftlik qolmadi, toʻxtadik\")\n            break\n\n        eng = max(stats, key=stats.get)\n        soni = stats[eng]\n\n        tokenlar = merge(tokenlar, eng, yangi_id)\n        merges[eng] = yangi_id\n        vocab[yangi_id] = vocab[eng[0]] + vocab[eng[1]]\n\n        if jurnal:\n            print(f\"  {yangi_id}: {eng} ({soni} marta) -> {vocab[yangi_id]!r}   | {len(tokenlar)} token\")\n\n    return merges, vocab, tokenlar\n\n\n# ---- Sinov ----\nmatn = \"\"\"Bolalar maktabga borishdi. Ular kitoblarni oʻqishdi va daftarlarga yozishdi.\nOʻqituvchi darsni tushuntirdi. Oʻquvchilar savollarga javob berishdi.\nKechqurun bolalar uyga qaytishdi. Onalar ovqat tayyorlashdi.\nOtalar ishdan kelishdi. Hamma birga dasturxonga oʻtirishdi.\nErtalab bolalar yana maktabga borishdi. Ular yangi darslarni oʻrganishdi.\nKitoblarda qiziqarli hikoyalar bor edi. Bolalar hikoyalarni yoqtirishdi.\nOʻqituvchilar savollar berishdi. Oʻquvchilar javoblarni yozishdi.\"\"\"\n\nw = len(matn.split())\nboshlangich = len(kodla(matn))\nprint(\"belgilar:\", len(matn), \"| soʻzlar:\", w, \"| tokenlar:\", boshlangich)\n\nt0 = time.perf_counter()\nmerges, vocab, tokenlar = train(matn, 276)\nprint(f\"vaqt: {time.perf_counter() - t0:.4f} soniya\")\n\nprint(\"fertility:\", round(boshlangich / w, 3), \"->\", round(len(tokenlar) / w, 3))\nprint(\"merges hajmi:\", len(merges), \"| vocab hajmi:\", len(vocab))",
+              "lang": "python",
+              "mode": "type"
+            }
+          ]
+        },
+        {
+          "id": "14-ozingiz-yozing",
+          "title": "14. O'zingiz yozing",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "def train(matn, vocab_size):\n    tokenlar = ___(matn)               # matnni baytlarga\n    merges = ___                       # boʻsh jadval\n\n    vocab = {}\n    for i in range(___):               # 256 ta boshlangʻich token\n        vocab[i] = bytes([i])\n\n    for yangi_id in range(___, vocab_size):\n        stats = ___(tokenlar)\n        if len(stats) == 0:\n            ___                        # tsiklni toʻxtat\n        eng = max(stats, key=___)\n        tokenlar = ___(tokenlar, eng, yangi_id)\n        merges[___] = ___              # juftlik -> yangi raqam\n        vocab[yangi_id] = vocab[eng[___]] + vocab[eng[___]]\n\n    return merges, vocab, tokenlar",
+              "lang": "python",
+              "mode": "template"
+            },
+            {
+              "kind": "reveal",
+              "summary": "Yechimni ko'rsatish",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "def train(matn, vocab_size):\n    tokenlar = kodla(matn)\n    merges = {}\n\n    vocab = {}\n    for i in range(256):\n        vocab[i] = bytes([i])\n\n    for yangi_id in range(256, vocab_size):\n        stats = get_stats(tokenlar)\n        if len(stats) == 0:\n            break\n        eng = max(stats, key=stats.get)\n        tokenlar = merge(tokenlar, eng, yangi_id)\n        merges[eng] = yangi_id\n        vocab[yangi_id] = vocab[eng[0]] + vocab[eng[1]]\n\n    return merges, vocab, tokenlar",
+                  "lang": "python",
+                  "mode": "static"
+                },
+                {
+                  "kind": "text",
+                  "text": "Eng ko'p xato qilinadigan joy — `merges[eng] = yangi_id` ni teskari yozish: `merges[yangi_id] = eng`. Ikkalasi ham ishlaydi, lekin Dars 12 da (`encode`) bizga **juftlikdan raqamga** qidirish kerak bo'ladi, teskarisi emas."
+                },
+                {
+                  "kind": "text",
+                  "text": "Ikkinchi xato — `vocab[eng[0]] + vocab[eng[1]]` o'rniga `bytes(eng)` yozish. Bu faqat `eng` dagi ikkala raqam ham 255 dan kichik bo'lganda ishlaydi. `(256, 114)` da darhol qulaydi."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "15-mashqlar",
+          "title": "15. Mashqlar",
+          "blocks": [
+            {
+              "kind": "exercise",
+              "label": "Mashq 1",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`train(matn, 256)` nima qaytaradi? Nechta birlashtirish bo'ladi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "**Nol ta birlashtirish.**"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`range(256, 256)` — bo'sh diapazon, tsikl umuman aylanmaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`merges` bo'sh lug'at, `vocab` da atigi 256 ta boshlang'ich token, `tokenlar` esa `kodla(matn)` ning o'zi, o'zgarmagan."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Ya'ni `vocab_size = 256` — bu Dars 07 dagi bayt tokenizatori. BPE hech narsa qilmaydi."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 2",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Nima uchun `merges[eng] = yangi_id` deb yozdik, `merges[yangi_id] = eng` emas?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "Chunki **qidiruv yo'nalishi** muhim."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Dars 12 da yangi matnni kodlaganimizda savol shunday bo'ladi: *\"mening qo'limda `(108, 97)` juftligi bor — u qaysi tokenga aylanadi?\"*"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`merges[(108, 97)]` → `256`. Bir qadamda topildi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Agar teskari saqlagan bo'lsak, butun jadvalni aylanib chiqib qidirish kerak bo'lardi — 16 128 ta qatorni, har bir juftlik uchun."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Lug'atda kalit — bu siz bilgan narsa, qiymat — bilmoqchi bo'lgan narsa.** Jadvalni tuzayotganda o'zingizdan so'rang: *keyin men nimadan nimani qidiraman?*"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "(Teskari jadval ham kerak bo'ladi — `vocab` aynan shu: raqamdan baytlarga. Shuning uchun ikkalasini ham saqlaymiz.)"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 3",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Matnni ikki barobar uzaytiring (o'sha matnni ikki marta yozing) va `train(matn2, 276)` ni ishga tushiring. Birinchi 5 ta birlashtirish o'zgaradimi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "**O'zgarmaydi** — faqat sanoqlar ikki barobar oshadi."
+                  },
+                  {
+                    "kind": "pre",
+                    "text": "256: (108, 97) (52 marta) -> b'la'\n257: (256, 114) (40 marta) -> b'lar'\n..."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Sabab: BPE **nisbiy chastotaga** qaraydi. Hamma juftlikning soni ikki barobar oshsa, ularning tartibi o'zgarmaydi — eng ko'p uchragani baribir eng ko'p uchragani bo'lib qoladi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Bu muhim xususiyat:** tokenizator matnning **hajmiga** emas, **tuzilishiga** qarab o'qiydi. Shuning uchun katta korpusdan bir bo'lagini olib sinab ko'rish mantiqiy — natija o'xshash bo'ladi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Lekin diqqat: bu faqat matn **bir xil turdagi** bo'lsa to'g'ri. Yangilik matni va she'riyat matni butunlay boshqa tokenlar beradi."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 4",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`vocab[275]` = `b'lalar '`. Bu token qaysi so'zlarda uchraydi? Va u yaxshi tokenmi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "Faqat **`bolalar `** da. Tekshiring: `bolalar ` = `bo` + `lalar `. `Onalar `, `hikoyalar` da `lalar ` yoʻq — ularda `alar ` bor."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Yaxshi tokenmi? Qisman.**"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Yaxshi tomoni: `bolalar` matnda tez-tez uchraydi, uni bitta tokenga yaqinlashtirish foydali."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Yomon tomoni: **oxiridagi bo'shliq.** `lalar ` — bu `lalar` va bo'shliq birga. Demak `bolalar,` (vergul bilan) yoki `bolalarni` bu tokenni ishlata olmaydi — ular uchun boshqa token kerak bo'ladi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Bitta so'z, uch xil variant (`bolalar `, `bolalar,`, `bolalarni`) — uchta alohida token. **Lug'at joyi isrof bo'ladi.**"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Bu muammoning nomi bor va u Dars 13 ning mavzusi. Yechim: so'zlarni **oldindan bo'lish**, shunda bitta token hech qachon so'z chegarasidan o'tmaydi."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 5 (eng muhimi)",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Tokenizatorni yuqoridagi matnda o'qiting (`vocab_size = 406`), keyin uni **yangi** jumlada sinab ko'ring:"
+                },
+                {
+                  "kind": "code",
+                  "code": "yangi_jumla = \"Talabalar universitetga kirishdi va imtihonlarni topshirishdi.\"",
+                  "lang": "python",
+                  "mode": "type"
+                },
+                {
+                  "kind": "text",
+                  "text": "Bu jumlada 406-tokenli lug'atdan qaysi tokenlar foydali bo'ladi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "Qaysi tokenlar ishlaydi:"
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "`la`, `lar`, `lar ` — **ha**, `Talabalar` va `imtihonlarni` da bor",
+                      "`di`, `di.`, `ish`, `ishdi.`, `rishdi.` — **ha**, `kirishdi` va `topshirishdi.` da bor",
+                      "`ga `, `ni `, `da` — **ha**"
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Qaysilari ishlamaydi:"
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "`maktabga borishdi. U` (300-token) — **yo'q**",
+                      "106 baytlik 355-token — **yo'q**",
+                      "`lalar ` — **yo'q** (`Talabalar ` da `alar ` bor, `lalar ` emas)"
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Xulosa:** foydali tokenlar — **qisqa, grammatik** bo'laklar. Isrof bo'lganlari — **uzun, matnga xos** bo'laklar."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Va e'tibor bering: 150 ta birlashtirishning ko'pchiligi ikkinchi turdan edi. Ya'ni lug'atning katta qismi **bu jumlada umuman ishlatilmaydi**."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Agar siz fertility ni shu yangi jumlada o'lchasangiz, u 1.472 dan ancha yomon chiqadi — va **aynan shu raqam haqiqiy raqam** bo'ladi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Mana shuning uchun Dars 17 kerak."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "16-xulosa",
+          "title": "16. Xulosa",
+          "blocks": [
+            {
+              "kind": "steps",
+              "items": [
+                "Trening tsikli — `get_stats` va `merge` ni navbatma-navbat chaqirish. Yangi kod atigi uch qator.",
+                "`merges` jadvali — **butun tokenizator**. Juftlikdan yangi raqamga.",
+                "Tartib zanjir: `257 = (256, 114)` — 256 allaqachon mavjud bo'lishi shart.",
+                "Birlashtirishlar soni = `vocab_size − 256`.",
+                "Algoritm qo'shimchalarni **qatlam-qatlam** quradi: `la → lar → \"lar \"`, `sh → ish → \"ishdi.\" → \"rishdi.\"`",
+                "BPE `ʻ` ning ikkita UTF-8 baytini **qaytadan bitta tokenga** yig'di.",
+                "**Kam matnda ko'p birlashtirish = yodlab olish.** Fertility chiroyli chiqadi va yolg'on gapiradi. O'qitgan matningizda o'lchamang."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "keyingi-dars",
+          "title": "Keyingi dars",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Tokenizator o'qidi. Endi uni ishlatish kerak."
+            },
+            {
+              "kind": "text",
+              "text": "**Dars 11 — `decode`.** `[98, 111, 257]` ro'yxatini `bolalar` ga qaytarish. Va bir savol: agar ro'yxat **buzuq** bo'lsa — yarim belgi bilan tugasa — nima qilish kerak?"
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi darsning savoli: *`dekodla([202])` nima qaytaradi?* Dars 06 dan eslang: 202 — bu `ʻ` ning **birinchi yarmi**. Yolg'iz o'zi u nimani anglatadi?"
+            }
+          ]
+        }
+      ],
+      "exercises": [],
+      "needs": "Dars 01–09. `get_stats`, `merge`, `while`, `max(key=)`"
+    },
+    {
+      "id": "dars-11",
+      "n": 11,
+      "title": "decode: raqamdan matnga",
+      "subtitle": "",
+      "minutes": 45,
+      "status": "ready",
+      "intro": [],
+      "sections": [
+        {
+          "id": "bu-darsdan-keyin-siz",
+          "title": "Bu darsdan keyin siz...",
+          "blocks": [
+            {
+              "kind": "goals",
+              "items": [
+                "**yozasiz** `decode` — tokenlar ro'yxatini matnga qaytaradigan funksiya;",
+                "**ko'rasiz** to'liq round-trip ishlashini: matn → tokenlar → matn;",
+                "**bilasiz** `b\"\".join()` nima uchun `+=` dan **o'nlab barobar** tez ekanini;",
+                "**hal qilasiz** yarim belgi muammosini — `errors=\"replace\"` bilan;",
+                "**tiklaysiz** butun `vocab` ni faqat `merges` jadvalidan."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1-bitta-savol",
+          "title": "1. Bitta savol",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 10 oxirida savol qoldirgan edim:"
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "`dekodla([202])` nima qaytaradi?"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 06 dan eslang: `202` — bu `ʻ` belgisining **birinchi yarmi**. Ikkinchi yarmi — `187`."
+            },
+            {
+              "kind": "text",
+              "text": "Yolg'iz o'zi u nima?"
+            },
+            {
+              "kind": "code",
+              "code": "print(bytes([202]).decode(\"utf-8\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xca in position 0: unexpected end of data",
+              "error": true
+            },
+            {
+              "kind": "text",
+              "text": "**Dastur qulab tushdi.**"
+            },
+            {
+              "kind": "text",
+              "text": "Xatoni o'qing: `unexpected end of data` — \"ma'lumot kutilmaganda tugadi\"."
+            },
+            {
+              "kind": "text",
+              "text": "`202` = `11001010` (Dars 06). Boshidagi `110` — bu signal: **\"men 2 baytlik belgining boshiman, mendan keyin yana bitta bayt keladi\"**."
+            },
+            {
+              "kind": "text",
+              "text": "Lekin keyin hech narsa kelmadi. Dekoder kutdi, kutdi — va xato berdi."
+            },
+            {
+              "kind": "text",
+              "text": "**Bu shunchaki qiziq holat emas.** Bu real muammo, va uni hal qilmasangiz, tokenizatoringizni ishlatgan dastur ishonchsiz bo'ladi. Nima uchun — 6-bo'limda ko'rasiz."
+            }
+          ]
+        },
+        {
+          "id": "2-decode-nima-qiladi",
+          "title": "2. `decode` nima qiladi",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Bizda `vocab` bor — har bir token raqami qaysi baytlarga to'g'ri kelishini ko'rsatadigan jadval (Dars 10):"
+            },
+            {
+              "kind": "code",
+              "code": "for tid in [98, 202, 256, 257, 267]:\n    print(f\"  vocab[{tid}] = {vocab[tid]!r}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  vocab[98] = b'b'\n  vocab[202] = b'\\xca'\n  vocab[256] = b'la'\n  vocab[257] = b'lar'\n  vocab[267] = b'\\xca\\xbb'"
+            },
+            {
+              "kind": "text",
+              "text": "`decode` ning ishi uch qadamdan iborat:"
+            },
+            {
+              "kind": "pre",
+              "text": "[98, 111, 257]                     tokenlar\n     ↓  har birini vocab dan olamiz\nb'b'  b'o'  b'lar'                 baytlar\n     ↓  qoʻshamiz\nb'bolar'                           bitta bayt ketma-ketligi\n     ↓  .decode(\"utf-8\")\n\"bolar\"                            matn"
+            }
+          ]
+        },
+        {
+          "id": "3-birinchi-versiya",
+          "title": "3. Birinchi versiya",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "def decode(ids, vocab):\n    baytlar = b\"\"\n    for tid in ids:\n        baytlar += vocab[tid]\n    return baytlar.decode(\"utf-8\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "**Satr izohi:**"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`baytlar = b\"\"` — **bo'sh bayt ketma-ketligi**. Oddiy `\"\"` emas! `b` old qo'shimchasi \"bu matn emas, baytlar\" degani (Dars 06).",
+                "`baytlar += vocab[tid]` — har bir tokenning baytlarini ulaymiz. `+=` baytlar bilan ham ishlaydi (Dars 02 dagi `+` kabi).",
+                "`.decode(\"utf-8\")` — baytlarni matnga aylantiramiz (Dars 06)."
+              ]
+            },
+            {
+              "kind": "note",
+              "tone": "warn",
+              "text": "`b\"\"` va `\"\"` ni aralashtirmang. `b\"\" + \"salom\"` → `TypeError`. Baytga faqat baytni qo'shish mumkin."
+            },
+            {
+              "kind": "text",
+              "text": "Sinaymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "print(decode([98, 111, 257], vocab))\nprint(decode([256, 261], vocab))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "bolar\nlalar"
+            },
+            {
+              "kind": "text",
+              "text": "`[98, 111, 257]` = `b` + `o` + `lar` = `bolar` ✓"
+            }
+          ]
+        },
+        {
+          "id": "4-toliq-round-trip",
+          "title": "4. To'liq round-trip",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi eng muhim sinov. Dars 10 da `train` bizga `tokenlar` ni qaytargan edi — butun matnning siqilgan ko'rinishi. Uni qaytaramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "merges, vocab, tokenlar = train(matn, 276)\n\nqayta = decode(tokenlar, vocab)\nprint(\"tokenlar soni:\", len(tokenlar))\nprint(\"round-trip:\", qayta == matn)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "tokenlar soni: 286\nround-trip: True"
+            },
+            {
+              "kind": "text",
+              "text": "**286 ta raqamdan 480 belgilik matn to'liq tiklandi.** Bitta belgi ham yo'qolmadi."
+            },
+            {
+              "kind": "text",
+              "text": "Bu — Dars 02 da o'rgangan round-trip tekshiruvi, endi butun tokenizator darajasida:"
+            },
+            {
+              "kind": "pre",
+              "text": "matn → kodla → merge × 20 → decode → matn"
+            },
+            {
+              "kind": "text",
+              "text": "Agar bu `True` bo'lmasa, tokenizatoringiz **buzuq**. Va bu tekshiruvni har safar qilish kerak — u bir qator, lekin u hamma narsani tekshiradi."
+            }
+          ]
+        },
+        {
+          "id": "5-join-va-nima-uchun-u-muhim",
+          "title": "5. `.join()` — va nima uchun u muhim",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Kodimiz ishlaydi. Lekin unda **jiddiy tezlik muammosi** bor, va uni ko'rsatmoqchiman."
+            },
+            {
+              "kind": "text",
+              "text": "Avval yangi buyruq:"
+            },
+            {
+              "kind": "code",
+              "code": "print(b\"\".join([b\"bo\", b\"la\", b\"lar\"]))\nprint(\" \".join([\"bir\", \"ikki\", \"uch\"]))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "b'bolalar'\nbir ikki uch"
+            },
+            {
+              "kind": "text",
+              "text": "`ajratgich.join(roʻyxat)` — ro'yxatdagi bo'laklarni **birlashtiradi**, orasiga ajratgichni qo'yib."
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`b\"\".join(...)` — bo'sh ajratgich, ya'ni shunchaki yopishtiradi. Baytlar uchun.",
+                "`\" \".join(...)` — bo'shliq bilan. Matnlar uchun."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Ikkinchi versiya:"
+            },
+            {
+              "kind": "code",
+              "code": "def decode_join(ids, vocab):\n    qismlar = []\n    for tid in ids:\n        qismlar.append(vocab[tid])\n    return b\"\".join(qismlar).decode(\"utf-8\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "G'oya: avval hamma bo'lakni **ro'yxatga yig'amiz**, keyin **bir marta** birlashtiramiz."
+            },
+            {
+              "kind": "h3",
+              "id": "farqni-olchaymiz",
+              "text": "Farqni o'lchaymiz"
+            },
+            {
+              "kind": "code",
+              "code": "import time\n\nuzun = tokenlar * 500      # 143 000 token\n\nt0 = time.perf_counter()\ndecode(uzun, vocab)\na = time.perf_counter() - t0\n\nt0 = time.perf_counter()\ndecode_join(uzun, vocab)\nb = time.perf_counter() - t0\n\nprint(f\"+= usuli   : {a:.3f} s\")\nprint(f\"join usuli : {b:.4f} s\")\nprint(f\"farq       : {a/b:.0f} barobar\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "+= usuli   : 0.468 s\njoin usuli : 0.0123 s\nfarq       : 38 barobar"
+            },
+            {
+              "kind": "text",
+              "text": "**38 barobar.** Bir xil natija, bir xil ma'lumot."
+            },
+            {
+              "kind": "h3",
+              "id": "nima-uchun-bunchalik-farq",
+              "text": "Nima uchun bunchalik farq?"
+            },
+            {
+              "kind": "text",
+              "text": "Chunki **baytlar o'zgarmas** (Dars 02 dagi matn kabi). `baytlar += yangi` deganda Python eskisini o'zgartirmaydi — u **butunlay yangi** bayt ketma-ketligi yasaydi va eskisining hammasini unga **ko'chiradi**."
+            },
+            {
+              "kind": "pre",
+              "text": "1-qadam:  b\"bo\"                      2 bayt koʻchirildi\n2-qadam:  b\"bo\" + b\"la\"  → yangi     4 bayt koʻchirildi\n3-qadam:  b\"bola\" + b\"lar\" → yangi   7 bayt koʻchirildi\n...\n100 000-qadam:                       ~200 000 bayt koʻchirildi"
+            },
+            {
+              "kind": "text",
+              "text": "Ya'ni oxirgi qadamlarda Python har safar butun matnni qaytadan ko'chiradi."
+            },
+            {
+              "kind": "text",
+              "text": "`join` esa bo'laklarni ro'yxatda saqlaydi (ko'chirish yo'q), oxirida jami hajmni hisoblaydi, bir marta joy ajratadi va bir marta ko'chiradi."
+            },
+            {
+              "kind": "media",
+              "id": "m3",
+              "title": "+= va join"
+            },
+            {
+              "kind": "text",
+              "text": "**Bu shunchaki \"biroz tezroq\" emas — farq matn uzayishi bilan o'sib boradi:**"
+            },
+            {
+              "kind": "pre",
+              "text": " 57 200 token  →  22 barobar\n143 000 token  →  38 barobar"
+            },
+            {
+              "kind": "text",
+              "text": "Farqning o'zi ham o'sdi. 100 MB korpusda bu farq **soatlarni** anglatadi."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Qoida:** tsikl ichida matn yoki baytni `+=` bilan yig'manglar. Ro'yxatga yig'ing, oxirida `join` qiling. Bu Python'dagi eng ko'p uchraydigan tezlik xatosi."
+            },
+            {
+              "kind": "text",
+              "text": "Bundan keyin `decode` ning `join` versiyasini ishlatamiz."
+            }
+          ]
+        },
+        {
+          "id": "6-buzuq-ketma-ketlik",
+          "title": "6. Buzuq ketma-ketlik",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi 1-bo'limdagi muammoga qaytamiz."
+            },
+            {
+              "kind": "code",
+              "code": "print(decode([270, 202], vocab))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xca in position 2: unexpected end of data",
+              "error": true
+            },
+            {
+              "kind": "text",
+              "text": "`270` = `bo`, `202` = `ʻ` ning yarmi. Natija — qulash."
+            },
+            {
+              "kind": "h3",
+              "id": "bu-qachon-haqiqatan-sodir-boladi",
+              "text": "Bu qachon haqiqatan sodir bo'ladi?"
+            },
+            {
+              "kind": "text",
+              "text": "Uchta holatda, va uchalasi ham amaliy:"
+            },
+            {
+              "kind": "text",
+              "text": "**1. Model matn yaratganda.** Til modeli tokenlarni **bittalab** chiqaradi. U ehtimollik bo'yicha tanlaydi (Kurs 2, Dars 07) va hech narsa uni to'g'ri juftlikni tanlashga majbur qilmaydi. Model `202` ni chiqarib, keyin `187` emas, boshqa tokenni chiqarishi mumkin."
+            },
+            {
+              "kind": "text",
+              "text": "**2. Oqim (streaming) paytida.** ChatGPT javobni yozayotganda harflar birin-ketin paydo bo'ladi — bu har bir yangi tokendan keyin matnni qayta dekodlash demak. Ba'zi lahzalarda qo'lingizda **yarim belgi** bo'ladi."
+            },
+            {
+              "kind": "text",
+              "text": "**3. Matn kesilganda.** Uzun matnni bo'laklarga bo'lganingizda kesish joyi belgining o'rtasiga tushishi mumkin."
+            },
+            {
+              "kind": "text",
+              "text": "**Uchala holatda ham dastur qulashi mumkin emas.** Foydalanuvchi chiroyli xabar olishi kerak, `UnicodeDecodeError` emas."
+            }
+          ]
+        },
+        {
+          "id": "7-yechim-errors-replace",
+          "title": "7. Yechim: `errors=\"replace\"`",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "def decode(ids, vocab):\n    qismlar = []\n    for tid in ids:\n        qismlar.append(vocab[tid])\n    baytlar = b\"\".join(qismlar)\n    return baytlar.decode(\"utf-8\", errors=\"replace\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Faqat bitta parametr qo'shildi. Sinaymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "print(repr(decode([202], vocab)))\nprint(repr(decode([270, 202], vocab)))\nprint(repr(decode([202, 187], vocab)))\nprint(repr(decode([111, 202, 187, 113], vocab)))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "'�'\n'bo�'\n'ʻ'\n'oʻq'"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "Yolg'iz `202` → `�`",
+                "`bo` + yarim belgi → `bo�`",
+                "`202` va `187` **birga** → to'g'ri `ʻ`",
+                "To'liq `oʻq` → to'g'ri"
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "**Dastur endi hech qachon qulamaydi.**"
+            },
+            {
+              "kind": "h3",
+              "id": "nima",
+              "text": "`�` nima?"
+            },
+            {
+              "kind": "code",
+              "code": "print(ord(\"\\ufffd\"), hex(ord(\"\\ufffd\")))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "65533 0xfffd"
+            },
+            {
+              "kind": "text",
+              "text": "Bu **U+FFFD**, maxsus Unicode belgisi. Rasmiy nomi — *replacement character*, \"almashtirish belgisi\". Uning yagona vazifasi: **\"bu yerda nimadir bor edi, lekin men uni o'qiy olmadim\"** deyish."
+            },
+            {
+              "kind": "text",
+              "text": "Siz uni internetda ko'rgansiz — buzilgan saytlarda, eski fayllarda. Endi bilasiz: u **xato belgisi emas**, u **xato haqidagi xabar**."
+            },
+            {
+              "kind": "media",
+              "id": "m1",
+              "title": "Yarim belgi"
+            },
+            {
+              "kind": "h3",
+              "id": "errors-ning-boshqa-qiymatlari",
+              "text": "`errors` ning boshqa qiymatlari"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Qiymat",
+                "Nima qiladi"
+              ],
+              "rows": [
+                [
+                  "`\"strict\"`",
+                  "**standart** — xato bersa, qulaydi"
+                ],
+                [
+                  "`\"replace\"`",
+                  "`�` qo'yadi va davom etadi"
+                ],
+                [
+                  "`\"ignore\"`",
+                  "buzuq baytni **jimgina tashlab yuboradi**"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "`\"ignore\"` ni ishlatmang. U muammoni yashiradi: matn \"toza\" ko'rinadi, lekin undan bo'laklar **ovozsiz** yo'qolgan bo'ladi. `\"replace\"` esa muammo borligini ko'rsatadi."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Umumiy qoida:** xatoni yashirmang — uni **ko'rinadigan** qiling."
+            }
+          ]
+        },
+        {
+          "id": "8-oqimni-koramiz",
+          "title": "8. Oqimni ko'ramiz",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi eng qiziq demo. Modelning matn yozishini taqlid qilamiz: tokenlarni bittalab qo'shib, har safar dekodlaymiz."
+            },
+            {
+              "kind": "code",
+              "code": "baytlar = kodla(\"oʻzbek\")\nprint(baytlar)\n\nyigilgan = []\nfor tid in baytlar:\n    yigilgan.append(tid)\n    print(f\"  {tid:4d} -> {decode(yigilgan, vocab)!r}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "[111, 202, 187, 122, 98, 101, 107]\n   111 -> 'o'\n   202 -> 'o�'\n   187 -> 'oʻ'\n   122 -> 'oʻz'\n    98 -> 'oʻzb'\n   101 -> 'oʻzbe'\n   107 -> 'oʻzbek'"
+            },
+            {
+              "kind": "text",
+              "text": "**Ikkinchi va uchinchi qatorga qarang.**"
+            },
+            {
+              "kind": "pre",
+              "text": "202 -> 'o�'      ← yarim belgi, ekranda � koʻrinadi\n187 -> 'oʻ'      ← juftlik toʻldi, belgi tiklandi"
+            },
+            {
+              "kind": "text",
+              "text": "Bir lahza uchun ekranda `�` turadi, keyin u `ʻ` ga aylanadi."
+            },
+            {
+              "kind": "text",
+              "text": "**Bu — haqiqiy hodisa.** Agar siz ChatGPT ga o'zbekcha savol berib, javobni diqqat bilan kuzatsangiz, ba'zan `ʻ` o'rnida bir lahza `�` yonib o'tishini ko'rishingiz mumkin. Endi nima uchun ekanini bilasiz."
+            },
+            {
+              "kind": "text",
+              "text": "Va `errors=\"replace\"` bo'lmasa — bu joyda butun dastur **qulab tushardi**."
+            },
+            {
+              "kind": "media",
+              "id": "m2",
+              "title": "Oqim"
+            }
+          ]
+        },
+        {
+          "id": "9-vocab-ni-merges-dan-tiklash",
+          "title": "9. `vocab` ni `merges` dan tiklash",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Oxirgi muhim narsa. Dars 10 da aytgan edim: **`merges` — butun tokenizator.** Buni endi isbotlaymiz."
+            },
+            {
+              "kind": "text",
+              "text": "Faylga saqlanadigan narsa — `merges`. `vocab` esa undan **qayta hisoblanadi**:"
+            },
+            {
+              "kind": "code",
+              "code": "def vocab_qur(merges):\n    vocab = {}\n    for i in range(256):\n        vocab[i] = bytes([i])\n\n    for juftlik, tid in merges.items():\n        vocab[tid] = vocab[juftlik[0]] + vocab[juftlik[1]]\n\n    return vocab",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Tekshiramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "v2 = vocab_qur(merges)\nprint(\"teng:\", v2 == vocab)\nprint(\"v2[257] =\", v2[257])\nprint(\"v2[275] =\", v2[275])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "teng: True\nv2[257] = b'lar'\nv2[275] = b'lalar '"
+            },
+            {
+              "kind": "text",
+              "text": "**Aynan bir xil.**"
+            },
+            {
+              "kind": "h3",
+              "id": "nima-uchun-bu-ishlaydi",
+              "text": "Nima uchun bu ishlaydi?"
+            },
+            {
+              "kind": "text",
+              "text": "Chunki Python lug'ati **qo'shilish tartibini saqlaydi**. `merges` ga qatorlar Dars 10 dagi tsiklda tartib bilan qo'shilgan edi — 256, 257, 258..."
+            },
+            {
+              "kind": "text",
+              "text": "Demak `for juftlik, tid in merges.items()` ham **o'sha tartibda** yuradi. Va `vocab[257] = vocab[256] + vocab[114]` hisoblanganda, `vocab[256]` allaqachon mavjud bo'ladi."
+            },
+            {
+              "kind": "text",
+              "text": "**Bu — Dars 10 dagi \"tartib zanjir\" g'oyasining amaliy natijasi.** Agar `merges` tartibsiz bo'lganida, bu funksiya `KeyError` bilan qulardi."
+            },
+            {
+              "kind": "text",
+              "text": "Va amaliy foyda: faylga faqat `merges` ni yozasiz (Dars 18). `vocab` — hosila, uni saqlash shart emas."
+            }
+          ]
+        },
+        {
+          "id": "10-muammo",
+          "title": "10. Muammo",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Yarim tokenizator tayyor:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "✓ `decode` — tokenlardan matnga",
+                "✗ `encode` — **yangi** matndan tokenlarga"
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Diqqat: `train` matnni kodladi, lekin **faqat o'z matnini**. Yangi jumla bersangiz — uni qayta ishlash kerak."
+            },
+            {
+              "kind": "text",
+              "text": "Va bu ko'rinishdan qiyinroq. Yangi matnni baytlarga aylantirish oson (`kodla`). Lekin keyin `merges` jadvalidagi birlashtirishlarni **qaysi tartibda** qo'llash kerak?"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 10 dagi zanjir esingizdami? `257 = (256, 114)`. Demak `257` ni yasashdan oldin `256` yasalgan bo'lishi shart."
+            },
+            {
+              "kind": "text",
+              "text": "Agar tartibni noto'g'ri qo'llasangiz — natija noto'g'ri tokenlar bo'ladi, va model ularni tanimaydi."
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi dars aynan shu haqda."
+            }
+          ]
+        },
+        {
+          "id": "11-toliq-kod",
+          "title": "11. To'liq kod",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "def decode(ids, vocab):\n    qismlar = []\n    for tid in ids:\n        qismlar.append(vocab[tid])\n    baytlar = b\"\".join(qismlar)\n    return baytlar.decode(\"utf-8\", errors=\"replace\")\n\n\ndef vocab_qur(merges):\n    vocab = {}\n    for i in range(256):\n        vocab[i] = bytes([i])\n    for juftlik, tid in merges.items():\n        vocab[tid] = vocab[juftlik[0]] + vocab[juftlik[1]]\n    return vocab\n\n\n# ---- Sinov ----\nmerges, vocab, tokenlar = train(matn, 276)\n\n# 1. Round-trip\nqayta = decode(tokenlar, vocab)\nprint(\"tokenlar:\", len(tokenlar), \"| round-trip:\", qayta == matn)\n\n# 2. Buzuq ketma-ketlik qulamaydi\nprint(repr(decode([202], vocab)))\nprint(repr(decode([270, 202], vocab)))\nprint(repr(decode([202, 187], vocab)))\n\n# 3. Oqim\nyigilgan = []\nfor tid in kodla(\"oʻzbek\"):\n    yigilgan.append(tid)\n    print(f\"  {tid:4d} -> {decode(yigilgan, vocab)!r}\")\n\n# 4. vocab ni merges dan tiklash\nprint(\"tiklandi:\", vocab_qur(merges) == vocab)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "tokenlar: 286 | round-trip: True\n'�'\n'bo�'\n'ʻ'\n   111 -> 'o'\n   202 -> 'o�'\n   187 -> 'oʻ'\n   122 -> 'oʻz'\n    98 -> 'oʻzb'\n   101 -> 'oʻzbe'\n   107 -> 'oʻzbek'\ntiklandi: True",
+              "label": "Kutilgan natija"
+            }
+          ]
+        },
+        {
+          "id": "12-ozingiz-yozing",
+          "title": "12. O'zingiz yozing",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "def decode(ids, vocab):\n    qismlar = ___                       # boʻsh roʻyxat\n    for tid in ids:\n        qismlar.append(vocab[___])      # tokenning baytlari\n    baytlar = ___.join(qismlar)         # bayt ajratgich\n    return baytlar.decode(\"utf-8\", ___=\"replace\")\n\n\n# Sinov — bu natijalarni olishingiz kerak:\nprint(decode([98, 111, 257], vocab))    # bolar\nprint(repr(decode([202], vocab)))       # '�'",
+              "lang": "python",
+              "mode": "template"
+            },
+            {
+              "kind": "reveal",
+              "summary": "Yechimni ko'rsatish",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "def decode(ids, vocab):\n    qismlar = []\n    for tid in ids:\n        qismlar.append(vocab[tid])\n    baytlar = b\"\".join(qismlar)\n    return baytlar.decode(\"utf-8\", errors=\"replace\")",
+                  "lang": "python",
+                  "mode": "static"
+                },
+                {
+                  "kind": "text",
+                  "text": "Ikkita eng ko'p xato:"
+                },
+                {
+                  "kind": "steps",
+                  "items": [
+                    "`\"\".join(...)` — `b` unutilgan. Natija: `TypeError: sequence item 0: expected str instance, bytes found`. Bo'sh **matn** bilan **baytlarni** birlashtirib bo'lmaydi.",
+                    "`errors=\"replace\"` ni tashlab ketish. Kod ishlaydi — to'g'ri ma'lumotda. Keyin bir kun model yarim belgi chiqaradi va hamma narsa to'xtaydi."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "13-mashqlar",
+          "title": "13. Mashqlar",
+          "blocks": [
+            {
+              "kind": "exercise",
+              "label": "Mashq 1",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`decode([], vocab)` nima qaytaradi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "print(repr(decode([], vocab)))    # ''",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Bo'sh matn."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`qismlar` bo'sh ro'yxat bo'lib qoladi, `b\"\".join([])` → `b\"\"`, `b\"\".decode()` → `\"\"`."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Hech qanday `if len(ids) == 0` tekshiruvi kerak emas — Dars 08 va 09 dagi kabi, yaxshi yozilgan kod chekka holatni o'zi hal qiladi."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 2",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Bu ikkisining farqi nima?"
+                },
+                {
+                  "kind": "code",
+                  "code": "a = decode([202, 187], vocab)\nb = decode([267], vocab)",
+                  "lang": "python",
+                  "mode": "type"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "print(repr(a), repr(b), a == b)    # 'ʻ' 'ʻ' True",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Bir xil matn, ikki xil yo'l.**"
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "`[202, 187]` — ikkita bayt-token, dekodlashda birlashib `ʻ` beradi",
+                      "`[267]` — bitta BPE token, uning ichida allaqachon ikkala bayt bor"
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`decode` uchun farq yo'q — u baytlarni yig'ib, keyin bir marta dekodlaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Lekin model uchun farq katta:** birinchisi 2 token, ikkinchisi 1 token. Aynan shu farq `fertility` ni tashkil qiladi."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 3",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Nima uchun bu xato beradi?"
+                },
+                {
+                  "kind": "code",
+                  "code": "print(decode([99999], vocab))",
+                  "lang": "python",
+                  "mode": "type"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "output",
+                    "text": "KeyError: 99999",
+                    "error": true
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`vocab` da bunday kalit yo'q — bizning lug'atimizda 0 dan 275 gacha tokenlar bor."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Bu qachon sodir bo'ladi? Agar:"
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "model boshqa lug'at bilan o'qitilgan bo'lsa",
+                      "token ro'yxati boshqa tokenizatordan kelgan bo'lsa",
+                      "kodda xato bo'lsa"
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Bu yerda `errors=\"replace\"` yordam bermaydi** — u faqat UTF-8 dekodlash xatosini hal qiladi, `vocab` dagi yo'q kalitni emas."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Haqiqiy tokenizatorlar bunday holat uchun tekshiruv qo'shadi. Dars 18 da klassni yozganingizda buni qo'shishingiz mumkin."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 4",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`errors=\"ignore\"` bilan sinab ko'ring va nima uchun u yomonroq ekanini ayting."
+                },
+                {
+                  "kind": "code",
+                  "code": "print(repr(bytes([98, 111, 202]).decode(\"utf-8\", errors=\"ignore\")))\nprint(repr(bytes([98, 111, 202]).decode(\"utf-8\", errors=\"replace\")))",
+                  "lang": "python",
+                  "mode": "type"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "output",
+                    "text": "'bo'\n'bo�'"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`\"ignore\"` buzuq baytni **jimgina o'chirib tashladi**. Natija toza ko'rinadi — `'bo'` — va hech kim u yerda nimadir yo'qolganini bilmaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`\"replace\"` esa `�` qoldirdi: **\"bu yerda muammo bor\"**."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Nima uchun bu muhim: tasavvur qiling, siz 100 MB korpusni tozalayapsiz va `\"ignore\"` ishlatdingiz. Fayl \"toza\" chiqadi. Lekin undan minglab belgi ovozsiz yo'qolgan bo'ladi, va siz buni **hech qachon bilmaysiz**."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`\"replace\"` bilan esa `�` larni sanab, muammo qanchalik katta ekanini o'lchay olasiz:"
+                  },
+                  {
+                    "kind": "code",
+                    "code": "print(matn.count(\"\\ufffd\"))",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Dars 15 da korpusni tozalaganingizda aynan shunday qilasiz.**"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 5 (eng muhimi)",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`merges` ni **teskari tartibda** aylanib `vocab` qurishga urining. Nima bo'ladi va nima uchun?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "def vocab_qur_teskari(merges):\n    vocab = {}\n    for i in range(256):\n        vocab[i] = bytes([i])\n    juftliklar = list(merges.items())\n    i = len(juftliklar) - 1\n    while i >= 0:\n        juftlik, tid = juftliklar[i]\n        vocab[tid] = vocab[juftlik[0]] + vocab[juftlik[1]]\n        i -= 1\n    return vocab\n\n\nvocab_qur_teskari(merges)",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "KeyError: 256",
+                    "error": true
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Teskari tartibda birinchi bo'lib `275 = (256, 261)` hisoblanadi. Lekin `vocab[256]` hali mavjud emas — u eng oxirida hisoblanardi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Bu Dars 10 dagi minora tajribasining kod ko'rinishi.** Pastdagi g'ishtni olib tashlasangiz, ustidagi hammasi qulaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Amaliy xulosa: `merges` ni faylga saqlaganingizda **tartibni saqlash shart**. Agar uni tartibsiz formatda (masalan oddiy JSON obyekti sifatida, tartib kafolatisiz) saqlasangiz, yuklashda tokenizator buziladi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Dars 18 da saqlash formatini tanlaganingizda buni yodda tuting."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "14-xulosa",
+          "title": "14. Xulosa",
+          "blocks": [
+            {
+              "kind": "steps",
+              "items": [
+                "`decode` uch qadam: `vocab` dan baytlarni ol → birlashtir → `.decode(\"utf-8\")`.",
+                "**Round-trip** — `decode(tokenlar) == matn` — tokenizatorning asosiy sinovi. Bir qator, hamma narsani tekshiradi.",
+                "`b\"\".join(roʻyxat)` — `+=` dan **o'nlab barobar** tez, va farq matn uzayishi bilan **o'sib boradi**. Tsikl ichida `+=` bilan yig'manglar.",
+                "Yarim belgi real muammo: model generatsiyasi, oqim, matn kesish.",
+                "`errors=\"replace\"` dasturning qulashini oldini oladi va `�` (U+FFFD) qoldiradi.",
+                "`errors=\"ignore\"` ishlatmang — u muammoni **yashiradi**.",
+                "`vocab` ni `merges` dan to'liq tiklash mumkin, chunki `merges` tartib saqlaydi."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "keyingi-dars",
+          "title": "Keyingi dars",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "`decode` tayyor. Endi teskarisi."
+            },
+            {
+              "kind": "text",
+              "text": "**Dars 12 — `encode`.** Yangi matnni tokenlarga aylantirish. Bu `decode` dan ancha qiyinroq, chunki birlashtirishlarni **to'g'ri tartibda** qo'llash kerak."
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi darsning savoli: *matnda `(108, 97)` va `(256, 114)` juftliklari bor. Qaysi birini birinchi birlashtirasiz — va nima uchun bu muhim?*"
+            }
+          ]
+        }
+      ],
+      "exercises": [],
+      "needs": "Dars 01–10. `vocab`, `merges`, `train`"
+    },
+    {
+      "id": "dars-12",
+      "n": 12,
+      "title": "encode: matndan raqamga",
+      "subtitle": "",
+      "minutes": 55,
+      "status": "ready",
+      "intro": [],
+      "sections": [
+        {
+          "id": "bu-darsdan-keyin-siz",
+          "title": "Bu darsdan keyin siz...",
+          "blocks": [
+            {
+              "kind": "bullets",
+              "items": [
+                "**yozasiz** `encode` — **yangi** matnni tokenlarga aylantiradigan funksiya;",
+                "**isbotlaysiz** birlashtirish tartibi nima uchun buzilmasligi kerakligini;",
+                "**bilasiz** `float(\"inf\")` nima va u qanday qilib \"hech qachon tanlanma\" deyishini;",
+                "**o'lchaysiz** ikki xil yozilgan bir xil funksiyaning **378 barobar** farqini;",
+                "**ko'rasiz** tokenizatoringizning **haqiqiy** fertility raqamini — o'qimagan matnda."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Tokenizator shu darsdan keyin **to'liq ishlaydi**."
+            }
+          ]
+        },
+        {
+          "id": "1-bitta-savol",
+          "title": "1. Bitta savol",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 11 oxirida savol qoldirgan edim:"
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Matnda `(108, 97)` va `(256, 114)` juftliklari bor. Qaysi birini birinchi birlashtirasiz — va nima uchun bu muhim?"
+            },
+            {
+              "kind": "text",
+              "text": "Sinab ko'ramiz. Bizda ikkita birlashtirish bor:"
+            },
+            {
+              "kind": "code",
+              "code": "kichik_merges = {(108, 97): 256, (256, 114): 257}",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Ya'ni: `l + a → la` (256), keyin `la + r → lar` (257)."
+            },
+            {
+              "kind": "text",
+              "text": "`\"lar\"` so'zini kodlaymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "t = kodla(\"lar\")\nprint(\"baytlar:\", t)\n\n# toʻgʻri tartib\na = merge(t, (108, 97), 256)\na = merge(a, (256, 114), 257)\nprint(\"toʻgʻri tartib :\", a)\n\n# teskari tartib\nb = merge(t, (256, 114), 257)\nb = merge(b, (108, 97), 256)\nprint(\"teskari tartib :\", b)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "baytlar: [108, 97, 114]\ntoʻgʻri tartib : [257]\nteskari tartib : [256, 114]"
+            },
+            {
+              "kind": "text",
+              "text": "**Ikki xil natija.**"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "To'g'ri tartib: **1 ta token** — `257` = `lar`",
+                "Teskari tartib: **2 ta token** — `256` va `114`"
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Nima bo'ldi? Teskari tartibda biz avval `(256, 114)` ni qidirdik. Lekin o'sha paytda `256` degan token hali **mavjud emas** edi — u keyin yasaladi. Shuning uchun hech narsa topilmadi, va o'sha birlashtirish bekorga ketdi."
+            },
+            {
+              "kind": "text",
+              "text": "**Ikkita oqibat, ikkalasi ham yomon:**"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "**Siqilish yomonlashdi** — 1 o'rniga 2 token.",
+                "**Model tanimaydi.** Model `257` tokenini ko'rgan va o'rgangan. Siz unga `256, 114` bersangiz — bu u uchun butunlay boshqa narsa."
+              ]
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Qoida: kodlashda birlashtirishlar aynan o'qitilgan tartibda qo'llanilishi shart.** Bu — Dars 10 dagi minora va Dars 11 dagi `KeyError` bilan bir xil g'oya, uchinchi marta."
+            },
+            {
+              "kind": "media",
+              "id": "n1",
+              "title": "Tartib"
+            }
+          ]
+        },
+        {
+          "id": "2-eng-oddiy-encode",
+          "title": "2. Eng oddiy `encode`",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Tartib muhim bo'lsa, eng sodda yechim — **hamma birlashtirishni tartib bilan qo'llash**:"
+            },
+            {
+              "kind": "code",
+              "code": "def encode_oddiy(matn, merges):\n    tokenlar = kodla(matn)\n    for juftlik, tid in merges.items():\n        tokenlar = merge(tokenlar, juftlik, tid)\n    return tokenlar",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Uch qator. Trening tsiklida nima qilgan bo'lsak — aynan shuni takrorlaymiz, faqat endi sanash yo'q, chunki qaysi juftlikni birlashtirishni allaqachon bilamiz."
+            },
+            {
+              "kind": "text",
+              "text": "`merges.items()` **qo'shilish tartibida** yuradi (Dars 11), demak 256, 257, 258... tartibida. Aynan kerakli tartib."
+            },
+            {
+              "kind": "code",
+              "code": "print(encode_oddiy(\"bolalar\", merges))\nprint(encode_oddiy(\"lar\", kichik_merges))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "[270, 256, 257]\n[257]"
+            },
+            {
+              "kind": "text",
+              "text": "`bolalar` = `bo` + `la` + `lar` — **3 ta token** (bayt darajasida 7 ta edi)."
+            }
+          ]
+        },
+        {
+          "id": "3-eng-muhim-tekshiruv",
+          "title": "3. Eng muhim tekshiruv",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "`encode` to'g'ri ishlayotganini qanday bilamiz?"
+            },
+            {
+              "kind": "text",
+              "text": "Javob: **u `train` bilan bir xil natija berishi shart.** `train` o'z matnini kodlagan edi; `encode` xuddi shu matnni bersak, xuddi shu tokenlarni berishi kerak."
+            },
+            {
+              "kind": "code",
+              "code": "e = encode_oddiy(matn, merges)\nprint(\"encode:\", len(e), \"| train:\", len(tokenlar), \"| teng:\", e == tokenlar)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "encode: 286 | train: 286 | teng: True"
+            },
+            {
+              "kind": "text",
+              "text": "**Bu sinovni har doim qiling.** Agar bu `False` bo'lsa, `encode` da xato bor — va u jimgina noto'g'ri tokenlar chiqaradi, hech qanday xatosiz."
+            },
+            {
+              "kind": "text",
+              "text": "Endi to'liq aylanma:"
+            },
+            {
+              "kind": "code",
+              "code": "yangi = \"Talabalar universitetga kirishdi va imtihonlarni topshirishdi.\"\n\nte = encode_oddiy(yangi, merges)\nprint(\"tokenlar:\", len(te))\nprint(\"round-trip:\", decode(te, vocab) == yangi)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "tokenlar: 41\nround-trip: True"
+            },
+            {
+              "kind": "text",
+              "text": "**Tokenizator to'liq ishlaydi.** Matn → tokenlar → matn, hech narsa yo'qolmaydi. Va bu **yangi** matn — tokenizator uni hech qachon ko'rmagan."
+            }
+          ]
+        },
+        {
+          "id": "4-qaysi-tokenlar-ishladi",
+          "title": "4. Qaysi tokenlar ishladi?",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Qiziq: o'rgangan tokenlarimizdan qaysilari yangi matnda foydali bo'ldi?"
+            },
+            {
+              "kind": "code",
+              "code": "for tid in te[:14]:\n    print(f\"  {tid:4d} = {vocab[tid]!r}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "    84 = b'T'\n    97 = b'a'\n   256 = b'la'\n    98 = b'b'\n    97 = b'a'\n   261 = b'lar '\n   117 = b'u'\n   110 = b'n'\n   105 = b'i'\n   118 = b'v'\n   101 = b'e'\n   114 = b'r'\n   115 = b's'\n   105 = b'i'"
+            },
+            {
+              "kind": "text",
+              "text": "`Talabalar ` so'zi shunday bo'lindi:"
+            },
+            {
+              "kind": "pre",
+              "text": "T  a  la  b  a  \"lar \"\n84 97 256 98 97  261"
+            },
+            {
+              "kind": "text",
+              "text": "**Olti token.** Ikkitasi o'rgangan tokenimiz (`la`, `lar `), qolgani oddiy harflar."
+            },
+            {
+              "kind": "text",
+              "text": "`universitetga` so'ziga qarang — u deyarli butunlay **harflarga** bo'lindi. Sabab oddiy: bizning o'quv matnimizda `universitet` degan so'z yo'q edi, shuning uchun tokenizator u haqda hech narsa bilmaydi."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Xulosa:** tokenizator faqat **ko'rgan** narsasini yaxshi kodlaydi. Shuning uchun o'quv korpusi keng va xilma-xil bo'lishi kerak (Dars 15)."
+            }
+          ]
+        },
+        {
+          "id": "5-haqiqiy-raqam",
+          "title": "5. Haqiqiy raqam",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi Dars 10 dagi muammoga qaytamiz. U yerda fertility ni **o'qigan matnda** o'lchagan edik va u yolg'on chiqqan edi."
+            },
+            {
+              "kind": "text",
+              "text": "Endi ikkalasini ham o'lchaymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "w1 = len(matn.split())\nw2 = len(yangi.split())\n\nprint(\"oʻqigan matn:\", round(len(e) / w1, 3))\nprint(\"yangi matn  :\", round(len(te) / w2, 3))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "oʻqigan matn: 5.396\nyangi matn  : 6.833"
+            },
+            {
+              "kind": "text",
+              "text": "**Yangi matnda natija yomonroq.** 5.396 emas, **6.833**."
+            },
+            {
+              "kind": "text",
+              "text": "Bu normal va kutilgan. Tokenizator o'z matniga **moslashgan** — u `bolalar`, `oʻqishdi`, `maktabga` ni yaxshi biladi, chunki ularni ko'rgan. `universitetga` va `imtihonlarni` ni esa bilmaydi."
+            },
+            {
+              "kind": "text",
+              "text": "**Qaysi raqam haqiqiy?** — **6.833.**"
+            },
+            {
+              "kind": "text",
+              "text": "Chunki tokenizatorni siz yangi matnlarda ishlatasiz, o'z o'quv matningizda emas."
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Bu qoidani hozir yozib qo'ying, chunki u butun ML sohasida bir xil ishlaydi: **Modelni (yoki tokenizatorni) o'qitgan ma'lumotingizda baholamang. Ko'rmagan ma'lumotda baholang.** Dars 17 shu qoidani to'liq ochadi — va u yerda buni qanday **to'g'ri** qilishni ko'rsataman, chunki uni buzish o'ylaganingizdan ancha oson."
+            }
+          ]
+        },
+        {
+          "id": "6-tezlik-muammosi",
+          "title": "6. Tezlik muammosi",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "`encode_oddiy` to'g'ri ishlaydi. Lekin unda jiddiy kamchilik bor."
+            },
+            {
+              "kind": "text",
+              "text": "O'ylab ko'ring: qisqa jumla kodlash uchun u **hamma** birlashtirishni qo'llaydi. Sizning tokenizatoringizda 16 128 ta birlashtirish bor. Demak ikki so'zlik jumla uchun ham **16 128 marta** matn bo'ylab yuriladi."
+            },
+            {
+              "kind": "text",
+              "text": "Ularning deyarli hammasi hech narsa topmaydi — bekor ish."
+            },
+            {
+              "kind": "text",
+              "text": "O'lchaymiz. `\"Bolalar keldi.\"` jumlasini 1000 marta kodlaymiz, turli hajmdagi `merges` bilan:"
+            },
+            {
+              "kind": "pre",
+              "text": "merges | encode_oddiy | tez usul | farq\n    20 |      0.014 s |  0.023 s |    1x\n   500 |      0.277 s |  0.026 s |   11x\n  4000 |      2.232 s |  0.024 s |   94x\n 16128 |      8.851 s |  0.023 s |  378x"
+            },
+            {
+              "kind": "text",
+              "text": "Uchta narsaga e'tibor bering:"
+            },
+            {
+              "kind": "text",
+              "text": "**1. `encode_oddiy` ning vaqti `merges` hajmiga qarab chiziqli o'sadi.** 20 → 16 128 (800 barobar) bo'lganda vaqt ham taxminan 600 barobar oshdi."
+            },
+            {
+              "kind": "text",
+              "text": "**2. Tez usulning vaqti umuman o'zgarmadi.** 0.023–0.026 soniya, doim. Chunki u faqat **matnda haqiqatan bor** juftliklarga qaraydi, va matn qisqa."
+            },
+            {
+              "kind": "text",
+              "text": "**3. 20 ta birlashtirishda oddiy usul tezroq!** Bu halol detal: tez usulda qo'shimcha hisob bor (`get_stats` har qadamda), va kichik jadvalda u o'zini oqlamaydi."
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Bu — dasturlashdagi muhim saboq: **\"tezroq algoritm\" har doim tezroq emas.** U ma'lum hajmdan keyin tezroq bo'ladi. Qaysi hajmdan — o'lchab bilish kerak."
+            },
+            {
+              "kind": "text",
+              "text": "Bizning holatda hajm 16 384 bo'ladi, shuning uchun tez usul kerak."
+            },
+            {
+              "kind": "media",
+              "id": "n3",
+              "title": "Ikki yoʻl"
+            }
+          ]
+        },
+        {
+          "id": "7-float-inf-cheksizlik",
+          "title": "7. `float(\"inf\")` — cheksizlik",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Tez usulni yozishdan oldin bitta yangi narsa kerak."
+            },
+            {
+              "kind": "code",
+              "code": "print(float(\"inf\"))\nprint(5 < float(\"inf\"))\nprint(999999999 < float(\"inf\"))\nprint(float(\"inf\") < float(\"inf\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "inf\nTrue\nTrue\nFalse"
+            },
+            {
+              "kind": "text",
+              "text": "`float(\"inf\")` — **cheksizlik**. Python'dagi har qanday sondan katta."
+            },
+            {
+              "kind": "text",
+              "text": "Nima uchun kerak? **Eng kichigini topish** uchun."
+            },
+            {
+              "kind": "text",
+              "text": "Dars 04 dagi eng kattasini topish naqshini eslang:"
+            },
+            {
+              "kind": "pre",
+              "text": "eng = None\neng_soni = 0                       # eng kichik boshlangʻich qiymat\nfor ...:\n    if soni > eng_soni:            # kattaroqmi?"
+            },
+            {
+              "kind": "text",
+              "text": "`0` dan boshlagan edik, chunki har qanday haqiqiy sanoq undan katta."
+            },
+            {
+              "kind": "text",
+              "text": "Endi bizga **teskarisi** kerak: eng kichik raqamli birlashtirishni topish."
+            },
+            {
+              "kind": "pre",
+              "text": "eng = None\neng_raqam = float(\"inf\")           # eng katta boshlangʻich qiymat\nfor ...:\n    if raqam < eng_raqam:          # kichikroqmi?"
+            },
+            {
+              "kind": "text",
+              "text": "**Bir xil naqsh, teskari yo'nalish.** Va boshlang'ich qiymat ham teskari: maksimum uchun `0`, minimum uchun `cheksizlik`."
+            },
+            {
+              "kind": "text",
+              "text": "Agar `eng_raqam = 999999` deb boshlaganimizda, 999999 dan katta token raqami bo'lsa xato chiqardi. `inf` esa **kafolatlangan**."
+            },
+            {
+              "kind": "h3",
+              "id": "va-ikkinchi-vazifa",
+              "text": "Va ikkinchi vazifa"
+            },
+            {
+              "kind": "text",
+              "text": "`float(\"inf\")` bizga yana bir ish qiladi. Agar juftlik `merges` da **yo'q** bo'lsa:"
+            },
+            {
+              "kind": "code",
+              "code": "raqam = merges.get(juftlik, float(\"inf\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "`.get(kalit, standart)` (Dars 04) — juftlik topilmasa, `inf` qaytadi. Va `inf` hech qachon \"eng kichik\" bo'la olmaydi."
+            },
+            {
+              "kind": "text",
+              "text": "Ya'ni **\"bu juftlik o'rganilmagan, uni hech qachon tanlama\"** degan ma'no. Bitta qiymat, ikkita vazifa."
+            },
+            {
+              "kind": "media",
+              "id": "n2",
+              "title": "Cheksizlik"
+            }
+          ]
+        },
+        {
+          "id": "8-tez-encode",
+          "title": "8. Tez `encode`",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "def encode(matn, merges):\n    tokenlar = kodla(matn)\n\n    while len(tokenlar) >= 2:\n        stats = get_stats(tokenlar)\n\n        eng_juftlik = None\n        eng_raqam = float(\"inf\")\n        for juftlik in stats:\n            raqam = merges.get(juftlik, float(\"inf\"))\n            if raqam < eng_raqam:\n                eng_raqam = raqam\n                eng_juftlik = juftlik\n\n        if eng_juftlik is None:\n            break\n\n        tokenlar = merge(tokenlar, eng_juftlik, merges[eng_juftlik])\n\n    return tokenlar",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "**Qatorma-qator:**"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`while len(tokenlar) >= 2` — juftlik uchun kamida ikkita token kerak. Bitta token qolsa, ish tugadi.",
+                "`stats = get_stats(tokenlar)` — matnda **hozir** qanday juftliklar bor. Diqqat: bizga sanoq kerak emas, faqat **qaysi juftliklar borligi**. Shuning uchun `for juftlik in stats` — qiymatlarsiz, faqat kalitlar bo'ylab.",
+                "Min-topish naqshi — 7-bo'limdagi.",
+                "`if eng_juftlik is None: break` — hech bir juftlik `merges` da yo'q. Hammasi `inf` bo'ldi, va `inf < inf` yolg'on (7-bo'limga qarang), shuning uchun `eng_juftlik` `None` bo'lib qoldi. To'xtaymiz.",
+                "`merge(...)` — eng erta o'rganilgan juftlikni birlashtiramiz."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "**G'oya:** har qadamda \"mavjud juftliklar ichidan **eng erta o'rganilganini** birlashtir\". Bu tartibni avtomatik to'g'ri saqlaydi."
+            },
+            {
+              "kind": "h3",
+              "id": "tekshiramiz",
+              "text": "Tekshiramiz"
+            },
+            {
+              "kind": "code",
+              "code": "print(encode(\"bolalar\", merges))\nprint(\"oddiy bilan teng:\", encode(matn, merges) == encode_oddiy(matn, merges))\nprint(\"train bilan teng:\", encode(matn, merges) == tokenlar)\nprint(\"yangi matn teng :\", encode(yangi, merges) == encode_oddiy(yangi, merges))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "[270, 256, 257]\noddiy bilan teng: True\ntrain bilan teng: True\nyangi matn teng : True"
+            },
+            {
+              "kind": "text",
+              "text": "**Uchala sinov ham o'tdi.** Ikki xil yozilgan funksiya, bir xil natija, 378 barobar tezlik farqi."
+            }
+          ]
+        },
+        {
+          "id": "9-chekka-holatlar-va-boshqa-tillar",
+          "title": "9. Chekka holatlar va boshqa tillar",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "print(encode(\"\", merges))\nprint(encode(\"a\", merges))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "[]\n[97]"
+            },
+            {
+              "kind": "text",
+              "text": "Bo'sh matn — bo'sh ro'yxat. Bitta harf — bitta token, `while` sharti darhol yolg'on bo'ladi."
+            },
+            {
+              "kind": "text",
+              "text": "Boshqa tillarda:"
+            },
+            {
+              "kind": "code",
+              "code": "for s in [\"hello world\", \"привет мир\", \"你好\"]:\n    tk = encode(s, merges)\n    print(f\"  {s!r:15s} -> {len(tk):3d} token | round-trip: {decode(tk, vocab) == s}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  'hello world'   ->  11 token | round-trip: True\n  'привет мир'    ->  19 token | round-trip: True\n  '你好'            ->   6 token | round-trip: True"
+            },
+            {
+              "kind": "text",
+              "text": "**Hammasi ishlaydi.** Tokenizator o'zbek matnida o'qitilgan, lekin xitoy matnini ham buzilmasdan kodlaydi — chunki u **bayt darajasida** ishlaydi (Dars 06)."
+            },
+            {
+              "kind": "text",
+              "text": "Yaxshi kodlaydimi? Yo'q — `你好` ikkita belgi uchun 6 token. Lekin **qulamaydi**, va round-trip to'g'ri. Dars 06 dagi va'da bajarildi: `<UNK>` degan narsa yo'q."
+            }
+          ]
+        },
+        {
+          "id": "10-muammo",
+          "title": "10. Muammo",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Tokenizator ishlaydi. Endi uning **sifatiga** qaraymiz."
+            },
+            {
+              "kind": "text",
+              "text": "4-bo'limdagi jadvalga qayting. 261-token — `b'lar '`, oxirida **bo'shliq bilan**."
+            },
+            {
+              "kind": "text",
+              "text": "Bu nimani anglatadi:"
+            },
+            {
+              "kind": "code",
+              "code": "print(\"bolalar keldi  :\", encode(\"bolalar keldi\", merges))\nprint(\"bolalar, keldi :\", encode(\"bolalar, keldi\", merges))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "bolalar keldi  : [270, 275, 107, 101, 108, 259]\nbolalar, keldi : [270, 256, 257, 44, 32, 107, 101, 108, 259]"
+            },
+            {
+              "kind": "text",
+              "text": "**6 token va 9 token.** Bitta vergul uchta qoʻshimcha token turdi."
+            },
+            {
+              "kind": "text",
+              "text": "Faqat `bolalar` qismini ajratamiz:"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Matn",
+                "Tokenlar",
+                "Soni"
+              ],
+              "rows": [
+                [
+                  "`bolalar `",
+                  "`bo` + `lalar `",
+                  "**2**"
+                ],
+                [
+                  "`bolalar,`",
+                  "`bo` + `la` + `lar` + `,` + `␣`",
+                  "**5**"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Birinchisida 275-token (`lalar `) ishladi — u boʻshliq bilan tugaydi. Ikkinchisida boʻshliq oʻrniga vergul turibdi, shuning uchun u **umuman ishlamaydi**, va soʻz mayda boʻlaklarga tarqab ketadi."
+            },
+            {
+              "kind": "text",
+              "text": "**Bitta so'z, ikki xil kodlash.** Va lug'atda ikkala variant uchun alohida token kerak bo'ladi."
+            },
+            {
+              "kind": "text",
+              "text": "Dars 10 dagi 300-tokenni ham eslang: `b'maktabga borishdi. U'` — uchta so'z, nuqta va keyingi so'zning boshi, bitta tokenda."
+            },
+            {
+              "kind": "text",
+              "text": "**Muammoning ildizi:** BPE ga hech kim \"so'z chegarasidan o'tma\" demagan. U bo'shliqni ham oddiy bayt deb biladi (Dars 05: `ord(\" \")` = 32)."
+            },
+            {
+              "kind": "text",
+              "text": "Bu lug'at joyini isrof qiladi:"
+            },
+            {
+              "kind": "pre",
+              "text": "\"bolalar \"   \"bolalar,\"   \"bolalarni\"   \"bolalar.\""
+            },
+            {
+              "kind": "text",
+              "text": "To'rtta alohida token — bitta so'z uchun."
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi dars shu muammoni hal qiladi."
+            }
+          ]
+        },
+        {
+          "id": "11-toliq-kod",
+          "title": "11. To'liq kod",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "def encode(matn, merges):\n    tokenlar = kodla(matn)\n\n    while len(tokenlar) >= 2:\n        stats = get_stats(tokenlar)\n\n        eng_juftlik = None\n        eng_raqam = float(\"inf\")\n        for juftlik in stats:\n            raqam = merges.get(juftlik, float(\"inf\"))\n            if raqam < eng_raqam:\n                eng_raqam = raqam\n                eng_juftlik = juftlik\n\n        if eng_juftlik is None:\n            break\n\n        tokenlar = merge(tokenlar, eng_juftlik, merges[eng_juftlik])\n\n    return tokenlar\n\n\n# ---- Sinovlar ----\nmerges, vocab, tokenlar = train(matn, 276)\n\n# 1. train bilan mos keladimi\nprint(\"train bilan teng:\", encode(matn, merges) == tokenlar)\n\n# 2. Yangi matnda round-trip\nyangi = \"Talabalar universitetga kirishdi va imtihonlarni topshirishdi.\"\nte = encode(yangi, merges)\nprint(\"tokenlar:\", len(te), \"| round-trip:\", decode(te, vocab) == yangi)\n\n# 3. Haqiqiy fertility\nprint(\"oʻqigan matn:\", round(len(tokenlar) / len(matn.split()), 3))\nprint(\"yangi matn  :\", round(len(te) / len(yangi.split()), 3))\n\n# 4. Chekka holatlar\nprint(encode(\"\", merges), encode(\"a\", merges))\n\n# 5. Boshqa tillar\nfor s in [\"hello world\", \"привет мир\", \"你好\"]:\n    tk = encode(s, merges)\n    print(f\"  {s!r:15s} -> {len(tk):3d} token | round-trip: {decode(tk, vocab) == s}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "train bilan teng: True\ntokenlar: 41 | round-trip: True\noʻqigan matn: 5.396\nyangi matn  : 6.833\n[] [97]\n  'hello world'   ->  11 token | round-trip: True\n  'привет мир'    ->  19 token | round-trip: True\n  '你好'            ->   6 token | round-trip: True",
+              "label": "Kutilgan natija"
+            }
+          ]
+        },
+        {
+          "id": "12-ozingiz-yozing",
+          "title": "12. O'zingiz yozing",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "def encode(matn, merges):\n    tokenlar = ___(matn)\n\n    while len(tokenlar) >= ___:\n        stats = ___(tokenlar)\n\n        eng_juftlik = ___\n        eng_raqam = float(___)\n        for juftlik in stats:\n            raqam = merges.___(juftlik, float(\"inf\"))\n            if raqam ___ eng_raqam:\n                eng_raqam = ___\n                eng_juftlik = ___\n\n        if eng_juftlik ___ None:\n            break\n\n        tokenlar = ___(tokenlar, eng_juftlik, merges[___])\n\n    return tokenlar",
+              "lang": "python",
+              "mode": "template"
+            },
+            {
+              "kind": "reveal",
+              "summary": "Yechimni ko'rsatish",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "def encode(matn, merges):\n    tokenlar = kodla(matn)\n\n    while len(tokenlar) >= 2:\n        stats = get_stats(tokenlar)\n\n        eng_juftlik = None\n        eng_raqam = float(\"inf\")\n        for juftlik in stats:\n            raqam = merges.get(juftlik, float(\"inf\"))\n            if raqam < eng_raqam:\n                eng_raqam = raqam\n                eng_juftlik = juftlik\n\n        if eng_juftlik is None:\n            break\n\n        tokenlar = merge(tokenlar, eng_juftlik, merges[eng_juftlik])\n\n    return tokenlar",
+                  "lang": "python",
+                  "mode": "static"
+                },
+                {
+                  "kind": "text",
+                  "text": "Uchta eng ko'p xato:"
+                },
+                {
+                  "kind": "steps",
+                  "items": [
+                    "`if raqam > eng_raqam` — **eng kattasini** izlash. Natija: teskari tartib, 1-bo'limdagi muammo.",
+                    "`eng_raqam = 0` — `inf` o'rniga nol. Unda hech qachon hech narsa tanlanmaydi (`raqam < 0` hech qachon rost bo'lmaydi), va funksiya baytlarni o'zgarishsiz qaytaradi. **Xato bermaydi** — shunchaki hech narsa qilmaydi.",
+                    "`while len(tokenlar) >= 1` — bitta token qolganda `get_stats` bo'sh qaytaradi, `eng_juftlik` `None` bo'ladi, `break` ishlaydi. Ya'ni bu xato **ishlaydi**, lekin bitta ortiqcha aylanish qiladi."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "13-mashqlar",
+          "title": "13. Mashqlar",
+          "blocks": [
+            {
+              "kind": "exercise",
+              "label": "Mashq 1",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`encode(\"la\", merges)` va `encode(\"lar\", merges)` nima qaytaradi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "print(encode(\"la\", merges))    # [256]\nprint(encode(\"lar\", merges))   # [257]",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`la` → 256 (bitta token), `lar` → 257 (bitta token)."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Diqqat: `lar` **ikkita** birlashtirish natijasi (`l+a`, keyin `la+r`), lekin oxirida bitta token."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Uch harf → bitta token. Bu aynan biz xohlagan narsa."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 2",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Nima uchun bu ikkisi har xil?"
+                },
+                {
+                  "kind": "code",
+                  "code": "print(len(encode(\"bolalar\", merges)))\nprint(len(encode(\"Bolalar\", merges)))",
+                  "lang": "python",
+                  "mode": "type"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "output",
+                    "text": "3\n4"
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "`bolalar` → `[270, 256, 257]` = `bo` + `la` + `lar`",
+                      "`Bolalar` → `[66, 111, 256, 257]` = `B` + `o` + `la` + `lar`"
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Katta `B` (66) va kichik `b` (98) — **boshqa baytlar** (Dars 05). Tokenizator `bo` juftligini o'rgangan, `Bo` ni esa o'rganmagan (matnda u kamroq uchragan)."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Shuning uchun katta harfli so'z bitta token ko'proq turadi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Amaliy xulosa:** agar matnni oldindan kichik harfga o'tkazsangiz (`.lower()`), lug'at joyi tejaladi. Lekin unda model katta harflarni umuman yo'qotadi. Bu — haqiqiy tanlov, va ikkala yo'lning ham narxi bor."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 3",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`merges` ni bo'sh lug'at qilib `encode` ga bering. Nima bo'ladi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "print(encode(\"bolalar\", {}))",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "[98, 111, 108, 97, 108, 97, 114]"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Sof baytlar — Dars 07 dagi tokenizator."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Nima bo'ldi: `merges.get(juftlik, float(\"inf\"))` hamma juftlik uchun `inf` qaytardi. `inf < inf` yolg'on, shuning uchun `eng_juftlik` `None` bo'lib qoldi va birinchi aylanishdayoq `break` ishladi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Bu — to'g'ri xulq.** Birlashtirish yo'q bo'lsa, natija bayt darajasida bo'lishi kerak. Va hech qanday maxsus tekshiruv yozmadik — `inf` o'zi hal qildi."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 4",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`encode` ni ikki marta ketma-ket qo'llasangiz nima bo'ladi?"
+                },
+                {
+                  "kind": "code",
+                  "code": "a = encode(\"bolalar\", merges)\nb = encode(decode(a, vocab), merges)\nprint(a == b)",
+                  "lang": "python",
+                  "mode": "type"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "output",
+                    "text": "True"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`encode` → `decode` → `encode` bir xil natija beradi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Bu **barqarorlik** (idempotence) deb ataladi va u muhim xususiyat: matnni kodlab, dekodlab, qayta kodlasangiz — hech narsa o'zgarmaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Agar bu `False` bo'lsa, tokenizatoringizda jiddiy xato bor: har bir kodlash-dekodlash aylanishi matnni asta-sekin buzadi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Bu sinovni Dars 18 da klassga qo'shing.** U round-trip sinoviga qaraganda kuchliroq."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 5 (eng muhimi)",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Tokenizatorni **o'z matningizda** o'qiting (`vocab_size = 406`), keyin fertility ni ikki joyda o'lchang: o'quv matnida va yangi jumlada. Farq qancha?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "m2, v2, t2 = train(matn, 406)\n\nyangi = \"Talabalar universitetga kirishdi va imtihonlarni topshirishdi.\"\nte2 = encode(yangi, m2)\n\nprint(\"oʻqigan matn:\", round(len(t2) / len(matn.split()), 3))\nprint(\"yangi matn  :\", round(len(te2) / len(yangi.split()), 3))",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "oʻqigan matn: 1.472\nyangi matn  : 6.167"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Oʻqigan matnda **1.472** (Dars 10 dagi chiroyli raqam). Yangi matnda **6.167** — toʻrt barobardan koʻproq yomon."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Farq nima uchun bunchalik katta?** Chunki 150 ta birlashtirishning ko'pchiligi **matnga xos** edi — `maktabga borishdi. U` kabi. Ular yangi matnda umuman uchramaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Ya'ni lug'atning katta qismi **o'lik og'irlik**: joy egallaydi, foyda bermaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Ikkita raqam orasidagi farq — bu **yodlab olishning o'lchovi**. Farq qancha katta bo'lsa, tokenizator shuncha ko'p yodlagan va shuncha kam o'rgangan."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Haqiqiy tokenizatorda (16 384 token, millionlab so'zli korpus) bu farq juda kichik bo'ladi — chunki u yodlashga ulgurmaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Dars 17 da bu farqni to'g'ri o'lchashni o'rganamiz.**"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "14-xulosa",
+          "title": "14. Xulosa",
+          "blocks": [
+            {
+              "kind": "steps",
+              "items": [
+                "Birlashtirishlar **o'qitilgan tartibda** qo'llanilishi shart. Aks holda boshqa tokenlar chiqadi va model ularni tanimaydi.",
+                "`encode_oddiy` — hamma birlashtirishni tartib bilan qo'llash. To'g'ri, lekin `merges` hajmiga qarab sekinlashadi.",
+                "Tez `encode` — har qadamda **eng erta o'rganilgan mavjud** juftlikni birlashtirish. Vaqti `merges` hajmiga bog'liq emas.",
+                "16 128 ta birlashtirishda farq — **378 barobar**. Lekin 20 tada oddiy usul tezroq: \"tezroq algoritm\" har doim tezroq emas.",
+                "`float(\"inf\")` ikki ish qiladi: minimum uchun boshlang'ich qiymat, va \"o'rganilmagan juftlikni hech qachon tanlama\" belgisi.",
+                "**Asosiy sinov:** `encode(matn) == train dagi tokenlar`.",
+                "Fertility o'qigan matnda 5.396, yangi matnda 6.833. **Haqiqiysi — ikkinchisi.**"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "keyingi-dars",
+          "title": "Keyingi dars",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Tokenizator to'liq ishlaydi. Endi uni **yaxshilaymiz**."
+            },
+            {
+              "kind": "text",
+              "text": "**Dars 13 — So'z chegarasi muammosi.** `b'lar '`, `b'maktabga borishdi. U'` — bo'shliq va tinish belgilari token ichiga kirib ketyapti. Buni regex bilan to'xtatamiz."
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi darsning savoli: *`bolalar`, `bolalar,`, `bolalarni`, `bolalar.` — bular tokenizator uchun necha xil narsa, va nechta bo'lishi kerak?*"
+            }
+          ]
+        }
+      ],
+      "exercises": [],
+      "needs": "Dars 01–11. `merges`, `merge`, `get_stats`, `decode`"
+    },
+    {
+      "id": "dars-13",
+      "n": 13,
+      "title": "So'z chegarasi va regex",
+      "subtitle": "",
+      "minutes": 55,
+      "status": "ready",
+      "intro": [],
+      "sections": [
+        {
+          "id": "bu-darsdan-keyin-siz",
+          "title": "Bu darsdan keyin siz...",
+          "blocks": [
+            {
+              "kind": "bullets",
+              "items": [
+                "**ko'rasiz** tokenizatoringiz matnni yodlab olishining **haqiqiy sababini**;",
+                "**o'rganasiz** regex asoslarini — matnni naqsh bo'yicha bo'lish;",
+                "**tekshirasiz** naqshingiz o'zbek `ʻ` belgisini buzmasligini (ko'pchilik buni unutadi);",
+                "**qurasiz** matnni oldindan bo'lib, keyin BPE qo'llaydigan tokenizatorni;",
+                "**ko'rasiz** eng uzun token **228 baytdan 13 baytga** tushishini;",
+                "**tushunasiz** nima uchun to'g'ri yechim ba'zan raqamni **yomonlashtirishini**."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Oxirgi punkt — bu darsning eng qiyin va eng foydali qismi."
+            }
+          ]
+        },
+        {
+          "id": "1-bitta-savol",
+          "title": "1. Bitta savol",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 12 oxirida savol qoldirgan edim:"
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "`bolalar`, `bolalar,`, `bolalarni`, `bolalar.` — bular tokenizator uchun necha xil narsa, va nechta bo'lishi kerak?"
+            },
+            {
+              "kind": "text",
+              "text": "Tekshiramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "for s in [\"bolalar\", \"bolalar,\", \"bolalarni\", \"bolalar.\"]:\n    print(f\"  {s!r:12s} -> {encode(s, merges)}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  'bolalar'    -> [270, 256, 257]\n  'bolalar,'   -> [270, 256, 257, 44]\n  'bolalarni'  -> [270, 256, 257, 110, 105]\n  'bolalar.'   -> [270, 256, 257, 46]"
+            },
+            {
+              "kind": "text",
+              "text": "Bu unchalik yomon ko'rinmaydi — hammasi `[270, 256, 257]` bilan boshlanadi."
+            },
+            {
+              "kind": "text",
+              "text": "Lekin Dars 12 dagi haqiqiy misolni eslang:"
+            },
+            {
+              "kind": "code",
+              "code": "print(\"bolalar keldi  :\", len(encode(\"bolalar keldi\", merges)), \"token\")\nprint(\"bolalar, keldi :\", len(encode(\"bolalar, keldi\", merges)), \"token\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "bolalar keldi  : 6 token\nbolalar, keldi : 9 token"
+            },
+            {
+              "kind": "text",
+              "text": "**Bitta vergul — uchta qo'shimcha token.**"
+            },
+            {
+              "kind": "text",
+              "text": "Chunki bo'shliq bilan yozilganda 275-token (`b'lalar '`, oxirida bo'shliq bilan) ishlaydi. Vergul qo'ysangiz — u **umuman ishlamaydi**, va so'z mayda bo'laklarga tarqab ketadi."
+            },
+            {
+              "kind": "text",
+              "text": "Muammo bitta narsada: **tokenizator uchun bo'shliq — oddiy belgi.** U so'z chegarasi degan narsani bilmaydi."
+            }
+          ]
+        },
+        {
+          "id": "2-muammoning-haqiqiy-hajmi",
+          "title": "2. Muammoning haqiqiy hajmi",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 10 dagi eng yomon holatni eslang. `vocab_size = 406` bilan o'qitganimizda 355-token shunday chiqqan edi:"
+            },
+            {
+              "kind": "pre",
+              "text": "b'Bolalar maktabga borishdi. Ular kitoblarni oʻqishdi va daftar...'"
+            },
+            {
+              "kind": "text",
+              "text": "O'lchaymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "m_2, v_2, t_2 = train(matn, 406)\nprint(\"eng uzun token:\", len(max(v_2.values(), key=len)), \"bayt\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "eng uzun token: 228 bayt"
+            },
+            {
+              "kind": "text",
+              "text": "**228 bayt.** Bitta \"token\" — deyarli butun xatboshi."
+            },
+            {
+              "kind": "text",
+              "text": "Va lug'atda bunday tokenlar ko'p: `di.`, `lar `, `a `, `i `, `ga `, `ishdi.`, `rishdi.`, `ni ` — birinchi 20 ta tokendan **9 tasi** bo'shliq yoki tinish belgisini o'z ichiga oladi."
+            },
+            {
+              "kind": "text",
+              "text": "**Bu lug'at joyining isrofi.** `lar` va `lar ` — deyarli bir xil narsa, lekin ikkita alohida token. Sizning tokenizatoringizda 16 384 ta joy bor; har bir takroriy variant foydali token uchun yo'qolgan joy."
+            }
+          ]
+        },
+        {
+          "id": "3-yechim-oldindan-bolish",
+          "title": "3. Yechim: oldindan bo'lish",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "G'oya oddiy:"
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Matnni avval so'zlarga bo'lamiz. Keyin BPE ni har bir so'z ichida alohida ishlatamiz. Birlashtirish hech qachon so'z chegarasidan o'tmaydi.**"
+            },
+            {
+              "kind": "text",
+              "text": "Ya'ni:"
+            },
+            {
+              "kind": "pre",
+              "text": "\"bolalar, keldi\"\n     ↓  oldindan boʻlish\n[\"bolalar\", \",\", \" keldi\"]\n     ↓  har biriga alohida BPE\n[b,o,lalar] [,] [ keldi...]"
+            },
+            {
+              "kind": "text",
+              "text": "Birlashtirish faqat bitta bo'lak ichida bo'ladi. `r` va `,` hech qachon birlashmaydi, chunki ular boshqa bo'laklarda."
+            },
+            {
+              "kind": "text",
+              "text": "Buni qiladigan vosita — **regex**."
+            }
+          ]
+        },
+        {
+          "id": "4-regex-asoslari",
+          "title": "4. Regex asoslari",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "**Regex** (regular expression, \"muntazam ifoda\") — matnda **naqsh** qidirish tili. Python'da u `re` moduli orqali ishlaydi."
+            },
+            {
+              "kind": "code",
+              "code": "import re\n\nprint(re.findall(r\"\\w+\", \"Ular oʻqishdi, va!\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "['Ular', 'oʻqishdi', 'va']"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`re.findall(naqsh, matn)` — naqshga mos keladigan **hamma** bo'lakni topadi va ro'yxat qaytaradi.",
+                "`r\"...\"` — **xom satr** (raw string). `r` old qo'shimchasi Python'ga \"`\\` belgisini oddiy belgi deb qabul qil\" deydi. Regex da `\\` juda ko'p ishlatiladi, shuning uchun `r` deyarli har doim qo'yiladi."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "kerakli-uchta-naqsh",
+              "text": "Kerakli uchta naqsh"
+            },
+            {
+              "kind": "code",
+              "code": "print(re.findall(r\"\\w+\",      \"Ular oʻqishdi, va!\"))\nprint(re.findall(r\"[^\\s\\w]+\", \"Ular oʻqishdi, va!\"))\nprint(re.findall(r\"\\s+\",      \"Ular oʻqishdi, va!\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "['Ular', 'oʻqishdi', 'va']\n[',', '!']\n[' ', ' ']"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Naqsh",
+                "Ma'nosi"
+              ],
+              "rows": [
+                [
+                  "`\\w`",
+                  "**so'z belgisi** — harf, raqam yoki `_`"
+                ],
+                [
+                  "`\\s`",
+                  "**bo'shliq** — probel, tabulyatsiya, yangi qator"
+                ],
+                [
+                  "`+`",
+                  "oldingisidan **bir yoki ko'p**"
+                ],
+                [
+                  "`[...]`",
+                  "qavs ichidagilardan **bittasi**"
+                ],
+                [
+                  "`[^...]`",
+                  "qavs ichidagilardan **bo'lmagan** bittasi"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Demak:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`\\w+` — ketma-ket kelgan bir yoki bir nechta so'z belgisi",
+                "`[^\\s\\w]+` — bo'shliq ham, so'z belgisi ham **bo'lmagan** narsalar, ya'ni tinish belgilari",
+                "`\\s+` — bo'shliqlar"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "5-eng-muhim-tekshiruv-buzilmaydimi",
+          "title": "5. ⚠️ Eng muhim tekshiruv: `ʻ` buzilmaydimi?",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "**To'xtang.** Naqsh yozishdan oldin, uni o'zbek matnida sinash **shart**."
+            },
+            {
+              "kind": "text",
+              "text": "Ko'pchilik shunday yozadi:"
+            },
+            {
+              "kind": "code",
+              "code": "print(re.findall(r\"[a-zA-Z]+\", \"oʻqish gʻalaba\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "['o', 'qish', 'g', 'alaba']"
+            },
+            {
+              "kind": "text",
+              "text": "**Falokat.** `oʻqish` uchga bo'lindi: `o`, `ʻ`, `qish` — va o'rtadagi `ʻ` umuman yo'qoldi."
+            },
+            {
+              "kind": "text",
+              "text": "Sabab: `[a-zA-Z]` faqat ingliz harflarini biladi. `ʻ` (U+02BB) u uchun harf emas."
+            },
+            {
+              "kind": "text",
+              "text": "Endi to'g'ri variantni sinaymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "print(re.findall(r\"\\w+\", \"oʻqish gʻalaba\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "['oʻqish', 'gʻalaba']"
+            },
+            {
+              "kind": "text",
+              "text": "**Ishladi.** `\\w` — bu ASCII emas, u **Unicode** bo'yicha ishlaydi."
+            },
+            {
+              "kind": "text",
+              "text": "Nima uchun ishladi? Tekshiramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "import unicodedata\nprint(unicodedata.category(\"ʻ\"), \"ʻ\".isalpha())",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "Lm True"
+            },
+            {
+              "kind": "text",
+              "text": "`Lm` — *Letter, modifier* (\"o'zgartiruvchi harf\"). Python uni **harf** deb biladi, shuning uchun `\\w` uni qabul qiladi."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Bu tasodif.** Unicode tuzuvchilari `ʻ` ni `Lm` kategoriyasiga qo'ygan — va aynan shuning uchun bizning naqshimiz ishlaydi. Boshqa kategoriyada bo'lganida, o'zbek tili uchun maxsus naqsh yozishga to'g'ri kelardi. **Xulosa:** naqshni har doim **o'z tilingizda sinab ko'ring.** Ingliz matnida ishlagani hech narsani kafolatlamaydi."
+            },
+            {
+              "kind": "media",
+              "id": "o2",
+              "title": "[a-zA-Z] oʻzbekchani buzadi"
+            }
+          ]
+        },
+        {
+          "id": "6-toliq-naqsh",
+          "title": "6. To'liq naqsh",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi uchala qismni birlashtiramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "NAQSH = r\" ?\\w+| ?[^\\s\\w]+|\\s+\"",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "`|` — **\"yoki\"**. Python chapdan o'ngga sinab ko'radi va birinchi mos kelganini oladi."
+            },
+            {
+              "kind": "text",
+              "text": "Uchta variant:"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Qism",
+                "Nimani tutadi"
+              ],
+              "rows": [
+                [
+                  "` ?\\w+`",
+                  "ixtiyoriy bo'shliq + so'z. Masalan ` maktabga`"
+                ],
+                [
+                  "` ?[^\\s\\w]+`",
+                  "ixtiyoriy bo'shliq + tinish. Masalan ` —` yoki `,`"
+                ],
+                [
+                  "`\\s+`",
+                  "qolgan bo'shliqlar (yangi qator, ketma-ket probellar)"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "`?` — **\"nol yoki bitta\"**. Ya'ni bo'shliq bo'lsa ham, bo'lmasa ham mos keladi."
+            },
+            {
+              "kind": "text",
+              "text": "Sinaymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "namuna = \"Bolalar maktabga borishdi. Ular oʻqishdi, va yozishdi!\"\nprint(re.findall(NAQSH, namuna))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "['Bolalar', ' maktabga', ' borishdi', '.', ' Ular', ' oʻqishdi', ',', ' va', ' yozishdi', '!']"
+            },
+            {
+              "kind": "text",
+              "text": "**Diqqat qiling: bo'shliq so'zning oldiga yopishdi**, orqasiga emas."
+            },
+            {
+              "kind": "text",
+              "text": "` maktabga` — bo'shliq va so'z birga. Nima uchun shunday?"
+            },
+            {
+              "kind": "text",
+              "text": "Chunki matnda so'z **deyarli har doim** bo'shliqdan keyin keladi. Agar bo'shliq so'zning bir qismi bo'lsa, tokenizator ` maktabga` ni bitta token qilib o'rganishi mumkin — va u har joyda ishlaydi. Agar bo'shliq orqaga yopishsa (`maktabga `), u faqat keyin bo'shliq kelganda ishlardi — vergul kelsa, buzilardi."
+            },
+            {
+              "kind": "text",
+              "text": "**Bu aynan 1-bo'limdagi muammoning yechimi.**"
+            },
+            {
+              "kind": "h3",
+              "id": "eng-muhim-tekshiruv-hech-narsa-yoqolmadimi",
+              "text": "Eng muhim tekshiruv: hech narsa yo'qolmadimi?"
+            },
+            {
+              "kind": "code",
+              "code": "boshlar = re.findall(NAQSH, matn)\nprint(\"parchalar soni:\", len(boshlar))\nprint(\"round-trip:\", \"\".join(boshlar) == matn)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "parchalar soni: 73\nround-trip: True"
+            },
+            {
+              "kind": "text",
+              "text": "Bo'laklarni qayta yopishtirsak, **aynan asl matn** chiqadi. Hech bir belgi yo'qolmadi — bo'shliqlar ham, yangi qatorlar ham."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Bu tekshiruvni hech qachon o'tkazib yubormang.** Naqsh yozganda bir narsani unutish juda oson, va natijada matnning bir qismi jimgina yo'qoladi. Sinab ko'ring: `re.findall(r\"\\w+\", matn)` bilan `\"\".join(...)` qilsangiz → `False`. Barcha bo'shliq va tinish belgilari yo'qolgan bo'ladi."
+            }
+          ]
+        },
+        {
+          "id": "7-treningni-ozgartiramiz",
+          "title": "7. Treningni o'zgartiramiz",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi `train` ni yangilaymiz. Ikkita o'zgarish:"
+            },
+            {
+              "kind": "text",
+              "text": "**1. Matnni bo'laklarga ajratamiz.** **2. Statistikani hamma bo'lakdan yig'amiz, lekin merge har bo'lakda alohida.**"
+            },
+            {
+              "kind": "text",
+              "text": "Birinchi navbatda `get_stats` ning yig'adigan variantini yozamiz:"
+            },
+            {
+              "kind": "code",
+              "code": "def get_stats_qoshib(tokenlar, hisob):\n    for juftlik in zip(tokenlar, tokenlar[1:]):\n        hisob[juftlik] = hisob.get(juftlik, 0) + 1\n    return hisob",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Farqi: u **tayyor lug'atni** qabul qiladi va unga qo'shadi. Shunda bir nechta bo'lakdan bitta umumiy statistika yig'ish mumkin:"
+            },
+            {
+              "kind": "code",
+              "code": "h = {}\nget_stats_qoshib([1, 2, 3], h)\nget_stats_qoshib([2, 3, 4], h)\nprint(h)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "{(1, 2): 1, (2, 3): 2, (3, 4): 1}"
+            },
+            {
+              "kind": "text",
+              "text": "`(2, 3)` ikkala ro'yxatda ham bor — sanoq **2** bo'ldi. ✓"
+            },
+            {
+              "kind": "text",
+              "text": "Endi trening:"
+            },
+            {
+              "kind": "code",
+              "code": "def train_regex(matn, vocab_size, naqsh):\n    boshlar = re.findall(naqsh, matn)\n\n    parchalar = []\n    for b in boshlar:\n        parchalar.append(kodla(b))\n\n    merges = {}\n    vocab = {}\n    for i in range(256):\n        vocab[i] = bytes([i])\n\n    for yangi_id in range(256, vocab_size):\n        stats = {}\n        for p in parchalar:\n            get_stats_qoshib(p, stats)\n\n        if len(stats) == 0:\n            break\n\n        eng = max(stats, key=stats.get)\n\n        yangi_parchalar = []\n        for p in parchalar:\n            yangi_parchalar.append(merge(p, eng, yangi_id))\n        parchalar = yangi_parchalar\n\n        merges[eng] = yangi_id\n        vocab[yangi_id] = vocab[eng[0]] + vocab[eng[1]]\n\n    return merges, vocab, parchalar",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "**Dars 10 dagidan farqi:**"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Dars 10",
+                "Dars 13"
+              ],
+              "rows": [
+                [
+                  "`tokenlar` — bitta uzun ro'yxat",
+                  "`parchalar` — ro'yxatlar ro'yxati"
+                ],
+                [
+                  "`get_stats(tokenlar)`",
+                  "har bir parchadan **yig'iladi**"
+                ],
+                [
+                  "`merge(tokenlar, ...)`",
+                  "**har bir parchaga alohida**"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Mana shu \"har bir parchaga alohida\" — butun yechim shu yerda. Juftlik ikki parcha orasida bo'la olmaydi, chunki ular alohida ro'yxatlar."
+            }
+          ]
+        },
+        {
+          "id": "8-natijani-koramiz",
+          "title": "8. Natijani ko'ramiz",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "NAQSH = r\" ?\\w+| ?[^\\s\\w]+|\\s+\"\nm_r, v_r, p_r = train_regex(matn, 276, NAQSH)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Ikkala lug'atni yonma-yon qo'yamiz:"
+            },
+            {
+              "kind": "pre",
+              "text": "       regexsiz          regexli\n  256: b'la'             b'la'\n  257: b'lar'            b'lar'\n  258: b'sh'             b'sh'\n  259: b'di'             b'di'\n  260: b'di.'            b'ish'\n  261: b'lar '           b'ishdi'\n  262: b'ish'            b'ga'\n  263: b'a '             b' b'\n  264: b'ishdi.'         b'\\xca\\xbb'\n  265: b'i '             b'ta'\n  266: b'ga '            b'rishdi'\n  267: b'\\xca\\xbb'       b'da'\n  268: b'ta'             b'hi'\n  269: b'rishdi.'        b' bo'\n  270: b'bo'             b'ni'\n  271: b'ni '            b'\\xca\\xbbq'\n  272: b'\\xca\\xbbq'      b' y'\n  273: b'da'             b'lalar'\n  274: b'ch'             b'it'\n  275: b'lalar '         b'ob'"
+            },
+            {
+              "kind": "text",
+              "text": "**Chap ustunda** bo'shliq va nuqta bilan ifloslangan tokenlar: `di.`, `lar `, `a `, `i `, `ga `, `ishdi.`, `rishdi.`, `ni `, `lalar ` — **to'qqiztasi**."
+            },
+            {
+              "kind": "text",
+              "text": "**O'ng ustunda** esa toza morfemalar: `la`, `lar`, `sh`, `di`, `ish`, `ishdi`, `ga`, `ta`, `rishdi`, `da`, `ni`, `lalar` — **hech birida nuqta yo'q**."
+            },
+            {
+              "kind": "text",
+              "text": "`b' b'`, `b' bo'`, `b' y'` — bularda bo'shliq **oldinda**, va bu to'g'ri: ular so'z **boshlanishini** bildiradi."
+            }
+          ]
+        },
+        {
+          "id": "9-hal-qiluvchi-dalil",
+          "title": "9. Hal qiluvchi dalil",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "m_r2, v_r2, _ = train_regex(matn, 406, NAQSH)\nm_2, v_2, _ = train(matn, 406)\n\nprint(\"regexsiz eng uzun token:\", len(max(v_2.values(), key=len)), \"bayt\")\nprint(\"regexli  eng uzun token:\", len(max(v_r2.values(), key=len)), \"bayt\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "regexsiz eng uzun token: 228 bayt\nregexli  eng uzun token: 13 bayt"
+            },
+            {
+              "kind": "text",
+              "text": "**228 → 13.**"
+            },
+            {
+              "kind": "text",
+              "text": "Sababi oddiy va kafolatlangan: **token hech qachon bitta bo'lakdan uzun bo'la olmaydi.** Eng uzun bo'lak — eng uzun so'z. Demak eng uzun token — eng uzun so'z."
+            },
+            {
+              "kind": "text",
+              "text": "Yodlab olish endi **imkonsiz**. Tokenizator qancha ko'p birlashtirish qilmasin, u butun jumlani bitta token qila olmaydi."
+            },
+            {
+              "kind": "text",
+              "text": "Dars 10 dagi 355-tokenni solishtiring:"
+            },
+            {
+              "kind": "pre",
+              "text": "regexsiz 355 = b'Bolalar maktabga borishdi. Ular kitoblarni oʻqishdi va daftar...'\nregexli  355 = b'Kechqur'"
+            },
+            {
+              "kind": "media",
+              "id": "o1",
+              "title": "Chegara"
+            }
+          ]
+        },
+        {
+          "id": "10-encode-ni-ham-ozgartiramiz",
+          "title": "10. `encode` ni ham o'zgartiramiz",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Agar trening bo'laklar bilan bo'lsa, kodlash ham shunday bo'lishi shart. Natijani o'lchashdan oldin shu funksiya kerak bo'ladi:"
+            },
+            {
+              "kind": "code",
+              "code": "def encode_regex(matn, merges, naqsh):\n    natija = []\n\n    for bosh in re.findall(naqsh, matn):\n        tk = kodla(bosh)\n\n        while len(tk) >= 2:\n            stats = {}\n            get_stats_qoshib(tk, stats)\n            eng_j = None\n            eng_r = float(\"inf\")\n            for j in stats:\n                r = merges.get(j, float(\"inf\"))\n                if r < eng_r:\n                    eng_r = r\n                    eng_j = j\n            if eng_j is None:\n                break\n            tk = merge(tk, eng_j, merges[eng_j])\n\n        natija = natija + tk\n\n    return natija",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Ichkarisi — Dars 12 dagi `encode` ning o'zi. Farqi: u **har bir bo'lak uchun alohida** ishlaydi, natijalar oxirida birlashtiriladi."
+            },
+            {
+              "kind": "code",
+              "code": "yangi = \"Talabalar universitetga kirishdi va imtihonlarni topshirishdi.\"\n\nte = encode_regex(yangi, m_r, NAQSH)\nprint(\"tokenlar:\", len(te), \"| round-trip:\", decode(te, v_r) == yangi)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "tokenlar: 42 | round-trip: True"
+            },
+            {
+              "kind": "note",
+              "tone": "warn",
+              "text": "**`encode` va `train` bir xil naqshni ishlatishi shart.** Agar boshqa naqsh ishlatsangiz — boshqa bo'laklar, boshqa tokenlar, va model hech narsani tanimaydi. Dars 18 da naqshni tokenizator bilan birga saqlaysiz."
+            }
+          ]
+        },
+        {
+          "id": "11-halol-gap-raqam-yomonlashdi",
+          "title": "11. Halol gap: raqam yomonlashdi",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi eng qiyin qismi. Fertility ni o'lchaymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "w = len(yangi.split())\n\nprint(\"regexsiz, yangi matn:\", round(len(encode(yangi, merges)) / w, 3))\nprint(\"regexli,  yangi matn:\", round(len(encode_regex(yangi, m_r, NAQSH)) / w, 3))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "regexsiz, yangi matn: 6.833\nregexli,  yangi matn: 7.0"
+            },
+            {
+              "kind": "text",
+              "text": "**Regex fertility ni yomonlashtirdi.** 6.833 dan 7.0 ga."
+            },
+            {
+              "kind": "text",
+              "text": "Va Dars 12 dagi misolda ham:"
+            },
+            {
+              "kind": "pre",
+              "text": "bolalar keldi   regexsiz: 6 token | regexli: 8 token\nbolalar, keldi  regexsiz: 9 token | regexli: 9 token"
+            },
+            {
+              "kind": "text",
+              "text": "Birinchi holatda regexli variant **yomonroq** (8 vs 6)."
+            },
+            {
+              "kind": "text",
+              "text": "**Demak biz vaziyatni buzdikmi?**"
+            },
+            {
+              "kind": "h3",
+              "id": "yoq-va-nima-uchun-ekanini-tushunish-muhim",
+              "text": "Yo'q. Va nima uchun ekanini tushunish muhim."
+            },
+            {
+              "kind": "text",
+              "text": "**Sabab 1 — barqarorlik.** Yuqoridagi ikki qatorga qayting:"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "",
+                "bo'shliq bilan",
+                "vergul bilan",
+                "farq"
+              ],
+              "rows": [
+                [
+                  "regexsiz",
+                  "6 token",
+                  "9 token",
+                  "**+50%**"
+                ],
+                [
+                  "regexli",
+                  "8 token",
+                  "9 token",
+                  "**+12%**"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Regexsiz variantda bitta vergul narxni **yarmiga oshiradi**. Regexli variantda esa deyarli o'zgarmaydi."
+            },
+            {
+              "kind": "text",
+              "text": "**So'z bir xil narxda bo'lishi kerak**, undan keyin nima kelishidan qat'i nazar. Model uchun bu juda muhim: u `bolalar` so'zini bitta naqsh sifatida o'rganishi kerak, to'rtta emas."
+            },
+            {
+              "kind": "text",
+              "text": "**Sabab 2 — yodlash to'xtadi.** Katta lug'at bilan o'lchaymiz:"
+            },
+            {
+              "kind": "pre",
+              "text": "                oʻqigan matn   yangi matn   farq\nregexsiz 406        1.472         6.167      4.19x\nregexli  406        1.906         6.000      3.15x"
+            },
+            {
+              "kind": "text",
+              "text": "Diqqat qiling:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "**O'qigan matnda** regexli variant **yomonroq** (1.906 vs 1.472) — chunki u yodlay olmaydi.",
+                "**Yangi matnda** regexli variant **yaxshiroq** (6.000 vs 6.167).",
+                "**Farq kamaydi:** 4.19× dan 3.15× ga."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Ikki raqam orasidagi farq — bu yodlashning o'lchovi (Dars 12). Regex uni kamaytirdi."
+            },
+            {
+              "kind": "text",
+              "text": "**Sabab 3 — bizning korpusimiz juda kichik.** 53 ta so'z. Haqiqiy korpusda (millionlab so'z) regexli variant fertility bo'yicha ham **aniq yutadi**, chunki u lug'at joyini isrof qilmaydi."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Eng muhim saboq:** **Raqam yaxshilanishi to'g'ri qaror degani emas. Raqam yomonlashishi noto'g'ri qaror degani ham emas.** Siz **qaysi** raqamga qarayotganingizni va u **nimani** o'lchayotganini bilishingiz kerak. Bu yerda: fertility bitta kichik matnda biroz yomonlashdi, lekin yodlash to'xtadi va barqarorlik oshdi. Bu — yaxshi savdo. Dars 17 da bu mavzuga qaytamiz."
+            },
+            {
+              "kind": "media",
+              "id": "o3",
+              "title": "Raqam yomonlashdi"
+            }
+          ]
+        },
+        {
+          "id": "12-toliq-kod",
+          "title": "12. To'liq kod",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "import re\n\nNAQSH = r\" ?\\w+| ?[^\\s\\w]+|\\s+\"\n\n\ndef get_stats_qoshib(tokenlar, hisob):\n    for juftlik in zip(tokenlar, tokenlar[1:]):\n        hisob[juftlik] = hisob.get(juftlik, 0) + 1\n    return hisob\n\n\ndef train_regex(matn, vocab_size, naqsh):\n    boshlar = re.findall(naqsh, matn)\n    parchalar = []\n    for b in boshlar:\n        parchalar.append(kodla(b))\n\n    merges = {}\n    vocab = {}\n    for i in range(256):\n        vocab[i] = bytes([i])\n\n    for yangi_id in range(256, vocab_size):\n        stats = {}\n        for p in parchalar:\n            get_stats_qoshib(p, stats)\n        if len(stats) == 0:\n            break\n\n        eng = max(stats, key=stats.get)\n\n        yangi_parchalar = []\n        for p in parchalar:\n            yangi_parchalar.append(merge(p, eng, yangi_id))\n        parchalar = yangi_parchalar\n\n        merges[eng] = yangi_id\n        vocab[yangi_id] = vocab[eng[0]] + vocab[eng[1]]\n\n    return merges, vocab, parchalar\n\n\ndef encode_regex(matn, merges, naqsh):\n    natija = []\n    for bosh in re.findall(naqsh, matn):\n        tk = kodla(bosh)\n        while len(tk) >= 2:\n            stats = {}\n            get_stats_qoshib(tk, stats)\n            eng_j = None\n            eng_r = float(\"inf\")\n            for j in stats:\n                r = merges.get(j, float(\"inf\"))\n                if r < eng_r:\n                    eng_r = r\n                    eng_j = j\n            if eng_j is None:\n                break\n            tk = merge(tk, eng_j, merges[eng_j])\n        natija = natija + tk\n    return natija\n\n\n# ---- Sinovlar ----\n# 1. Naqsh hech narsani yoʻqotmaydi\nboshlar = re.findall(NAQSH, matn)\nprint(\"parchalar:\", len(boshlar), \"| round-trip:\", \"\".join(boshlar) == matn)\n\n# 2. oʻ buzilmaydi\nprint(re.findall(r\"\\w+\", \"oʻqish gʻalaba\"))\n\n# 3. Trening\nm_r, v_r, p_r = train_regex(matn, 276, NAQSH)\nfor tid in range(256, 266):\n    print(f\"  {tid} = {v_r[tid]!r}\")\n\n# 4. Eng uzun token\nm_r2, v_r2, _ = train_regex(matn, 406, NAQSH)\nm_2, v_2, _ = train(matn, 406)\nprint(\"regexsiz eng uzun:\", len(max(v_2.values(), key=len)), \"bayt\")\nprint(\"regexli  eng uzun:\", len(max(v_r2.values(), key=len)), \"bayt\")\n\n# 5. Round-trip\nyangi = \"Talabalar universitetga kirishdi va imtihonlarni topshirishdi.\"\nte = encode_regex(yangi, m_r, NAQSH)\nprint(\"tokenlar:\", len(te), \"| round-trip:\", decode(te, v_r) == yangi)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "parchalar: 73 | round-trip: True\n['oʻqish', 'gʻalaba']\n  256 = b'la'\n  257 = b'lar'\n  258 = b'sh'\n  259 = b'di'\n  260 = b'ish'\n  261 = b'ishdi'\n  262 = b'ga'\n  263 = b' b'\n  264 = b'\\xca\\xbb'\n  265 = b'ta'\nregexsiz eng uzun: 228 bayt\nregexli  eng uzun: 13 bayt\ntokenlar: 42 | round-trip: True",
+              "label": "Kutilgan natija"
+            }
+          ]
+        },
+        {
+          "id": "13-ozingiz-yozing",
+          "title": "13. O'zingiz yozing",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "import re\n\n# 1. Oʻz naqshingizni sinang — hech narsa yoʻqolmasligi kerak\nnamuna = \"Bolalar oʻqishdi, va gʻalaba qozonishdi!\"\nNAQSH = r\" ?\\w+| ?[^\\s\\w]+|\\s+\"\n\nboshlar = re.___(NAQSH, namuna)\nprint(boshlar)\nprint(\"round-trip:\", \"\".___(boshlar) == namuna)\n\n# 2. oʻ va gʻ buzilmadimi? Parchalarda ularni qidiring\nfor b in boshlar:\n    if \"ʻ\" in b:\n        print(\"ʻ bor:\", repr(b))\n\n# 3. Notoʻgʻri naqsh bilan solishtiring\nprint(re.findall(r\"[a-zA-Z]+\", namuna))",
+              "lang": "python",
+              "mode": "template"
+            },
+            {
+              "kind": "reveal",
+              "summary": "Yechimni ko'rsatish",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "namuna = \"Bolalar oʻqishdi, va gʻalaba qozonishdi!\"\nNAQSH = r\" ?\\w+| ?[^\\s\\w]+|\\s+\"\n\nboshlar = re.findall(NAQSH, namuna)\nprint(boshlar)\nprint(\"round-trip:\", \"\".join(boshlar) == namuna)\n\nfor b in boshlar:\n    if \"ʻ\" in b:\n        print(\"ʻ bor:\", repr(b))\n\nprint(re.findall(r\"[a-zA-Z]+\", namuna))",
+                  "lang": "python",
+                  "mode": "static"
+                },
+                {
+                  "kind": "output",
+                  "text": "['Bolalar', ' oʻqishdi', ',', ' va', ' gʻalaba', ' qozonishdi', '!']\nround-trip: True\nʻ bor: ' oʻqishdi'\nʻ bor: ' gʻalaba'\n['Bolalar', 'o', 'qishdi', 'va', 'g', 'alaba', 'qozonishdi']"
+                },
+                {
+                  "kind": "text",
+                  "text": "Oxirgi qatorga qarang: `[a-zA-Z]+` bilan `oʻqishdi` → `o` va `qishdi`, `gʻalaba` → `g` va `alaba`. **Har ikkala o'zbek harfi ham buzildi.**"
+                },
+                {
+                  "kind": "text",
+                  "text": "Va e'tibor bering: `ʻ` belgilari butunlay **yo'qoldi** — ular natijada umuman yo'q. Round-trip ham `False` bo'lardi."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "14-mashqlar",
+          "title": "14. Mashqlar",
+          "blocks": [
+            {
+              "kind": "exercise",
+              "label": "Mashq 1",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`re.findall(r\"\\w+\", \"salom, dunyo!\")` va `re.findall(r\"\\S+\", \"salom, dunyo!\")` — farqi nima?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "output",
+                    "text": "['salom', 'dunyo']\n['salom,', 'dunyo!']"
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "`\\w+` — faqat so'z belgilari. Tinish belgilari **tashlab yuboriladi**.",
+                      "`\\S+` — bo'shliq bo'lmagan hamma narsa. Tinish belgisi **so'zga yopishadi**."
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Ikkalasi ham bizga to'g'ri kelmaydi:"
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "`\\w+` — ma'lumot yo'qotadi (round-trip buziladi)",
+                      "`\\S+` — `dunyo!` va `dunyo` ikki xil bo'lak bo'ladi, ya'ni 1-bo'limdagi muammo qaytadi"
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Shuning uchun uchta variantli naqsh kerak bo'ldi."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 2",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Nima uchun bo'shliq so'zning **oldiga** yopishtiriladi, orqasiga emas?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "Chunki matnda so'zdan **keyin** har xil narsa kelishi mumkin: bo'shliq, vergul, nuqta, qator oxiri. Lekin so'zdan **oldin** deyarli har doim bo'shliq turadi."
+                  },
+                  {
+                    "kind": "pre",
+                    "text": "\" bolalar\"   ← bu naqsh har joyda ishlaydi\n\"bolalar \"   ← bu faqat keyin boʻshliq kelganda ishlaydi"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Agar bo'shliq orqaga yopishsa, `bolalar ` va `bolalar,` ikki xil bo'lak bo'lardi — va bu aynan biz tuzatmoqchi bo'lgan muammo."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "GPT-2, GPT-4 va sizning tokenizatoringiz — hammasi bo'shliqni **oldinga** yopishtiradi."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 3",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`train_regex` da `merge` har bir parchaga alohida qo'llanadi. Agar hammasini bitta ro'yxatga qo'shib yuborib, keyin merge qilsak nima o'zgaradi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "**Regex butunlay ma'nosiz bo'lib qoladi.**"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Agar parchalarni birlashtirsak, ularning chegarasi yo'qoladi va `merge` yana chegaradan o'tib ketadi. `bolalar` ning oxirgi `r` i va `,` yonma-yon bo'lib qoladi — va ular birlashishi mumkin."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Butun g'oya shundaki, parchalar alohida qoladi.** `merge(p, ...)` har bir `p` uchun alohida chaqiriladi, shuning uchun birinchi parchaning oxiri va ikkinchisining boshi hech qachon uchrashmaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Statistika esa **umumiy** — chunki biz `la` juftligi butun matnda necha marta uchraganini bilishimiz kerak, har bir so'zda alohida emas."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Statistika umumiy, birlashtirish alohida.** Shu ikki so'z butun funksiyani tushuntiradi."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 4",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Yangi naqsh yozing: raqamlarni alohida bo'lak qilsin. `\"2024yilda 15ta kitob\"` qanday bo'linadi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "Hozirgi naqsh bilan:"
+                  },
+                  {
+                    "kind": "code",
+                    "code": "print(re.findall(NAQSH, \"2024yilda 15ta kitob\"))\n# ['2024yilda', ' 15ta', ' kitob']",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`\\w` raqamni ham qamrab oladi, shuning uchun `2024yilda` bitta bo'lak bo'lib qoldi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Raqamlarni harflardan ajratish uchun:"
+                  },
+                  {
+                    "kind": "code",
+                    "code": "NAQSH2 = r\" ?\\d+| ?[^\\s\\d\\W]+| ?[^\\s\\w]+|\\s+\"\nprint(re.findall(NAQSH2, \"2024yilda 15ta kitob\"))\n# ['2024', 'yilda', ' 15', 'ta', ' kitob']",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`\\d` — raqam, `\\W` — so'z belgisi bo'lmagan."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Nima uchun raqamlarni ajratish kerak?** Chunki `2024` va `2025` — turli sonlar, lekin tokenizator ularni alohida token qilib yodlab olishi mumkin. Raqamlarni mayda bo'lib qoldirish modelga arifmetikani o'rganishga yordam beradi. GPT-4 ning naqshida raqamlar uch xonadan ko'p bo'lmaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Bu — ixtiyoriy yaxshilash. Dars 18 da naqshingizni tanlaganingizda o'ylab ko'ring."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 5 (eng muhimi)",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Naqshdan `\\s+` qismini olib tashlang va round-trip ni tekshiring. Nima yo'qoladi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni ko'rsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "NAQSH_BUZUQ = r\" ?\\w+| ?[^\\s\\w]+\"\nboshlar = re.findall(NAQSH_BUZUQ, matn)\nprint(\"round-trip:\", \"\".join(boshlar) == matn)",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "round-trip: False"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Yangi qatorlar yo'qoldi.** Bizning matnimizda `\\n` belgilari bor, va ular ` ?\\w+` ga ham, ` ?[^\\s\\w]+` ga ham mos kelmaydi (chunki ikkalasi ham faqat **bitta** ixtiyoriy bo'shliqni qabul qiladi, `\\n` esa alohida bo'shliq belgisi)."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`\\s+` — bu **tutqich** (catch-all): qolgan hamma bo'shliqni ushlaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Nima uchun bu xavfli:** kod xato bermaydi. Tokenizator ishlaydi. Faqat dekodlaganingizda matnning tuzilishi yo'qolgan bo'ladi — hamma narsa bitta qatorga yopishib qoladi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Va siz buni faqat **round-trip tekshiruvi** orqali bilib olasiz."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Shuning uchun har bir naqsh o'zgarishidan keyin round-trip ni tekshiring.** Bir qator kod, ammo u jimgina ma'lumot yo'qotishning oldini oladi."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "15-xulosa",
+          "title": "15. Xulosa",
+          "blocks": [
+            {
+              "kind": "steps",
+              "items": [
+                "Tokenizator uchun bo'shliq — oddiy belgi. Shuning uchun u so'z chegarasidan o'tib ketadi va `lar `, `ishdi.`, hatto 228 baytlik tokenlar yasaydi.",
+                "Yechim: matnni **oldindan bo'lish**, va BPE ni har bir bo'lak **ichida** alohida ishlatish.",
+                "`re.findall(naqsh, matn)` — regex. `\\w` so'z belgisi, `\\s` bo'shliq, `+` bir yoki ko'p, `|` yoki, `?` nol yoki bitta.",
+                "**`[a-zA-Z]` ishlatmang** — u `oʻ` va `gʻ` ni buzadi. `\\w` to'g'ri ishlaydi, chunki u Unicode bo'yicha ishlaydi.",
+                "Bo'shliq so'zning **oldiga** yopishadi: ` bolalar`, `bolalar ` emas.",
+                "**Round-trip tekshiruvi majburiy:** `\"\".join(re.findall(naqsh, matn)) == matn`.",
+                "Natija: eng uzun token **228 baytdan 13 baytga**. Yodlash imkonsiz bo'ldi.",
+                "Fertility kichik matnda biroz **yomonlashdi** — bu normal. Muhimi: barqarorlik oshdi va yodlash farqi 4.19× dan 3.15× ga tushdi."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "keyingi-dars",
+          "title": "Keyingi dars",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Bitta muammo qoldi, va u eng o'zbekchasi."
+            },
+            {
+              "kind": "text",
+              "text": "**Dars 14 — O'zbek apostrofi.** Dars 05 da ko'rgan edingiz: `ʻ` to'rt xil yoziladi — `ʻ` (699), `'` (39), `‘` (8216), `’` (8217). Tokenizator uchun bular to'rt xil so'z."
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi darsning savoli: *agar korpusingizda `oʻzbek` har xil yozilgan bo'lsa, lug'atingizning qancha qismi bekorga ketadi?*"
+            }
+          ]
+        }
+      ],
+      "exercises": [],
+      "needs": "Dars 01–12. To'liq ishlaydigan tokenizator"
+    },
+    {
+      "id": "dars-14",
+      "n": 14,
+      "title": "Oʻzbek apostrofi: bitta harf, besh xil yozuv",
+      "subtitle": "",
+      "minutes": 55,
+      "status": "ready",
+      "intro": [],
+      "sections": [
+        {
+          "id": "bu-darsdan-keyin-siz",
+          "title": "Bu darsdan keyin siz...",
+          "blocks": [
+            {
+              "kind": "goals",
+              "items": [
+                "**koʻrasiz** notoʻgʻri apostrof soʻzni qanday qilib **koʻrinmas devor** bilan kesib qoʻyishini;",
+                "**bilasiz** internetda `oʻ` qanday yozilishini — haqiqiy raqamlar bilan;",
+                "**ajrata olasiz** ikkita toʻgʻri belgini: `ʻ` (oʻ, gʻ) va `ʼ` (tutuq belgisi);",
+                "**yozasiz** belgining **atrofiga qarab** qaror qiladigan normalizator;",
+                "**topasiz** haqiqiy tokenizatordagi ikkita boʻshliqni — va ularni tuzatasiz;",
+                "**tushunasiz** 2026-yilgi yangi alifbo tokenizatorga nima qilishini va uni **qayta oʻqitmasdan** qanday hal qilish mumkinligini."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1-bitta-savol",
+          "title": "1. Bitta savol",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 13 oxirida savol qoldirgan edim:"
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Agar korpusingizda `oʻzbek` har xil yozilgan boʻlsa, lugʻatingizning qancha qismi bekorga ketadi?"
+            },
+            {
+              "kind": "text",
+              "text": "Javob siz kutgandan yomonroq. Muammo faqat lugʻatda emas."
+            },
+            {
+              "kind": "text",
+              "text": "Dars 13 dagi naqshimizni olamiz va bitta soʻzni besh xil yozib, unga beramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "import re\n\nNAQSH = r\" ?\\w+| ?[^\\s\\w]+|\\s+\"\n\nfor v in [\"o\\u02bbzbek\", \"o'zbek\", \"o\\u2018zbek\", \"o\\u2019zbek\", \"o`zbek\"]:\n    print(f\"  {v!r:10s} -> {re.findall(NAQSH, v)}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  'oʻzbek'   -> ['oʻzbek']\n  \"o'zbek\"   -> ['o', \"'\", 'zbek']\n  'o‘zbek'   -> ['o', '‘', 'zbek']\n  'o’zbek'   -> ['o', '’', 'zbek']\n  'o`zbek'   -> ['o', '`', 'zbek']"
+            },
+            {
+              "kind": "text",
+              "text": "**Toʻxtang va buni diqqat bilan koʻring.**"
+            },
+            {
+              "kind": "text",
+              "text": "Toʻgʻri yozilgan `oʻzbek` — **bitta** boʻlak. Qolgan toʻrttasi — **uchta** boʻlak: `o`, belgi, `zbek`."
+            },
+            {
+              "kind": "text",
+              "text": "Dars 13 da nima oʻrgangan edik? **BPE hech qachon boʻlak chegarasidan oʻtmaydi.** Biz uni ataylab shunday qurgan edik — `lar ` kabi ifloslangan tokenlarni toʻxtatish uchun."
+            },
+            {
+              "kind": "text",
+              "text": "Endi oʻsha himoya **bizga qarshi** ishlayapti. Notoʻgʻri apostrof soʻzning ichiga **koʻrinmas devor** qoʻydi. Tokenizator qancha oʻqimasin, `o'zbek` ni hech qachon uchtadan kam tokenga keltira olmaydi."
+            },
+            {
+              "kind": "text",
+              "text": "Bitta belgi — va soʻz abadiy uch boʻlakka boʻlinib qoldi."
+            },
+            {
+              "kind": "media",
+              "id": "p1",
+              "title": "Koʻrinmas devor"
+            }
+          ]
+        },
+        {
+          "id": "2-internetda-o-qanday-yoziladi",
+          "title": "2. Internetda `oʻ` qanday yoziladi",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "\"Odamlar baʼzan notoʻgʻri yozadi\" degan gap — taxmin. Bizga raqam kerak."
+            },
+            {
+              "kind": "text",
+              "text": "Men **3 000 ta haqiqiy oʻzbekcha veb-hujjatni** oldim (FineWeb-2 korpusidan, hech qanday tozalashsiz) va `oʻ`, `gʻ` dagi belgi qanday yozilganini sanadim:"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Belgi",
+                "Raqami",
+                "Ulushi"
+              ],
+              "rows": [
+                [
+                  "`‘` chap qoʻshtirnoq",
+                  "8216",
+                  "**34%**"
+                ],
+                [
+                  "`ʻ` **toʻgʻri belgi**",
+                  "699",
+                  "23%"
+                ],
+                [
+                  "`'` oddiy apostrof",
+                  "39",
+                  "19%"
+                ],
+                [
+                  "`’` oʻng qoʻshtirnoq",
+                  "8217",
+                  "18%"
+                ],
+                [
+                  "`` ` `` teskari urgʻu",
+                  "96",
+                  "6%"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "**Toʻgʻri belgi — atigi 23%.** Toʻrtta soʻzdan uchtasida `oʻ` notoʻgʻri yozilgan."
+            },
+            {
+              "kind": "text",
+              "text": "Va eng koʻp ishlatiladigani — toʻgʻri belgi ham emas, `'` ham emas. **Chap qoʻshtirnoq** `‘`. Nima uchun? Chunki u baʼzi telefon klaviaturalarida va Word'da apostrof tugmasini bosganda avtomatik chiqadi, va koʻzga `ʻ` ga eng oʻxshaydigani."
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Bu jadvalni Dars 05 ning oxirgi mashqida koʻrgan edingiz. Mana uning manbasi."
+            },
+            {
+              "kind": "text",
+              "text": "Bu jadval dars davomida bizga bir necha marta kerak boʻladi."
+            },
+            {
+              "kind": "media",
+              "id": "p2",
+              "title": "Besh xil yozuv"
+            }
+          ]
+        },
+        {
+          "id": "3-oltita-belgi-va-nima-uchun-devor-paydo-boldi",
+          "title": "3. Oltita belgi va nima uchun devor paydo boʻldi",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Nima uchun `ʻ` soʻz ichida qoldi, `'` esa devor boʻldi? Dars 13 dagi `\\w` ni eslang: u faqat **harflarni** oladi. Demak savol: qaysi belgi harf?"
+            },
+            {
+              "kind": "code",
+              "code": "import unicodedata\n\nfor b in [\"\\u02bb\", \"\\u2018\", \"'\", \"\\u2019\", \"`\", \"\\u02bc\"]:\n    print(f\"  {b!r:5s} ord={ord(b):5d}  kat={unicodedata.category(b)}  harfmi={b.isalpha()}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  'ʻ'   ord=  699  kat=Lm  harfmi=True\n  '‘'   ord= 8216  kat=Pi  harfmi=False\n  \"'\"   ord=   39  kat=Po  harfmi=False\n  '’'   ord= 8217  kat=Pf  harfmi=False\n  '`'   ord=   96  kat=Sk  harfmi=False\n  'ʼ'   ord=  700  kat=Lm  harfmi=True"
+            },
+            {
+              "kind": "text",
+              "text": "**Ikkita yangi narsa:**"
+            },
+            {
+              "kind": "text",
+              "text": "**1. `\"\\u02bb\"` — belgini raqami bilan yozish.** Dars 05 da `U+02BB` yozuvini koʻrgan edingiz. Python'da satr ichida `\\u` va undan keyin toʻrtta oʻn oltilik raqam yozsangiz — oʻsha belgi hosil boʻladi. Bu klaviaturada yoʻq belgilarni yozishning eng ishonchli yoʻli:"
+            },
+            {
+              "kind": "code",
+              "code": "print(\"\\u02bb\" == \"ʻ\")    # True",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Bu darsda apostroflarni doim shunday yozamiz — `‘` va `ʻ` ni koʻz bilan farqlash qiyin, `\\u2018` va `\\u02bb` ni esa adashtirib boʻlmaydi."
+            },
+            {
+              "kind": "text",
+              "text": "**2. `.isalpha()` — \"bu harfmi?\"** `True` yoki `False` qaytaradi."
+            },
+            {
+              "kind": "text",
+              "text": "Endi jadvalni oʻqiymiz:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`ʻ` va `ʼ` — kategoriyasi **`Lm`**, harf. `\\w` ularni soʻzning bir qismi deb biladi.",
+                "Qolgan toʻrttasi — **tinish belgisi** (`P...`) yoki **belgi** (`Sk`). `\\w` ularni harf deb bilmaydi va soʻzni oʻsha joyda kesadi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "**Devorning sababi shu.** Unicode `ʻ` ni harf deb belgilagan, `'` ni esa yoʻq. Bizning naqshimiz Unicode'ga ishonadi."
+            }
+          ]
+        },
+        {
+          "id": "4-ikkita-togri-belgi",
+          "title": "4. Ikkita toʻgʻri belgi",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Jadvalning oxirgi qatoriga qarang: `ʼ` — **700**. U ham harf. U nima?"
+            },
+            {
+              "kind": "text",
+              "text": "Bu yerda men Dars 05 dagi bir soddalashtirishimni tuzatishim kerak. U yerda \"faqat 699 toʻgʻri\" degan edim. Aslida oʻzbek lotin yozuvida **ikkita** toʻgʻri belgi bor:"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Belgi",
+                "Raqami",
+                "Vazifasi",
+                "Misollar"
+              ],
+              "rows": [
+                [
+                  "`ʻ`",
+                  "699",
+                  "**oʻ** va **gʻ** harflarining qismi",
+                  "oʻzbek, gʻalaba, bogʻ"
+                ],
+                [
+                  "`ʼ`",
+                  "700",
+                  "**tutuq belgisi** — tovushni ajratadi",
+                  "maʼno, taʼlim, sanʼat, maʼlumot"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Koʻzga deyarli bir xil. Lekin vazifasi butunlay boshqa:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`oʻ` — bu **bitta harf**. `ʻ` uning ajralmas qismi.",
+                "`maʼno` dagi `ʼ` — harf emas, **toʻxtash belgisi**. U `a` va `n` ni ajratib turadi: *ma-no* emas, *maʼ-no*."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Klaviaturada ikkalasi ham yoʻq. Shuning uchun odamlar ikkalasini ham bir xil — `'`, `‘`, `’` yoki `` ` `` bilan yozadi. Tokenizator esa ularni qaytadan ajratishi kerak."
+            },
+            {
+              "kind": "text",
+              "text": "**Qanday ajratadi?** Mana darsning asosiy savoli."
+            }
+          ]
+        },
+        {
+          "id": "5-birinchi-urinish-hammasini-almashtiramiz",
+          "title": "5. Birinchi urinish: hammasini almashtiramiz",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Eng oddiy gʻoya — Dars 02 dagi `.replace()` ni zanjir qilib ishlatish:"
+            },
+            {
+              "kind": "code",
+              "code": "def hammasini_almashtir(matn):\n    matn = matn.replace(\"'\", \"\\u02bb\")\n    matn = matn.replace(\"\\u2018\", \"\\u02bb\")\n    matn = matn.replace(\"\\u2019\", \"\\u02bb\")\n    matn = matn.replace(\"`\", \"\\u02bb\")\n    return matn\n\n\nfor s in [\"o'zbek\", \"o\\u2018qish\", \"ma'no\", \"U \\u2018salom\\u2019 dedi\"]:\n    print(f\"  {s!r:18s} -> {hammasini_almashtir(s)!r}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  \"o'zbek\"           -> 'oʻzbek'\n  'o‘qish'           -> 'oʻqish'\n  \"ma'no\"            -> 'maʻno'\n  'U ‘salom’ dedi'   -> 'U ʻsalomʻ dedi'"
+            },
+            {
+              "kind": "text",
+              "text": "Birinchi ikkitasi — toʻgʻri. Keyingi ikkitasi — **buzildi**:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`maʼno` → `maʻno`. Tutuq belgisi `oʻ` belgisiga aylandi.",
+                "`‘salom’` → `ʻsalomʻ`. Bu **qoʻshtirnoq** edi! U umuman apostrof emas."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Muammo: `.replace()` faqat **belgining oʻziga** qaraydi. U bilmaydi:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "belgi `o` dan keyin turibdimi (unda `oʻ`),",
+                "ikki harf orasidami (unda tutuq),",
+                "yoki soʻz chetidami (unda qoʻshtirnoq)."
+              ]
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Asosiy fikr:** bu yerda belgining oʻzi hech narsani hal qilmaydi. **Uning atrofi** hal qiladi."
+            }
+          ]
+        },
+        {
+          "id": "6-qoida-atrofga-qarash",
+          "title": "6. Qoida: atrofga qarash",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Belgining oldidagi va keyingi belgiga qarab, toʻrtta qoida yozamiz:"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "#",
+                "Shart",
+                "Natija",
+                "Misol"
+              ],
+              "rows": [
+                [
+                  "1",
+                  "oldida `g` yoki `G`",
+                  "`ʻ`",
+                  "`bog'` → `bogʻ`, `g'alaba` → `gʻalaba`"
+                ],
+                [
+                  "2",
+                  "oldida `o` yoki `O`, **va keyin harf**",
+                  "`ʻ`",
+                  "`o'qish` → `oʻqish`"
+                ],
+                [
+                  "3",
+                  "oldida harf **va keyin harf**",
+                  "`ʼ`",
+                  "`ma'no` → `maʼno`"
+                ],
+                [
+                  "4",
+                  "boshqa hamma holat",
+                  "**tegmaymiz**",
+                  "`‘salom’` — qoʻshtirnoq"
+                ]
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "nima-uchun-g-va-o-uchun-shart-har-xil",
+              "text": "Nima uchun `g` va `o` uchun shart har xil?"
+            },
+            {
+              "kind": "text",
+              "text": "Diqqat qiling: `g` dan keyin **har doim** `ʻ` qoʻyamiz, `o` dan keyin esa **faqat keyin harf kelsa**."
+            },
+            {
+              "kind": "text",
+              "text": "Sababi oʻzbek tilining oʻzida:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "**`gʻ` bilan tugaydigan soʻzlar koʻp:** bogʻ, togʻ, sogʻ, yogʻ, chogʻ. `gʻ` dan keyin boʻshliq yoki nuqta kelishi — normal holat.",
+                "**`oʻ` bilan tugaydigan soʻz esa deyarli yoʻq.** Lekin `o` bilan tugaydigan soʻzlar koʻp: dunyo, kino, radio, avto. Va ular qoʻshtirnoq ichida kelsa — `'dunyo'` — yopuvchi qoʻshtirnoq `o` dan keyin turadi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Agar 2-qoidada \"keyin harf\" sharti boʻlmasa, `'dunyo'` → `'dunyoʻ` boʻlib qolardi. Bu xayoliy muammo emas — buni 9-boʻlimda haqiqiy tokenizatorda koʻrasiz."
+            },
+            {
+              "kind": "media",
+              "id": "p3",
+              "title": "Atrof hal qiladi"
+            }
+          ]
+        },
+        {
+          "id": "7-kodga-aylantiramiz",
+          "title": "7. Kodga aylantiramiz",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Ikkita yangi narsa kerak."
+            },
+            {
+              "kind": "h3",
+              "id": "elif-aks-holda-agar",
+              "text": "`elif` — \"aks holda, agar\""
+            },
+            {
+              "kind": "text",
+              "text": "Dars 04 da `if` va `else` ni oʻrgandik. Ikkitadan koʻp variant boʻlsa — `elif`:"
+            },
+            {
+              "kind": "code",
+              "code": "son = 0\nif son > 0:\n    print(\"musbat\")\nelif son < 0:\n    print(\"manfiy\")\nelse:\n    print(\"nol\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "nol"
+            },
+            {
+              "kind": "text",
+              "text": "Python shartlarni **yuqoridan pastga** tekshiradi va **birinchi rost** boʻlganini bajaradi. Qolganlari tekshirilmaydi ham. Bu tartib keyinroq juda muhim boʻladi."
+            },
+            {
+              "kind": "h3",
+              "id": "in-ichidami",
+              "text": "`in` — \"ichidami?\""
+            },
+            {
+              "kind": "text",
+              "text": "Dars 04 da `\"Ali\" in yoshlar` ni lugʻatda ishlatgan edik. U roʻyxat va matnda ham ishlaydi:"
+            },
+            {
+              "kind": "code",
+              "code": "print(\"g\" in [\"g\", \"G\"])     # True\nprint(\"a\" in [\"g\", \"G\"])     # False\nprint(\"'\" in \"'\\u2018\\u2019\")  # True",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "h3",
+              "id": "funksiya",
+              "text": "Funksiya"
+            },
+            {
+              "kind": "code",
+              "code": "OKINA = \"\\u02bb\"    # oʻ va gʻ dagi belgi\nTUTUQ = \"\\u02bc\"    # maʼno dagi belgi\nAPOSTROFLAR = \"'\\u2018\\u2019`\\u02bb\\u02bc\"\n\n\ndef apostrof_tuzat(matn):\n    belgilar = list(matn)\n\n    for i in range(len(belgilar)):\n        if belgilar[i] in APOSTROFLAR:\n            oldingi = \"\"\n            keyingi = \"\"\n            if i > 0:\n                oldingi = belgilar[i - 1]\n            if i < len(belgilar) - 1:\n                keyingi = belgilar[i + 1]\n\n            if oldingi in [\"g\", \"G\"]:\n                belgilar[i] = OKINA\n            elif oldingi in [\"o\", \"O\"] and keyingi.isalpha():\n                belgilar[i] = OKINA\n            elif oldingi.isalpha() and keyingi.isalpha():\n                belgilar[i] = TUTUQ\n\n    return \"\".join(belgilar)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "**Qatorma-qator:**"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`APOSTROFLAR` — oltita belgining hammasi bitta matnda. **`ʻ` va `ʼ` ham shu yerda!** Nima uchun toʻgʻri belgilarni ham tekshiramiz? Chunki ular ham notoʻgʻri joyda turishi mumkin: `oʼzbek` (tutuq `oʻ` oʻrnida) yoki `maʻno`. Ularni ham atrofiga qarab tuzatamiz.",
+                "`belgilar = list(matn)` — matnni belgilar roʻyxatiga aylantiramiz. Nima uchun? Dars 03 dan eslang: **matnni oʻzgartirib boʻlmaydi**, roʻyxatni esa mumkin.",
+                "`oldingi = \"\"` va `keyingi = \"\"` — avval boʻsh deb olamiz. Belgi matnning boshida turgan boʻlsa, uning oldida hech narsa yoʻq; oxirida boʻlsa — keyin.",
+                "`if i > 0:` — chegara himoyasi, Dars 09 dagidek. `belgilar[-1]` ga tushib qolmaslik uchun (`-1` oxirgi belgini beradi — bu yerda xato boʻlardi).",
+                "Uchta `if`/`elif` — 6-boʻlimdagi jadvalning 1–3 qoidalari. 4-qoida uchun **hech narsa yozmadik**: hech biri bajarilmasa, belgi oʻzgarmay qoladi.",
+                "`\"\".join(belgilar)` — roʻyxatni qaytadan matnga yigʻamiz (Dars 11)."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "sinaymiz",
+              "text": "Sinaymiz"
+            },
+            {
+              "kind": "code",
+              "code": "testlar = [\n    \"o'zbek\", \"O\\u2018zbekiston\", \"g\\u2019alaba\", \"ko`cha\",\n    \"to'g'ri\", \"bog'\", \"ma'no\", \"ta\\u2019lim\", \"o\\u02bczbek\", \"ma\\u02bbno\",\n    \"U \\u2018salom\\u2019 dedi\", \"U 'dunyo' dedi\",\n]\nfor t in testlar:\n    print(f\"  {t!r:18s} -> {apostrof_tuzat(t)!r}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  \"o'zbek\"           -> 'oʻzbek'\n  'O‘zbekiston'      -> 'Oʻzbekiston'\n  'g’alaba'          -> 'gʻalaba'\n  'ko`cha'           -> 'koʻcha'\n  \"to'g'ri\"          -> 'toʻgʻri'\n  \"bog'\"             -> 'bogʻ'\n  \"ma'no\"            -> 'maʼno'\n  'ta’lim'           -> 'taʼlim'\n  'oʼzbek'           -> 'oʻzbek'\n  'maʻno'            -> 'maʼno'\n  'U ‘salom’ dedi'   -> 'U ‘salom’ dedi'\n  \"U 'dunyo' dedi\"   -> \"U 'dunyo' dedi\""
+            },
+            {
+              "kind": "text",
+              "text": "**Oʻn ikkitadan oʻn ikkitasi toʻgʻri.** Har bir belgi atrofiga qarab hal qilindi:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`oʻ` va `gʻ` — qaysi belgi bilan yozilmasin, `ʻ` boʻldi",
+                "tutuq — `ʼ` boʻldi, hatto `maʻno` dagi notoʻgʻri `ʻ` ham",
+                "qoʻshtirnoqlar — tegilmadi, `'dunyo'` ham"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "8-ataylab-xato-bosh-satr-tuzogi",
+          "title": "8. Ataylab xato: boʻsh satr tuzogʻi",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi bitta kichik oʻzgartirish qilamiz. Roʻyxat `[\"g\", \"G\"]` oʻrniga qisqaroq — matn `\"gG\"` yozamiz. Ishlashi kerak-ku: `\"g\" in \"gG\"` → `True`."
+            },
+            {
+              "kind": "code",
+              "code": "def apostrof_tuzat_buzuq(matn):\n    belgilar = list(matn)\n    for i in range(len(belgilar)):\n        if belgilar[i] in APOSTROFLAR:\n            oldingi = \"\"\n            keyingi = \"\"\n            if i > 0:\n                oldingi = belgilar[i - 1]\n            if i < len(belgilar) - 1:\n                keyingi = belgilar[i + 1]\n\n            if oldingi in \"gG\":                              # <- oʻzgardi\n                belgilar[i] = OKINA\n            elif oldingi in \"oO\" and keyingi.isalpha():      # <- oʻzgardi\n                belgilar[i] = OKINA\n            elif oldingi.isalpha() and keyingi.isalpha():\n                belgilar[i] = TUTUQ\n    return \"\".join(belgilar)\n\n\nprint(repr(apostrof_tuzat(\"\\u2018Salom\\u2019 dedi\")))\nprint(repr(apostrof_tuzat_buzuq(\"\\u2018Salom\\u2019 dedi\")))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "'‘Salom’ dedi'\n'ʻSalom’ dedi'"
+            },
+            {
+              "kind": "text",
+              "text": "**Ikkinchisida qoʻshtirnoq buzildi.** Jumla boshidagi `‘` → `ʻ` ga aylandi. Nima uchun?"
+            },
+            {
+              "kind": "text",
+              "text": "Bu belgi matnning **eng boshida** turibdi. Demak `oldingi = \"\"` — boʻsh. Endi:"
+            },
+            {
+              "kind": "code",
+              "code": "print(\"\" in \"gG\")\nprint(\"\" in [\"g\", \"G\"])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "True\nFalse"
+            },
+            {
+              "kind": "text",
+              "text": "**Boʻsh matn har qanday matnning \"ichida\" boʻladi.** Python uchun `\"\"` — har bir matnning boshida, oxirida va har bir belgi orasida turadi. Shuning uchun `\"\" in \"gG\"` → `True`."
+            },
+            {
+              "kind": "text",
+              "text": "Roʻyxatda esa bunday emas: `[\"g\", \"G\"]` da faqat ikkita element bor, va hech biri boʻsh emas."
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Bu xato **jimgina** ishlaydi. Xato xabari yoʻq. 99% matnlarda hech narsa sezilmaydi — faqat qoʻshtirnoq bilan boshlanadigan matnlar buziladi. Million hujjatli korpusda bunday matnlar minglab boʻladi. **Qoida:** biror narsa \"ulardan biri\" ekanini tekshirayotganda roʻyxat ishlating: `x in [\"a\", \"b\"]`. Matn `x in \"ab\"` faqat `x` hech qachon boʻsh boʻlmasa xavfsiz."
+            }
+          ]
+        },
+        {
+          "id": "9-tartib-muhim-tortinchi-marta",
+          "title": "9. Tartib muhim — toʻrtinchi marta",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 10 da minora, Dars 11 da `KeyError`, Dars 12 da `[256, 114]`. Endi toʻrtinchisi."
+            },
+            {
+              "kind": "text",
+              "text": "7-boʻlimda aytgan edim: `elif` zanjirida **birinchi rost** shart bajariladi. Shartlarning tartibini almashtiramiz — tutuqni birinchi qoʻyamiz:"
+            },
+            {
+              "kind": "code",
+              "code": "def apostrof_tuzat_teskari(matn):\n    belgilar = list(matn)\n    for i in range(len(belgilar)):\n        if belgilar[i] in APOSTROFLAR:\n            oldingi = \"\"\n            keyingi = \"\"\n            if i > 0:\n                oldingi = belgilar[i - 1]\n            if i < len(belgilar) - 1:\n                keyingi = belgilar[i + 1]\n\n            if oldingi.isalpha() and keyingi.isalpha():      # <- endi birinchi\n                belgilar[i] = TUTUQ\n            elif oldingi in [\"g\", \"G\"]:\n                belgilar[i] = OKINA\n            elif oldingi in [\"o\", \"O\"] and keyingi.isalpha():\n                belgilar[i] = OKINA\n    return \"\".join(belgilar)\n\n\nfor soz in [\"o'qish\", \"to'g'ri\", \"bog'\"]:\n    print(f\"  {soz!r:10s} toʻgʻri: {apostrof_tuzat(soz)!r:12s} teskari: {apostrof_tuzat_teskari(soz)!r}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  \"o'qish\"   toʻgʻri: 'oʻqish'     teskari: 'oʼqish'\n  \"to'g'ri\"  toʻgʻri: 'toʻgʻri'    teskari: 'toʼgʼri'\n  \"bog'\"     toʻgʻri: 'bogʻ'       teskari: 'bogʻ'"
+            },
+            {
+              "kind": "text",
+              "text": "`o'qish` da `o` ham harf, `q` ham harf — tutuq sharti **ham** rost. U birinchi turgani uchun u bajarildi, va `oʻqish` → `oʼqish` boʻldi. Notoʻgʻri."
+            },
+            {
+              "kind": "text",
+              "text": "`bog'` toʻgʻri qoldi — chunki undan keyin harf yoʻq, tutuq sharti yolgʻon. Yaʼni xato **baʼzi** soʻzlarda chiqadi, baʼzilarida yoʻq. Eng yomon turdagi xato (Dars 09 dan tanish)."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Qoida:** `elif` zanjirida **eng aniq** shart birinchi turadi. \"Oldida `o` va keyin harf\" — bu \"oldida harf va keyin harf\" ning **xususiy holi**. Xususiy holat umumiysidan oldin tekshirilishi shart."
+            }
+          ]
+        },
+        {
+          "id": "10-haqiqiy-tokenizator-bilan-solishtiramiz",
+          "title": "10. Haqiqiy tokenizator bilan solishtiramiz",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi bir narsani ochiq aytaman."
+            },
+            {
+              "kind": "text",
+              "text": "Mening `uzbek-bpe-16k` tokenizatorim ham apostrofni normallashtiradi. Uning qoidalari shunday:"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "`’` va `` ` `` → `'` ga aylanadi",
+                "`o'`, `O'`, `g'`, `G'` → `oʻ`, `Oʻ`, `gʻ`, `Gʻ`",
+                "ikki harf orasidagi apostrof → `ʼ`"
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Bu qoidalar `'`, `’`, `` ` `` bilan yozilgan `oʻzbek` ni toʻgʻri tuzatadi. Lekin ularda **ikkita boʻshliq** bor, va men ularni oʻzim oʻlchab topdim:"
+            },
+            {
+              "kind": "text",
+              "text": "**Boʻshliq 1: `‘` umuman tegilmaydi.** Birinchi qoida faqat `’` va `` ` `` ni oladi — `‘` ni emas. 2-boʻlimdagi jadvalga qayting: `‘` — internetdagi **eng koʻp** uchraydigan variant, 34%. Yaʼni tokenizatorim aynan eng keng tarqalgan yozuvni tuzatmaydi. Har bir `o‘zbek` bitta ortiqcha token turadi. Hisob-kitobim boʻyicha, uni tuzatish fertility ni taxminan **2%** yaxshilardi."
+            },
+            {
+              "kind": "text",
+              "text": "**Boʻshliq 2: soʻz chegarasi tekshirilmaydi.** 2-qoida `o` dan keyingi har qanday `'` ni oladi. Natijada `'dunyo'` → `'dunyoʻ` boʻladi — qoʻshtirnoq harfga aylanadi."
+            },
+            {
+              "kind": "text",
+              "text": "Ikkala boʻshliq ham sizning `apostrof_tuzat` funksiyangizda **yoʻq**:"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Kirish",
+                "`uzbek-bpe-16k`",
+                "Sizning funksiyangiz"
+              ],
+              "rows": [
+                [
+                  "`o‘zbek`",
+                  "`o‘zbek` — tuzatilmadi",
+                  "`oʻzbek` ✓"
+                ],
+                [
+                  "`U 'dunyo' dedi`",
+                  "`U 'dunyoʻ dedi` — buzildi",
+                  "`U 'dunyo' dedi` ✓"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "**Nima uchun tuzatmadim?** Chunki `uzbek-gpt-103m` modelim aynan shu tokenizator bilan oʻqitilgan. Tokenizatorni oʻzgartirsam, model oʻzi oʻrgangan tokenlarni tanimay qoladi va uni qaytadan oʻqitish kerak boʻladi (Dars 12 dagi \"model tanimaydi\" muammosi)."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Bundan ikkita saboq:** 1. **Har qanday qoidani haqiqiy maʼlumotda tekshiring.** Mening qoidalarim `'`, `’`, `` ` `` bilan sinab koʻrilgan edi va ishlardi. Faqat haqiqiy internet matnini sanaganimda eng koʻp variant tushib qolganini koʻrdim. 2. **Tokenizator — model bilan bogʻlangan.** Model oʻqitilgandan keyin tokenizatorni \"biroz yaxshilash\" mumkin emas. Shuning uchun uni **avval** puxta qilish kerak. Dars 18 da `uzbek-bpe-16k` ni yuklab ishlatganingizda `‘` tegilmay qolganini oʻzingiz koʻrasiz. Endi sababini bilasiz."
+            }
+          ]
+        },
+        {
+          "id": "11-nfc-kozga-bir-xil-baytlarda-har-xil",
+          "title": "11. NFC: koʻzga bir xil, baytlarda har xil",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Normalizatsiyaning yana bitta qatlami bor, va u 14-boʻlimda muhim boʻladi."
+            },
+            {
+              "kind": "text",
+              "text": "Ayrim harflarni Unicode'da **ikki xil** yozish mumkin. Masalan `ö`:"
+            },
+            {
+              "kind": "code",
+              "code": "a = \"\\u00f6\"           # bitta belgi: ö\nb = \"o\\u0308\"          # ikkita belgi: o + ustidagi ikki nuqta\n\nprint(a, b)\nprint(\"uzunligi:\", len(a), len(b))\nprint(\"teng:\", a == b)\nprint(\"baytlar:\", list(a.encode()), list(b.encode()))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "ö ö\nuzunligi: 1 2\nteng: False\nbaytlar: [195, 182] [111, 204, 136]"
+            },
+            {
+              "kind": "text",
+              "text": "Koʻzga — **bir xil**. Python uchun — **har xil**. Baytlarda — butunlay boshqa."
+            },
+            {
+              "kind": "text",
+              "text": "Ikkinchisida `o` oddiy harf, `\\u0308` esa \"oldingi harf ustiga ikki nuqta qoʻy\" degan alohida belgi. Ekranda ular bitta boʻlib chiziladi."
+            },
+            {
+              "kind": "text",
+              "text": "Bu qayerdan keladi? Turli klaviaturalar, turli operatsion tizimlar, nusxa koʻchirish. Bir hujjatda biri, boshqasida ikkinchisi."
+            },
+            {
+              "kind": "text",
+              "text": "**Yechim — `unicodedata.normalize(\"NFC\", matn)`:**"
+            },
+            {
+              "kind": "code",
+              "code": "print(unicodedata.normalize(\"NFC\", b) == a)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "True"
+            },
+            {
+              "kind": "text",
+              "text": "`NFC` — \"har bir harfni iloji boricha **bitta** belgiga yigʻ\". Ikki qismli `ö` bitta `ö` ga aylanadi."
+            },
+            {
+              "kind": "text",
+              "text": "`oʻ` ga esa u tegmaydi — `ʻ` alohida belgi, uni hech qanday harf bilan yigʻib boʻlmaydi. Demak NFC bizning apostrof ishimizni buzmaydi."
+            },
+            {
+              "kind": "h3",
+              "id": "yakuniy-normalizator",
+              "text": "Yakuniy normalizator"
+            },
+            {
+              "kind": "text",
+              "text": "NFC ni birinchi qadam qilib qoʻshamiz:"
+            },
+            {
+              "kind": "code",
+              "code": "def normallashtir(matn):\n    matn = unicodedata.normalize(\"NFC\", matn)\n    matn = apostrof_tuzat(matn)\n    return matn",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Nima uchun NFC **birinchi**? Chunki apostrof qoidasi \"oldingi belgi harfmi?\" deb soʻraydi. Agar harf ikki qismda turgan boʻlsa (`o` + `\\u0308`), oldingi belgi harf emas, ikki nuqta boʻlib chiqadi — va qoida notoʻgʻri ishlaydi. Avval yigʻamiz, keyin tekshiramiz."
+            },
+            {
+              "kind": "h3",
+              "id": "barqarorlik",
+              "text": "Barqarorlik"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 12 dagi sinovni eslang: normalizatsiyani **ikki marta** qoʻllasak, natija oʻzgarmasligi kerak."
+            },
+            {
+              "kind": "code",
+              "code": "for t in testlar:\n    n = normallashtir(t)\n    if normallashtir(n) != n:\n        print(\"BARQAROR EMAS:\", t)\nprint(\"tekshirildi\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "tekshirildi"
+            },
+            {
+              "kind": "text",
+              "text": "Hech biri chiqmadi. Toʻgʻri yozilgan matnga normalizator **tegmaydi**."
+            }
+          ]
+        },
+        {
+          "id": "12-olchaymiz",
+          "title": "12. Oʻlchaymiz",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi asosiy savol: bu amalda qanchalik farq qiladi?"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 10 dagi oʻquv matnimizni olamiz, lekin endi undagi yettita `oʻ` ni internetdagidek aralash yozamiz:"
+            },
+            {
+              "kind": "code",
+              "code": "matn_aralash = \"\"\"Bolalar maktabga borishdi. Ular kitoblarni o‘qishdi va daftarlarga yozishdi.\nOʻqituvchi darsni tushuntirdi. O'quvchilar savollarga javob berishdi.\nKechqurun bolalar uyga qaytishdi. Onalar ovqat tayyorlashdi.\nOtalar ishdan kelishdi. Hamma birga dasturxonga o‘tirishdi.\nErtalab bolalar yana maktabga borishdi. Ular yangi darslarni o’rganishdi.\nKitoblarda qiziqarli hikoyalar bor edi. Bolalar hikoyalarni yoqtirishdi.\nO‘qituvchilar savollar berishdi. O'quvchilar javoblarni yozishdi.\"\"\"\n\nprint(normallashtir(matn_aralash) == matn)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "True"
+            },
+            {
+              "kind": "text",
+              "text": "Normalizatsiyadan keyin u **aynan** Dars 10 dagi matnga aylanadi."
+            },
+            {
+              "kind": "text",
+              "text": "Ikkita tokenizator oʻqitamiz — biri xom matnda, biri normallashtirilganida:"
+            },
+            {
+              "kind": "code",
+              "code": "m_xom, v_xom, _ = train_regex(matn_aralash, 306, NAQSH)\nm_nor, v_nor, _ = train_regex(normallashtir(matn_aralash), 306, NAQSH)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Va ikkalasini **yangi** jumlada sinaymiz — u ham internetdagidek aralash yozilgan:"
+            },
+            {
+              "kind": "code",
+              "code": "sinov = \"O\\u2018quvchilar o'qituvchiga savol berishdi. O\\u2019qituvchi javob berdi.\"\n\nt_xom = encode_regex(sinov, m_xom, NAQSH)\nt_nor = encode_regex(normallashtir(sinov), m_nor, NAQSH)\n\nw = len(sinov.split())\nprint(\"normalizatsiyasiz:\", len(t_xom), \"token | fertility:\", round(len(t_xom) / w, 3))\nprint(\"normalizatsiya bilan:\", len(t_nor), \"token | fertility:\", round(len(t_nor) / w, 3))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "normalizatsiyasiz: 32 token | fertility: 4.571\nnormalizatsiya bilan: 28 token | fertility: 4.0"
+            },
+            {
+              "kind": "text",
+              "text": "**12% kamroq token.**"
+            },
+            {
+              "kind": "h3",
+              "id": "tokenizator-nimani-organdi",
+              "text": "Tokenizator nimani oʻrgandi?"
+            },
+            {
+              "kind": "text",
+              "text": "Ikkala lugʻatdan apostrof belgisini oʻz ichiga olgan tokenlarni qidiramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "def apostrofli(vocab):\n    natija = []\n    for tid in range(256, len(vocab)):\n        matn = vocab[tid].decode(\"utf-8\", errors=\"replace\")\n        for b in APOSTROFLAR:\n            if b in matn:\n                natija.append(matn)\n    return natija\n\n\nprint(\"normalizatsiyasiz:\", apostrofli(v_xom))\nprint(\"normalizatsiya bilan:\", apostrofli(v_nor))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "normalizatsiyasiz: ['‘']\nnormalizatsiya bilan: ['ʻ', 'ʻq', 'Oʻq', 'Oʻqit']"
+            },
+            {
+              "kind": "text",
+              "text": "Normalizatsiya bilan tokenizator **`oʻqi-` oʻzagini** qura boshladi: `ʻq` → `Oʻq` → `Oʻqit`. Normalizatsiyasiz esa — deyarli hech narsa. Statistika toʻrtta variantga boʻlinib ketdi va hech biri birlashtirish uchun yetarlicha tez-tez uchramadi."
+            },
+            {
+              "kind": "h3",
+              "id": "eng-galati-natija",
+              "text": "Eng gʻalati natija"
+            },
+            {
+              "kind": "text",
+              "text": "Endi bitta soʻzni uch xil yozib, ikkala tokenizatorda kodlaymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "def korsat(tokenlar, vocab):\n    return [decode([t], vocab) for t in tokenlar]\n\nfor soz in [\" o\\u02bbqituvchi\", \" o'qituvchi\", \" o\\u2018qituvchi\"]:\n    a = encode_regex(soz, m_xom, NAQSH)\n    b = encode_regex(normallashtir(soz), m_nor, NAQSH)\n    print(f\"  {soz!r:16s} xom: {len(a)} {korsat(a, v_xom)}\")\n    print(f\"  {'':16s} nor: {len(b)} {korsat(b, v_nor)}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  ' oʻqituvchi'    xom: 5 [' o', '�', '�', 'qit', 'uvchi']\n                   nor: 4 [' o', 'ʻq', 'it', 'uvchi']\n  \" o'qituvchi\"    xom: 4 [' o', \"'\", 'qit', 'uvchi']\n                   nor: 4 [' o', 'ʻq', 'it', 'uvchi']\n  ' o‘qituvchi'    xom: 4 [' o', '‘', 'qit', 'uvchi']\n                   nor: 4 [' o', 'ʻq', 'it', 'uvchi']"
+            },
+            {
+              "kind": "text",
+              "text": "**Birinchi qatorga qarang.** Normalizatsiyasiz tokenizatorda **toʻgʻri** yozilgan soʻz **eng qimmat** — 5 token. Va ulardan ikkitasi `�` — Dars 11 dagi yarim belgilar!"
+            },
+            {
+              "kind": "text",
+              "text": "Nima boʻldi? Toʻgʻri `ʻ` matnda kam uchragani uchun tokenizator uning ikkita baytini (202 va 187) birlashtirishni oʻrganmagan. Natijada `ʻ` ikki boʻlakda qoldi."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Normalizatsiyasiz tokenizator toʻgʻri yozganlarni jazolaydi.** Chunki internetda toʻgʻri yozuv — ozchilik. Normalizatsiya bilan esa uchala yozuv **aynan bir xil** tokenlarga aylanadi."
+            },
+            {
+              "kind": "h3",
+              "id": "halol-izoh",
+              "text": "Halol izoh"
+            },
+            {
+              "kind": "text",
+              "text": "12% — bu **bizning kichkina matnimizdagi** raqam. Unda atigi 7 ta `oʻ` bor, va har biri katta taʼsir qiladi."
+            },
+            {
+              "kind": "text",
+              "text": "Haqiqiy katta korpusda farq ancha kichik boʻladi. Millionlab hujjatda tokenizator har bir variantni alohida oʻrganishga yetarli maʼlumot topadi — u shunchaki lugʻatda koʻproq joy isrof qiladi va har bir notoʻgʻri yozilgan soʻz uchun bitta ortiqcha token turadi. 10-boʻlimdagi raqamni eslang: mening tokenizatorimda bitta varianti (`‘`) tuzatilmagani taxminan **2%** turadi."
+            },
+            {
+              "kind": "text",
+              "text": "**Kichik matn effektni kattalashtiradi. Tushunish uchun foydali — lekin uni haqiqiy natija deb aytmang.**"
+            }
+          ]
+        },
+        {
+          "id": "13-normalizatsiya-qayerda-turadi",
+          "title": "13. Normalizatsiya qayerda turadi",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Tokenizatorning toʻliq zanjiri endi shunday:"
+            },
+            {
+              "kind": "pre",
+              "text": "matn → normallashtir → regex boʻlish → BPE → tokenlar"
+            },
+            {
+              "kind": "text",
+              "text": "Va bu zanjir **ikki joyda** bir xil boʻlishi shart — Dars 13 dagi naqsh kabi:"
+            },
+            {
+              "kind": "code",
+              "code": "# oʻqitishda\nmerges, vocab, _ = train_regex(normallashtir(matn), 306, NAQSH)\n\n# kodlashda\ndef encode_toliq(matn, merges):\n    return encode_regex(normallashtir(matn), merges, NAQSH)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "h3",
+              "id": "round-trip-endi-boshqacha",
+              "text": "Round-trip endi boshqacha"
+            },
+            {
+              "kind": "text",
+              "text": "Endi muhim oʻzgarish. Dars 11 da asosiy sinovimiz shu edi:"
+            },
+            {
+              "kind": "pre",
+              "text": "decode(encode(x)) == x"
+            },
+            {
+              "kind": "text",
+              "text": "Endi u **har doim ham** ishlamaydi:"
+            },
+            {
+              "kind": "code",
+              "code": "for x in [\"o'zbek tili\", \"o\\u02bbzbek tili\"]:\n    y = decode(encode_toliq(x, m_nor), v_nor)\n    print(f\"  {x!r:14s} -> {y!r:14s} | == x: {y == x} | == normallashtir(x): {y == normallashtir(x)}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  \"o'zbek tili\"  -> 'oʻzbek tili'  | == x: False | == normallashtir(x): True\n  'oʻzbek tili'  -> 'oʻzbek tili'  | == x: True | == normallashtir(x): True"
+            },
+            {
+              "kind": "text",
+              "text": "`o'zbek` kirdi — `oʻzbek` chiqdi. **Asl belgi qaytmaydi.**"
+            },
+            {
+              "kind": "text",
+              "text": "Bu xato emas — bu **qaror**. Normalizatsiya **bir tomonlama**: biz besh xil yozuvni ataylab bittaga birlashtirdik, va qaysi biri boshida turganini eslab qolmadik. Oʻzbek tilida ular orasida maʼno farqi yoʻq."
+            },
+            {
+              "kind": "text",
+              "text": "Shuning uchun sinov ham oʻzgaradi:"
+            },
+            {
+              "kind": "pre",
+              "text": "decode(encode(x)) == normallashtir(x)"
+            },
+            {
+              "kind": "h3",
+              "id": "baholash-uchun-muhim-qoida",
+              "text": "⚠️ Baholash uchun muhim qoida"
+            },
+            {
+              "kind": "text",
+              "text": "Bir xavfli narsa bor. Agar siz tokenizatoringizni **boshqa tokenizatorlar bilan** solishtirmoqchi boʻlsangiz:"
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Sinov matnini oldindan normallashtirib saqlamang.** Hamma tokenizatorga **asl internet matnini** bering — har biri oʻz normalizatsiyasini oʻzi qilsin."
+            },
+            {
+              "kind": "text",
+              "text": "Agar matnni sizning normalizatoringizdan oʻtkazib saqlasangiz, u **sizning** tokenizatoringiz yaxshi koʻradigan imloda boʻladi. Boshqa tokenizatorlar esa internetdagi imloda oʻrgangan. Solishtiruv sizning foydangizga ogʻadi — sezilmay."
+            },
+            {
+              "kind": "text",
+              "text": "Bu xatoni men oʻzim qilganman. Dars 17 da qanday topganimni aytib beraman."
+            }
+          ]
+        },
+        {
+          "id": "14-2026-yil-yangi-alifbo",
+          "title": "14. 2026-yil: yangi alifbo",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Bu darsni yozayotgan paytda oʻzbek alifbosi oʻzgaryapti."
+            },
+            {
+              "kind": "text",
+              "text": "**2026-yil 10-sentabrda** Senat lotin alifbosiga oʻzgartirishlarni maʼqulladi:"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Eski",
+                "Yangi"
+              ],
+              "rows": [
+                [
+                  "oʻ",
+                  "**ö**"
+                ],
+                [
+                  "gʻ",
+                  "**ğ**"
+                ],
+                [
+                  "sh",
+                  "**ş**"
+                ],
+                [
+                  "ch",
+                  "**ç**"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Tutuq belgisi `ʼ` qoladi. Maktab darsliklari 2031-yilgacha yangi yozuvga oʻtishi rejalashtirilgan."
+            },
+            {
+              "kind": "text",
+              "text": "Bu `oʻ` va `gʻ` muammosining oxirimi? Ham ha, ham yoʻq:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "**Ha** — yangi matnlarda apostrofli harflar boʻlmaydi.",
+                "**Yoʻq** — internetdagi millionlab eski matnlar qoladi. Va bir necha yil davomida odamlar **ikkala** yozuvda yozadi."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "tokenizatorga-nima-boladi",
+              "text": "Tokenizatorga nima boʻladi?"
+            },
+            {
+              "kind": "text",
+              "text": "Mening tokenizatorim eski yozuvda oʻqitilgan. U `ö` ni hech qachon koʻrmagan. Men buni oʻlchadim: bir xil test matnini yangi yozuvga oʻtkazganimda, `uzbek-bpe-16k` ning fertility si **1.709 dan 2.353 ga** oshdi — **38% koʻproq token**. *(Bu oʻlchov normallashtirilgan imlodagi test matnida qilingan, shuning uchun Dars 01 dagi 1.749 dan biroz farq qiladi.)*"
+            },
+            {
+              "kind": "text",
+              "text": "Qiziq tomoni: `ö` — **2 bayt**, `oʻ` esa **3 bayt**:"
+            },
+            {
+              "kind": "code",
+              "code": "print(list(\"ö\".encode()), list(\"o\\u02bb\".encode()))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "[195, 182] [111, 202, 187]"
+            },
+            {
+              "kind": "text",
+              "text": "Yangi harf **kamroq** bayt turadi — lekin **koʻproq** token. Chunki tokenning narxi baytlarga emas, **tokenizator nimani oʻrganganiga** bogʻliq."
+            },
+            {
+              "kind": "h3",
+              "id": "yechim-yana-normalizatsiya",
+              "text": "Yechim — yana normalizatsiya"
+            },
+            {
+              "kind": "text",
+              "text": "Modelni yangi yozuvda qaytadan oʻqitish — haftalar va pul. Lekin bunga hojat yoʻq."
+            },
+            {
+              "kind": "text",
+              "text": "Tokenizatordan **oldin** yangi harflarni eskisiga qaytarsak — `ö` → `oʻ`, `ş` → `sh` — tokenizator oʻzi biladigan matnni oladi. Men buni sinab koʻrdim: fertility **aynan 1.709 ga** qaytdi. Qayta oʻqitish yoʻq, GPU yoʻq, model ham oʻzgarishsiz ishlaydi."
+            },
+            {
+              "kind": "text",
+              "text": "Bu funksiyani 18-boʻlimdagi 5-mashqda **oʻzingiz** yozasiz."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Bu darsning eng muhim gʻoyasi:** normalizatsiya — tokenizatorning **eng arzon richagi**. U oʻqitilgan modelga tegmaydi. Faqat matnni modelga tanish shaklga keltiradi. Apostrof muammosi ham, alifbo islohoti ham — bitta usul bilan."
+            },
+            {
+              "kind": "media",
+              "id": "p4",
+              "title": "Yangi alifbo"
+            }
+          ]
+        },
+        {
+          "id": "15-muammo",
+          "title": "15. Muammo",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi tokenizatoringiz **toʻliq**:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "✓ baytlar (Dars 06) — notanish belgi yoʻq",
+                "✓ BPE (Dars 08–12) — qoʻshimchalarni oʻzi topadi",
+                "✓ regex (Dars 13) — soʻz chegarasidan oʻtmaydi",
+                "✓ normalizatsiya (Dars 14) — `oʻ` qanday yozilmasin, bir xil"
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Lekin u **53 ta soʻzda** oʻqitilgan. Dars 10 dan bilasiz: bu juda kam — kichik matnda tokenizator oʻrganmaydi, yodlaydi."
+            },
+            {
+              "kind": "text",
+              "text": "Haqiqiy tokenizator uchun **millionlab** hujjat kerak. Bu darsdagi senzus ham 3 000 ta haqiqiy hujjatdan olingan edi."
+            },
+            {
+              "kind": "text",
+              "text": "Bunday matn qayerdan olinadi? Kim ruxsat beradi? Va eng muhimi — internetdagi matn qanchalik iflos? Dublikatlar, reklamalar, boshqa tillar, buzilgan baytlar..."
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi dars aynan shu haqida."
+            }
+          ]
+        },
+        {
+          "id": "16-toliq-kod",
+          "title": "16. Toʻliq kod",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "import re\nimport unicodedata\n\nNAQSH = r\" ?\\w+| ?[^\\s\\w]+|\\s+\"\n\nOKINA = \"\\u02bb\"    # oʻ va gʻ dagi belgi\nTUTUQ = \"\\u02bc\"    # maʼno dagi belgi\nAPOSTROFLAR = \"'\\u2018\\u2019`\\u02bb\\u02bc\"\n\n\ndef apostrof_tuzat(matn):\n    belgilar = list(matn)\n    for i in range(len(belgilar)):\n        if belgilar[i] in APOSTROFLAR:\n            oldingi = \"\"\n            keyingi = \"\"\n            if i > 0:\n                oldingi = belgilar[i - 1]\n            if i < len(belgilar) - 1:\n                keyingi = belgilar[i + 1]\n\n            if oldingi in [\"g\", \"G\"]:\n                belgilar[i] = OKINA\n            elif oldingi in [\"o\", \"O\"] and keyingi.isalpha():\n                belgilar[i] = OKINA\n            elif oldingi.isalpha() and keyingi.isalpha():\n                belgilar[i] = TUTUQ\n    return \"\".join(belgilar)\n\n\ndef normallashtir(matn):\n    matn = unicodedata.normalize(\"NFC\", matn)\n    matn = apostrof_tuzat(matn)\n    return matn\n\n\ndef encode_toliq(matn, merges):\n    return encode_regex(normallashtir(matn), merges, NAQSH)\n\n\n# ---- 1. Qoidalar ----\nfor t in [\"o'zbek\", \"g\\u2019alaba\", \"bog'\", \"ma'no\", \"U \\u2018salom\\u2019 dedi\", \"U 'dunyo' dedi\"]:\n    print(f\"  {t!r:18s} -> {normallashtir(t)!r}\")\n\n# ---- 2. NFC ----\nprint(\"NFC:\", normallashtir(\"o\\u0308\") == \"ö\")\n\n# ---- 3. Trening va sinov ----\nmatn_aralash = \"\"\"Bolalar maktabga borishdi. Ular kitoblarni o‘qishdi va daftarlarga yozishdi.\nOʻqituvchi darsni tushuntirdi. O'quvchilar savollarga javob berishdi.\nKechqurun bolalar uyga qaytishdi. Onalar ovqat tayyorlashdi.\nOtalar ishdan kelishdi. Hamma birga dasturxonga o‘tirishdi.\nErtalab bolalar yana maktabga borishdi. Ular yangi darslarni o’rganishdi.\nKitoblarda qiziqarli hikoyalar bor edi. Bolalar hikoyalarni yoqtirishdi.\nO‘qituvchilar savollar berishdi. O'quvchilar javoblarni yozishdi.\"\"\"\n\nm_xom, v_xom, _ = train_regex(matn_aralash, 306, NAQSH)\nm_nor, v_nor, _ = train_regex(normallashtir(matn_aralash), 306, NAQSH)\n\nsinov = \"O\\u2018quvchilar o'qituvchiga savol berishdi. O\\u2019qituvchi javob berdi.\"\nw = len(sinov.split())\nt_xom = encode_regex(sinov, m_xom, NAQSH)\nt_nor = encode_toliq(sinov, m_nor)\nprint(\"normalizatsiyasiz:\", len(t_xom), \"token |\", round(len(t_xom) / w, 3))\nprint(\"normalizatsiya bilan:\", len(t_nor), \"token |\", round(len(t_nor) / w, 3))\n\n# ---- 4. Round-trip ----\nx = \"o'zbek tili\"\ny = decode(encode_toliq(x, m_nor), v_nor)\nprint(\"round-trip:\", y == normallashtir(x))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  \"o'zbek\"           -> 'oʻzbek'\n  'g’alaba'          -> 'gʻalaba'\n  \"bog'\"             -> 'bogʻ'\n  \"ma'no\"            -> 'maʼno'\n  'U ‘salom’ dedi'   -> 'U ‘salom’ dedi'\n  \"U 'dunyo' dedi\"   -> \"U 'dunyo' dedi\"\nNFC: True\nnormalizatsiyasiz: 32 token | 4.571\nnormalizatsiya bilan: 28 token | 4.0\nround-trip: True",
+              "label": "Kutilgan natija"
+            }
+          ]
+        },
+        {
+          "id": "17-ozingiz-yozing",
+          "title": "17. Oʻzingiz yozing",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "def apostrof_tuzat(matn):\n    belgilar = ___(matn)\n    for i in range(len(belgilar)):\n        if belgilar[i] in APOSTROFLAR:\n            oldingi = \"\"\n            keyingi = \"\"\n            if i ___ 0:\n                oldingi = belgilar[i - 1]\n            if i < len(belgilar) ___ 1:\n                keyingi = belgilar[i + 1]\n\n            if oldingi in [___, ___]:\n                belgilar[i] = OKINA\n            ___ oldingi in [\"o\", \"O\"] and keyingi.___():\n                belgilar[i] = OKINA\n            elif oldingi.isalpha() ___ keyingi.isalpha():\n                belgilar[i] = ___\n    return ___.join(belgilar)\n\n\n# Bu natijani olishingiz kerak:\nprint(apostrof_tuzat(\"To'g'ri ma'no, bog'da\"))     # Toʻgʻri maʼno, bogʻda",
+              "lang": "python",
+              "mode": "template"
+            },
+            {
+              "kind": "reveal",
+              "summary": "Yechimni koʻrsatish",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "def apostrof_tuzat(matn):\n    belgilar = list(matn)\n    for i in range(len(belgilar)):\n        if belgilar[i] in APOSTROFLAR:\n            oldingi = \"\"\n            keyingi = \"\"\n            if i > 0:\n                oldingi = belgilar[i - 1]\n            if i < len(belgilar) - 1:\n                keyingi = belgilar[i + 1]\n\n            if oldingi in [\"g\", \"G\"]:\n                belgilar[i] = OKINA\n            elif oldingi in [\"o\", \"O\"] and keyingi.isalpha():\n                belgilar[i] = OKINA\n            elif oldingi.isalpha() and keyingi.isalpha():\n                belgilar[i] = TUTUQ\n    return \"\".join(belgilar)",
+                  "lang": "python",
+                  "mode": "static"
+                },
+                {
+                  "kind": "text",
+                  "text": "Bitta jumlada uchala qoida ishladi: `toʻgʻri` (o va g), `maʼno` (tutuq), `bogʻda` (g, keyin harf)."
+                },
+                {
+                  "kind": "text",
+                  "text": "Eng koʻp qilinadigan xatolar:"
+                },
+                {
+                  "kind": "steps",
+                  "items": [
+                    "`[\"g\", \"G\"]` oʻrniga `\"gG\"` — 8-boʻlimdagi boʻsh satr tuzogʻi.",
+                    "`elif` oʻrniga `if` — unda bitta belgi uchun bir nechta qoida ketma-ket ishlashi mumkin, va oxirgisi \"yutadi\".",
+                    "Tutuq qoidasini birinchi qoʻyish — 9-boʻlimdagi `oʼqish` xatosi."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "18-mashqlar",
+          "title": "18. Mashqlar",
+          "blocks": [
+            {
+              "kind": "exercise",
+              "label": "Mashq 1",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Ishga tushirmasdan ayting: `normallashtir` bulardan nima qiladi?"
+                },
+                {
+                  "kind": "pre",
+                  "text": "\"G‘ozi\"    \"O'g'il\"    \"ko’cha\"    \"Ma`lumot\"    \"sog'lom\""
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "output",
+                    "text": "'G‘ozi'      -> 'Gʻozi'\n\"O'g'il\"     -> 'Oʻgʻil'\n'ko’cha'     -> 'koʻcha'\n'Ma`lumot'   -> 'Maʼlumot'\n\"sog'lom\"    -> 'sogʻlom'"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`Maʼlumot` ga diqqat qiling: oldida `a`, keyin `l` — ikkalasi ham harf, va `a` na `o`, na `g`. Demak tutuq. Qaysi belgi bilan yozilgani (`` ` ``) muhim emas."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 2",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`normallashtir(\"don't\")` va `normallashtir(\"it's\")` nima qaytaradi? Bu muammomi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "output",
+                    "text": "'donʼt'\n'itʼs'"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Inglizcha apostrof ham ikki harf orasida turibdi — demak 3-qoida uni tutuqqa aylantirdi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Muammomi?** Qisman. Oʻzbekcha korpusda inglizcha soʻzlar ham uchraydi, va ular endi biroz \"buzilgan\" boʻladi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Lekin bu **ongli savdo**: tokenizator oʻzbek tili uchun. Inglizcha matn kam, va `donʼt` ning `don't` dan farqi model uchun katta emas. Agar inglizcha matn koʻp boʻlsa, normalizatsiyadan oldin **tilni aniqlash** kerak boʻlardi — va bu Dars 15 ning mavzusi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Har bir qoida qayerdadir xato qiladi. Muhimi — **qayerda** ekanini bilish va bu narx toʻlashga arziydimi, hal qilish."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 3",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Bizning qoidalarimiz `'dunyo'` ni toʻgʻri qoldiradi. Lekin bitta oʻxshash holat bor, unda ular **xato qiladi**. Topa olasizmi? `g` haqida oʻylang."
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "print(repr(normallashtir(\"U 'bog' dedi\")))",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "\"U 'bogʻ dedi\""
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Qoʻshtirnoq ichidagi soʻz `g` bilan tugasa, yopuvchi qoʻshtirnoq `gʻ` ga aylanadi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Nima uchun tuzatmadik?** Chunki `bogʻ` (oxirida `gʻ`) va `'bog'` (qoʻshtirnoq ichida) **bir xil koʻrinadi**. Belgining atrofi ikkalasida ham aynan bir xil: oldida `g`, keyin boʻshliq. Qaysi biri ekanini faqat **maʼno** hal qiladi — va bizning qoidamiz maʼnoni bilmaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`bogʻ`, `togʻ`, `sogʻ` — juda koʻp uchraydi. `g` bilan tugaydigan soʻzni qoʻshtirnoqqa olish — juda kam. Shuning uchun koʻp uchraydigan holatni toʻgʻri qilib, kam uchraydiganida xato qilishni tanladik."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Mukammal qoida yoʻq. Faqat yaxshi tanlangan xatolar bor.**"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 4",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`decode(encode_toliq(\"O'zbekiston\", m_nor), v_nor)` nima qaytaradi? Round-trip sinovini qanday yozish kerak?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "output",
+                    "text": "'Oʻzbekiston'"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`O'zbekiston` emas — `Oʻzbekiston`. Normalizatsiya bir tomonlama."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Shuning uchun:"
+                  },
+                  {
+                    "kind": "code",
+                    "code": "x = \"O'zbekiston\"\ny = decode(encode_toliq(x, m_nor), v_nor)\n\nprint(y == x)                  # False — bu sinov notoʻgʻri\nprint(y == normallashtir(x))   # True  — bu toʻgʻri sinov",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Agar siz eski sinovni (`y == x`) ishlatsangiz, u **ishlaydigan** tokenizatorni \"buzuq\" deb koʻrsatadi. Sinov ham kod bilan birga oʻzgarishi kerak."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 5 (eng muhimi)",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Yangi alifboda yozilgan matnni eski yozuvga qaytaradigan `eski_imloga` funksiyasini yozing: `ö` → `oʻ`, `ğ` → `gʻ`, `ş` → `sh`, `ç` → `ch` (katta harflar ham). Keyin `m_nor` tokenizatorida uch xil matnni oʻlchang:"
+                },
+                {
+                  "kind": "code",
+                  "code": "eski  = \"Oʻquvchilar oʻqituvchiga savol berishdi. Oʻqituvchi javob berdi.\"\nyangi = \"Öquvçilar öqituvçiga savol berişdi. Öqituvçi javob berdi.\"",
+                  "lang": "python",
+                  "mode": "type"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "def eski_imloga(matn):\n    matn = unicodedata.normalize(\"NFC\", matn)\n    matn = matn.replace(\"ş\", \"sh\").replace(\"Ş\", \"Sh\")\n    matn = matn.replace(\"ç\", \"ch\").replace(\"Ç\", \"Ch\")\n    matn = matn.replace(\"ö\", \"o\\u02bb\").replace(\"Ö\", \"O\\u02bb\")\n    matn = matn.replace(\"ğ\", \"g\\u02bb\").replace(\"Ğ\", \"G\\u02bb\")\n    return matn\n\n\nprint(eski_imloga(yangi) == eski)\n\nw = len(eski.split())\nfor nom, m in [(\"eski imlo\", eski), (\"yangi imlo\", yangi), (\"qaytarilgan\", eski_imloga(yangi))]:\n    t = encode_toliq(m, m_nor)\n    print(f\"  {nom:12s} {len(t):3d} token | {len(t) / w:.3f}\")",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "True\n  eski imlo     28 token | 4.000\n  yangi imlo    49 token | 7.000\n  qaytarilgan   28 token | 4.000"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Yangi imlo — 75% koʻproq token.** Qaytarilgandan keyin — **aynan** eski raqam."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Mening haqiqiy tokenizatorimda farq 38% edi (1.709 → 2.353), va qaytarish ham uni aynan 1.709 ga tikladi. Bizning kichkina tokenizatorda farq kattaroq — u kamroq soʻz biladi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Nima uchun birinchi qator NFC?** 11-boʻlimni eslang: `ö` ikki xil yozilishi mumkin. Agar matnda ikki qismli `o` + `\\u0308` boʻlsa, `.replace(\"ö\", ...)` uni **topmaydi**. NFC avval ularni bitta `ö` ga yigʻadi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Cheklov:** `ŞAHAR` → `ShAHAR` boʻladi (`SHAHAR` emas). Va turkcha ismlar ham\noʻzgaradi: `Gökhan` → `Goʻkhan`. Haqiqiy konvertor bunday holatlarni ham hisobga olishi kerak."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Va eng muhimi:** siz hozir alifbo islohotiga tokenizatorni **qayta oʻqitmasdan** moslashtirdingiz. Bitta funksiya, sakkizta `.replace()`."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "19-xulosa",
+          "title": "19. Xulosa",
+          "blocks": [
+            {
+              "kind": "steps",
+              "items": [
+                "Notoʻgʻri apostrof soʻzni regex darajasida **kesib qoʻyadi** — `o'zbek` → uch boʻlak. BPE bu devordan hech qachon oʻta olmaydi.",
+                "Internetda `oʻ` ning toʻgʻri yozuvi — atigi **23%**. Eng koʻp — `‘` (34%).",
+                "Ikkita toʻgʻri belgi: `ʻ` (699) — `oʻ`, `gʻ` uchun; `ʼ` (700) — tutuq uchun. Ikkalasi ham Unicode'da **harf**.",
+                "Belgining oʻzi emas — **atrofi** hal qiladi. `.replace()` bu ishni qila olmaydi.",
+                "`g` dan keyin — doim `ʻ`. `o` dan keyin — faqat keyin harf boʻlsa. Ikki harf orasida — `ʼ`. Qolgan hammasi — tegilmaydi.",
+                "`elif` zanjirida **eng aniq shart birinchi**. `x in [\"a\", \"b\"]` — `x in \"ab\"` emas (`\"\" in \"ab\"` → `True`).",
+                "**NFC** — koʻzga bir xil, baytlarda har xil harflarni bittaga yigʻadi. Apostrof qoidasidan **oldin**.",
+                "Normalizatsiya **bir tomonlama**. Sinov: `decode(encode(x)) == normallashtir(x)`.",
+                "Sinov matnini oldindan normallashtirib saqlamang — solishtiruv sizning foydangizga ogʻadi.",
+                "Normalizatsiya — **eng arzon richag**. Alifbo islohotiga ham qayta oʻqitmasdan moslashtiradi."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "keyingi-dars",
+          "title": "Keyingi dars",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Tokenizator toʻliq. Endi unga **haqiqiy maʼlumot** kerak."
+            },
+            {
+              "kind": "text",
+              "text": "**Dars 15 — Maʼlumot: qayerdan olish va qanday tozalash.** Oʻzbek matni qayerda bor, qaysi birini ishlatish mumkin, va internet matnini tokenizatorga berishdan oldin undan nimalarni olib tashlash kerak."
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi darsning savoli: *agar bitta yangilik maqolasi oʻnta saytda qayta chop etilgan boʻlsa — va hammasi korpusingizga tushsa — bu tokenizatorga qanday taʼsir qiladi?*"
+            }
+          ]
+        }
+      ],
+      "exercises": [],
+      "needs": "Dars 01–13. Regex naqsh, `train_regex`, `encode_regex`"
+    },
+    {
+      "id": "dars-15",
+      "n": 15,
+      "title": "Maʼlumot: qayerdan olish va qanday tozalash",
+      "subtitle": "",
+      "minutes": 75,
+      "status": "ready",
+      "intro": [],
+      "sections": [
+        {
+          "id": "bu-darsdan-keyin-siz",
+          "title": "Bu darsdan keyin siz...",
+          "blocks": [
+            {
+              "kind": "goals",
+              "items": [
+                "**bilasiz** oʻzbek matni internetda qayerda bor — va qancha (haqiqiy raqamlar bilan);",
+                "**ajrata olasiz** uchta savolni: undan oʻqitsam boʻladimi, uni tarqatsam boʻladimi, nima shart;",
+                "**koʻrasiz** \"tozalangan\" korpus ichida aslida nimalar yotganini;",
+                "**oʻqiysiz va yozasiz** fayllarni — va notoʻgʻri kodlash harflarni qanday buzishini;",
+                "**qurasiz** olti bosqichli tozalash quvurini, har bosqichda raqam bilan;",
+                "**oʻlchaysiz** iflos korpus tokenizatorga nima qilishini."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1-bitta-savol",
+          "title": "1. Bitta savol",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 14 oxirida savol qoldirgan edim:"
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Agar bitta yangilik maqolasi oʻnta saytda qayta chop etilgan boʻlsa — va hammasi korpusingizga tushsa — bu tokenizatorga qanday taʼsir qiladi?"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 08 ni eslang: BPE **eng koʻp uchragan** juftni birlashtiradi. U \"bu juft muhimmi?\" deb soʻramaydi. Faqat sanaydi."
+            },
+            {
+              "kind": "text",
+              "text": "Demak bitta maqola oʻn marta uchrasa, uning soʻzlari tokenizator uchun **oʻn barobar muhim** boʻlib qoladi. Lugʻatdagi joylar — cheklangan. Ular oʻsha bitta maqolaga ketadi."
+            },
+            {
+              "kind": "text",
+              "text": "Bu — gipoteza. Darsning oxirida uni oʻlchaymiz. Lekin avval bizga haqiqiy matn kerak. U qayerdan keladi?"
+            }
+          ]
+        },
+        {
+          "id": "2-ozbek-matni-qayerda-bor",
+          "title": "2. Oʻzbek matni qayerda bor",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Shu paytgacha biz oʻzimiz yozgan 7 qatorli matnda ishladik. Haqiqiy tokenizatorga **millionlab** hujjat kerak. Hech kim ularni qoʻlda yozmaydi — ular internetdan olinadi."
+            },
+            {
+              "kind": "h3",
+              "id": "common-crawl",
+              "text": "Common Crawl"
+            },
+            {
+              "kind": "text",
+              "text": "**Common Crawl** — notijorat tashkilot. U internetni muntazam aylanib chiqadi, sahifalarni yuklab oladi va hammasini **bepul** tarqatadi. Har bir aylanish — bitta **surat** (snapshot) deyiladi."
+            },
+            {
+              "kind": "text",
+              "text": "Lekin Common Crawl — xom material. Unda HTML kodi, menyular, reklama, yuzlab tillar, spam — hammasi aralash. Undan foydalanish uchun kimdir tozalashi kerak."
+            },
+            {
+              "kind": "h3",
+              "id": "fineweb-2",
+              "text": "FineWeb-2"
+            },
+            {
+              "kind": "text",
+              "text": "**FineWeb-2** — Hugging Face jamoasi Common Crawl'dan yasagan korpus. Ular:"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "**96 ta suratni** oldi — 2013-yil yozidan 2024-yil aprelgacha;",
+                "HTML'dan **faqat matnni** ajratdi (`trafilatura` dasturi bilan);",
+                "har bir hujjatning **tilini aniqladi** (`GlotLID` modeli bilan);",
+                "har bir til uchun **dublikatlarni** olib tashladi;",
+                "sifat **filtrlari**dan oʻtkazdi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Natija — taxminan 20 terabayt, 1 868 ta til-yozuv juftligi. Oʻzbek tili ikki boʻlimda:"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Boʻlim",
+                "Hujjatlar",
+                "Soʻzlar",
+                "Hajmi (UTF-8)"
+              ],
+              "rows": [
+                [
+                  "`uzn_Latn` — lotin",
+                  "1 233 463",
+                  "687 002 994",
+                  "4.45 GB"
+                ],
+                [
+                  "`uzn_Cyrl` — kirill",
+                  "1 357 811",
+                  "544 866 919",
+                  "6.12 GB"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Ikkita narsaga eʼtibor bering."
+            },
+            {
+              "kind": "text",
+              "text": "**Birinchi:** kirill yozuvidagi oʻzbekcha hujjatlar lotinchadan **koʻproq** — 124 348 taga. Internetning katta qismi hali kirillda. Bizning tokenizatorimiz lotin uchun — demak bu hujjatlarni ishlatmaymiz (8-boʻlimda qaytamiz)."
+            },
+            {
+              "kind": "text",
+              "text": "**Ikkinchi:** shu korpusda rus tilida **588 579 493 780** soʻz bor. Bu oʻzbek lotin boʻlimidan **857 marta** koʻp. Dars 01 da \"nega oʻzbek tili AI uchun qimmat?\" deb soʻragan edik. Mana javobning bir qismi — raqamda."
+            },
+            {
+              "kind": "h3",
+              "id": "boshqa-manbalar",
+              "text": "Boshqa manbalar"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Manba",
+                "Oʻzbekcha hajmi",
+                "Nima",
+                "Qayerda"
+              ],
+              "rows": [
+                [
+                  "**FineWeb-2**",
+                  "1.23 mln hujjat (lotin)",
+                  "Common Crawl 2013–2024, tozalangan",
+                  "Hugging Face"
+                ],
+                [
+                  "**CC-100**",
+                  "91 mln token, 0.7 GiB",
+                  "Common Crawl, faqat 2018-yil",
+                  "Hugging Face, statmt"
+                ],
+                [
+                  "**OSCAR**",
+                  "—",
+                  "Common Crawl, bir necha versiya",
+                  "Hugging Face, **soʻrov bilan**"
+                ],
+                [
+                  "**Vikipediya**",
+                  "354 569 maqola (2026-avgust)",
+                  "ensiklopediya",
+                  "dumps.wikimedia.org"
+                ],
+                [
+                  "**UzCrawl**",
+                  "1.3 mln yangilik + 368 ming Telegram post",
+                  "yangilik saytlari, Telegram",
+                  "Hugging Face"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Bir nechta izoh:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "**CC-100** — XLM-R modelini oʻqitish uchun yigʻilgan. Kichik va eski (2018).",
+                "**OSCAR** — yuklab olish uchun avval ruxsat soʻrash kerak.",
+                "**Vikipediya** — tili toza, lekin oʻzbekcha maqolalarning koʻpi **botlar** bilan yaratilgan (2013-yilda butun Oʻzbekiston milliy ensiklopediyasi import qilingan). Mavzular tor, uslub bir xil.",
+                "**UzCrawl** — yangiliklar uchun eng katta manba. Uning litsenziyasi haqida 4-boʻlimda."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Bu darsda **FineWeb-2** bilan ishlaymiz: eng katta, eng yangi, va — muhimi — har bir hujjat haqida koʻp maʼlumot saqlaydi."
+            }
+          ]
+        },
+        {
+          "id": "3-bitta-haqiqiy-yozuv",
+          "title": "3. Bitta haqiqiy yozuv",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "FineWeb-2 ning har bir hujjati — bitta **yozuv** (record). Oʻzbek lotin boʻlimining eng birinchi yozuvi mana bunday:"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Maydon",
+                "Qiymati",
+                "Maʼnosi"
+              ],
+              "rows": [
+                [
+                  "`text`",
+                  "`Qirg’izistonda joriy yil qator oliygohlarda…`",
+                  "matnning oʻzi"
+                ],
+                [
+                  "`url`",
+                  "`http://www.amerikaovozi.com/content/higher-education-kyrgyzstan/1476380.html`",
+                  "qaysi sahifadan"
+                ],
+                [
+                  "`dump`",
+                  "`CC-MAIN-2013-20`",
+                  "qaysi Common Crawl suratidan"
+                ],
+                [
+                  "`date`",
+                  "`2013-06-19T04:27:40Z`",
+                  "qachon yuklangan"
+                ],
+                [
+                  "`language`",
+                  "`uzn`",
+                  "til (shimoliy oʻzbek)"
+                ],
+                [
+                  "`language_script`",
+                  "`Latn`",
+                  "yozuv"
+                ],
+                [
+                  "`language_score`",
+                  "`1.000`",
+                  "til aniqlovchi qanchalik ishonchli"
+                ],
+                [
+                  "`minhash_cluster_size`",
+                  "**17**",
+                  "⬅ shunga diqqat"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Oxirgi maydon — eng qiziqarlisi. **17** — bu matn Common Crawl'da **17 nusxada** topilganini bildiradi. FineWeb-2 ulardan **bittasini** qoldirdi, qolgan 16 tasini tashladi — va qancha boʻlganini shu yerga yozib qoʻydi."
+            },
+            {
+              "kind": "text",
+              "text": "Nusxalar qayerdan keladi? Bir xil sahifa har yili qayta yuklanadi (96 ta surat!), maqolalar boshqa saytlarga koʻchiriladi, bitta sahifa bir necha manzilda turadi. Demak 1-boʻlimdagi savol xayoliy emas. Men koʻrgan birinchi 14 ta hujjat orasida `79` va `91` ham bor edi — ikkalasi Vikipediya maqolalari."
+            },
+            {
+              "kind": "h3",
+              "id": "yuklab-olish",
+              "text": "Yuklab olish"
+            },
+            {
+              "kind": "text",
+              "text": "Colab'da FineWeb-2 dan hujjatlarni shunday oʻqish mumkin:"
+            },
+            {
+              "kind": "code",
+              "code": "# Colab'da, agar kerak boʻlsa, avval:  !pip install datasets\nfrom datasets import load_dataset\n\nds = load_dataset(\"HuggingFaceFW/fineweb-2\", name=\"uzn_Latn\", split=\"train\", streaming=True)\n\nfor hujjat in ds:\n    print(hujjat[\"url\"])\n    print(hujjat[\"dump\"], round(hujjat[\"language_score\"], 3), hujjat[\"minhash_cluster_size\"])\n    print(hujjat[\"text\"][:80])\n    break",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "http://www.amerikaovozi.com/content/higher-education-kyrgyzstan/1476380.html\nCC-MAIN-2013-20 1.0 17\nQirg’izistonda joriy yil qator oliygohlarda byudjet o’rinlari bo’sh qolgan. Muta"
+            },
+            {
+              "kind": "text",
+              "text": "Har bir parametr:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`\"HuggingFaceFW/fineweb-2\"` — korpusning Hugging Face'dagi nomi.",
+                "`name=\"uzn_Latn\"` — qaysi boʻlim. Kirill uchun — `\"uzn_Cyrl\"`.",
+                "`split=\"train\"` — qaysi qism. FineWeb-2 da kichkina `test` qismi ham bor — va korpus mualliflari ochiq yozgan: **undan oʻqitmang**. Nima uchun — Dars 17 da.",
+                "`streaming=True` — 1.9 GB ni birdaniga yuklamaydi. Hujjatlarni **birma-bir** oʻqiydi. `for` tsikli har aylanganda — bitta yangi hujjat.",
+                "`break` — birinchi hujjatdan keyin toʻxtaymiz (Dars 10)."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Bu darsning qolgan qismida biz katta korpus bilan emas, **kichkina oʻquv korpusi** bilan ishlaymiz — 29 ta hujjat. Sababi oddiy: 1.2 million hujjatda har bir bosqichni koʻz bilan tekshirib boʻlmaydi. 29 tada — boʻladi. Oʻquv korpusidagi matnlar kurs uchun yozilgan, lekin ulardagi muammolar haqiqiy: bir qismini FineWeb-2 ning oʻzida topdim (5-boʻlimda koʻrasiz), qolganlari — FineWeb-2 kabi korpuslar xom internet matnidan olib tashlaydigan narsalar."
+            }
+          ]
+        },
+        {
+          "id": "4-litsenziya-uchta-savol",
+          "title": "4. Litsenziya: uchta savol",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "\"Internetda bor\" degani \"xohlagancha ishlatsa boʻladi\" degani emas."
+            },
+            {
+              "kind": "text",
+              "text": "Har bir manba uchun **uchta** savol bering:"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "Undan **oʻqitsam** boʻladimi? (tokenizator yoki model)",
+                "Matnning oʻzini **qayta tarqatsam** boʻladimi? (masalan, tozalangan korpusni saytga qoʻyish)",
+                "Buning uchun nima **shart**?"
+              ]
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Manba",
+                "Litsenziya",
+                "Asosiy shart"
+              ],
+              "rows": [
+                [
+                  "FineWeb-2",
+                  "**ODC-By 1.0**",
+                  "manbani koʻrsatish"
+                ],
+                [
+                  "Vikipediya",
+                  "**CC BY-SA**",
+                  "manbani koʻrsatish **va** oʻzgartirilgan matnni **xuddi shu litsenziya** bilan tarqatish"
+                ],
+                [
+                  "OSCAR",
+                  "metamaʼlumot — CC0",
+                  "matnning oʻzi — Common Crawl'dan; kirish uchun soʻrov"
+                ],
+                [
+                  "CC-100",
+                  "Hugging Face sahifasida — \"unknown\"",
+                  "aniq emas"
+                ],
+                [
+                  "UzCrawl",
+                  "yorliqda — Apache-2.0",
+                  "pastga qarang"
+                ]
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "eng-muhim-farq-toplam-va-matn",
+              "text": "Eng muhim farq: toʻplam va matn"
+            },
+            {
+              "kind": "text",
+              "text": "Bu jadvaldagi litsenziyalar — asosan **toʻplamni yigʻgan odamlarning ishi**\nuchun: tanlash, tozalash, qadoqlash. Matnning oʻzini esa ular yozmagan. Uni saytlar, jurnalistlar, oddiy odamlar yozgan."
+            },
+            {
+              "kind": "text",
+              "text": "OSCAR buni ochiq aytadi: CC0 faqat **metamaʼlumot** uchun, matn esa Common Crawl'dan olingan. FineWeb-2 sayt egalari uchun **oʻchirish soʻrovi** shaklini ochib qoʻygan. UzCrawl'ning yorligʻi Apache-2.0 — lekin ichidagi yangilik maqolalari yangilik saytlariniki."
+            },
+            {
+              "kind": "text",
+              "text": "**Yorliqdagi litsenziya — bu toʻplamni yigʻganlarning ruxsati. Matn egasining emas.**"
+            },
+            {
+              "kind": "h3",
+              "id": "shaxsiy-malumot",
+              "text": "Shaxsiy maʼlumot"
+            },
+            {
+              "kind": "text",
+              "text": "FineWeb-2 elektron pochta manzillarini `email@example.com` ga, IP manzillarni soxta raqamlarga almashtirgan. **Telefon raqamlarini esa almashtirmagan** — mualliflar yozishicha, ularni qidiradigan qoida juda koʻp xato qilgan. Demak korpusingizda telefon raqamlari boʻlishi mumkin."
+            },
+            {
+              "kind": "h3",
+              "id": "amaliy-qoidalar",
+              "text": "Amaliy qoidalar"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "**Har bir manbani yozib qoʻying:** nomi, versiyasi, qachon yuklangani, litsenziyasi, havolasi. 15-boʻlimda buni kod bilan qilamiz.",
+                "**Model chiqarsangiz** — qaysi korpusda oʻqitilganini koʻrsating.",
+                "**Korpusni tarqatmoqchi boʻlsangiz** — eng qattiq litsenziyaga qarang. Vikipediya matni aralashgan boʻlsa — CC BY-SA sharti butun toʻplamga taʼsir qilishi mumkin."
+              ]
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Men yurist emasman. Bu boʻlim — xarita, yuridik maslahat emas. Tijoriy loyiha boʻlsa, mutaxassisdan soʻrang."
+            },
+            {
+              "kind": "text",
+              "text": "Bu darsdagi oʻquv korpusi kurs uchun yozilgan — uni istalgancha ishlating."
+            }
+          ]
+        },
+        {
+          "id": "5-tozalangan-korpus-ichida-nima-bor",
+          "title": "5. \"Tozalangan\" korpus ichida nima bor",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "FineWeb-2 — \"tozalangan\" korpus. Men oʻzbek lotin boʻlimining **birinchi 14 ta hujjatini** oʻqib chiqdim. Mana topganlarim:"
+            },
+            {
+              "kind": "text",
+              "text": "**1. Buzilgan harflar.** `samdu.uz` dagi hujjatda shunday satrlar bor:"
+            },
+            {
+              "kind": "pre",
+              "text": "Ushbu ma‚Äôruza muallif tomonidan 2009 yilda Samarqand Davlat universitetida o‚Äôtkazilgan ‚ÄĚSinguilarity Theory"
+            },
+            {
+              "kind": "text",
+              "text": "`ma‚Äôruza` — aslida `ma’ruza`. `o‚Äôtkazilgan` — aslida `o’tkazilgan`. Bitta belgi uchta axlat belgiga aylangan. Va oʻsha hujjatning **boshqa joyida** `o’qituvchilar` toʻgʻri yozilgan. Bitta hujjat — ham toʻgʻri, ham buzuq."
+            },
+            {
+              "kind": "text",
+              "text": "**2. Sayt qoldiqlari.** Oʻsha hujjat `DocumentsDate added` bilan boshlanadi — bu saytning jadval sarlavhasi. TED saytidagi hujjat `Click on any phrase to play the video at that point.Close` bilan boshlanadi va inglizcha tarjimai hol bilan tugaydi: `…its rings and its moons. Full bio »`. Uning `language_score` i — **1.000**."
+            },
+            {
+              "kind": "text",
+              "text": "**3. Shablon satrlar.** Uchta Vikipediya hujjati bir xil satr bilan tugaydi:"
+            },
+            {
+              "kind": "pre",
+              "text": "|Ushbu maqolani yozishda Oʻzbekiston milliy ensiklopediyasi (2000-2005) maʼlumotlaridan foydalanilgan.|"
+            },
+            {
+              "kind": "text",
+              "text": "**4. Aralash apostroflar.** \"Yusuf\" maqolasida bitta hujjatning oʻzida `'` 253 marta, `ʻ` 27 marta, `ʼ` 11 marta uchraydi. Dars 14 dagi muammo — bitta hujjat ichida."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**\"Tozalangan\" korpus — toza korpus emas.** Bu — boshqa birov **oʻz maqsadi uchun** tozalagan korpus. Sizning maqsadingiz boshqa boʻlishi mumkin."
+            },
+            {
+              "kind": "text",
+              "text": "Bu toʻrt muammoning hammasi bizning oʻquv korpusimizda bor. Ularni topish va tuzatish uchun avval fayllar bilan ishlashni oʻrganamiz."
+            }
+          ]
+        },
+        {
+          "id": "6-fayllar-bilan-ishlash",
+          "title": "6. Fayllar bilan ishlash",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Shu paytgacha matnni toʻgʻridan-toʻgʻri kodga yozdik: `matn = \"...\"`. Haqiqiy korpus esa **faylda** turadi."
+            },
+            {
+              "kind": "h3",
+              "id": "faylga-yozish",
+              "text": "Faylga yozish"
+            },
+            {
+              "kind": "code",
+              "code": "with open(\"salom.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Salom, dunyo!\\n\")\n    f.write(\"O\\u02bbzbek tili\\n\")\n\nprint(\"yozildi\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "yozildi"
+            },
+            {
+              "kind": "text",
+              "text": "Har bir qism:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`open(...)` — faylni ochadi.",
+                "`\"salom.txt\"` — fayl nomi. Colab'da u chap tomondagi papka belgisida paydo boʻladi.",
+                "`\"w\"` — **yozish** rejimi (*write*). ⚠️ Agar fayl bor boʻlsa, uning ichidagi hamma narsa **oʻchadi**.",
+                "`encoding=\"utf-8\"` — harflarni baytlarga **qanday** aylantirish (Dars 06).",
+                "`with ... as f:` — faylni ochib, unga `f` deb nom beradi. Ichkariga surilgan qatorlar tugagach, faylni **oʻzi yopadi**. Yopilmagan fayl — yozilmay qolgan maʼlumot boʻlishi mumkin.",
+                "`f.write(...)` — matnni yozadi. **Yangi qatorga oʻtkazmaydi** — `\\n` ni oʻzimiz qoʻshdik."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "fayldan-oqish",
+              "text": "Fayldan oʻqish"
+            },
+            {
+              "kind": "code",
+              "code": "with open(\"salom.txt\", encoding=\"utf-8\") as f:\n    matn = f.read()\n\nprint(repr(matn))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "'Salom, dunyo!\\nOʻzbek tili\\n'"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "Rejim yozilmasa — **oʻqish** rejimi.",
+                "`f.read()` — butun faylni bitta satr qilib qaytaradi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Faylni **qatorma-qator** ham oʻqish mumkin — `for` bilan:"
+            },
+            {
+              "kind": "code",
+              "code": "with open(\"salom.txt\", encoding=\"utf-8\") as f:\n    for qator in f:\n        print(repr(qator), \"->\", repr(qator.strip()))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "'Salom, dunyo!\\n' -> 'Salom, dunyo!'\n'Oʻzbek tili\\n' -> 'Oʻzbek tili'"
+            },
+            {
+              "kind": "text",
+              "text": "Har bir qator oxirida `\\n` bor. `.strip()` — satrning **ikki chetidagi** boʻshliq va `\\n` larni olib tashlaydi. Oʻrtasidagilarga tegmaydi:"
+            },
+            {
+              "kind": "code",
+              "code": "print(repr(\"   salom   \".strip()))\nprint(repr(\"\\n\\n matn \\n\".strip()))\nprint(repr(\" bir  ikki \".strip()))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "'salom'\n'matn'\n'bir  ikki'"
+            },
+            {
+              "kind": "text",
+              "text": "Va Dars 01 dagi `.split()` ga argument bersangiz — oʻsha belgi boʻyicha boʻladi:"
+            },
+            {
+              "kind": "code",
+              "code": "print(matn.split(\"\\n\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "['Salom, dunyo!', 'Oʻzbek tili', '']"
+            },
+            {
+              "kind": "text",
+              "text": "Oxirgi `''` ga eʼtibor bering: oxirgi `\\n` dan keyin **boʻsh satr** qoldi. Bu bizga keyin kerak boʻladi."
+            },
+            {
+              "kind": "h3",
+              "id": "notogri-kodlash",
+              "text": "Notoʻgʻri kodlash"
+            },
+            {
+              "kind": "text",
+              "text": "Endi oʻsha faylni **boshqa kodlash** bilan oʻqiymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "with open(\"salom.txt\", encoding=\"latin-1\") as f:\n    print(repr(f.read()))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "'Salom, dunyo!\\nOÊ»zbek tili\\n'"
+            },
+            {
+              "kind": "text",
+              "text": "`Oʻzbek` → `OÊ»zbek`. Nima boʻldi? Dars 06 ni eslang:"
+            },
+            {
+              "kind": "code",
+              "code": "print(list(\"\\u02bb\".encode(\"utf-8\")))\nprint(chr(202), chr(187))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "[202, 187]\nÊ »"
+            },
+            {
+              "kind": "text",
+              "text": "`ʻ` — UTF-8 da **ikki bayt**: 202 va 187. `latin-1` esa har bir baytni **alohida harf** deb oʻqiydi: 202 → `Ê`, 187 → `»`. Baytlar toʻgʻri. **Oʻqish usuli** notoʻgʻri."
+            },
+            {
+              "kind": "text",
+              "text": "Bu hodisaning nomi bor: **mojibake** (yaponcha — \"buzilgan harflar\"). 5-boʻlimdagi `ma‚Äôruza` — aynan shu. Faqat u yerda boshqa kodlash ishlatilgan."
+            },
+            {
+              "kind": "h3",
+              "id": "ataylab-xato-ascii",
+              "text": "Ataylab xato: `ascii`"
+            },
+            {
+              "kind": "text",
+              "text": "`ascii` — eng eski kodlash. U faqat 0 dan 127 gacha baytlarni biladi:"
+            },
+            {
+              "kind": "code",
+              "code": "with open(\"salom.txt\", encoding=\"ascii\") as f:\n    print(f.read())",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "UnicodeDecodeError: 'ascii' codec can't decode byte 0xca in position 15: ordinal not in range(128)",
+              "error": true
+            },
+            {
+              "kind": "text",
+              "text": "Xatoni oʻqiymiz:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`UnicodeDecodeError` — **baytdan matnga** aylantirishda xato.",
+                "`'ascii' codec can't decode byte 0xca` — `ascii` `0xca` baytini oʻqiy olmadi. `0xca` — bu 202 ning oʻn oltilik yozuvi. `ʻ` ning birinchi bayti!",
+                "`in position 15` — 15-baytda. `Salom, dunyo!\\n` — 14 bayt, keyin `O` (14-bayt), keyin `ʻ` (15-bayt).",
+                "`ordinal not in range(128)` — 202 soni 0–127 oraligʻida emas."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "`latin-1` xato bermadi — **jim** buzdi. `ascii` esa baqirdi. Qaysi biri yaxshiroq? **Baqirgani.** Jim buzilgan matn korpusga kirib ketadi va uni hech kim sezmaydi."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Qoida:** har doim `encoding=\"utf-8\"` deb yozing — oʻqiganda ham, yozganda ham."
+            },
+            {
+              "kind": "media",
+              "id": "p2",
+              "title": "Buzilgan harflar"
+            }
+          ]
+        },
+        {
+          "id": "7-json-va-jsonl",
+          "title": "7. JSON va JSONL",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Korpusda har bir hujjat uchun matndan tashqari **maʼlumot** ham saqlaymiz: qayerdan olingani, raqami. Bunga Dars 04 dagi lugʻat (`dict`) mos keladi. Lekin lugʻatni faylga qanday yozamiz?"
+            },
+            {
+              "kind": "text",
+              "text": "**JSON** — lugʻatni matnga aylantirishning standart usuli:"
+            },
+            {
+              "kind": "code",
+              "code": "import json\n\nhujjat = {\"id\": 1, \"url\": \"https://misol.uz\", \"text\": \"Salom\"}\nsatr = json.dumps(hujjat)\n\nprint(satr)\nprint(type(satr))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "{\"id\": 1, \"url\": \"https://misol.uz\", \"text\": \"Salom\"}\n<class 'str'>"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`json.dumps(...)` — lugʻat → **matn** (*dump string*)."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Teskarisi:"
+            },
+            {
+              "kind": "code",
+              "code": "qaytdi = json.loads(satr)\n\nprint(qaytdi[\"text\"])\nprint(qaytdi == hujjat)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "Salom\nTrue"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`json.loads(...)` — matn → **lugʻat** (*load string*). Toʻliq qaytdi."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "ensure-ascii-tuzogi",
+              "text": "`ensure_ascii` tuzogʻi"
+            },
+            {
+              "kind": "code",
+              "code": "h = {\"text\": \"o\\u02bbzbek\"}\n\nprint(json.dumps(h))\nprint(json.dumps(h, ensure_ascii=False))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "{\"text\": \"o\\u02bbzbek\"}\n{\"text\": \"oʻzbek\"}"
+            },
+            {
+              "kind": "text",
+              "text": "Standart holatda `json.dumps` **ascii** dan tashqaridagi har bir belgini `\\u02bb` koʻrinishida yozadi — 6 ta belgi bitta harf oʻrniga. Maʼlumot yoʻqolmaydi (`json.loads` uni qaytaradi), lekin faylni koʻz bilan oʻqib boʻlmaydi va u kattaroq boʻladi. `ensure_ascii=False` — \"harflarni oʻzicha yoz\"."
+            },
+            {
+              "kind": "h3",
+              "id": "jsonl-har-qatorda-bitta-hujjat",
+              "text": "JSONL — har qatorda bitta hujjat"
+            },
+            {
+              "kind": "text",
+              "text": "Korpus fayllari odatda **JSONL** formatida: har bir qatorda — bitta JSON. Lekin matnning oʻzida yangi qator boʻlsa-chi?"
+            },
+            {
+              "kind": "code",
+              "code": "h = {\"text\": \"birinchi qator\\nikkinchi qator\"}\nprint(json.dumps(h, ensure_ascii=False))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "{\"text\": \"birinchi qator\\nikkinchi qator\"}"
+            },
+            {
+              "kind": "text",
+              "text": "JSON matn ichidagi yangi qatorni `\\n` ikki belgisi bilan yozadi. Demak bitta hujjat — **har doim bitta qator**. Fayldagi qatorlar soni = hujjatlar soni."
+            }
+          ]
+        },
+        {
+          "id": "8-oquv-korpusimiz",
+          "title": "8. Oʻquv korpusimiz",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Oʻquv korpusi — [xom_korpus.jsonl](/data/xom_korpus.jsonl) fayli. Uni yuklab oling va Colab'ning chap tomonidagi papka belgisiga tashlang. Yoki darsning oxiridagi **Ilova A** kodini birinchi katakda ishga tushiring — u aynan shu faylni yaratadi (lekin kodni hozir oʻqimang, ichida javoblar bor)."
+            },
+            {
+              "kind": "h3",
+              "id": "bizga-kerak-boladigan-eski-kod",
+              "text": "Bizga kerak boʻladigan eski kod"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 13 dagi `train_regex`, `encode_regex`, `decode`, `NAQSH` va Dars 14 dagi normalizator:"
+            },
+            {
+              "kind": "code",
+              "code": "import re\nimport unicodedata\n\nOKINA = \"\\u02bb\"\nTUTUQ = \"\\u02bc\"\nAPOSTROFLAR = \"'\\u2018\\u2019`\\u02bb\\u02bc\"\n\n\ndef normallashtir(matn):\n    matn = unicodedata.normalize(\"NFC\", matn)\n    belgilar = list(matn)\n    for i in range(len(belgilar)):\n        if belgilar[i] in APOSTROFLAR:\n            oldingi = \"\"\n            keyingi = \"\"\n            if i > 0:\n                oldingi = belgilar[i - 1]\n            if i < len(belgilar) - 1:\n                keyingi = belgilar[i + 1]\n\n            if oldingi in [\"g\", \"G\"]:\n                belgilar[i] = OKINA\n            elif oldingi in [\"o\", \"O\"] and keyingi.isalpha():\n                belgilar[i] = OKINA\n            elif oldingi.isalpha() and keyingi.isalpha():\n                belgilar[i] = TUTUQ\n    return \"\".join(belgilar)\n\n\nprint(normallashtir(\"O'zbekiston, ma'no, bog'\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "Oʻzbekiston, maʼno, bogʻ"
+            },
+            {
+              "kind": "h3",
+              "id": "korpusni-oqiymiz",
+              "text": "Korpusni oʻqiymiz"
+            },
+            {
+              "kind": "code",
+              "code": "def oqish(fayl):\n    hujjatlar = []\n    with open(fayl, encoding=\"utf-8\") as f:\n        for qator in f:\n            hujjatlar.append(json.loads(qator))\n    return hujjatlar\n\n\nhujjatlar = oqish(\"xom_korpus.jsonl\")\n\nprint(\"hujjatlar soni:\", len(hujjatlar))\nprint(\"maydonlar:\", list(hujjatlar[0].keys()))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "hujjatlar soni: 29\nmaydonlar: ['id', 'url', 'text']"
+            },
+            {
+              "kind": "text",
+              "text": "Har bir qator — `json.loads` — lugʻat — roʻyxatga. Hammasini bir koʻrib chiqamiz:"
+            },
+            {
+              "kind": "code",
+              "code": "for h in hujjatlar:\n    sozlar = len(h[\"text\"].split())\n    print(f\"{h['id']:3d} | {sozlar:3d} soʻz | {h['text'][:38]!r}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  1 |  65 soʻz | 'Metroda yangi bekat yoʻlovchilarni kut'\n  2 |  65 soʻz | \"Metroda yangi bekat yo'lovchilarni kut\"\n  3 |  63 soʻz | 'Metroda yangi bekat yo‘lovchilarni kut'\n  4 |  65 soʻz | 'Metroda yangi bekat yoʻlovchilarni kut'\n  5 |  60 soʻz | 'Poytaxtda yangi metro bekati foydalani'\n  6 |  69 soʻz | \"Metroda yangi bekat yo'lovchilarni kut\"\n  7 |  39 soʻz | 'Ertaga ob-havo qanday boʻladi\\nErtaga p'\n  8 |  43 soʻz | 'Maktablarda yangi oʻquv dasturi\\nYangi '\n  9 |  54 soʻz | 'Toshkent palovi qanday tayyorlanadi\\nPa'\n 10 |  39 soʻz | \"Navro'z bayrami\\nNavro'z bahor va yangi\"\n 11 |  37 soʻz | 'Terma jamoa navbatdagi oʻyinga tayyorl'\n 12 |  36 soʻz | 'Bug’doy hosili yig’ib olindi\\nViloyatda'\n 13 |  43 soʻz | 'Sunʼiy intellekt boʻyicha bepul kurs\\nY'\n 14 |  40 soʻz | 'Samarqandga sayohat\\nSamarqand dunyodag'\n 15 |  39 soʻz | 'Amudaryo\\nAmudaryo Oʻrta Osiyodagi eng '\n 16 |  31 soʻz | 'Paxta\\nPaxta gʻoʻza oʻsimligining tolas'\n 17 |  41 soʻz | 'Alisher Navoiy\\nAlisher Navoiy buyuk sh'\n 18 |  34 soʻz | 'Oʻzbek tili bayrami\\nHar yili 21-oktabr'\n 19 |  19 soʻz | 'Сегодня в Ташкенте открылась книжная я'\n 20 |  17 soʻz | 'Бугун пойтахтда китоб кўргазмаси очилд'\n 21 |  31 soʻz | 'Kutubxonada yangi o‚Äôquv zali ochildi'\n 22 |  12 soʻz | '������ �� ������: �������, �������� ��'\n 23 |   2 soʻz | 'Sahifa topilmadi.'\n 24 |   8 soʻz | 'Bosh sahifa | Yangiliklar | Sport | Al'\n 25 |   6 soʻz | 'Saytga xush kelibsiz!\\nBarcha huquqlar '\n 26 |  43 soʻz | 'Shaxmat turnirida yoshlar gʻalaba qozo'\n 27 |  42 soʻz | 'Ertaga ob-havo qanday boʻladi\\nErtaga p'\n 28 |  33 soʻz | 'Quyosh tizimi\\nQuyosh tizimida sakkizta'\n 29 |  43 soʻz | 'Talabalar uchun yangi mobil ilova\\nTala'"
+            },
+            {
+              "kind": "text",
+              "text": "**Toʻxtang va bu roʻyxatni oʻqing.** Tozalashdan oldin har doim xom maʼlumotga **koʻz bilan** qarang. Nimalarni koʻryapsiz?"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "1–6: metro haqidagi bitta yangilik — har xil apostrof bilan, har xil saytda.",
+                "19, 20: kirill yozuvi.",
+                "21: `o‚Äôquv` — 5-boʻlimdagi buzilish.",
+                "22: deyarli butunlay `�`.",
+                "23–25: juda qisqa sahifalar.",
+                "7 va 27: bir xil boshlanadi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Endi hammasini kod bilan topamiz. Har bir bosqichdan keyin nechta hujjat qolganini yozib boramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "voronka = []\nvoronka.append((\"0. oʻqildi\", len(hujjatlar)))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "`voronka` — **(nom, son)** juftliklari roʻyxati (Dars 03 dagi kortejlar)."
+            }
+          ]
+        },
+        {
+          "id": "9-1-bosqich-kodlash",
+          "title": "9. 1-bosqich: kodlash",
+          "blocks": [
+            {
+              "kind": "h3",
+              "id": "belgisi",
+              "text": "`�` belgisi"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 11 ni eslang: `errors=\"replace\"` oʻqib boʻlmagan baytlar oʻrniga `�` qoʻyadi. Agar biror hujjat butunlay `�` boʻlsa — kimdir uni notoʻgʻri kodlash bilan oʻqigan, va asl baytlar **yoʻqolgan**. Uni tuzatib boʻlmaydi."
+            },
+            {
+              "kind": "text",
+              "text": "`�` ning raqami — `\\ufffd`. Har bir hujjatda uning ulushini sanaymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "def buzuq_ulushi(matn):\n    if len(matn) == 0:\n        return 0\n    return matn.count(\"\\ufffd\") / len(matn)\n\n\nfor h in hujjatlar:\n    u = buzuq_ulushi(h[\"text\"])\n    if u > 0:\n        print(h[\"id\"], round(u, 3), repr(h[\"text\"][:30]))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "22 0.835 '������ �� ������: �������, ���'"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`.count(x)` — satrda `x` necha marta uchrashini sanaydi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "22-hujjatning **83.5%** i — `�`. Asl matn nima boʻlganini endi hech kim bilmaydi — baytlar yoʻqolgan."
+            },
+            {
+              "kind": "h3",
+              "id": "mojibake-buzilgan-lekin-tuzatsa-boladi",
+              "text": "Mojibake: buzilgan, lekin tuzatsa boʻladi"
+            },
+            {
+              "kind": "text",
+              "text": "21-hujjat boshqacha. Unda `�` yoʻq — baytlar **saqlangan**, faqat notoʻgʻri oʻqilgan. Qanday notoʻgʻri? Tekshiramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "belgi = \"\\u2019\"\nbaytlar = belgi.encode(\"utf-8\")\n\nprint(list(baytlar))\nprint(baytlar.decode(\"mac_latin2\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "[226, 128, 153]\n‚Äô"
+            },
+            {
+              "kind": "text",
+              "text": "`’` — UTF-8 da uch bayt: 226, 128, 153. **`mac_latin2`** — eski Macintosh kompyuterlarining Markaziy Yevropa kodlashi — ularni uchta alohida harf deb\noʻqiydi: `‚`, `Ä`, `ô`."
+            },
+            {
+              "kind": "text",
+              "text": "Qaysi kodlash ekanini qanday bildim? `’` ni boshqa eski Mac kodlashi — `mac_roman` — ham xuddi shunday buzadi. Farq **yopuvchi qoʻshtirnoqda** chiqadi:"
+            },
+            {
+              "kind": "code",
+              "code": "belgi = \"\\u201d\"\n\nprint(belgi.encode(\"utf-8\").decode(\"mac_roman\"))\nprint(belgi.encode(\"utf-8\").decode(\"mac_latin2\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "‚Äù\n‚ÄĚ"
+            },
+            {
+              "kind": "text",
+              "text": "5-boʻlimdagi haqiqiy hujjatda `‚ÄĚ` bor — demak `mac_latin2`. Buzilgan matn qanday buzilganini oʻzi aytib turadi — faqat diqqat bilan qarash kerak."
+            },
+            {
+              "kind": "text",
+              "text": "Baytlar saqlangan ekan — demak **teskari yoʻl** bilan tuzatsa boʻladi:"
+            },
+            {
+              "kind": "code",
+              "code": "buzuq = \"o‚Äôquv\"\nprint(buzuq.encode(\"mac_latin2\").decode(\"utf-8\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "o’quv"
+            },
+            {
+              "kind": "text",
+              "text": "Buzilgan matnni → `mac_latin2` bilan **baytga qaytaramiz** → baytlarni **toʻgʻri** (`utf-8`) oʻqiymiz."
+            },
+            {
+              "kind": "text",
+              "text": "Lekin bu har doim ham ishlamaydi. Agar matnda `mac_latin2` bilmaydigan harf boʻlsa, `.encode` **xato** beradi. Xato butun dasturni toʻxtatadi. Bizga esa \"ishlamasa — tegma\" degan qaror kerak."
+            },
+            {
+              "kind": "h3",
+              "id": "try-except-urinib-kor-bolmasa",
+              "text": "`try` / `except` — \"urinib koʻr, boʻlmasa...\""
+            },
+            {
+              "kind": "text",
+              "text": "Avval boʻsh joyda. Lugʻatda yoʻq kalitni soʻrasak:"
+            },
+            {
+              "kind": "code",
+              "code": "narxlar = {\"non\": 5000, \"choy\": 3000}\n\nprint(narxlar[\"sut\"])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "KeyError: 'sut'",
+              "error": true
+            },
+            {
+              "kind": "text",
+              "text": "Endi xuddi shuni `try` ichida:"
+            },
+            {
+              "kind": "code",
+              "code": "try:\n    print(narxlar[\"sut\"])\nexcept KeyError:\n    print(\"bunday mahsulot yoʻq\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "bunday mahsulot yoʻq"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`try:` — ichkaridagi kodni **urinib koʻradi**.",
+                "`except KeyError:` — agar aynan `KeyError` chiqsa, dastur toʻxtamaydi — buning oʻrniga shu qism bajariladi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Xato boʻlmasa — `except` qismi umuman ishlamaydi:"
+            },
+            {
+              "kind": "code",
+              "code": "try:\n    print(narxlar[\"non\"])\nexcept KeyError:\n    print(\"bunday mahsulot yoʻq\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "5000"
+            },
+            {
+              "kind": "text",
+              "text": "Va bizning holat — kodlash xatosi:"
+            },
+            {
+              "kind": "code",
+              "code": "try:\n    print(bytes([202, 187]).decode(\"ascii\"))\nexcept UnicodeDecodeError:\n    print(\"ascii bu baytlarni oʻqiy olmadi\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "ascii bu baytlarni oʻqiy olmadi"
+            },
+            {
+              "kind": "h3",
+              "id": "tuzatuvchi-funksiya",
+              "text": "Tuzatuvchi funksiya"
+            },
+            {
+              "kind": "code",
+              "code": "def kodlashni_tuzat(matn):\n    if \"‚Ä\" in matn:\n        try:\n            return matn.encode(\"mac_latin2\").decode(\"utf-8\")\n        except (UnicodeEncodeError, UnicodeDecodeError):\n            return matn\n    return matn\n\n\nprint(hujjatlar[20][\"text\"].split(\"\\n\")[0])\nprint(kodlashni_tuzat(hujjatlar[20][\"text\"]).split(\"\\n\")[0])\nprint(kodlashni_tuzat(\"o‚Äôquv va o\\u02bbqish\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "Kutubxonada yangi o‚Äôquv zali ochildi\nKutubxonada yangi o’quv zali ochildi\no‚Äôquv va oʻqish"
+            },
+            {
+              "kind": "text",
+              "text": "Qator-qator:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`if \"‚Ä\" in matn:` — nima uchun aynan `‚Ä`? `‘ ’ “ ”` va tire belgilarining hammasi UTF-8 da 226, 128 bilan boshlanadi. `mac_latin2` bu ikki baytni har doim `‚Ä` deb oʻqiydi. Bu belgi boʻlmasa — tuzatadigan narsa yoʻq, matnga tegmaymiz.",
+                "`except (UnicodeEncodeError, UnicodeDecodeError):` — qavs ichida **ikki** xato turi: baytga aylantirishdagi va matnga aylantirishdagi. Ikkalasida ham — `return matn`, yaʼni tegmaymiz.",
+                "Uchinchi qatorga qarang: matnda `ʻ` bor, `mac_latin2` uni bilmaydi → xato → matn **oʻzgarmadi**. Dastur ham toʻxtamadi."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "bosqichni-qollaymiz",
+              "text": "Bosqichni qoʻllaymiz"
+            },
+            {
+              "kind": "code",
+              "code": "qoldi = []\nfor h in hujjatlar:\n    h[\"text\"] = kodlashni_tuzat(h[\"text\"])\n    if buzuq_ulushi(h[\"text\"]) <= 0.01:\n        qoldi.append(h)\n    else:\n        print(\"olib tashlandi:\", h[\"id\"], h[\"url\"])\n\nhujjatlar = qoldi\nvoronka.append((\"1. kodlash\", len(hujjatlar)))\nprint(\"qoldi:\", len(hujjatlar))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "olib tashlandi: 22 https://sayt18.misol/pogoda\nqoldi: 28"
+            },
+            {
+              "kind": "text",
+              "text": "Nima uchun chegara `0.01` (1%), nolga emas? Haqiqiy matnlarda baʼzan bitta-ikkita buzilgan emoji yoki belgi uchraydi. Shu sababli butun hujjatni tashlash — isrof. 83.5% — esa boshqa gap."
+            }
+          ]
+        },
+        {
+          "id": "10-2-bosqich-til",
+          "title": "10. 2-bosqich: til",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Oʻzbek korpuslarida rus tili koʻp aralashgan. Va oʻzbekcha kirill yozuvidagi matnlar ham bor. Bizning tokenizatorimiz — lotin uchun."
+            },
+            {
+              "kind": "text",
+              "text": "Eng oddiy usul: harflarning necha foizi **kirill**? Dars 05 ni eslang — har bir harfning raqami bor:"
+            },
+            {
+              "kind": "code",
+              "code": "for harf in [\"a\", \"z\", \"Б\", \"я\", \"ў\", \"қ\"]:\n    print(harf, ord(harf))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "a 97\nz 122\nБ 1041\nя 1103\nў 1118\nқ 1179"
+            },
+            {
+              "kind": "text",
+              "text": "Kirill harflarining hammasi **1024 dan 1279 gacha** oraliqda turadi. (Unicode ularni bitta blokka yigʻgan. Oʻzbekcha `ў` va `қ` ham shu yerda.)"
+            },
+            {
+              "kind": "code",
+              "code": "def kirill_ulushi(matn):\n    harflar = 0\n    kirill = 0\n    for belgi in matn:\n        if belgi.isalpha():\n            harflar += 1\n            if ord(belgi) >= 1024 and ord(belgi) <= 1279:\n                kirill += 1\n    if harflar == 0:\n        return 0\n    return kirill / harflar\n\n\nprint(kirill_ulushi(\"Salom dunyo\"))\nprint(kirill_ulushi(\"Салом дунё\"))\nprint(round(kirill_ulushi(\"U «Спасибо» dedi\"), 3))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "0.0\n1.0\n0.583"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "Faqat **harflarni** sanaymiz (`.isalpha()`, Dars 14) — boʻshliq va tinish belgilari hisobga kirmaydi.",
+                "`if harflar == 0: return 0` — harfsiz matnda nolga boʻlish boʻlmasin."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Chegarani **0.3** qilamiz: harflarning 30% dan koʻpi kirill boʻlsa — tashlaymiz."
+            },
+            {
+              "kind": "code",
+              "code": "qoldi = []\nfor h in hujjatlar:\n    u = kirill_ulushi(h[\"text\"])\n    if u <= 0.3:\n        qoldi.append(h)\n    else:\n        print(\"olib tashlandi:\", h[\"id\"], round(u, 3), repr(h[\"text\"][:25]))\n    if 0 < u <= 0.3:\n        print(\"qoldi, lekin kirill bor:\", h[\"id\"], round(u, 3))\n\nhujjatlar = qoldi\nvoronka.append((\"2. til\", len(hujjatlar)))\nprint(\"qoldi:\", len(hujjatlar))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "olib tashlandi: 19 1.0 'Сегодня в Ташкенте открыл'\nolib tashlandi: 20 1.0 'Бугун пойтахтда китоб кўр'\nqoldi, lekin kirill bor: 26 0.037\nqoldi: 26"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`0 < u <= 0.3` — \"u noldan katta **va** 0.3 dan oshmaydi\". Python ikki taqqoslashni shunday zanjir qilib yozishga ruxsat beradi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "26-hujjat — shaxmat haqidagi oʻzbekcha maqola, unda gʻolib `«Спасибо всем!»` deydi. 3.7% kirill. **Qoldi — va toʻgʻri qoldi.** Shuning uchun chegara nolga emas."
+            },
+            {
+              "kind": "text",
+              "text": "20-hujjat esa — **oʻzbekcha**, faqat kirillda. Biz uni yomon boʻlgani uchun emas, tokenizatorimiz lotin uchun boʻlgani uchun tashladik. FineWeb-2 dagi 1.36 million kirill hujjatni lotinga **oʻgirib** (transliteratsiya) ishlatish mumkin — lekin bu alohida katta ish."
+            },
+            {
+              "kind": "h3",
+              "id": "tartib-muhim-beshinchi-marta",
+              "text": "Tartib muhim — beshinchi marta"
+            },
+            {
+              "kind": "text",
+              "text": "Nima uchun kodlash bosqichi **birinchi** keldi? 22-hujjatni olib, til filtridan oʻtkazib koʻramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "xom = oqish(\"xom_korpus.jsonl\")\nh22 = xom[21]\n\nprint(\"kirill ulushi:\", kirill_ulushi(h22[\"text\"]))\nprint(\"soʻzlar:\", len(h22[\"text\"].split()))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "kirill ulushi: 0\nsoʻzlar: 12"
+            },
+            {
+              "kind": "text",
+              "text": "22-hujjatda **bitta ham harf yoʻq** — hammasi `�`. Demak kirill ulushi — 0, va u til filtridan **oʻtib ketadi**. 12 ta \"soʻz\" — keyingi uzunlik filtridan ham."
+            },
+            {
+              "kind": "text",
+              "text": "Agar kodlash bosqichi boʻlmaganida, bu axlat korpusga kirardi va uni hech bir boshqa filtr ushlamasdi."
+            }
+          ]
+        },
+        {
+          "id": "11-3-bosqich-shablon-satrlar",
+          "title": "11. 3-bosqich: shablon satrlar",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "`Barcha huquqlar himoyalangan.` — bu jumla minglab saytning pastida turadi. Uni hech kim yozmagan — sayt dasturi qoʻshadi. Tokenizator uchun u **shovqin**: har bir saytda takrorlanib, lugʻatdan joy egallaydi."
+            },
+            {
+              "kind": "text",
+              "text": "Qanday topamiz? Gʻoya: **koʻp hujjatda aynan bir xil turgan satr** — shablon."
+            },
+            {
+              "kind": "text",
+              "text": "Buning uchun yangi tur kerak."
+            },
+            {
+              "kind": "h3",
+              "id": "set-toplam",
+              "text": "`set` — toʻplam"
+            },
+            {
+              "kind": "code",
+              "code": "mevalar = [\"olma\", \"nok\", \"olma\", \"uzum\", \"nok\"]\ntoplam = set(mevalar)\n\nprint(len(mevalar), len(toplam))\nprint(\"olma\" in toplam, \"anor\" in toplam)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "5 3\nTrue False"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`set(...)` — **toʻplam**. Unda har bir element **faqat bir marta** boʻladi. Beshta mevadan uchtasi qoldi.",
+                "`in` — roʻyxatdagidek ishlaydi (Dars 04, 14)."
+              ]
+            },
+            {
+              "kind": "code",
+              "code": "toplam.add(\"anor\")\ntoplam.add(\"olma\")\n\nprint(len(toplam))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "4"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`.add(x)` — qoʻshadi. `olma` allaqachon bor edi — ikkinchi marta qoʻshilmadi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Toʻplam bilan roʻyxatning yana ikki farqi:"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "**Tartibi yoʻq.** `toplam[0]` deb boʻlmaydi. Uni chop etsangiz, elementlar har safar boshqa tartibda chiqishi mumkin.",
+                "**`in` juda tez.** Roʻyxatda `in` har bir elementni birma-bir tekshiradi. Toʻplamda — darhol topadi. Bir million element boʻlsa — bu farq soniyalar va soatlar orasidagi farq."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Va bitta tuzoq:"
+            },
+            {
+              "kind": "code",
+              "code": "print(type(set()), type({}))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "<class 'set'> <class 'dict'>"
+            },
+            {
+              "kind": "text",
+              "text": "Boʻsh toʻplam — `set()`. `{}` esa — boʻsh **lugʻat**."
+            },
+            {
+              "kind": "h3",
+              "id": "satrlarni-sanaymiz",
+              "text": "Satrlarni sanaymiz"
+            },
+            {
+              "kind": "text",
+              "text": "Har bir satr **nechta hujjatda** uchrashini sanaymiz. Bitta hujjat ichida ikki marta uchrasa — bir deb hisoblaymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "def qatorlarni_sana(hujjatlar):\n    hisob = {}\n    for h in hujjatlar:\n        korilgan = set()\n        for qator in h[\"text\"].split(\"\\n\"):\n            qator = qator.strip()\n            if qator != \"\" and qator not in korilgan:\n                korilgan.add(qator)\n                hisob[qator] = hisob.get(qator, 0) + 1\n    return hisob\n\n\nhisob = qatorlarni_sana(hujjatlar)\n\nshablonlar = set()\nfor qator, son in hisob.items():\n    if son >= 3:\n        shablonlar.add(qator)\n        print(son, repr(qator))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "8 'Ulashish: Telegram | Facebook | X'\n8 'Barcha huquqlar himoyalangan.'\n4 'We use cookies to improve your experience.'\n3 'Ushbu maqolani yozishda Oʻzbekiston milliy ensiklopediyasi (2000-2005) maʼlumotlaridan foydalanilgan.'"
+            },
+            {
+              "kind": "text",
+              "text": "Qator-qator:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`korilgan = set()` — **har bir hujjat uchun yangi** toʻplam. Bu hujjatda koʻrilgan satrlar.",
+                "`qator.strip()` — chetdagi boʻshliqlarsiz. `\"Barcha huquqlar himoyalangan. \"` va `\"Barcha huquqlar himoyalangan.\"` bir xil hisoblansin.",
+                "`qator != \"\"` — 6-boʻlimdagi boʻsh satrni sanamaymiz.",
+                "`qator not in korilgan` — bu hujjatda birinchi marta koʻrilsa.",
+                "`hisob.get(qator, 0) + 1` — Dars 04 dagi sanash usuli.",
+                "`son >= 3` — kamida **uchta** hujjatda uchragan satr — shablon."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Toʻrtta shablon topildi, hammasi — saytning \"dumi\". Metro maqolasining satrlari roʻyxatda **yoʻq**: ular koʻpi bilan ikki hujjatda aynan bir xil (qolganlarida apostrof boshqacha)."
+            },
+            {
+              "kind": "h3",
+              "id": "olib-tashlaymiz",
+              "text": "Olib tashlaymiz"
+            },
+            {
+              "kind": "code",
+              "code": "def shablonni_olib_tashla(matn, shablonlar):\n    qolgan = []\n    for qator in matn.split(\"\\n\"):\n        if qator.strip() not in shablonlar:\n            qolgan.append(qator)\n    return \"\\n\".join(qolgan)\n\n\nolib_tashlangan = 0\nfor h in hujjatlar:\n    oldin = len(h[\"text\"].split(\"\\n\"))\n    h[\"text\"] = shablonni_olib_tashla(h[\"text\"], shablonlar)\n    olib_tashlangan += oldin - len(h[\"text\"].split(\"\\n\"))\n\nvoronka.append((\"3. shablon\", len(hujjatlar)))\nprint(\"olib tashlangan satrlar:\", olib_tashlangan)\nprint(\"hujjatlar:\", len(hujjatlar))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "olib tashlangan satrlar: 23\nhujjatlar: 26"
+            },
+            {
+              "kind": "text",
+              "text": "Hujjatlar soni oʻzgarmadi — biz hujjatni emas, uning **ichidagi satrlarni** olib tashladik."
+            },
+            {
+              "kind": "note",
+              "tone": "warn",
+              "text": "\"3 ta hujjat\" chegarasi — bizning 29 talik korpus uchun. Haqiqiy korpusda u ancha katta boʻladi. Va bu qoidaning bitta xavfli tomoni bor — uni Mashq 3 da topasiz."
+            }
+          ]
+        },
+        {
+          "id": "12-4-bosqich-uzunlik",
+          "title": "12. 4-bosqich: uzunlik",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "qoldi = []\nfor h in hujjatlar:\n    sozlar = len(h[\"text\"].split())\n    if sozlar >= 12:\n        qoldi.append(h)\n    else:\n        print(\"olib tashlandi:\", h[\"id\"], sozlar, \"soʻz:\", repr(h[\"text\"]))\n\nhujjatlar = qoldi\nvoronka.append((\"4. uzunlik\", len(hujjatlar)))\nprint(\"qoldi:\", len(hujjatlar))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "olib tashlandi: 23 2 soʻz: 'Sahifa topilmadi.'\nolib tashlandi: 24 8 soʻz: 'Bosh sahifa | Yangiliklar | Sport | Aloqa'\nolib tashlandi: 25 3 soʻz: 'Saytga xush kelibsiz!'\nqoldi: 23"
+            },
+            {
+              "kind": "text",
+              "text": "`Sahifa topilmadi.`, menyu satri, salomlashuv. Bular — matn emas, sayt qoldiqlari."
+            },
+            {
+              "kind": "text",
+              "text": "25-hujjatga qarang: `Saytga xush kelibsiz!` — **3 soʻz**. Lekin xom korpusda unda 6 ta soʻz bor edi — `Barcha huquqlar himoyalangan.` bilan. Shablon bosqichi boʻlmaganida ham u 12 dan kam boʻlardi — bu safar omad kuldi. Lekin chegara 5 boʻlganida edi — shablon bosqichisiz u **oʻtib ketardi**."
+            },
+            {
+              "kind": "text",
+              "text": "Haqiqiy quvurlarda **juda uzun** hujjatlar ham tekshiriladi: masalan, bitta satrda minglab belgi boʻlsa — bu odatda matn emas, kod yoki jadval qoldigʻi. Bizning korpusda bunday hujjat yoʻq."
+            }
+          ]
+        },
+        {
+          "id": "13-5-bosqich-aniq-dublikat",
+          "title": "13. 5-bosqich: aniq dublikat",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi darsning asosiy savoliga yaqinlashdik. Metro maqolasi bir necha nusxada. Ularni qanday topamiz?"
+            },
+            {
+              "kind": "text",
+              "text": "Har bir hujjatni boshqa har biri bilan harfma-harf solishtirish mumkin. Lekin buning yoʻli bor — **barmoq izi**."
+            },
+            {
+              "kind": "h3",
+              "id": "hashlib-matnning-barmoq-izi",
+              "text": "`hashlib` — matnning barmoq izi"
+            },
+            {
+              "kind": "code",
+              "code": "import hashlib\n\nprint(hashlib.md5(\"salom\".encode(\"utf-8\")).hexdigest())\nprint(hashlib.md5(\"salom\".encode(\"utf-8\")).hexdigest())\nprint(hashlib.md5(\"Salom\".encode(\"utf-8\")).hexdigest())",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "7650d3efe9d32071f601e9d148767d26\n7650d3efe9d32071f601e9d148767d26\n4be1041e508b1bcadd666d5170a4bfce"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`import hashlib` — Python bilan birga keladigan kutubxona.",
+                "`hashlib.md5(...)` — **MD5** algoritmi. U **baytlarni** oladi (shuning uchun `.encode`) va ulardan \"barmoq izi\" yasaydi.",
+                "`.hexdigest()` — barmoq izini oʻn oltilik raqamlar matni qilib beradi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Uchta xususiyatga qarang:"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "**Bir xil matn → bir xil iz.** Har safar, har qanday kompyuterda.",
+                "**Bitta harf farq → butunlay boshqa iz.** `s` → `S` — va hamma 32 belgi oʻzgardi.",
+                "**Uzunligi doim bir xil:**"
+              ]
+            },
+            {
+              "kind": "code",
+              "code": "uzun = \"Bu juda uzun matn. \" * 1000\n\nprint(len(uzun))\nprint(len(hashlib.md5(uzun.encode(\"utf-8\")).hexdigest()))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "19000\n32"
+            },
+            {
+              "kind": "text",
+              "text": "(`\"...\" * 1000` — matnni 1000 marta takrorlaydi.)"
+            },
+            {
+              "kind": "text",
+              "text": "19 000 belgili matn ham — 32 belgi. Shuning uchun matnlarning oʻzini emas, **izlarini** toʻplamda saqlaymiz. FineWeb-2 ning oʻzbek boʻlimi uchun bu 1 233 463 × 32 = taxminan **39 MB** — 4.45 GB oʻrniga."
+            },
+            {
+              "kind": "h3",
+              "id": "birinchi-urinish",
+              "text": "Birinchi urinish"
+            },
+            {
+              "kind": "code",
+              "code": "korilgan = set()\nfor h in hujjatlar:\n    iz = hashlib.md5(h[\"text\"].encode(\"utf-8\")).hexdigest()\n    if iz in korilgan:\n        print(\"dublikat:\", h[\"id\"], h[\"url\"])\n    korilgan.add(iz)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "dublikat: 4 https://sayt01.misol/yangiliklar/metro?sahifa=2\ndublikat: 27 https://sayt02.misol/ob-havo"
+            },
+            {
+              "kind": "text",
+              "text": "Ikkita topildi:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "**4** — 1-hujjatning aynan nusxasi, faqat manzilda `?sahifa=2`.",
+                "**27** — 7-hujjat bilan bir xil ob-havo xabari, boshqa saytda. Ularning dumi har xil edi (`Barcha huquqlar…` va `Ulashish…`). **Shablon bosqichi dumlarni olib tashlagani uchun** endi ular aynan bir xil. Tartib muhim — oltinchi marta."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Lekin 2 va 3 topilmadi. Nima uchun?"
+            },
+            {
+              "kind": "code",
+              "code": "for i in [0, 1, 2]:\n    print(hujjatlar[i][\"id\"], repr(hujjatlar[i][\"text\"][:28]))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "1 'Metroda yangi bekat yoʻlovch'\n2 \"Metroda yangi bekat yo'lovch\"\n3 'Metroda yangi bekat yo‘lovch'"
+            },
+            {
+              "kind": "text",
+              "text": "Bir xil matn — har xil apostrof. Bitta belgi farq — butunlay boshqa iz."
+            },
+            {
+              "kind": "h3",
+              "id": "kalit-avval-normallashtir-keyin-iz-ol",
+              "text": "Kalit: avval normallashtir, keyin iz ol"
+            },
+            {
+              "kind": "code",
+              "code": "def kalit(matn):\n    matn = normallashtir(matn)\n    matn = matn.lower()\n    matn = \" \".join(matn.split())\n    return hashlib.md5(matn.encode(\"utf-8\")).hexdigest()\n\n\nfor i in [0, 1, 2]:\n    print(hujjatlar[i][\"id\"], kalit(hujjatlar[i][\"text\"]))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "1 9280fc033b4c03c2dbf08c6dbf3f3588\n2 9280fc033b4c03c2dbf08c6dbf3f3588\n3 9280fc033b4c03c2dbf08c6dbf3f3588"
+            },
+            {
+              "kind": "text",
+              "text": "Uchalasi — **bir xil** iz. Qator-qator:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`normallashtir` — Dars 14 dagi ish. `'`, `‘`, `ʻ` — hammasi bitta.",
+                "`.lower()` — `Metro` va `metro` farq qilmasin.",
+                "`\" \".join(matn.split())` — har qanday boʻshliqlar (ikkita boʻshliq, `\\n`, tabulyatsiya) → bitta boʻshliq."
+              ]
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Muhim:** biz matnni **faqat kalit uchun** normallashtiramiz. Hujjatning oʻzida **asl** yozuv qoladi. Nima uchun — 15-boʻlimda."
+            },
+            {
+              "kind": "h3",
+              "id": "bosqichni-qollaymiz-2",
+              "text": "Bosqichni qoʻllaymiz"
+            },
+            {
+              "kind": "code",
+              "code": "korilgan = set()\nqoldi = []\nfor h in hujjatlar:\n    k = kalit(h[\"text\"])\n    if k in korilgan:\n        print(\"dublikat:\", h[\"id\"], h[\"url\"])\n    else:\n        korilgan.add(k)\n        qoldi.append(h)\n\nhujjatlar = qoldi\nvoronka.append((\"5. aniq dublikat\", len(hujjatlar)))\nprint(\"qoldi:\", len(hujjatlar))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "dublikat: 2 https://sayt02.misol/news/12345\ndublikat: 3 https://sayt03.misol/2024/metro-bekat\ndublikat: 4 https://sayt01.misol/yangiliklar/metro?sahifa=2\ndublikat: 27 https://sayt02.misol/ob-havo\nqoldi: 19"
+            },
+            {
+              "kind": "text",
+              "text": "Toʻrtta dublikat — va har biri **birinchi** uchragan nusxaga qarab topildi. Qaysi nusxa qoladi? Birinchisi. FineWeb-2 ham shunday qiladi: har bir guruhdan bittasini qoldiradi va guruh hajmini `minhash_cluster_size` ga yozadi."
+            },
+            {
+              "kind": "text",
+              "text": "Nima uchun dublikatlarni bunchalik sinchiklab olib tashlayapmiz? Bitta sababini 16-boʻlimda koʻrasiz. **Ikkinchisi — muhimrogʻi** — Dars 17 da. Hozircha shunchaki qiling."
+            }
+          ]
+        },
+        {
+          "id": "14-6-bosqich-qisman-dublikat",
+          "title": "14. 6-bosqich: qisman dublikat",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "5-hujjatga qaraymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "h1 = hujjatlar[0]\nh5 = hujjatlar[1]\n\nfor h in [h1, h5]:\n    qatorlar = h[\"text\"].split(\"\\n\")\n    print(h[\"id\"], \"|\", qatorlar[0])\n    print(\"  |\", qatorlar[1][:60], \"...\")\n    print(\"  |\", \"...\", qatorlar[1][-60:])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "1 | Metroda yangi bekat yoʻlovchilarni kutmoqda\n  | Toshkent metropolitenining halqa yoʻnalishida yangi bekat yo ...\n  | ... ovchilarga xaritani oldindan koʻrib chiqish tavsiya etiladi.\n5 | Poytaxtda yangi metro bekati foydalanishga topshirildi\n  | Shahrimizda yana bir metro bekati ochilib, yo’lovchilarni qa ...\n  | ... ovchilarga xaritani oldindan ko’rib chiqish tavsiya etiladi."
+            },
+            {
+              "kind": "text",
+              "text": "Sarlavha va birinchi jumla qayta yozilgan. Qolgani — aynan metro maqolasi, faqat apostroflari boshqa. Bu juda koʻp uchraydi: sayt maqolani oladi, boshini oʻzgartiradi, qolganini qoldiradi. Barmoq izi bu yerda ojiz — bitta harf farq qilsa ham iz boshqa."
+            },
+            {
+              "kind": "text",
+              "text": "Bizga \"**qanchalik** oʻxshash?\" degan savolga javob beradigan oʻlchov kerak."
+            },
+            {
+              "kind": "h3",
+              "id": "soz-bolaklari-n-gramma",
+              "text": "Soʻz boʻlaklari (n-gramma)"
+            },
+            {
+              "kind": "text",
+              "text": "Matnni ketma-ket turgan **5 soʻzli boʻlaklarga** ajratamiz:"
+            },
+            {
+              "kind": "code",
+              "code": "sozlar = \"bekat har kuni ertalab soat beshdan ishlaydi\".split()\n\nfor i in range(len(sozlar) - 5 + 1):\n    print(\" \".join(sozlar[i:i + 5]))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "bekat har kuni ertalab soat\nhar kuni ertalab soat beshdan\nkuni ertalab soat beshdan ishlaydi"
+            },
+            {
+              "kind": "text",
+              "text": "7 ta soʻz → 3 ta boʻlak. Har bir boʻlak bitta soʻzga surilgan. Bunday boʻlaklar **n-gramma** deyiladi (bizda n = 5)."
+            },
+            {
+              "kind": "text",
+              "text": "Ikki matn qancha umumiy boʻlakka ega boʻlsa — shuncha oʻxshash. Bitta jumla oʻzgarsa — faqat oʻsha joydagi boʻlaklar oʻzgaradi, qolganlari bir xil qoladi."
+            },
+            {
+              "kind": "code",
+              "code": "def ngrammalar(matn, n=5):\n    sozlar = normallashtir(matn).lower().split()\n    natija = set()\n    for i in range(len(sozlar) - n + 1):\n        natija.add(\" \".join(sozlar[i:i + n]))\n    return natija\n\n\nprint(len(ngrammalar(h1[\"text\"])), len(ngrammalar(h5[\"text\"])))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "52 53"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`n=5` — parametrning **standart qiymati**. `ngrammalar(matn)` desangiz n = 5, `ngrammalar(matn, 3)` desangiz n = 3.",
+                "Natija — **toʻplam**: bir xil boʻlak ikki marta uchrasa ham, bir marta sanaladi."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "toplam-amallari-va",
+              "text": "Toʻplam amallari: `&` va `|`"
+            },
+            {
+              "kind": "text",
+              "text": "Avval sonlarda:"
+            },
+            {
+              "kind": "code",
+              "code": "a = {1, 2, 3, 4}\nb = {3, 4, 5}\n\nprint(a & b)\nprint(a | b)\nprint(len(a & b) / len(a | b))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "{3, 4}\n{1, 2, 3, 4, 5}\n0.4"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`{1, 2, 3, 4}` — toʻplamni toʻgʻridan-toʻgʻri yozish (lugʻatga oʻxshaydi, lekin `:` yoʻq).",
+                "`a & b` — **kesishma**: ikkalasida ham bor elementlar.",
+                "`a | b` — **birlashma**: kamida bittasida bor elementlar.",
+                "Umumiylar soni / hammasining soni = **0.4**."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Bu oxirgi son — **Jaccard oʻxshashligi**. 1 — toʻplamlar bir xil. 0 — umumiy element yoʻq."
+            },
+            {
+              "kind": "code",
+              "code": "def jaccard(a, b):\n    birlashma = a | b\n    if len(birlashma) == 0:\n        return 0\n    return len(a & b) / len(birlashma)\n\n\nn1 = ngrammalar(hujjatlar[0][\"text\"])\nfor h in hujjatlar[1:4]:\n    print(hujjatlar[0][\"id\"], \"va\", h[\"id\"], round(jaccard(n1, ngrammalar(h[\"text\"])), 3))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "1 va 5 0.641\n1 va 6 0.881\n1 va 7 0.0"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "1 va 5 — **0.641**: boshi qayta yozilgan, qolgani bir xil.",
+                "1 va 6 — **0.881**: 6-hujjat — metro maqolasi + bitta qoʻshimcha jumla.",
+                "1 va 7 — **0**: metro va ob-havo. Umumiy 5 soʻzli boʻlak yoʻq."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Chegarani **0.5** qilamiz: boʻlaklarning yarmidan koʻpi umumiy boʻlsa — dublikat."
+            },
+            {
+              "kind": "h3",
+              "id": "bosqichni-qollaymiz-3",
+              "text": "Bosqichni qoʻllaymiz"
+            },
+            {
+              "kind": "code",
+              "code": "qoldi = []\nsolishtirish = 0\nfor h in hujjatlar:\n    a = ngrammalar(h[\"text\"])\n    oxshash = False\n    for q in qoldi:\n        solishtirish += 1\n        if jaccard(a, ngrammalar(q[\"text\"])) >= 0.5:\n            print(\"oʻxshash:\", h[\"id\"], \"~\", q[\"id\"])\n            oxshash = True\n            break\n    if not oxshash:\n        qoldi.append(h)\n\nhujjatlar = qoldi\nvoronka.append((\"6. qisman dublikat\", len(hujjatlar)))\nprint(\"solishtirishlar:\", solishtirish)\nprint(\"qoldi:\", len(hujjatlar))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "oʻxshash: 5 ~ 1\noʻxshash: 6 ~ 1\nsolishtirishlar: 138\nqoldi: 17"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`oxshash = False` — \"hali oʻxshashi topilmadi\". `True` / `False` — Dars 14 dagi `.isalpha()` qaytaradigan qiymatlar.",
+                "`break` — oʻxshashi topildimi, qolganlarini tekshirish shart emas (Dars 10).",
+                "`if not oxshash:` — `not` — **teskarisi**. \"Agar oʻxshash **boʻlmasa**\"."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "muammo-juftlar-soni",
+              "text": "Muammo: juftlar soni"
+            },
+            {
+              "kind": "text",
+              "text": "Har bir hujjat oʻzidan oldin qolganlarning **har biri** bilan solishtirildi. 19 ta hujjatda bu oz. FineWeb-2 ning oʻzbek boʻlimida-chi? Har bir juft:"
+            },
+            {
+              "kind": "code",
+              "code": "n = 1233463\nprint(n * (n - 1) // 2)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "760714869453"
+            },
+            {
+              "kind": "text",
+              "text": "(`//` — **butun** boʻlish: `7 // 2` → `3`.)"
+            },
+            {
+              "kind": "text",
+              "text": "**760 milliard juft.** Kompyuter soniyasiga million juft solishtirsa ham — 8.8 kun. Va har bir juft — ikki toʻplamning kesishmasi."
+            },
+            {
+              "kind": "text",
+              "text": "Shuning uchun katta korpuslarda boshqa usul ishlatiladi — **MinHash**. U har bir hujjatni hamma bilan emas, faqat oʻxshash **boʻlishi mumkin** boʻlganlar bilan solishtiradi. FineWeb-2 dagi `minhash_cluster_size` — aynan shu usulning natijasi. Bu kursda uni yozmaymiz. Muhimi — gʻoya bir xil: n-grammalar va Jaccard."
+            },
+            {
+              "kind": "media",
+              "id": "p4",
+              "title": "Barmoq izi"
+            }
+          ]
+        },
+        {
+          "id": "15-natija-voronka-va-saqlash",
+          "title": "15. Natija: voronka va saqlash",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "for nom, son in voronka:\n    print(f\"{nom:22s} {son:3d}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "0. oʻqildi              29\n1. kodlash              28\n2. til                  26\n3. shablon              26\n4. uzunlik              23\n5. aniq dublikat        19\n6. qisman dublikat      17"
+            },
+            {
+              "kind": "text",
+              "text": "**29 → 17.** Hujjatlarning 41% i ketdi. Va bu — \"tozalangan\" internet matniga oʻxshatib yasalgan korpus."
+            },
+            {
+              "kind": "media",
+              "id": "p3",
+              "title": "Voronka"
+            },
+            {
+              "kind": "h3",
+              "id": "asl-yozuv-saqlandi",
+              "text": "Asl yozuv saqlandi"
+            },
+            {
+              "kind": "code",
+              "code": "for h in hujjatlar:\n    if h[\"id\"] == 10:\n        print(h[\"text\"][:40])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "Navro'z bayrami\nNavro'z bahor va yangila"
+            },
+            {
+              "kind": "text",
+              "text": "`Navro'z` — oddiy `'` bilan, internetdagidek. Biz uni **normallashtirmadik**. Uchta sabab:"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "**Tokenizator buni oʻzi qiladi.** Dars 14 dagi zanjir: `matn → normallashtir → regex → BPE`. Korpusni oldindan normallashtirish — ikki marta ish.",
+                "**Sinov matni asl holida boʻlishi kerak.** Dars 14 dagi qoidani eslang: boshqa tokenizatorlar bilan solishtirganda hammaga asl internet matnini berish kerak. Sinov matni shu korpusdan olinadi.",
+                "**Normalizator yaxshilanadi.** Ertaga qoidangizda xato topsangiz (Dars 14 da men topdim), asl matndan qaytadan boshlaysiz. Normallashtirilgan matndan — yoʻq."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "faylga-yozamiz",
+              "text": "Faylga yozamiz"
+            },
+            {
+              "kind": "code",
+              "code": "with open(\"toza_korpus.jsonl\", \"w\", encoding=\"utf-8\") as f:\n    for h in hujjatlar:\n        f.write(json.dumps(h, ensure_ascii=False) + \"\\n\")\n\nprint(\"saqlandi:\", len(oqish(\"toza_korpus.jsonl\")), \"ta hujjat\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "saqlandi: 17 ta hujjat"
+            },
+            {
+              "kind": "h3",
+              "id": "hisobot",
+              "text": "Hisobot"
+            },
+            {
+              "kind": "text",
+              "text": "4-boʻlimdagi qoidani eslang: **har bir manbani yozib qoʻying.** Tozalash ham — qanday qilinganini yozib qoʻyish kerak boʻlgan narsa:"
+            },
+            {
+              "kind": "code",
+              "code": "hisobot = {\n    \"manba\": \"xom_korpus.jsonl (Noldan, Dars 15)\",\n    \"sana\": \"2026-10-22\",\n    \"bosqichlar\": voronka,\n    \"chegaralar\": {\"buzuq\": 0.01, \"kirill\": 0.3, \"shablon\": 3, \"soz\": 12, \"jaccard\": 0.5},\n}\n\nwith open(\"hisobot.json\", \"w\", encoding=\"utf-8\") as f:\n    f.write(json.dumps(hisobot, ensure_ascii=False, indent=2))\n\nprint(json.dumps(hisobot[\"chegaralar\"]))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "{\"buzuq\": 0.01, \"kirill\": 0.3, \"shablon\": 3, \"soz\": 12, \"jaccard\": 0.5}"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`\"sana\"` — oʻzingiz ishlagan kunni yozing.",
+                "`indent=2` — JSON ni chiroyli, qatorma-qator yozadi (har bir daraja 2 boʻshliq bilan surilgan). Faylni ochib koʻring."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Olti oy oʻtib \"bu korpus qanday tozalangan edi?\" deb soʻrasangiz — javob shu faylda. Dars 17 da bu fayl nima uchun **hayotiy** ekanini koʻrasiz."
+            }
+          ]
+        },
+        {
+          "id": "16-javob-iflos-korpus-tokenizatorga-nima-qiladi",
+          "title": "16. Javob: iflos korpus tokenizatorga nima qiladi",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi 1-boʻlimdagi savolga qaytamiz. Ikkita tokenizator oʻqitamiz: biri **xom** korpusda, biri **toza** korpusda. Hammasi bir xil — normalizatsiya, regex, lugʻat hajmi 356 (yaʼni 100 ta birlashtirish)."
+            },
+            {
+              "kind": "code",
+              "code": "xom_hujjatlar = oqish(\"xom_korpus.jsonl\")\n\nxom_matn = \"\\n\\n\".join([h[\"text\"] for h in xom_hujjatlar])\ntoza_matn = \"\\n\\n\".join([h[\"text\"] for h in hujjatlar])\n\nprint(\"xom:\", len(xom_matn.encode(\"utf-8\")), \"bayt\")\nprint(\"toza:\", len(toza_matn.encode(\"utf-8\")), \"bayt\")\n\nm_xom, v_xom, _ = train_regex(normallashtir(xom_matn), 356, NAQSH)\nm_toza, v_toza, _ = train_regex(normallashtir(toza_matn), 356, NAQSH)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "xom: 9577 bayt\ntoza: 5000 bayt"
+            },
+            {
+              "kind": "text",
+              "text": "Xom korpusda deyarli **ikki barobar** koʻp matn. Odatda koʻp matn — yaxshi. Koʻramiz."
+            },
+            {
+              "kind": "h3",
+              "id": "tokenizator-nimani-organdi",
+              "text": "Tokenizator nimani oʻrgandi?"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 10 ni eslang: **eng uzun** tokenlar tokenizator nimani \"yodlaganini\" koʻrsatadi. Ularni topish uchun bitta yangi funksiya — `sorted`:"
+            },
+            {
+              "kind": "code",
+              "code": "print(sorted([3, 1, 2]))\nprint(sorted([\"ccc\", \"a\", \"bb\"], key=len, reverse=True))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "[1, 2, 3]\n['ccc', 'bb', 'a']"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`sorted(...)` — tartiblangan **yangi** roʻyxat qaytaradi.",
+                "`key=len` — nimaga qarab tartiblash (Dars 08 dagi `max(..., key=...)` kabi).",
+                "`reverse=True` — kattadan kichikka."
+              ]
+            },
+            {
+              "kind": "code",
+              "code": "def tokenlar(vocab):\n    natija = []\n    for tid in range(256, len(vocab)):\n        natija.append(vocab[tid].decode(\"utf-8\", errors=\"replace\"))\n    return natija\n\n\nprint(\"xom: \", sorted(tokenlar(v_xom), key=len, reverse=True)[:10])\nprint(\"toza:\", sorted(tokenlar(v_toza), key=len, reverse=True)[:10])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "xom:  [' yoʻlovchilar', 'vchilar', ' bekat', 'chilar', ' yangi', ' yoʻlo', 'ladi', 'ekat', ' koʻ', '����']\ntoza: ['lanadi', ' uchun', 'chilar', ' yangi', 'moqda', 'ladi', 'nadi', ' boʻ', ' uch', 'ayyo']"
+            },
+            {
+              "kind": "text",
+              "text": "**Toʻxtang va ikkala qatorni solishtiring.**"
+            },
+            {
+              "kind": "text",
+              "text": "Xom tokenizatorning eng uzun tokeni — ` yoʻlovchilar`. Roʻyxatda yana ` bekat`, ` yoʻlo`, `ekat` bor. Bu — **metro maqolasi**. U korpusda olti nusxada edi, va tokenizator uni \"oʻzbek tilining eng muhim qismi\" deb oʻrgandi."
+            },
+            {
+              "kind": "text",
+              "text": "Toza tokenizatorda esa — `lanadi`, ` uchun`, `moqda`, `nadi`. Bular — **oʻzbek tilining qoʻshimchalari**, har qanday matnda ishlaydigan boʻlaklar."
+            },
+            {
+              "kind": "text",
+              "text": "Endi axlatni qidiramiz — `�`, kirill harflari va `|`:"
+            },
+            {
+              "kind": "code",
+              "code": "def iflos(vocab):\n    natija = []\n    for t in tokenlar(vocab):\n        if \"\\ufffd\" in t or kirill_ulushi(t) > 0 or \"|\" in t:\n            natija.append(t)\n    return natija\n\n\nprint(\"xom: \", iflos(v_xom))\nprint(\"toza:\", iflos(v_toza))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "xom:  ['�', '�', '��', ' �', 'а', '����', 'и', ' |', 'т', 'р']\ntoza: []"
+            },
+            {
+              "kind": "text",
+              "text": "100 ta birlashtirishdan **10 tasi** — sof axlatga ketgan: 22-hujjatning `�` baytlari, rus harflari va ularning yarimlari (19, 20-hujjatlar), ` |` (menyu va \"Ulashish\" satri). Toza tokenizatorda — **nol**."
+            },
+            {
+              "kind": "h3",
+              "id": "yangi-matnda-olchaymiz",
+              "text": "Yangi matnda oʻlchaymiz"
+            },
+            {
+              "kind": "text",
+              "text": "Va asosiy savol — ikkala tokenizator **koʻrmagan** matnda qanday ishlaydi?"
+            },
+            {
+              "kind": "code",
+              "code": "sinovlar = [\n    \"Yangi oʻquv yilida maktablarda koʻplab oʻzgarishlar boʻladi. Oʻqituvchilar va oʻquvchilar bunga tayyorlanmoqda.\",\n    \"Viloyatda yangi kasalxona qurildi. Unda zamonaviy uskunalar bor va shifokorlar bepul maslahat beradi.\",\n    \"Ertaga shaharda katta konsert boʻlib oʻtadi. Chiptalarni internet orqali sotib olish mumkin.\",\n    \"Talabalar universitetda ingliz tili va matematika fanlarini oʻrganishmoqda.\",\n]\n\nsozlar = 0\nt_xom = 0\nt_toza = 0\nfor s in sinovlar:\n    sozlar += len(s.split())\n    t_xom += len(encode_regex(normallashtir(s), m_xom, NAQSH))\n    t_toza += len(encode_regex(normallashtir(s), m_toza, NAQSH))\n\nprint(\"soʻzlar:\", sozlar)\nprint(\"xom: \", t_xom, \"token | fertility:\", round(t_xom / sozlar, 3))\nprint(\"toza:\", t_toza, \"token | fertility:\", round(t_toza / sozlar, 3))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "soʻzlar: 45\nxom:  219 token | fertility: 4.867\ntoza: 204 token | fertility: 4.533"
+            },
+            {
+              "kind": "text",
+              "text": "**Toza tokenizator — 7% kamroq token.** Ikki barobar **kam** matnda oʻqitilgan boʻlsa ham."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Koʻproq matn har doim yaxshi emas. Koʻproq *iflos* matn — yomonroq tokenizator.**"
+            },
+            {
+              "kind": "media",
+              "id": "p1",
+              "title": "Olti nusxa"
+            },
+            {
+              "kind": "h3",
+              "id": "halol-izoh",
+              "text": "Halol izoh"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 14 dagidek: bu — **kichkina** korpusdagi raqam. 29 ta hujjatda bitta maqolaning besh nusxasi — matnning katta qismi. Haqiqiy korpusda effekt kichikroq boʻladi."
+            },
+            {
+              "kind": "text",
+              "text": "Lekin yoʻnalishi oʻsha. 3-boʻlimdagi raqamlarni eslang: Common Crawl'da bitta Vikipediya maqolasi **91 nusxada** uchragan. Dublikatlar olib tashlanmasa, uning har bir soʻzi 91 barobar \"muhim\" boʻlib qoladi."
+            }
+          ]
+        },
+        {
+          "id": "17-muammo",
+          "title": "17. Muammo",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi qoʻlingizda:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "✓ tokenizator (Dars 06–14)",
+                "✓ toza korpus va uni qanday olganingiz haqida hisobot (Dars 15)"
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Lekin toza korpusimiz — 17 ta hujjat, 5 000 bayt. Haqiqiy oʻzbek boʻlimi — 4.45 GB. Bu taxminan **900 ming barobar** koʻp."
+            },
+            {
+              "kind": "text",
+              "text": "Bizning `train_regex` Dars 10 da yozilgan va har bir birlashtirishda **butun** matnni qaytadan sanaydi. 900 ming barobar koʻp matnda, 16 384 hajmli lugʻat uchun — u qancha ishlaydi? Bir soatmi? Bir yilmi?"
+            },
+            {
+              "kind": "text",
+              "text": "Va bitta savol ochiq qoldi: dublikatlarni olib tashlashning **ikkinchi** sababi. Uni men qimmat yoʻl bilan oʻrgandim. Dars 17 da aytib beraman."
+            }
+          ]
+        },
+        {
+          "id": "18-toliq-kod",
+          "title": "18. Toʻliq kod",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "import json\nimport hashlib\nimport unicodedata\n\n# ---- Dars 14: normalizator ----\nOKINA = \"\\u02bb\"\nTUTUQ = \"\\u02bc\"\nAPOSTROFLAR = \"'\\u2018\\u2019`\\u02bb\\u02bc\"\n\n\ndef normallashtir(matn):\n    matn = unicodedata.normalize(\"NFC\", matn)\n    belgilar = list(matn)\n    for i in range(len(belgilar)):\n        if belgilar[i] in APOSTROFLAR:\n            oldingi = \"\"\n            keyingi = \"\"\n            if i > 0:\n                oldingi = belgilar[i - 1]\n            if i < len(belgilar) - 1:\n                keyingi = belgilar[i + 1]\n            if oldingi in [\"g\", \"G\"]:\n                belgilar[i] = OKINA\n            elif oldingi in [\"o\", \"O\"] and keyingi.isalpha():\n                belgilar[i] = OKINA\n            elif oldingi.isalpha() and keyingi.isalpha():\n                belgilar[i] = TUTUQ\n    return \"\".join(belgilar)\n\n\n# ---- fayllar ----\ndef oqish(fayl):\n    hujjatlar = []\n    with open(fayl, encoding=\"utf-8\") as f:\n        for qator in f:\n            hujjatlar.append(json.loads(qator))\n    return hujjatlar\n\n\ndef saqlash(hujjatlar, fayl):\n    with open(fayl, \"w\", encoding=\"utf-8\") as f:\n        for h in hujjatlar:\n            f.write(json.dumps(h, ensure_ascii=False) + \"\\n\")\n\n\n# ---- tekshiruvlar ----\ndef buzuq_ulushi(matn):\n    if len(matn) == 0:\n        return 0\n    return matn.count(\"\\ufffd\") / len(matn)\n\n\ndef kodlashni_tuzat(matn):\n    if \"‚Ä\" in matn:\n        try:\n            return matn.encode(\"mac_latin2\").decode(\"utf-8\")\n        except (UnicodeEncodeError, UnicodeDecodeError):\n            return matn\n    return matn\n\n\ndef kirill_ulushi(matn):\n    harflar = 0\n    kirill = 0\n    for belgi in matn:\n        if belgi.isalpha():\n            harflar += 1\n            if ord(belgi) >= 1024 and ord(belgi) <= 1279:\n                kirill += 1\n    if harflar == 0:\n        return 0\n    return kirill / harflar\n\n\ndef qatorlarni_sana(hujjatlar):\n    hisob = {}\n    for h in hujjatlar:\n        korilgan = set()\n        for qator in h[\"text\"].split(\"\\n\"):\n            qator = qator.strip()\n            if qator != \"\" and qator not in korilgan:\n                korilgan.add(qator)\n                hisob[qator] = hisob.get(qator, 0) + 1\n    return hisob\n\n\ndef shablonni_olib_tashla(matn, shablonlar):\n    qolgan = []\n    for qator in matn.split(\"\\n\"):\n        if qator.strip() not in shablonlar:\n            qolgan.append(qator)\n    return \"\\n\".join(qolgan)\n\n\ndef kalit(matn):\n    matn = normallashtir(matn)\n    matn = matn.lower()\n    matn = \" \".join(matn.split())\n    return hashlib.md5(matn.encode(\"utf-8\")).hexdigest()\n\n\ndef ngrammalar(matn, n=5):\n    sozlar = normallashtir(matn).lower().split()\n    natija = set()\n    for i in range(len(sozlar) - n + 1):\n        natija.add(\" \".join(sozlar[i:i + n]))\n    return natija\n\n\ndef jaccard(a, b):\n    birlashma = a | b\n    if len(birlashma) == 0:\n        return 0\n    return len(a & b) / len(birlashma)\n\n\n# ---- quvur ----\ndef tozalash(hujjatlar):\n    voronka = [(\"0. oʻqildi\", len(hujjatlar))]\n\n    # 1. kodlash\n    qoldi = []\n    for h in hujjatlar:\n        h[\"text\"] = kodlashni_tuzat(h[\"text\"])\n        if buzuq_ulushi(h[\"text\"]) <= 0.01:\n            qoldi.append(h)\n    hujjatlar = qoldi\n    voronka.append((\"1. kodlash\", len(hujjatlar)))\n\n    # 2. til\n    qoldi = []\n    for h in hujjatlar:\n        if kirill_ulushi(h[\"text\"]) <= 0.3:\n            qoldi.append(h)\n    hujjatlar = qoldi\n    voronka.append((\"2. til\", len(hujjatlar)))\n\n    # 3. shablon satrlar\n    hisob = qatorlarni_sana(hujjatlar)\n    shablonlar = set()\n    for qator, son in hisob.items():\n        if son >= 3:\n            shablonlar.add(qator)\n    for h in hujjatlar:\n        h[\"text\"] = shablonni_olib_tashla(h[\"text\"], shablonlar)\n    voronka.append((\"3. shablon\", len(hujjatlar)))\n\n    # 4. uzunlik\n    qoldi = []\n    for h in hujjatlar:\n        if len(h[\"text\"].split()) >= 12:\n            qoldi.append(h)\n    hujjatlar = qoldi\n    voronka.append((\"4. uzunlik\", len(hujjatlar)))\n\n    # 5. aniq dublikat\n    korilgan = set()\n    qoldi = []\n    for h in hujjatlar:\n        k = kalit(h[\"text\"])\n        if k not in korilgan:\n            korilgan.add(k)\n            qoldi.append(h)\n    hujjatlar = qoldi\n    voronka.append((\"5. aniq dublikat\", len(hujjatlar)))\n\n    # 6. qisman dublikat\n    qoldi = []\n    for h in hujjatlar:\n        a = ngrammalar(h[\"text\"])\n        oxshash = False\n        for q in qoldi:\n            if jaccard(a, ngrammalar(q[\"text\"])) >= 0.5:\n                oxshash = True\n                break\n        if not oxshash:\n            qoldi.append(h)\n    hujjatlar = qoldi\n    voronka.append((\"6. qisman dublikat\", len(hujjatlar)))\n\n    return hujjatlar, voronka\n\n\nhujjatlar, voronka = tozalash(oqish(\"xom_korpus.jsonl\"))\nsaqlash(hujjatlar, \"toza_korpus.jsonl\")\n\nfor nom, son in voronka:\n    print(f\"{nom:22s} {son:3d}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "0. oʻqildi              29\n1. kodlash              28\n2. til                  26\n3. shablon              26\n4. uzunlik              23\n5. aniq dublikat        19\n6. qisman dublikat      17",
+              "label": "Kutilgan natija"
+            }
+          ]
+        },
+        {
+          "id": "19-ozingiz-yozing",
+          "title": "19. Oʻzingiz yozing",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dublikatlarni topadigan ikki funksiyani va aniq dublikat bosqichini toʻldiring:"
+            },
+            {
+              "kind": "code",
+              "code": "def kalit(matn):\n    matn = ___(matn)\n    matn = matn.___()\n    matn = \" \".join(matn.___())\n    return hashlib.___(matn.___(\"utf-8\")).___()\n\n\ndef jaccard(a, b):\n    birlashma = a ___ b\n    if len(birlashma) == 0:\n        return 0\n    return len(a ___ b) / len(___)\n\n\nkorilgan = ___()\nqoldi = []\nfor h in hujjatlar:\n    k = kalit(h[\"text\"])\n    if k ___ korilgan:\n        korilgan.___(k)\n        qoldi.append(h)\n\n# Tekshiruv:\nprint(kalit(\"O'zbekiston\") == kalit(\"o\\u2018zbekiston\"))      # True\nprint(jaccard({1, 2, 3}, {2, 3, 4}))                         # 0.5",
+              "lang": "python",
+              "mode": "template"
+            },
+            {
+              "kind": "reveal",
+              "summary": "Yechimni koʻrsatish",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "def kalit(matn):\n    matn = normallashtir(matn)\n    matn = matn.lower()\n    matn = \" \".join(matn.split())\n    return hashlib.md5(matn.encode(\"utf-8\")).hexdigest()\n\n\ndef jaccard(a, b):\n    birlashma = a | b\n    if len(birlashma) == 0:\n        return 0\n    return len(a & b) / len(birlashma)\n\n\nkorilgan = set()\nqoldi = []\nfor h in hujjatlar:\n    k = kalit(h[\"text\"])\n    if k not in korilgan:\n        korilgan.add(k)\n        qoldi.append(h)\n\nprint(kalit(\"O'zbekiston\") == kalit(\"o\\u2018zbekiston\"))\nprint(jaccard({1, 2, 3}, {2, 3, 4}))",
+                  "lang": "python",
+                  "mode": "static"
+                },
+                {
+                  "kind": "output",
+                  "text": "True\n0.5"
+                },
+                {
+                  "kind": "text",
+                  "text": "Eng koʻp qilinadigan xatolar:"
+                },
+                {
+                  "kind": "steps",
+                  "items": [
+                    "`korilgan = {}` — bu boʻsh **lugʻat**, toʻplam emas. `.add` ishlamaydi: `AttributeError: 'dict' object has no attribute 'add'`.",
+                    "`.encode(\"utf-8\")` ni unutish — `md5` matnni emas, **baytni** oladi: `TypeError: Strings must be encoded before hashing`.",
+                    "`&` va `|` ni almashtirish — natija 1 dan katta chiqadi. Jaccard **hech qachon** 1 dan oshmaydi — buni tekshiruv sifatida ishlating."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "20-mashqlar",
+          "title": "20. Mashqlar",
+          "blocks": [
+            {
+              "kind": "exercise",
+              "label": "Mashq 1",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Ishga tushirmasdan ayting: bu uchta matndan qaysilarining `kalit` i bir xil?"
+                },
+                {
+                  "kind": "pre",
+                  "text": "\"Oʻzbekiston  poytaxti\"      \"o'zbekiston poytaxti\"      \"Ozbekiston poytaxti\""
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "for t in [\"O\\u02bbzbekiston  poytaxti\", \"o'zbekiston poytaxti\", \"Ozbekiston poytaxti\"]:\n    print(f\"{t!r:25s} {kalit(t)}\")",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "'Oʻzbekiston  poytaxti'   f9e927a7c2dec78732b00a2bef80d7c7\n\"o'zbekiston poytaxti\"    f9e927a7c2dec78732b00a2bef80d7c7\n'Ozbekiston poytaxti'     09d16f404022255d41a9431f18083583"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Birinchi ikkitasi** bir xil: katta harf → `.lower()`, ikkita boʻshliq → `\" \".join(...split())`, `'` → `normallashtir`."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Uchinchisi — boshqa. Unda apostrof umuman **yoʻq**. Normalizator notoʻgʻri belgini toʻgʻrisiga almashtira oladi, lekin yoʻq belgini **qoʻsha olmaydi** — `Ozbekiston` dagi `O` dan keyin `ʻ` boʻlishi kerakligini bilish uchun soʻzni bilish kerak."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Agar sizning korpusingizda bitta maqola `Oʻzbekiston` bilan ham, `Ozbekiston` bilan ham uchrasa — aniq dublikat bosqichi uni oʻtkazib yuboradi. Uni 6-bosqich (Jaccard) ushlaydi — chunki qolgan soʻzlar bir xil."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 2",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Bizning til filtrimiz faqat **kirillni** sanaydi. TED hujjatidagi inglizcha matn undan oʻtadimi? Tekshiring. Keyin uni ushlaydigan oddiy usul oʻylab toping."
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "inglizcha = (\"Click on any phrase to play the video at that point. As the leader of the Imaging Team \"\n             \"on the Cassini mission to Saturn, Carolyn Porco interprets and shares the pictures.\")\n\nprint(kirill_ulushi(inglizcha), len(inglizcha.split()))",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "0.0 31"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Kirill — 0, soʻzlar — 12 dan koʻp. **Ikkala filtrdan ham oʻtadi.**"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Oddiy usul: oʻzbek tilida **juda koʻp uchraydigan** qisqa soʻzlarni sanash. Har qanday oʻzbekcha matnda `va`, `bu`, `bilan`, `uchun` boʻladi. Inglizchada — yoʻq:"
+                  },
+                  {
+                    "kind": "code",
+                    "code": "YORDAMCHI = {\"va\", \"bu\", \"bilan\", \"uchun\", \"ham\", \"bir\", \"har\", \"deb\", \"esa\", \"eng\"}\n\n\ndef ozbekcha_ulushi(matn):\n    sozlar = re.findall(r\"\\w+\", normallashtir(matn).lower())\n    if len(sozlar) == 0:\n        return 0\n    topildi = 0\n    for s in sozlar:\n        if s in YORDAMCHI:\n            topildi += 1\n    return topildi / len(sozlar)\n\n\nprint(\"inglizcha:\", ozbekcha_ulushi(inglizcha))\nfor h in hujjatlar:\n    u = ozbekcha_ulushi(h[\"text\"])\n    if u == 0:\n        print(\"diqqat:\", h[\"id\"], repr(h[\"text\"][:40]))",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "inglizcha: 0.0\ndiqqat: 7 'Ertaga ob-havo qanday boʻladi\\nErtaga poy'\ndiqqat: 11 'Terma jamoa navbatdagi oʻyinga tayyorlan'"
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "`re.findall(r\"\\w+\", ...)` — Dars 13 dagi regex: faqat soʻzlar, tinish belgilarisiz. `kerak.` emas, `kerak`."
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Inglizcha — 0. Lekin qarang: **7 va 11-hujjatlar ham 0**. Bular — oʻzbekcha ob-havo xabari va futbol yangiligi: \"Ertaga poytaxtda havo bulutli boʻladi…\", \"Bosh murabbiy yigʻinga yigirma uch nafar futbolchini chaqirdi…\". Ularda roʻyxatdagi soʻzlarning birortasi ham yoʻq. Agar chegarani `> 0` qilsak — ikkita toza oʻzbekcha hujjatni tashlaymiz."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Mana shuning uchun haqiqiy quvurlar oʻqitilgan **til aniqlovchi modellar**dan foydalanadi (FineWeb-2 — `GlotLID`). Lekin ular ham mukammal emas: 5-boʻlimdagi TED hujjati `language_score = 1.000` olgan — chunki baho **butun hujjat** uchun beriladi, oxiridagi inglizcha qism esa kichkina."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Dars 14 dagi xulosa bu yerda ham ishlaydi: **har bir filtr qayerdadir xato qiladi. Muhimi — qayerda ekanini bilish.**"
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 3",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Shablon qoidasi: \"kamida 3 ta hujjatda uchragan satr\". Faraz qiling, bitta maqola **uchta** saytda aynan bir xil chop etilgan. Shablon va uzunlik bosqichlaridan keyin nima qoladi? Tekshiring va qoidani tuzating."
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "maqola = (\"Yangi kutubxona ochildi\\n\"\n          \"Shahar markazida uch qavatli yangi kutubxona ochildi, unda oʻn ming kitob va katta oʻquv zali bor.\")\n\nsinov = []\nfor i in range(3):\n    sinov.append({\"id\": 100 + i, \"text\": maqola})\n\nhisob = qatorlarni_sana(sinov)\nsh = set()\nfor qator, son in hisob.items():\n    if son >= 3:\n        sh.add(qator)\n\nfor h in sinov:\n    h[\"text\"] = shablonni_olib_tashla(h[\"text\"], sh)\n    print(h[\"id\"], repr(h[\"text\"]), len(h[\"text\"].split()), \"soʻz\")",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "100 '' 0 soʻz\n101 '' 0 soʻz\n102 '' 0 soʻz"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Maqola butunlay yoʻqoldi.** Uning har bir satri uch hujjatda uchragani uchun \"shablon\" deb topildi va oʻchirildi. Keyin boʻsh hujjatlarni uzunlik bosqichi tashlaydi. Dublikat bosqichi bittasini qoldirishi kerak edi — lekin unga hech narsa yetib kelmadi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Tuzatish:** shablon satrlar odatda **qisqa** boʻladi. Maqola jumlalari — uzun. Ikkinchi shart qoʻshamiz:"
+                  },
+                  {
+                    "kind": "code",
+                    "code": "def shablonlarni_top(hujjatlar):\n    hisob = qatorlarni_sana(hujjatlar)\n    natija = set()\n    for qator, son in hisob.items():\n        if son >= 3 and len(qator.split()) <= 10:\n            natija.add(qator)\n    return natija\n\n\nsinov = []\nfor i in range(3):\n    sinov.append({\"id\": 100 + i, \"text\": maqola})\n\nsh = shablonlarni_top(sinov)\nfor h in sinov:\n    h[\"text\"] = shablonni_olib_tashla(h[\"text\"], sh)\n    print(h[\"id\"], len(h[\"text\"].split()), \"soʻz\")",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "100 16 soʻz\n101 16 soʻz\n102 16 soʻz"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Endi asosiy jumla qoldi — va dublikat bosqichi bittasini saqlab qoladi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Lekin diqqat: **sarlavha** (`Yangi kutubxona ochildi`, 3 soʻz) baribir oʻchdi — u qisqa va uch marta uchragan. Qoida uni shablondan ajrata olmaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Bizning toʻrtta haqiqiy shablonimiz-chi? Ular 3, 6, 7 va 9 soʻzli — chegara 10 boʻlgani uchun hammasi topiladi. Tekshiramiz:"
+                  },
+                  {
+                    "kind": "code",
+                    "code": "print(len(shablonlarni_top(oqish(\"xom_korpus.jsonl\"))))",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "4"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Agar chegarani 8 qilganimizda, ensiklopediya satri (9 soʻz) topilmay qolardi. Chegarani tanlashdan oldin — haqiqiy shablonlaringizning uzunligiga qarang."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Bu ham — **tartib** muammosi. Shablon bosqichi dublikat bosqichidan oldin turibdi, shuning uchun dublikatlar shablon boʻlib koʻrinadi. Agar tartibni almashtirsak — 13-boʻlimdagi 27-hujjat aniq dublikat bosqichida ushlanmaydi (dumlari har xil); uni faqat qimmatroq 6-bosqich ushlaydi. Mukammal tartib yoʻq — har bir tartibning oʻz narxi bor."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 4",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Toza korpusni `ensure_ascii` siz saqlang (`json.dumps(h)`). Fayl hajmi qanday oʻzgaradi? Oʻqib olingan hujjatlar bir xilmi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "with open(\"ascii_korpus.jsonl\", \"w\", encoding=\"utf-8\") as f:\n    for h in hujjatlar:\n        f.write(json.dumps(h) + \"\\n\")\n\nwith open(\"toza_korpus.jsonl\", encoding=\"utf-8\") as f:\n    a = f.read()\nwith open(\"ascii_korpus.jsonl\", encoding=\"utf-8\") as f:\n    b = f.read()\n\nprint(\"ensure_ascii=False:\", len(a.encode(\"utf-8\")), \"bayt\")\nprint(\"standart:          \", len(b.encode(\"utf-8\")), \"bayt\")\nprint(\"hujjatlar bir xilmi:\", oqish(\"ascii_korpus.jsonl\") == oqish(\"toza_korpus.jsonl\"))\nprint(b[60:120])",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "ensure_ascii=False: 6122 bayt\nstandart:           6540 bayt\nhujjatlar bir xilmi: True\ntext\": \"Metroda yangi bekat yo\\u02bblovchilarni kutmoqda\\nTo"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Fayl **7% kattaroq**: har bir `ʻ` (2 bayt) endi `\\u02bb` (6 bayt). Bizning korpusda ascii boʻlmagan belgilar kam. Kirill yoki arab yozuvidagi matnda esa har bir harf shunday boʻladi — fayl bir necha barobar oʻsadi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Hujjatlar esa **aynan bir xil** qaytadi — `json.loads` `\\u02bb` ni yana `ʻ` ga aylantiradi. Demak bu xato emas — lekin faylni koʻz bilan oʻqib boʻlmaydi (oxirgi qatorga qarang). 8-boʻlimda biz korpusni **koʻz bilan** tekshirdik. Bunday faylda buni qila olmaysiz."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 5 (eng muhimi)",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Bizning `kodlashni_tuzat` oʻquv korpusidagi 21-hujjatni tuzatdi. Endi uni 5-boʻlimdagi **haqiqiy** FineWeb-2 hujjatining parchasida sinang:"
+                },
+                {
+                  "kind": "code",
+                  "code": "haqiqiy = (\"maqsadi ko’zlangan. Ushbu ma‚Äôruza muallif tomonidan 2009 yilda Samarqand \"\n           \"Davlat universitetida o‚Äôtkazilgan ‚ÄĚSinguilarity Theory\")",
+                  "lang": "python",
+                  "mode": "type"
+                },
+                {
+                  "kind": "text",
+                  "text": "Ishladimi? Nima uchun? Tuzating."
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "haqiqiy = (\"maqsadi ko’zlangan. Ushbu ma‚Äôruza muallif tomonidan 2009 yilda Samarqand \"\n           \"Davlat universitetida o‚Äôtkazilgan ‚ÄĚSinguilarity Theory\")\n\nprint(kodlashni_tuzat(haqiqiy) == haqiqiy)\n\ntry:\n    haqiqiy.encode(\"mac_latin2\").decode(\"utf-8\")\nexcept UnicodeDecodeError as xato:\n    print(xato)",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "True\n'utf-8' codec can't decode byte 0xd5 in position 10: invalid continuation byte"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Ishlamadi** — matn oʻzgarmadi."
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "`except UnicodeDecodeError as xato:` — `as xato` xatoning oʻzini oʻzgaruvchiga saqlaydi. Uni chop etib, xabarini oʻqish mumkin."
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Xabarni oʻqiymiz: `0xd5` baytini oʻqiy olmadi, **10-oʻrinda**. 10-oʻrinda — `ko’zlangan` dagi `’`. Bu belgi **buzilmagan**! Bu hujjatning bir qismi toʻgʻri, bir qismi buzuq. Butun matnni `mac_latin2` orqali qaytarganimizda toʻgʻri `’` ham \"qaytarildi\" — va `0xd5` baytiga aylandi, u esa UTF-8 da maʼnosiz. `try` bizni qutqardi — dastur toʻxtamadi — lekin hech narsa tuzatilmadi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Tuzatish:** butun matnni emas, faqat **buzilgan boʻlaklarni** almashtiramiz. Har bir tirnoq belgisining buzilgan shaklini oʻzimiz yasaymiz:"
+                  },
+                  {
+                    "kind": "code",
+                    "code": "def kodlashni_tuzat2(matn):\n    for belgi in [\"\\u2018\", \"\\u2019\", \"\\u201c\", \"\\u201d\", \"\\u2013\", \"\\u2014\"]:\n        buzuq = belgi.encode(\"utf-8\").decode(\"mac_latin2\")\n        matn = matn.replace(buzuq, belgi)\n    return matn\n\n\ntuzatildi = kodlashni_tuzat2(haqiqiy)\nprint(tuzatildi)\nprint(normallashtir(tuzatildi))",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "maqsadi ko’zlangan. Ushbu ma’ruza muallif tomonidan 2009 yilda Samarqand Davlat universitetida o’tkazilgan ”Singuilarity Theory\nmaqsadi koʻzlangan. Ushbu maʼruza muallif tomonidan 2009 yilda Samarqand Davlat universitetida oʻtkazilgan ”Singuilarity Theory"
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "Roʻyxatda oltita belgi: `‘ ’ “ ”` va ikki xil tire (`–`, `—`).",
+                      "`belgi.encode(\"utf-8\").decode(\"mac_latin2\")` — 9-boʻlimdagi buzilishni **ataylab** takrorlaymiz: `’` → `‚Äô`. Endi nimani qidirishni aniq bilamiz.",
+                      "`.replace(buzuq, belgi)` — Dars 02. Faqat buzilgan joylar oʻzgaradi. Toʻgʻri `’` ga tegilmaydi."
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Ikkinchi qatorda Dars 14 normalizatori ishini tugatdi: `maʼruza`, `oʻtkazilgan`, `koʻzlangan`."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Bu mashqning asosiy saboqi:** oʻquv korpusimiz haqiqatdan **osonroq** edi. Unda 21-hujjat butunlay buzilgan edi. Haqiqiy internetda esa bitta hujjat ichida toʻgʻri va buzuq aralash keladi. Toʻliq koddagi `kodlashni_tuzat` ni shu funksiya bilan almashtiring — u ikkala holatda ham ishlaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Va har doim: **filtringizni oʻzingiz yasagan misolda emas, haqiqiy maʼlumotda sinang.**"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "21-xulosa",
+          "title": "21. Xulosa",
+          "blocks": [
+            {
+              "kind": "steps",
+              "items": [
+                "Oʻzbek matni asosan **Common Crawl** dan keladi. FineWeb-2: lotinda 1.23 mln hujjat, 687 mln soʻz. Kirillda — **koʻproq** hujjat. Rus tilida — 857 marta koʻp soʻz.",
+                "Har bir manba uchun uchta savol: **oʻqitish**, **tarqatish**, **shart**. Toʻplamning litsenziyasi — matn egasining ruxsati emas.",
+                "\"Tozalangan\" korpus — toza korpus emas. Avval **koʻz bilan** qarang.",
+                "Fayllar: `with open(..., encoding=\"utf-8\")`. Notoʻgʻri kodlash — **mojibake**: baytlar toʻgʻri, oʻqish usuli notoʻgʻri.",
+                "**JSONL** — har qatorda bitta hujjat. `ensure_ascii=False`.",
+                "`try` / `except` — \"urinib koʻr, boʻlmasa tegma\".",
+                "**Olti bosqich:** kodlash → til → shablon → uzunlik → aniq dublikat → qisman dublikat. Bizda: **29 → 17**.",
+                "Tartib muhim: kodlashsiz `�` hujjat til filtridan oʻtadi; shablonsiz 27-hujjat dublikat sifatida ushlanmaydi.",
+                "`set` — takrorsiz, tez `in`. `hashlib.md5` — barmoq izi. `&`, `|` — Jaccard. Juftlarni solishtirish katta korpusda imkonsiz — **MinHash**.",
+                "Korpusni **asl yozuvda** saqlang, normallashtirish — faqat kalit uchun. Va **hisobot** yozing.",
+                "Iflos korpus: metro maqolasi va axlat lugʻatni egalladi; toza korpusda — 7% kamroq token, ikki barobar kam matn bilan."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "keyingi-dars",
+          "title": "Keyingi dars",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "**Dars 16 — Haqiqiy matnda trening.** 5 000 bayt emas — millionlab. Bizning `train_regex` bunga chidaydimi? Uni qanday tezlashtirish mumkin? Va birinchi marta **16 384** hajmli lugʻat bilan tokenizator oʻqitib, `fertility` ni oʻlchaymiz."
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi darsning savoli: *`train_regex` ning har bir qadamida qaysi ish **behuda** takrorlanadi?*"
+            }
+          ]
+        },
+        {
+          "id": "ilova-a-oquv-korpusini-yaratadigan-kod",
+          "title": "Ilova A — oʻquv korpusini yaratadigan kod",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Buni Colab daftarining **birinchi katagida** ishga tushiring. U `xom_korpus.jsonl` faylini yaratadi. Matnlar kurs uchun yozilgan; ulardagi muammolar — internet matnidagi (va FineWeb-2 ning oʻzidagi) haqiqiy muammolarning nusxasi. Kod alohida fayl sifatida ham bor: [korpus_yasash.py](/data/korpus_yasash.py)."
+            },
+            {
+              "kind": "reveal",
+              "summary": "Korpusni yaratadigan kod (ochib, nusxa qiling)",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "# Dars 15 uchun oʻquv korpusi.\n# Bu matnlar oʻquv uchun toʻqilgan. Ulardagi muammolar esa haqiqiy:\n# internet matnida (va FineWeb-2 ning oʻzida) uchraydigan narsalar.\nimport json\n\nULASHISH = \"Ulashish: Telegram | Facebook | X\"\nHUQUQ = \"Barcha huquqlar himoyalangan.\"\nCOOKIE = \"We use cookies to improve your experience.\"\nENSIKLOPEDIYA = \"Ushbu maqolani yozishda Oʻzbekiston milliy ensiklopediyasi (2000-2005) maʼlumotlaridan foydalanilgan.\"\n\n# --- bitta yangilik, bir necha saytda ---\nMETRO_SARLAVHA = \"Metroda yangi bekat yoʻlovchilarni kutmoqda\"\nMETRO = (\"Toshkent metropolitenining halqa yoʻnalishida yangi bekat yoʻlovchilarni qabul qila boshladi. \"\n         \"Bekat zamonaviy uslubda qurilgan, unda lift va eskalatorlar bor. \"\n         \"Metropoliten maʼlumotiga koʻra, bekat har kuni ertalab soat beshdan tungi yarim birgacha ishlaydi. \"\n         \"Yoʻl haqi oʻzgarmadi. \"\n         \"Yangi bekat yonidagi avtobus bekatlari ham koʻchiriladi, shuning uchun yoʻlovchilarga xaritani oldindan koʻrib chiqish tavsiya etiladi.\")\n\ndef belgi_bilan(matn, okina, tutuq):\n    return matn.replace(\"ʻ\", okina).replace(\"ʼ\", tutuq)\n\nob_havo = (\"Ertaga ob-havo qanday boʻladi\\n\"\n           \"Ertaga poytaxtda havo bulutli boʻladi, kunduzi yengil yomgʻir yogʻishi kutilmoqda. \"\n           \"Havo harorati kunduzi 18-20 daraja, kechasi 9-11 daraja iliq boʻladi. \"\n           \"Shamol shimoli-gʻarbdan sekundiga 5-8 metr tezlikda esadi. \"\n           \"Mutaxassislar haydovchilarni ehtiyot boʻlishga chaqirmoqda.\")\n\nkutubxona = (\"Kutubxonada yangi o’quv zali ochildi\\n\"\n             \"Zalda o’n beshta kompyuter va tez internet bor. \"\n             \"O’quvchilar u yerda bepul dars tayyorlashlari mumkin. \"\n             \"Kutubxona har kuni soat to’qqizdan oltigacha ishlaydi, dam olish kuni yakshanba.\")\n\nhujjatlar = [\n    (\"sayt01.misol/yangiliklar/metro\", METRO_SARLAVHA + \"\\n\" + METRO + \"\\n\" + ULASHISH + \"\\n\" + HUQUQ),\n    (\"sayt02.misol/news/12345\", belgi_bilan(METRO_SARLAVHA + \"\\n\" + METRO, \"'\", \"'\") + \"\\n\" + ULASHISH + \"\\n\" + HUQUQ),\n    (\"sayt03.misol/2024/metro-bekat\", belgi_bilan(METRO_SARLAVHA + \"\\n\" + METRO, \"‘\", \"’\") + \"\\n\" + COOKIE),\n    (\"sayt01.misol/yangiliklar/metro?sahifa=2\", METRO_SARLAVHA + \"\\n\" + METRO + \"\\n\" + ULASHISH + \"\\n\" + HUQUQ),\n    (\"sayt05.misol/shahar/metro\",\n     belgi_bilan(\"Poytaxtda yangi metro bekati foydalanishga topshirildi\\n\"\n                 \"Shahrimizda yana bir metro bekati ochilib, yoʻlovchilarni qabul qila boshladi. \"\n                 + METRO.split(\". \", 1)[1], \"’\", \"’\") + \"\\n\" + HUQUQ),\n    (\"sayt06.misol/uz/metro\",\n     belgi_bilan(METRO_SARLAVHA + \"\\n\" + METRO\n                 + \" Bekat ochilishida shahar hokimligi vakillari ishtirok etdi.\", \"'\", \"'\") + \"\\n\" + ULASHISH),\n\n    (\"sayt01.misol/ob-havo\", ob_havo + \"\\n\" + HUQUQ),\n    (\"sayt07.misol/maktab\",\n     \"Maktablarda yangi oʻquv dasturi\\n\"\n     \"Yangi oʻquv yilidan boshlab boshlangʻich sinflarda dasturlash asoslari oʻqitiladi. \"\n     \"Darslar haftada bir marta oʻtadi va oʻyin shaklida tashkil etiladi. \"\n     \"Oʻqituvchilar yozgi taʼtil davomida maxsus kurslarda malaka oshirdi. \"\n     \"Ota-onalar bu yangilikni ijobiy kutib olishmoqda.\\n\" + ULASHISH),\n    (\"sayt08.misol/taomlar/palov\",\n     \"Toshkent palovi qanday tayyorlanadi\\n\"\n     \"Palov uchun guruch, goʻsht, sabzi, piyoz va oʻsimlik yogʻi kerak boʻladi. \"\n     \"Avval qozonda yogʻ yaxshilab qizdiriladi, keyin piyoz va goʻsht qovuriladi. \"\n     \"Sabzi somoncha shaklida toʻgʻraladi va goʻshtga qoʻshiladi. \"\n     \"Zirvak tayyor boʻlgach, yuvilgan guruch tekis solinadi va ustidan suv quyiladi. \"\n     \"Palov past olovda damlanadi.\\n\" + COOKIE),\n    (\"sayt09.misol/bayram/navruz\",\n     \"Navro'z bayrami\\n\"\n     \"Navro'z bahor va yangilanish bayrami. U har yili 21-mart kuni keng nishonlanadi. \"\n     \"Bayram kunlari sumalak pishiriladi, mahallalarda sayillar o'tkaziladi. \"\n     \"Odamlar bir-birini tabriklab, qarindoshlarnikiga boradi. \"\n     \"Navro'z O'zbekistonda eng sevimli bayramlardan biri hisoblanadi.\\n\" + ULASHISH),\n    (\"sayt10.misol/sport/futbol\",\n     \"Terma jamoa navbatdagi oʻyinga tayyorlanmoqda\\n\"\n     \"Milliy terma jamoa saralash bosqichining navbatdagi uchrashuviga tayyorgarlik koʻrmoqda. \"\n     \"Bosh murabbiy yigʻinga yigirma uch nafar futbolchini chaqirdi. \"\n     \"Jamoa mashgʻulotlarni poytaxtdagi markaziy stadionda oʻtkazmoqda. \"\n     \"Uchrashuv shanba kuni kechqurun boʻlib oʻtadi.\\n\" + HUQUQ),\n    (\"sayt11.misol/qishloq/bugdoy\",\n     \"Bug’doy hosili yig’ib olindi\\n\"\n     \"Viloyatda bug’doy o’rimi yakunlandi. \"\n     \"Fermerlar bu yil har gektardan o’rtacha oltmish sentnerdan hosil olishdi. \"\n     \"Hosilni tez yig’ib olish uchun qo’shimcha kombaynlar jalb qilindi. \"\n     \"Mutaxassislarning fikricha, yaxshi hosilga o’z vaqtida sug’orish sabab bo’lgan.\"),\n    (\"sayt12.misol/talim/ai-kurs\",\n     \"Sunʼiy intellekt boʻyicha bepul kurs\\n\"\n     \"Yoshlar uchun sunʼiy intellekt asoslari boʻyicha bepul onlayn kurs boshlandi. \"\n     \"Kursda Python tili, maʼlumotlar bilan ishlash va oddiy modellar qurish oʻrgatiladi. \"\n     \"Darslar oʻzbek tilida olib boriladi. \"\n     \"Kursni muvaffaqiyatli tugatganlar sertifikat oladi.\\n\" + COOKIE),\n    (\"sayt13.misol/sayohat/samarqand\",\n     \"Samarqandga sayohat\\n\"\n     \"Samarqand dunyodagi eng qadimiy shaharlardan biri. \"\n     \"Registon maydoni, Go`ri Amir maqbarasi va Shohi Zinda majmuasi sayyohlarni o`ziga tortadi. \"\n     \"Bahor va kuz oylari sayohat uchun eng qulay vaqt hisoblanadi. \"\n     \"Shaharga Toshkentdan tezyurar poyezdda taxminan ikki soatda yetib borish mumkin.\"),\n    (\"ensiklopediya.misol/amudaryo\",\n     \"Amudaryo\\n\"\n     \"Amudaryo Oʻrta Osiyodagi eng yirik daryolardan biri. \"\n     \"U Pomir togʻlaridan boshlanadi va Orol dengizi tomon oqadi. \"\n     \"Daryo suvi qadimdan dehqonchilikda sugʻorish uchun ishlatiladi. \"\n     \"Amudaryo boʻyida koʻplab qadimiy shaharlar joylashgan.\\n\" + ENSIKLOPEDIYA),\n    (\"ensiklopediya.misol/paxta\",\n     \"Paxta\\n\"\n     \"Paxta gʻoʻza oʻsimligining tolasi. \"\n     \"Undan ip, gazlama va kiyim tayyorlanadi. \"\n     \"Paxta chigitidan esa yogʻ olinadi. \"\n     \"Oʻzbekistonda paxta yetishtirish uzoq tarixga ega.\\n\" + ENSIKLOPEDIYA),\n    (\"ensiklopediya.misol/navoiy\",\n     \"Alisher Navoiy\\n\"\n     \"Alisher Navoiy buyuk shoir va mutafakkir. \"\n     \"U 1441-yilda Hirotda tugʻilgan. \"\n     \"Navoiy turkiy tilda yozilgan koʻplab asarlar muallifi, uning eng mashhur asari «Xamsa» hisoblanadi. \"\n     \"Uning tavallud kuni har yili 9-fevralda nishonlanadi.\\n\" + ENSIKLOPEDIYA),\n    (\"sayt14.misol/til-bayrami\",\n     \"Oʻzbek tili bayrami\\n\"\n     \"Har yili 21-oktabr Oʻzbek tili bayrami kuni sifatida nishonlanadi. \"\n     \"Bu kunda maktab va universitetlarda turli tadbirlar oʻtkaziladi. \"\n     \"Yoshlar oʻzbek tilida yozilgan sheʼrlarni yoddan aytishadi. \"\n     \"Tilni asrash va rivojlantirish har birimizning burchimizdir.\"),\n    (\"sayt15.misol/ru/kniga\",\n     \"Сегодня в Ташкенте открылась \"\n     \"книжная ярмарка. \"\n     \"В ней участвуют более ста \"\n     \"издательств. \"\n     \"Посетители могут прийти \"\n     \"бесплатно до конца недели.\"),\n    (\"sayt16.misol/kitob\",\n     \"Бугун пойтахтда китоб \"\n     \"кўргазмаси очилди. \"\n     \"Кўргазмада юздан ортиқ \"\n     \"нашриёт иштирок этмоқда. \"\n     \"Ташриф буюрувчилар \"\n     \"кўргазмани бепул кўришлари \"\n     \"мумкин.\"),\n    (\"sayt17.misol/kutubxona\", kutubxona.encode(\"utf-8\").decode(\"mac_latin2\")),\n    (\"sayt18.misol/pogoda\",\n     \"Погода на завтра: \"\n     \"облачно, возможен \"\n     \"небольшой дождь, \"\n     \"температура днём \"\n     \"до двадцати градусов.\"\n     .encode(\"cp1251\").decode(\"utf-8\", errors=\"replace\")),\n    (\"sayt19.misol/404\", \"Sahifa topilmadi.\"),\n    (\"sayt20.misol/\", \"Bosh sahifa | Yangiliklar | Sport | Aloqa\"),\n    (\"sayt21.misol/\", \"Saytga xush kelibsiz!\\n\" + HUQUQ),\n    (\"sayt22.misol/sport/shaxmat\",\n     \"Shaxmat turnirida yoshlar gʻalaba qozondi\\n\"\n     \"Toshkentda boʻlib oʻtgan shaxmat turnirida yosh oʻyinchilar yaxshi natija koʻrsatdi. \"\n     \"Gʻolib turnirdan soʻng jurnalistlarga «Спасибо всем!» \"\n     \"deb rus tilida ham minnatdorlik bildirdi. \"\n     \"Keyingi turnir yoz oylarida oʻtkaziladi. \"\n     \"Musobaqada oʻttizdan ortiq ishtirokchi qatnashdi.\\n\" + ULASHISH),\n    (\"sayt02.misol/ob-havo\", ob_havo + \"\\n\" + ULASHISH),\n    (\"sayt23.misol/fan/quyosh\",\n     \"Quyosh tizimi\\n\"\n     \"Quyosh tizimida sakkizta sayyora bor. \"\n     \"Ulardan eng kattasi Yupiter, eng kichigi esa Merkuriy. \"\n     \"Yer Quyoshdan uchinchi sayyora hisoblanadi. \"\n     \"Sayyoralar Quyosh atrofida turli tezlikda aylanadi.\\n\" + COOKIE),\n    (\"sayt24.misol/texno/ilova\",\n     \"Talabalar uchun yangi mobil ilova\\n\"\n     \"Talabalar uchun dars jadvalini koʻrsatadigan yangi mobil ilova ishga tushirildi. \"\n     \"Ilovada imtihon sanalari va kutubxona ish vaqti ham koʻrsatiladi. \"\n     \"U bepul va internet boʻlmaganda ham ishlaydi. \"\n     \"Ishlab chiquvchilar ilovani yanada qulay qilish uchun takliflar kutmoqda.\\n\" + HUQUQ),\n]\n\nwith open(\"xom_korpus.jsonl\", \"w\", encoding=\"utf-8\") as f:\n    for i in range(len(hujjatlar)):\n        url, matn = hujjatlar[i]\n        hujjat = {\"id\": i + 1, \"url\": \"https://\" + url, \"text\": matn}\n        f.write(json.dumps(hujjat, ensure_ascii=False) + \"\\n\")\n\nprint(\"yozildi:\", len(hujjatlar), \"ta hujjat\")",
+                  "lang": "python",
+                  "mode": "copy"
+                },
+                {
+                  "kind": "output",
+                  "text": "yozildi: 29 ta hujjat"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "exercises": [],
+      "needs": "Dars 01–14. `normallashtir` (Dars 14), `train_regex`, `encode_regex`, `NAQSH` (Dars 13)"
+    },
+    {
+      "id": "dars-16",
+      "n": 16,
+      "title": "Haqiqiy matnda trening: takror ishni bir marta qiling",
+      "subtitle": "",
+      "minutes": 80,
+      "status": "ready",
+      "intro": [],
+      "sections": [
+        {
+          "id": "bu-darsdan-keyin-siz",
+          "title": "Bu darsdan keyin siz...",
+          "blocks": [
+            {
+              "kind": "goals",
+              "items": [
+                "**yuklab olasiz** haqiqiy oʻzbekcha korpusni — 148 ming jumla, hech qanday hisobsiz;",
+                "**oʻlchaysiz** `train_regex` qanchalik sekin ekanini — va nima uchun;",
+                "**topasiz** ikki xil behuda ishni va ularni yoʻqotasiz;",
+                "**isbotlaysiz** tez versiya aynan bir xil natija berishini — sinov bilan;",
+                "**oʻqitasiz** birinchi haqiqiy tokenizatoringizni: **16 384** token;",
+                "**oʻlchaysiz** uning fertility sini — va bu raqamga savol berasiz."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1-bitta-savol",
+          "title": "1. Bitta savol",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 15 oxirida savol qoldirgan edim:"
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "`train_regex` ning har bir qadamida qaysi ish **behuda** takrorlanadi?"
+            },
+            {
+              "kind": "text",
+              "text": "Va undan ham oldin, Dars 10 da vaʼda bergan edim: \"Dars 16 da haqiqiy korpusda oʻqitganingizda bu muammoga duch kelasiz.\" Bugun — oʻsha kun."
+            },
+            {
+              "kind": "text",
+              "text": "Avval muammoni **oʻz koʻzimiz bilan** koʻramiz: haqiqiy matnni yuklab olamiz, `train_regex` ni ishga tushiramiz va soatga qaraymiz. Keyin sababini topamiz."
+            }
+          ]
+        },
+        {
+          "id": "2-haqiqiy-korpus-common-voice",
+          "title": "2. Haqiqiy korpus: Common Voice",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 15 da FineWeb-2 bilan tanishdik: oʻzbek lotin boʻlimi — 4.45 GB. Birinchi haqiqiy trening uchun bizga kichikroq, lekin **haqiqiy** korpus kerak."
+            },
+            {
+              "kind": "text",
+              "text": "**Common Voice** — Mozilla jamoasining loyihasi. Odamlar ekrandagi jumlalarni ovoz chiqarib oʻqiydi va shu yozuvlardan nutqni taniydigan modellar oʻqitiladi. Buning uchun har bir tilda koʻp **jumlalar** kerak — va ular ochiq saqlanadi."
+            },
+            {
+              "kind": "text",
+              "text": "Oʻzbek tili uchun ular 148 mingdan ortiq. Dars 15 dagi uchta savolga javob:"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "Undan oʻqitsam boʻladimi? — **Ha.**",
+                "Uni tarqatsam boʻladimi? — **Ha.**",
+                "Nima shart? — **Hech narsa.** Jumlalar **CC0** litsenziyasi bilan chiqarilgan — yaʼni jamoat mulki. Common Voice jumla qoʻshayotgan har bir odamdan matnda mualliflik huquqi yoʻqligini tasdiqlashni talab qiladi."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "yuklab-olamiz",
+              "text": "Yuklab olamiz"
+            },
+            {
+              "kind": "code",
+              "code": "import urllib.request\n\nMANZIL = (\"https://raw.githubusercontent.com/common-voice/common-voice/\"\n          \"57f42edbf6f6d3b128e0bcd3f916360af0d328b6/server/data/uz/sentence-collector.txt\")\n\nurllib.request.urlretrieve(MANZIL, \"uz_jumlalar.txt\")\nprint(\"yuklandi\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "yuklandi"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`urllib.request` — Python bilan birga keladigan, internetdan fayl oladigan modul. Hech narsa oʻrnatish shart emas.",
+                "`urlretrieve(manzil, fayl)` — manzildagi faylni yuklab, kompyuterga shu nom bilan saqlaydi.",
+                "Manzil ikki qatorga boʻlingan: qavs ichidagi ikki satr Python'da **bitta** satrga qoʻshiladi. Uzun qatorni oʻqishga qulay qilish uchun.",
+                "`57f42ed…` — bu faylning **versiya raqami** (GitHub'da *commit* deyiladi). U faylning 2026-yil 21-oktabrdagi holatini koʻrsatadi. Common Voice keyin yangi jumlalar qoʻshsa ham, bu manzil **aynan shu** faylni beradi. Demak sizning ekraningizdagi raqamlar meniki bilan bir xil chiqadi."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "ichiga-qaraymiz",
+              "text": "Ichiga qaraymiz"
+            },
+            {
+              "kind": "code",
+              "code": "with open(\"uz_jumlalar.txt\", encoding=\"utf-8\") as f:\n    jumlalar = f.read().split(\"\\n\")\n\nprint(\"jumlalar:\", len(jumlalar))\nfor j in jumlalar[:4]:\n    print(repr(j))\nprint(\"...\")\nfor j in jumlalar[50000:50003]:\n    print(repr(j))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "jumlalar: 148391\n'! Shu pulga qancha sigareta keladi?'\n'\" Cobalt\" va \"Nexia\" qo‘shni davlatlarda qimmatroq sotilmoqda'\n'\"Abdulla Oripov\" hujjatli filmining premyerasi bo‘lib o‘tdi'\n'\"Abdulloh qaerda?\"'\n...\n'Koʻzi koʻr edi.'\n'Koʻzi och ekanmi buning dedi.'\n'Koʻzi oʻyib olingan'"
+            },
+            {
+              "kind": "text",
+              "text": "Ikkita narsa koʻzga tashlanadi:"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "**Mavzular aralash:** yangilik sarlavhalari (\"Afgʻoniston\", \"prezident\") va badiiy adabiyotdan jumlalar (\"Koʻzi koʻr edi.\").",
+                "**Alifbo tartibida:** fayl `!` va `\"` bilan boshlanadi, 50 000-qatorda `Koʻ…` ga yetgan. Bu hozir muhim emas. Dars 17 da — juda muhim boʻladi."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "dars-14-dagi-senzus-yana-bir-bor",
+              "text": "Dars 14 dagi senzus — yana bir bor"
+            },
+            {
+              "kind": "code",
+              "code": "matn_xom = \"\\n\".join(jumlalar)\n\nfor b in [\"\\u2018\", \"\\u2019\", \"\\u02bb\", \"`\", \"'\", \"\\u02bc\"]:\n    print(repr(b), matn_xom.count(b))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "'‘' 93940\n'’' 20792\n'ʻ' 16547\n'`' 10723\n\"'\" 8480\n'ʼ' 3581"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 14 da 3 000 ta veb-hujjatda `‘` birinchi oʻrinda edi. Bu yerda ham — va yana ham koʻproq. Toʻgʻri belgi `ʻ` — uchinchi oʻrinda. Normalizatsiyasiz bu korpusda oʻqitish — Dars 14 dagi devorlarni minglab marta qurish boʻlardi."
+            }
+          ]
+        },
+        {
+          "id": "3-tozalash-dars-15-quvuri-jumlalar-uchun",
+          "title": "3. Tozalash: Dars 15 quvuri — jumlalar uchun",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Avval Dars 14–15 dagi uchta funksiya kerak:"
+            },
+            {
+              "kind": "code",
+              "code": "import re\nimport hashlib\nimport unicodedata\n\nNAQSH = r\" ?\\w+| ?[^\\s\\w]+|\\s+\"\nOKINA = \"\\u02bb\"\nTUTUQ = \"\\u02bc\"\nAPOSTROFLAR = \"'\\u2018\\u2019`\\u02bb\\u02bc\"\n\n\ndef normallashtir(matn):\n    matn = unicodedata.normalize(\"NFC\", matn)\n    belgilar = list(matn)\n    for i in range(len(belgilar)):\n        if belgilar[i] in APOSTROFLAR:\n            oldingi = \"\"\n            keyingi = \"\"\n            if i > 0:\n                oldingi = belgilar[i - 1]\n            if i < len(belgilar) - 1:\n                keyingi = belgilar[i + 1]\n            if oldingi in [\"g\", \"G\"]:\n                belgilar[i] = OKINA\n            elif oldingi in [\"o\", \"O\"] and keyingi.isalpha():\n                belgilar[i] = OKINA\n            elif oldingi.isalpha() and keyingi.isalpha():\n                belgilar[i] = TUTUQ\n    return \"\".join(belgilar)\n\n\ndef kirill_ulushi(matn):\n    harflar = 0\n    kirill = 0\n    for belgi in matn:\n        if belgi.isalpha():\n            harflar += 1\n            if ord(belgi) >= 1024 and ord(belgi) <= 1279:\n                kirill += 1\n    if harflar == 0:\n        return 0\n    return kirill / harflar\n\n\ndef kalit(matn):\n    matn = normallashtir(matn)\n    matn = matn.lower()\n    matn = \" \".join(matn.split())\n    return hashlib.md5(matn.encode(\"utf-8\")).hexdigest()\n\n\nprint(normallashtir(\"O'zbekiston\"), kirill_ulushi(\"Салом\"), kalit(\"Salom\")[:8])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "Oʻzbekiston 1.0 7650d3ef"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 15 dagi olti bosqichdan qaysilari jumlalarga kerak?"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Bosqich",
+                "Kerakmi?",
+                "Nima uchun"
+              ],
+              "rows": [
+                [
+                  "1. kodlash",
+                  "tekshiramiz",
+                  "pastda"
+                ],
+                [
+                  "2. til",
+                  "**ha**",
+                  ""
+                ],
+                [
+                  "3. shablon",
+                  "yoʻq",
+                  "jumlalarda sayt \"dumi\" yoʻq"
+                ],
+                [
+                  "4. uzunlik",
+                  "yoʻq",
+                  "jumla qisqa boʻlishi — normal"
+                ],
+                [
+                  "5. aniq dublikat",
+                  "**ha**",
+                  ""
+                ],
+                [
+                  "6. qisman dublikat",
+                  "**qila olmaymiz**",
+                  "pastda"
+                ]
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "kodlash",
+              "text": "Kodlash"
+            },
+            {
+              "kind": "code",
+              "code": "print(\"U+FFFD:\", matn_xom.count(\"\\ufffd\"))\nprint(\"‚Ä:\", matn_xom.count(\"‚Ä\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "U+FFFD: 0\n‚Ä: 0"
+            },
+            {
+              "kind": "text",
+              "text": "Toza. Lekin boshqa narsa topildi."
+            },
+            {
+              "kind": "h3",
+              "id": "korinmas-belgilar",
+              "text": "Koʻrinmas belgilar"
+            },
+            {
+              "kind": "text",
+              "text": "Korpusda shunday jumla bor: `Adib frontdan qaytgan zahoti bu roman ustida ish boshlab yubordi`. Ekranda hech qanday muammo koʻrinmaydi. Lekin `qaytgan` soʻzining ichida **koʻrinmas** belgi bor:"
+            },
+            {
+              "kind": "code",
+              "code": "soz = \"qayt\\u00adgan\"\n\nprint(soz)\nprint(len(soz), len(\"qaytgan\"))\nprint(re.findall(NAQSH, soz))\nprint(unicodedata.name(\"\\u00ad\"), unicodedata.category(\"\\u00ad\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "qayt­gan\n8 7\n['qayt', '\\xad', 'gan']\nSOFT HYPHEN Cf"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`\\u00ad` — **yumshoq defis** (*soft hyphen*). Matn muharrirlari uni \"agar soʻz qator oxiriga sigʻmasa, shu yerdan boʻl\" degan belgi sifatida qoʻyadi. Ekranda koʻrinmaydi.",
+                "Lekin uning kategoriyasi — `Cf`, harf emas. Dars 14 ni eslang: `\\w` faqat harflarni oladi. Demak regex `qaytgan` ni **uch boʻlakka** boʻldi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Bu — Dars 14 dagi koʻrinmas devor. Faqat bu safar u **haqiqatan** koʻrinmas."
+            },
+            {
+              "kind": "text",
+              "text": "Yana bittasi — `\\u200b`, **nol kenglikdagi boʻshliq**. Sanaymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "print(\"yumshoq defis:\", matn_xom.count(\"\\u00ad\"))\nprint(\"nol kenglikdagi boʻshliq:\", matn_xom.count(\"\\u200b\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "yumshoq defis: 349\nnol kenglikdagi boʻshliq: 69"
+            },
+            {
+              "kind": "text",
+              "text": "Ikkalasi ham hech qanday maʼno tashimaydi. Ularni shunchaki **oʻchiramiz**."
+            },
+            {
+              "kind": "h3",
+              "id": "til-va-dublikatlar",
+              "text": "Til va dublikatlar"
+            },
+            {
+              "kind": "code",
+              "code": "toza = []\nkorilgan = {}\nmisollar = []\nolib_tashlandi = {\"kirill\": 0, \"dublikat\": 0}\n\nfor j in jumlalar:\n    j = j.replace(\"\\u00ad\", \"\").replace(\"\\u200b\", \"\").strip()\n    if j == \"\":\n        continue\n    if kirill_ulushi(j) > 0.3:\n        olib_tashlandi[\"kirill\"] += 1\n        continue\n    k = kalit(j)\n    if k in korilgan:\n        olib_tashlandi[\"dublikat\"] += 1\n        if len(misollar) < 3:\n            misollar.append((korilgan[k], j))\n        continue\n    korilgan[k] = j\n    toza.append(j)\n\nprint(\"qoldi:\", len(toza))\nprint(olib_tashlandi)\nfor a, b in misollar:\n    print(repr(a), \"=\", repr(b))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "qoldi: 148102\n{'kirill': 6, 'dublikat': 283}\n'Afg‘on deb atalgan olis tuproqda' = 'Afg’on deb atalgan olis tuproqda'\n'Agar eshitmasa, masofani oʻttiz qadamga qisqartirasiz.' = 'Agar eshitmasa, masofani o‘ttiz qadamga qisqartirasiz.'\n'Agar ular sevgining qo‘lidan mahkam tutishganida bu to‘siqdan o‘tishlari mushkul emasdi.' = 'Agar ular sevgining qo’lidan mahkam tutishganida bu to’siqdan o’tishlari mushkul emasdi.'"
+            },
+            {
+              "kind": "text",
+              "text": "Bitta yangi soʻz — **`continue`**. Dars 10 dagi `break` tsiklni butunlay toʻxtatadi. `continue` esa faqat **shu aylanishni** toʻxtatadi va keyingi jumlaga oʻtadi. \"Bu jumla bilan ish tugadi — keyingisi.\""
+            },
+            {
+              "kind": "text",
+              "text": "Va bitta oʻzgarish: `korilgan` — endi toʻplam emas, **lugʻat**. Kalit → oʻsha kalit bilan birinchi koʻrilgan jumla. Shunda dublikat topilganda \"kimning nusxasi\" ekanini ham koʻrsata olamiz."
+            },
+            {
+              "kind": "text",
+              "text": "Common Voice aynan bir xil jumlalarni allaqachon olib tashlagan — faylda hamma qatorlar har xil. Lekin koʻrinmas belgilar va normalizatsiyadan keyin yana **283 ta** dublikat chiqdi. Misollarga\nqarang: `ʻ` va `‘`, `’` va `‘`, katta va kichik harf. Dars 15 dagi `kalit` aynan shu uchun."
+            },
+            {
+              "kind": "h3",
+              "id": "qisman-dublikat-chi",
+              "text": "Qisman dublikat-chi?"
+            },
+            {
+              "kind": "text",
+              "text": "148 102 ta jumla. Har bir juftni solishtirish — Dars 15 dagi formula:"
+            },
+            {
+              "kind": "code",
+              "code": "n = len(toza)\nprint(n * (n - 1) // 2)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "10967027151"
+            },
+            {
+              "kind": "text",
+              "text": "**11 milliard juft.** Dars 15 da aytganimizdek — bunday hajmda MinHash kerak, va biz uni yozmaymiz. Bu korpusda qisman dublikatlar qoladi. Buni yodda tuting."
+            },
+            {
+              "kind": "h3",
+              "id": "saqlaymiz",
+              "text": "Saqlaymiz"
+            },
+            {
+              "kind": "code",
+              "code": "with open(\"korpus.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"\\n\".join(toza))\n\nmatn = normallashtir(\"\\n\".join(toza))\nprint(\"bayt:\", len(matn.encode(\"utf-8\")))\nprint(\"soʻz:\", len(matn.split()))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "bayt: 8007356\nsoʻz: 981206"
+            },
+            {
+              "kind": "text",
+              "text": "Faylga **asl** yozuvni saqladik (Dars 15 qoidasi). `matn` esa — tokenizator koʻradigan, normallashtirilgan nusxa. **8 MB, deyarli bir million soʻz.** Dars 13 dagi 7 qatorli matndan 16 000 barobar katta."
+            }
+          ]
+        },
+        {
+          "id": "4-birinchi-urinish-train-regex",
+          "title": "4. Birinchi urinish: `train_regex`",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 10 da `time.perf_counter()` bilan vaqt oʻlchagan edik. Korpusning boshidagi 2 000, 4 000 va 8 000 jumlada **50 ta** birlashtirish qilamiz:"
+            },
+            {
+              "kind": "code",
+              "code": "import time\n\nfor n in [2000, 4000, 8000]:\n    qism = normallashtir(\"\\n\".join(toza[:n]))\n    t0 = time.perf_counter()\n    train_regex(qism, 306, NAQSH)\n    print(f\"{n:5d} jumla | {len(qism.encode('utf-8')):7d} bayt | {time.perf_counter() - t0:.2f} soniya\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": " 2000 jumla |  113530 bayt | 1.67 soniya\n 4000 jumla |  234078 bayt | 3.26 soniya\n 8000 jumla |  453597 bayt | 6.88 soniya",
+              "label": "Natija (sizda raqamlar boshqacha boʻladi — kompyuter tezligiga qarab)"
+            },
+            {
+              "kind": "text",
+              "text": "Matn ikki barobar — vaqt ham taxminan ikki barobar. Bu ajablanarli emas: har bir birlashtirishda `train_regex` **butun** matnni aylanib chiqadi."
+            },
+            {
+              "kind": "text",
+              "text": "Endi butun korpusda — atigi **3 ta** birlashtirish:"
+            },
+            {
+              "kind": "code",
+              "code": "t0 = time.perf_counter()\ntrain_regex(matn, 259, NAQSH)\nbitta = (time.perf_counter() - t0) / 3\n\nprint(f\"bitta birlashtirish: {bitta:.1f} soniya\")\nprint(f\"16 128 ta birlashtirish: {bitta * 16128 / 3600:.1f} soat\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "bitta birlashtirish: 4.0 soniya\n16 128 ta birlashtirish: 17.8 soat"
+            },
+            {
+              "kind": "text",
+              "text": "**17 soatdan ortiq.** (Keyingi qadamlarda matn qisqaradi va ular biroz tezlashadi — lekin baribir soatlar.) Colab'ning bepul sessiyasi esa koʻpi bilan 12 soat ishlaydi."
+            },
+            {
+              "kind": "text",
+              "text": "Bu tokenizator **hech qachon** oʻqimaydi. Nima behuda ketyapti?"
+            },
+            {
+              "kind": "media",
+              "id": "p1",
+              "title": "17 soat"
+            }
+          ]
+        },
+        {
+          "id": "5-behuda-ish-1-bir-xil-bolaklar",
+          "title": "5. Behuda ish №1: bir xil boʻlaklar",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Regex matnni boʻlaklarga boʻladi (Dars 13). Ularni sanaymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "def boshlar_sana(matn, naqsh):\n    hisob = {}\n    for b in re.findall(naqsh, matn):\n        hisob[b] = hisob.get(b, 0) + 1\n    return hisob\n\n\nhisob = boshlar_sana(matn, NAQSH)\n\nprint(\"boʻlaklar:\", len(re.findall(NAQSH, matn)))\nprint(\"noyob boʻlaklar:\", len(hisob))\nprint()\nfor b in sorted(hisob, key=hisob.get, reverse=True)[:10]:\n    print(f\"{b!r:10s} {hisob[b]:7d}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "boʻlaklar: 1331204\nnoyob boʻlaklar: 153567\n\n'\\n'        148101\n'.'          72530\n','          52206\n'-'          17618\n' ham'        9772\n' bilan'      9023\n' va'         8728\n'?'           8308\n'•'           7908\n' bir'        6832"
+            },
+            {
+              "kind": "text",
+              "text": "**1.33 million boʻlakdan atigi 153 ming tasi noyob.** Qolgani — takror. ` va` 8 ming martadan koʻp uchraydi, ` bilan` — 9 ming."
+            },
+            {
+              "kind": "text",
+              "text": "Endi `train_regex` nima qiladi? Har bir qadamda ` bilan` ning juftlarini **9 ming marta** sanaydi: `( b)`, `(bi)`, `(il)`, `(la)`, `(an)` — har safar bir xil natija. Keyin ` bilan` ga **9 ming marta** `merge` qiladi — har safar bir xil natija."
+            },
+            {
+              "kind": "text",
+              "text": "**Yechim:** har bir noyob boʻlakni **bir marta** saqlaymiz, yoniga — nechta uchraganini. Juftlarni sanaganda 1 emas, **shu sonni** qoʻshamiz."
+            },
+            {
+              "kind": "text",
+              "text": "Oddiy misolda:"
+            },
+            {
+              "kind": "pre",
+              "text": "boʻlaklar:  \" olma\", \" olma\", \" nok\", \" olma\"\nnoyoblar:   \" olma\" × 3,  \" nok\" × 1\n\n(\"l\", \"m\") juftining soni:\n  eski usul:  1 + 1 + 1        = 3   (uch marta sanaymiz)\n  yangi usul: 3                = 3   (bir marta sanab, 3 ni qoʻshamiz)"
+            },
+            {
+              "kind": "text",
+              "text": "Natija bir xil. Ish — kam."
+            },
+            {
+              "kind": "media",
+              "id": "p2",
+              "title": "Bir xil boʻlaklar"
+            },
+            {
+              "kind": "h3",
+              "id": "train-tez1",
+              "text": "`train_tez1`"
+            },
+            {
+              "kind": "code",
+              "code": "def eng_juft(stats):\n    return max(stats, key=stats.get)\n\n\ndef train_tez1(matn, vocab_size, naqsh):\n    hisob = boshlar_sana(matn, naqsh)\n    sozlar = []\n    sonlar = []\n    for b in hisob:\n        sozlar.append(kodla(b))\n        sonlar.append(hisob[b])\n\n    merges = {}\n    vocab = {}\n    for i in range(256):\n        vocab[i] = bytes([i])\n    tarix = []\n\n    for yangi_id in range(256, vocab_size):\n        stats = {}\n        for i in range(len(sozlar)):\n            soz = sozlar[i]\n            for juft in zip(soz, soz[1:]):\n                stats[juft] = stats.get(juft, 0) + sonlar[i]\n        if len(stats) == 0:\n            break\n        eng = eng_juft(stats)\n        tarix.append(stats[eng])\n        for i in range(len(sozlar)):\n            sozlar[i] = merge(sozlar[i], eng, yangi_id)\n        merges[eng] = yangi_id\n        vocab[yangi_id] = vocab[eng[0]] + vocab[eng[1]]\n\n    return merges, vocab, tarix",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "`train_regex` dan farqi — uch joyda:"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "**Boshida:** `parchalar` roʻyxati oʻrniga ikkita roʻyxat: `sozlar` (har bir noyob boʻlakning tokenlari) va `sonlar` (u necha marta uchragani). `sozlar[i]` va `sonlar[i]` — bir juftlik.",
+                "**Sanashda:** `+ 1` emas, `+ sonlar[i]`. Bu — **tsikl ichida tsikl**: tashqi tsikl soʻzlar boʻylab, ichki tsikl — har bir soʻzning juftlari boʻylab.",
+                "**Tanlashda:** `max(...)` ni alohida `eng_juft` funksiyasiga chiqardik. Nima uchun — 6-boʻlimda bilasiz."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Va bitta qoʻshimcha: `tarix` — har qadamda tanlangan juft necha marta uchragani. Keyin kerak boʻladi."
+            },
+            {
+              "kind": "h3",
+              "id": "eng-muhim-sinov",
+              "text": "Eng muhim sinov"
+            },
+            {
+              "kind": "text",
+              "text": "Tez funksiya yozish oson. **Toʻgʻri** tez funksiya yozish — qiyin. Tez versiya **aynan bir xil** natija berishi kerak. Tekshiramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "qism = normallashtir(\"\\n\".join(toza[:2000]))\n\nm_sekin, _, _ = train_regex(qism, 306, NAQSH)\nm_tez1, _, _ = train_tez1(qism, 306, NAQSH)\n\nprint(list(m_sekin.items()) == list(m_tez1.items()))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "True"
+            },
+            {
+              "kind": "text",
+              "text": "50 ta birlashtirishning **hammasi** — bir xil, bir xil tartibda."
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`list(m.items())` — lugʻatni `(juft, raqam)` juftliklari roʻyxatiga aylantiradi. Ikki roʻyxat teng boʻlishi uchun **tartib** ham bir xil boʻlishi kerak."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "qancha-tezlashdi",
+              "text": "Qancha tezlashdi?"
+            },
+            {
+              "kind": "code",
+              "code": "t0 = time.perf_counter()\ntrain_tez1(matn, 259, NAQSH)\nbitta = (time.perf_counter() - t0) / 3\n\nprint(f\"bitta birlashtirish: {bitta:.2f} soniya\")\nprint(f\"16 128 ta birlashtirish: {bitta * 16128 / 3600:.1f} soat\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "bitta birlashtirish: 0.66 soniya\n16 128 ta birlashtirish: 3.0 soat"
+            },
+            {
+              "kind": "text",
+              "text": "17 soatdan — 3 soatga. Yaxshi. Lekin hali ham soatlar."
+            }
+          ]
+        },
+        {
+          "id": "6-behuda-ish-2-hammasini-qaytadan-sanash",
+          "title": "6. Behuda ish №2: hammasini qaytadan sanash",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "`train_tez1` ning ichiga yana qarang. Har bir qadamda:"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "**153 ming** soʻzning hamma juftlarini sanaydi;",
+                "bitta juftni birlashtiradi;",
+                "**153 ming** soʻzning hammasiga `merge` qiladi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Lekin oʻylab koʻring: agar `(\"l\", \"a\")` ni birlashtirsak, qaysi soʻzlar oʻzgaradi? **Faqat ichida `la` bor soʻzlar.** ` nok` ga hech narsa boʻlmaydi — uning juftlari ham, soni ham oʻsha-oʻsha. Biz uni har qadamda qaytadan sanab, **ayni** natijani olamiz."
+            },
+            {
+              "kind": "h3",
+              "id": "goya-qaysi-juft-qayerda",
+              "text": "Gʻoya: qaysi juft qayerda?"
+            },
+            {
+              "kind": "text",
+              "text": "Har bir juft uchun — u **qaysi soʻzlarda** borligini yozib qoʻyamiz. Bunga Dars 15 dagi toʻplam juda mos:"
+            },
+            {
+              "kind": "code",
+              "code": "sozlar = [list(\"olma\"), list(\"nok\"), list(\"bolalar\")]\nsonlar = [3, 1, 2]\n\nstats = {}\nqayerda = {}\nfor i in range(len(sozlar)):\n    soz = sozlar[i]\n    for juft in zip(soz, soz[1:]):\n        stats[juft] = stats.get(juft, 0) + sonlar[i]\n        if juft not in qayerda:\n            qayerda[juft] = set()\n        qayerda[juft].add(i)\n\nprint(\"('l', 'a'):\", stats[(\"l\", \"a\")], \"marta, soʻzlarda:\", qayerda[(\"l\", \"a\")])\nprint(\"('o', 'k'):\", stats[(\"o\", \"k\")], \"marta, soʻzlarda:\", qayerda[(\"o\", \"k\")])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "('l', 'a'): 4 marta, soʻzlarda: {2}\n('o', 'k'): 1 marta, soʻzlarda: {1}"
+            },
+            {
+              "kind": "text",
+              "text": "`(\"l\", \"a\")` — faqat **2-soʻzda**, `bolalar` da. U yerda ikki marta (`bo-la-lar`), soʻzning oʻzi esa 2 marta uchragan: 2 × 2 = 4. `(\"o\", \"k\")` — faqat 1-soʻzda, `nok` da."
+            },
+            {
+              "kind": "text",
+              "text": "Endi `(\"l\", \"a\")` ni birlashtirsak — faqat **2-soʻzga** tegamiz:"
+            },
+            {
+              "kind": "code",
+              "code": "juft = (\"l\", \"a\")\nfor i in qayerda[juft]:\n    eski = sozlar[i]\n    yangi = merge(eski, juft, \"la\")\n\n    # 1. eski juftlarni ayiramiz\n    for j in zip(eski, eski[1:]):\n        stats[j] -= sonlar[i]\n        if stats[j] == 0:\n            del stats[j]\n\n    # 2. yangi juftlarni qoʻshamiz\n    for j in zip(yangi, yangi[1:]):\n        stats[j] = stats.get(j, 0) + sonlar[i]\n        if j not in qayerda:\n            qayerda[j] = set()\n        qayerda[j].add(i)\n\n    sozlar[i] = yangi\n    print(eski, \"->\", yangi)\n\nprint(stats)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "['b', 'o', 'l', 'a', 'l', 'a', 'r'] -> ['b', 'o', 'la', 'la', 'r']\n{('o', 'l'): 3, ('l', 'm'): 3, ('m', 'a'): 3, ('n', 'o'): 1, ('o', 'k'): 1, ('b', 'o'): 2, ('o', 'la'): 2, ('la', 'la'): 2, ('la', 'r'): 2}"
+            },
+            {
+              "kind": "text",
+              "text": "Qator-qator:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`for i in qayerda[juft]:` — faqat shu juft bor soʻzlar. `olma` va `nok` ga umuman qaramadik.",
+                "`stats[j] -= sonlar[i]` — eski soʻzning **har bir** jufti uchun uning sonini ayiramiz. Soʻz endi bunday koʻrinishda yoʻq.",
+                "`if stats[j] == 0: del stats[j]` — `del` — lugʻatdan kalitni **oʻchiradi**. Soni nolga tushgan juft — endi hech qayerda yoʻq.",
+                "Keyin yangi soʻzning juftlarini **qoʻshamiz** — va ularni `qayerda` ga ham yozamiz."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Natijaga qarang: `('l', 'a')` yoʻqoldi, `('o', 'la')`, `('la', 'la')`, `('la', 'r')` paydo boʻldi. `('o', 'l')` — 3 (olma × 3 dan) qoldi, chunki `olma` ga tegmadik. `stats` aynan qaytadan sanagandek — lekin biz faqat **bitta** soʻzni qayta ishladik."
+            },
+            {
+              "kind": "h3",
+              "id": "train-tez2",
+              "text": "`train_tez2`"
+            },
+            {
+              "kind": "code",
+              "code": "def train_tez2(matn, vocab_size, naqsh):\n    hisob = boshlar_sana(matn, naqsh)\n    sozlar = []\n    sonlar = []\n    for b in hisob:\n        sozlar.append(kodla(b))\n        sonlar.append(hisob[b])\n\n    # boshlangʻich hisob — faqat bir marta\n    stats = {}\n    qayerda = {}\n    for i in range(len(sozlar)):\n        soz = sozlar[i]\n        for juft in zip(soz, soz[1:]):\n            stats[juft] = stats.get(juft, 0) + sonlar[i]\n            if juft not in qayerda:\n                qayerda[juft] = set()\n            qayerda[juft].add(i)\n\n    merges = {}\n    vocab = {}\n    for i in range(256):\n        vocab[i] = bytes([i])\n    tarix = []\n\n    for yangi_id in range(256, vocab_size):\n        if len(stats) == 0:\n            break\n        eng = eng_juft(stats)\n        tarix.append(stats[eng])\n\n        for i in qayerda[eng]:\n            eski = sozlar[i]\n            yangi = merge(eski, eng, yangi_id)\n            if len(yangi) == len(eski):\n                continue\n            for j in zip(eski, eski[1:]):\n                stats[j] -= sonlar[i]\n                if stats[j] == 0:\n                    del stats[j]\n            for j in zip(yangi, yangi[1:]):\n                stats[j] = stats.get(j, 0) + sonlar[i]\n                if j not in qayerda:\n                    qayerda[j] = set()\n                qayerda[j].add(i)\n            sozlar[i] = yangi\n\n        del qayerda[eng]\n        merges[eng] = yangi_id\n        vocab[yangi_id] = vocab[eng[0]] + vocab[eng[1]]\n\n    return merges, vocab, tarix",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Oddiy misoldagi ish — endi tsikl ichida. Ikki yangi qator:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`if len(yangi) == len(eski): continue` — `qayerda` baʼzan **eskirgan** boʻladi: soʻz bir vaqtlar bu juftga ega edi, lekin oldingi birlashtirish uni oʻzgartirib yubordi. Bunday soʻzda `merge` hech narsani oʻzgartirmaydi — uzunligi bir xil qoladi. Unda — keyingi soʻzga.",
+                "`del qayerda[eng]` — bu juft endi hech qayerda yoʻq. Uning roʻyxati ham kerak emas."
+              ]
+            },
+            {
+              "kind": "media",
+              "id": "p3",
+              "title": "Faqat tegilganlar"
+            },
+            {
+              "kind": "h3",
+              "id": "sinov-va-kutilmagan-natija",
+              "text": "Sinov — va kutilmagan natija"
+            },
+            {
+              "kind": "text",
+              "text": "`train_tez1` bilan solishtiramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "m_tez1, v_tez1, tarix1 = train_tez1(qism, 306, NAQSH)\nm_tez2, v_tez2, tarix2 = train_tez2(qism, 306, NAQSH)\n\nprint(list(m_tez1.items()) == list(m_tez2.items()))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "False"
+            },
+            {
+              "kind": "text",
+              "text": "**Mos kelmadi.** Biror joyda xato qildikmi? Birinchi farqni qidiramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "r1 = list(m_tez1)\nr2 = list(m_tez2)\n\nfor k in range(len(r1)):\n    if r1[k] != r2[k]:\n        print(f\"birinchi farq: {k + 1}-birlashtirishda\")\n        print(\"tez1 tanladi:\", r1[k], repr(decode([m_tez1[r1[k]]], v_tez1)), \"| soni:\", tarix1[k])\n        print(\"tez2 tanladi:\", r2[k], repr(decode([m_tez2[r2[k]]], v_tez2)), \"| soni:\", tarix2[k])\n        break",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "birinchi farq: 38-birlashtirishda\ntez1 tanladi: (115, 116) 'st' | soni: 358\ntez2 tanladi: (97, 114) 'ar' | soni: 358"
+            },
+            {
+              "kind": "text",
+              "text": "37 ta birlashtirish bir xil. 38-sida `tez1` — `st` ni, `tez2` — `ar` ni tanladi. Va ikkalasining soni — **bir xil**: 358."
+            },
+            {
+              "kind": "text",
+              "text": "Bu — **durang**. Ikki juft teng. `max(stats, key=stats.get)` bunday holatda qaysi birini qaytaradi? **Lugʻatda birinchi turganini.** Lugʻatdagi tartib esa — kalitlar qoʻshilgan tartib."
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`tez1` har qadamda `stats` ni **noldan** quradi — juftlar matndagi tartibda qoʻshiladi.",
+                "`tez2` esa `stats` ni **oʻzgartirib boradi**: juftlar oʻchiriladi, yangilari oxiriga qoʻshiladi. Tartib — boshqa."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Ikkalasi ham \"eng koʻp uchragan juftni\" tanladi. Ikkalasi ham toʻgʻri. Lekin **har xil**. Va 38-birlashtirishdan keyin ular butunlay boshqa yoʻldan ketadi."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Saboq:** agar natija **tasodifiy narsaga** (bu yerda — lugʻatdagi tartibga) bogʻliq boʻlsa, bu qoidani aniq yozish kerak."
+            },
+            {
+              "kind": "h3",
+              "id": "durang-qoidasi",
+              "text": "Durang qoidasi"
+            },
+            {
+              "kind": "text",
+              "text": "Yangi qoida: **eng koʻp uchragan juft; durang boʻlsa — raqami kichigi.**"
+            },
+            {
+              "kind": "code",
+              "code": "def eng_juft(stats):\n    eng_son = max(stats.values())\n    nomzodlar = []\n    for juft in stats:\n        if stats[juft] == eng_son:\n            nomzodlar.append(juft)\n    return min(nomzodlar)\n\n\nprint(eng_juft({(5, 9): 7, (3, 4): 7, (1, 2): 2}))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "(3, 4)"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`stats.values()` — lugʻatning faqat **qiymatlari** (sonlar).",
+                "`max(stats.values())` — eng katta son.",
+                "`nomzodlar` — shu songa ega hamma juftlar.",
+                "`min(nomzodlar)` — juftlar orasidagi eng kichigi. Juftlar ham solishtiriladi: avval birinchi raqam, teng boʻlsa — ikkinchisi. `(3, 4) < (5, 9)`."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Endi qoida **lugʻatdagi tartibga bogʻliq emas**."
+            },
+            {
+              "kind": "media",
+              "id": "p4",
+              "title": "Durang"
+            },
+            {
+              "kind": "text",
+              "text": "Va bu yerda bitta chiroyli narsa: biz `train_tez1` va `train_tez2` ni **qayta yozmaymiz**. Ular ikkalasi ham `eng_juft` ni chaqiradi. Python funksiyani **chaqirilgan paytda** qidiradi — demak endi ikkalasi ham yangi `eng_juft` ni ishlatadi:"
+            },
+            {
+              "kind": "code",
+              "code": "m_tez1, v_tez1, tarix1 = train_tez1(qism, 306, NAQSH)\nm_tez2, v_tez2, tarix2 = train_tez2(qism, 306, NAQSH)\n\nprint(list(m_tez1.items()) == list(m_tez2.items()))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "True"
+            },
+            {
+              "kind": "text",
+              "text": "**Mos keldi.** (`train_regex` esa endi biroz farq qiladi — u eski `max` ni ishlatadi. Bu normal: u — boshqa durang qoidasi bilan ishlaydigan, xuddi shunday toʻgʻri tokenizator.)"
+            },
+            {
+              "kind": "h3",
+              "id": "qancha-tezlashdi-2",
+              "text": "Qancha tezlashdi?"
+            },
+            {
+              "kind": "code",
+              "code": "qism = normallashtir(\"\\n\".join(toza[:8000]))\n\nfor nom, funksiya in [(\"train_regex\", train_regex), (\"train_tez1\", train_tez1), (\"train_tez2\", train_tez2)]:\n    t0 = time.perf_counter()\n    funksiya(qism, 306, NAQSH)\n    print(f\"{nom:12s} {time.perf_counter() - t0:.2f} soniya\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "train_regex  7.87 soniya\ntrain_tez1   2.70 soniya\ntrain_tez2   0.66 soniya"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`for nom, funksiya in [...]` — funksiyalarni ham roʻyxatga qoʻyish mumkin. Ular ham oddiy qiymat: `funksiya(...)` — roʻyxatdan olinganini chaqiradi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Bu — kichkina boʻlakda, 50 ta birlashtirish. Butun korpusda farq **yanada** katta boʻladi: `train_tez2` ning boshidagi hisob bir marta qilinadi, keyingi har bir qadam esa faqat **tegilgan** soʻzlarni qayta ishlaydi. Oxirgi birlashtirishlar — juda kam uchraydigan juftlar — atigi bir nechta soʻzga tegadi."
+            }
+          ]
+        },
+        {
+          "id": "7-haqiqiy-trening-16-384-token",
+          "title": "7. Haqiqiy trening: 16 384 token",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Hammasi tayyor. Butun korpus, **16 384** hajmli lugʻat — yaʼni 16 128 ta birlashtirish."
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Bu katak bir necha daqiqa ishlaydi. Mening kompyuterimda — 5 daqiqaga yaqin, Colab'da 5–10 daqiqa. Choy damlab keling."
+            },
+            {
+              "kind": "code",
+              "code": "t0 = time.perf_counter()\nmerges, vocab, tarix = train_tez2(matn, 16384, NAQSH)\n\nprint(f\"vaqt: {(time.perf_counter() - t0) / 60:.1f} daqiqa\")\nprint(\"birlashtirishlar:\", len(merges))\nprint(\"lugʻat:\", len(vocab))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "vaqt: 5.0 daqiqa\nbirlashtirishlar: 16128\nlugʻat: 16384"
+            },
+            {
+              "kind": "text",
+              "text": "**17 soat → bir necha daqiqa.** Algoritm — oʻsha BPE. Natija — oʻsha (durang qoidasigacha). Faqat behuda ish yoʻq."
+            },
+            {
+              "kind": "h3",
+              "id": "tarix-nima-deydi",
+              "text": "`tarix` nima deydi?"
+            },
+            {
+              "kind": "code",
+              "code": "for k in [0, 9, 99, 999, 9999, 16127]:\n    print(f\"{k + 1:6d}-birlashtirish: juft {tarix[k]:6d} marta uchragan\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "     1-birlashtirish: juft 154125 marta uchragan\n    10-birlashtirish: juft  73164 marta uchragan\n   100-birlashtirish: juft   9847 marta uchragan\n  1000-birlashtirish: juft    587 marta uchragan\n 10000-birlashtirish: juft     31 marta uchragan\n 16128-birlashtirish: juft     16 marta uchragan"
+            },
+            {
+              "kind": "text",
+              "text": "Birinchi birlashtirish — 154 ming marta uchragan juft. Oxirgisi — atigi **16** marta. Bir million soʻzlik korpusda bu — juda kam. Oxirgi minglab tokenlar **kamyob** soʻzlar uchun. Buni yodda tuting — 8-boʻlimda koʻrasiz."
+            },
+            {
+              "kind": "h3",
+              "id": "saqlab-qoyamiz",
+              "text": "Saqlab qoʻyamiz"
+            },
+            {
+              "kind": "text",
+              "text": "Colab sessiyasi tugasa, `merges` yoʻqoladi. Yana 5 daqiqa kutmaslik uchun — faylga yozamiz. Dars 15 dagi `json` bilan:"
+            },
+            {
+              "kind": "code",
+              "code": "import json\n\nroyxat = []\nfor juft in merges:\n    royxat.append([juft[0], juft[1], merges[juft]])\n\nwith open(\"merges_16k.json\", \"w\", encoding=\"utf-8\") as f:\n    f.write(json.dumps(royxat))\n\nprint(royxat[:3])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "[[108, 97, 256], [202, 187, 257], [97, 110, 258]]"
+            },
+            {
+              "kind": "text",
+              "text": "JSON kortejni (`(a, b)`) lugʻat kaliti sifatida saqlay olmaydi. Shuning uchun har bir birlashtirishni `[a, b, yangi_id]` roʻyxati qilib yozdik. Toʻgʻri saqlash va qayta yuklash — Dars 18 da."
+            }
+          ]
+        },
+        {
+          "id": "8-tokenizator-nimani-organdi",
+          "title": "8. Tokenizator nimani oʻrgandi?",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Birinchi oʻnta birlashtirish:"
+            },
+            {
+              "kind": "code",
+              "code": "for juft in list(merges)[:10]:\n    print(repr(decode([merges[juft]], vocab)))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "'la'\n'ʻ'\n'an'\n'sh'\n'di'\n'oʻ'\n'in'\n' b'\n'da'\n'li'"
+            },
+            {
+              "kind": "text",
+              "text": "Birinchisi — `la` (`bolalar`, `kitoblar`… — koʻplik qoʻshimchasi). Ikkinchisi — `ʻ`: uning ikki bayti (202, 187) bitta tokenga aylandi. Dars 14 ni eslang: normalizatsiyasiz kichik tokenizatorda `ʻ` ikki boʻlakda qolib ketgan edi. Normalizatsiya tufayli bu korpusda `ʻ` juda koʻp — va u ikkinchi oʻrinda birlashdi. Oltinchisi — `oʻ`."
+            },
+            {
+              "kind": "text",
+              "text": "Eng uzun tokenlar (Dars 15 dagi `sorted`):"
+            },
+            {
+              "kind": "code",
+              "code": "tokenlar = []\nfor tid in range(256, len(vocab)):\n    tokenlar.append(decode([tid], vocab))\n\nprint(sorted(tokenlar, key=len, reverse=True)[:10])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "['Oʻzsanoatqurilishbank', ' takomillashtiriladi', ' rejalashtirilmoqda', ' rivojlantirishning', ' takomillashtirish', ' xususiylashtirish', ' oʻzbekistonliklar', 'Qoraqalpogʻistonda', ' Respublikasining', ' rivojlantirishga']"
+            },
+            {
+              "kind": "text",
+              "text": "`takomillashtiriladi`, `rejalashtirilmoqda`, `rivojlantirishning` — oʻzbek tilining uzun soʻzlari bitta token boʻldi. Bu — rasmiy yangiliklar tili: korpusdagi sarlavhalar shunday soʻzlarga boy."
+            },
+            {
+              "kind": "text",
+              "text": "Va birinchi oʻrinda — **`Oʻzsanoatqurilishbank`**. Bank nomi! Necha marta uchraydi?"
+            },
+            {
+              "kind": "code",
+              "code": "print(matn.count(\"O\\u02bbzsanoatqurilishbank\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "26"
+            },
+            {
+              "kind": "text",
+              "text": "Bir million soʻzlik korpusda — **26 marta**. Shu yetarli boʻldi: bu nom 16 384 ta joydan bittasini oldi. Dars 15 dagi metro maqolasini eslang — tokenizator **oʻz korpusining koʻzgusi**."
+            },
+            {
+              "kind": "text",
+              "text": "Uchta jumlada sinab koʻramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "for s in [\"Oʻzbekiston Respublikasi Prezidenti farmon imzoladi.\",\n          \"Bolalar maktabga borishdi.\",\n          \"Toshkent metropolitenining halqa yoʻnalishida yangi bekat ochildi.\"]:\n    t = encode_regex(normallashtir(s), merges, NAQSH)\n    qismlar = []\n    for x in t:\n        qismlar.append(decode([x], vocab))\n    print(len(t), \"token:\", qismlar)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "6 token: ['Oʻzbekiston', ' Respublikasi', ' Prezidenti', ' farmon', ' imzoladi', '.']\n5 token: ['Bolalar', ' maktabga', ' bor', 'ishdi', '.']\n13 token: ['Toshkent', ' met', 'rop', 'oli', 'ten', 'ining', ' hal', 'qa', ' yoʻnalishida', ' yangi', ' bekat', ' ochildi', '.']"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "Birinchi jumla — **har bir soʻz bitta token**. Rasmiy til — korpusning yuragi.",
+                "Ikkinchida ` bor` + `ishdi` — feʼl oʻzagi va qoʻshimchasi. Tokenizator morfologiyani hech kim oʻrgatmasdan topdi.",
+                "Uchinchida `metropolitenining` **besh** boʻlakka boʻlindi. Korpusda metro haqida deyarli hech narsa yoʻq."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "9-kodlash-ham-sekin",
+          "title": "9. Kodlash ham sekin",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi fertility oʻlchamoqchimiz: butun korpusni kodlab, tokenlarni sanash kerak. Dars 13 dagi `encode_regex` bilan — korpusning kichik qismlarida:"
+            },
+            {
+              "kind": "code",
+              "code": "for n in [500, 1000, 2000]:\n    qism = normallashtir(\"\\n\".join(toza[:n]))\n    t0 = time.perf_counter()\n    encode_regex(qism, merges, NAQSH)\n    print(f\"{n:5d} jumla | {time.perf_counter() - t0:.2f} soniya\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  500 jumla | 0.18 soniya\n 1000 jumla | 0.47 soniya\n 2000 jumla | 2.06 soniya"
+            },
+            {
+              "kind": "text",
+              "text": "Jumlalar **ikki** barobar — vaqt **ikki barobardan koʻp**. Matn kattalashgan sari yomonlashadi. Nima uchun?"
+            },
+            {
+              "kind": "text",
+              "text": "`encode_regex` ning ichida shu qator bor:"
+            },
+            {
+              "kind": "pre",
+              "text": "natija = natija + tk"
+            },
+            {
+              "kind": "text",
+              "text": "`natija + tk` — **yangi** roʻyxat yasaydi: `natija` ning hamma elementlarini nusxalab, oxiriga `tk` ni qoʻshadi. `natija` da 100 000 token boʻlsa — 100 000 ta nusxa. Har bir boʻlak uchun. Roʻyxat oʻsgan sari har bir qadam qimmatlashadi."
+            },
+            {
+              "kind": "text",
+              "text": "Va **behuda ish №1** bu yerda ham bor: ` bilan` ni 9 ming marta qaytadan kodlaymiz — har safar bir xil natija."
+            },
+            {
+              "kind": "h3",
+              "id": "encode-tez",
+              "text": "`encode_tez`"
+            },
+            {
+              "kind": "code",
+              "code": "def encode_tez(matn, merges, naqsh):\n    kesh = {}\n    natija = []\n    for bosh in re.findall(naqsh, matn):\n        if bosh not in kesh:\n            kesh[bosh] = encode_regex(bosh, merges, naqsh)\n        natija.extend(kesh[bosh])\n    return natija",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Ikki yechim:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "**`kesh`** (*cache*) — lugʻat: boʻlak → uning tokenlari. Boʻlak birinchi marta kelganda — kodlaymiz va yozib qoʻyamiz. Keyingi safar — tayyorini olamiz. `encode_regex(bosh, ...)` — bitta boʻlakni ham shu funksiya kodlay oladi.",
+                "**`.extend(...)`** — roʻyxatning **oxiriga** boshqa roʻyxatning elementlarini qoʻshadi. Yangi roʻyxat yasamaydi, nusxa olmaydi."
+              ]
+            },
+            {
+              "kind": "code",
+              "code": "royxat = [1, 2]\nroyxat.extend([3, 4])\nprint(royxat)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "[1, 2, 3, 4]"
+            },
+            {
+              "kind": "text",
+              "text": "Sinov — bir xil natija berishi shart:"
+            },
+            {
+              "kind": "code",
+              "code": "qism = normallashtir(\"\\n\".join(toza[:2000]))\n\nt0 = time.perf_counter()\na = encode_regex(qism, merges, NAQSH)\nt1 = time.perf_counter()\nb = encode_tez(qism, merges, NAQSH)\nt2 = time.perf_counter()\n\nprint(\"bir xilmi:\", a == b)\nprint(f\"encode_regex: {t1 - t0:.2f} soniya\")\nprint(f\"encode_tez:   {t2 - t1:.2f} soniya\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "bir xilmi: True\nencode_regex: 2.12 soniya\nencode_tez:   0.23 soniya"
+            },
+            {
+              "kind": "text",
+              "text": "Endi butun korpus:"
+            },
+            {
+              "kind": "code",
+              "code": "t0 = time.perf_counter()\ntokenlar_hammasi = encode_tez(matn, merges, NAQSH)\n\nprint(f\"vaqt: {time.perf_counter() - t0:.1f} soniya\")\nprint(\"tokenlar:\", len(tokenlar_hammasi))\nprint(\"round-trip:\", decode(tokenlar_hammasi, vocab) == matn)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "vaqt: 6.1 soniya\ntokenlar: 1748128\nround-trip: True"
+            },
+            {
+              "kind": "text",
+              "text": "Bir million soʻz — bir necha soniyada. Va round-trip (Dars 14) — toʻgʻri."
+            }
+          ]
+        },
+        {
+          "id": "10-fertility",
+          "title": "10. Fertility",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 01 dagi oʻlchovimiz: **bitta soʻzga nechta token**."
+            },
+            {
+              "kind": "code",
+              "code": "sozlar_soni = len(matn.split())\nbaytlar = len(matn.encode(\"utf-8\"))\n\nprint(\"soʻzlar:\", sozlar_soni)\nprint(\"baytlar / soʻz:\", round(baytlar / sozlar_soni, 3))\nprint(\"tokenlar / soʻz:\", round(len(tokenlar_hammasi) / sozlar_soni, 3))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "soʻzlar: 981206\nbaytlar / soʻz: 8.161\ntokenlar / soʻz: 1.782"
+            },
+            {
+              "kind": "text",
+              "text": "Birlashtirishsiz (Dars 07 dagi \"har bir bayt — token\") bitta soʻzga 8 tadan ortiq token ketardi. 16 384 hajmli lugʻat bilan — **2 tadan kam**. Taxminan 4.6 barobar siqish."
+            },
+            {
+              "kind": "text",
+              "text": "(Bu yerda \"soʻz\" — boʻshliq bilan ajratilgan boʻlak. Har bir jumla oxiridagi nuqta va yangi qator ham token boʻladi, shuning uchun qisqa jumlalarda fertility biroz yuqoriroq chiqadi.)"
+            },
+            {
+              "kind": "h3",
+              "id": "lugat-hajmi-qancha-bolishi-kerak",
+              "text": "Lugʻat hajmi qancha boʻlishi kerak?"
+            },
+            {
+              "kind": "text",
+              "text": "Birlashtirishlar tartib bilan oʻrganilgan. Demak birinchi 1 000 tasini olsak — bu 1 256 hajmli tokenizator. Turli hajmlarni solishtiramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "for hajm in [1024, 2048, 4096, 8192, 16384]:\n    qisqa = {}\n    for juft in merges:\n        if merges[juft] < hajm:\n            qisqa[juft] = merges[juft]\n    t = encode_tez(matn, qisqa, NAQSH)\n    print(f\"{hajm:6d} | fertility: {len(t) / sozlar_soni:.3f}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "  1024 | fertility: 3.141\n  2048 | fertility: 2.652\n  4096 | fertility: 2.282\n  8192 | fertility: 1.998\n 16384 | fertility: 1.782"
+            },
+            {
+              "kind": "text",
+              "text": "Har safar lugʻat **ikki barobar** — lekin har safar yutuq **kamayib** boradi. 15.6% → 14.0% → 12.4% → 10.8% (Mashq 4 da hisoblaysiz). 16 384 dan keyin yana ikki barobar oshirsak, yutuq yanada kichik boʻladi — lekin model uchun har bir token qimmat (Kurs 2 da koʻrasiz). Mening haqiqiy tokenizatorim ham 16 384 hajmli."
+            }
+          ]
+        },
+        {
+          "id": "11-muammo",
+          "title": "11. Muammo",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Bizda birinchi haqiqiy tokenizator bor: 16 384 token, bir million soʻzda oʻqitilgan, fertility — 2 dan kam."
+            },
+            {
+              "kind": "text",
+              "text": "Lekin bitta savol. Bu raqamni **qayerda** oʻlchadik?"
+            },
+            {
+              "kind": "text",
+              "text": "`matn` da. Tokenizatorni **oʻqitgan** matnimizda."
+            },
+            {
+              "kind": "text",
+              "text": "Bu — imtihon savollarini oldindan berib, keyin oʻsha savollardan imtihon olishga oʻxshaydi. 8-boʻlimdagi `Oʻzsanoatqurilishbank` ni eslang: tokenizator uni bitta token qilib **yodlab oldi** — chunki u shu matnda bor edi. Bizning fertility raqamimiz bunday \"yodlangan\" soʻzlarni ham oʻz ichiga oladi."
+            },
+            {
+              "kind": "text",
+              "text": "Tokenizator **koʻrmagan** matnda qanday ishlaydi? Farq kattami yoki kichikmi — buni taxmin qilmaymiz. **Oʻlchaymiz.**"
+            },
+            {
+              "kind": "text",
+              "text": "Va eng qiziqi: buni tekshirish uchun matnni ikkiga boʻlish kifoyami? Esingizdami — korpus **alifbo tartibida**. Va Dars 15 da biz dublikatlarni olib tashlashning **ikkinchi** sababini keyinga qoldirgan edik."
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi dars — aynan shu haqida. Va u mening oʻz xatoyim bilan boshlanadi."
+            }
+          ]
+        },
+        {
+          "id": "12-toliq-kod",
+          "title": "12. Toʻliq kod",
+          "blocks": [
+            {
+              "kind": "code",
+              "code": "import re\nimport json\nimport time\nimport hashlib\nimport unicodedata\nimport urllib.request\n\nNAQSH = r\" ?\\w+| ?[^\\s\\w]+|\\s+\"\nOKINA = \"\\u02bb\"\nTUTUQ = \"\\u02bc\"\nAPOSTROFLAR = \"'\\u2018\\u2019`\\u02bb\\u02bc\"\nMANZIL = (\"https://raw.githubusercontent.com/common-voice/common-voice/\"\n          \"57f42edbf6f6d3b128e0bcd3f916360af0d328b6/server/data/uz/sentence-collector.txt\")\n\n\n# ---- Dars 06–13 ----\ndef kodla(matn):\n    return list(matn.encode(\"utf-8\"))\n\n\ndef merge(tokenlar, juftlik, yangi_id):\n    yangi = []\n    i = 0\n    while i < len(tokenlar):\n        if i < len(tokenlar) - 1 and tokenlar[i] == juftlik[0] and tokenlar[i + 1] == juftlik[1]:\n            yangi.append(yangi_id)\n            i += 2\n        else:\n            yangi.append(tokenlar[i])\n            i += 1\n    return yangi\n\n\ndef decode(ids, vocab):\n    qismlar = []\n    for tid in ids:\n        qismlar.append(vocab[tid])\n    return b\"\".join(qismlar).decode(\"utf-8\", errors=\"replace\")\n\n\ndef encode_regex(matn, merges, naqsh):\n    natija = []\n    for bosh in re.findall(naqsh, matn):\n        tk = kodla(bosh)\n        while len(tk) >= 2:\n            stats = {}\n            for juft in zip(tk, tk[1:]):\n                stats[juft] = stats.get(juft, 0) + 1\n            eng_j = None\n            eng_r = float(\"inf\")\n            for j in stats:\n                r = merges.get(j, float(\"inf\"))\n                if r < eng_r:\n                    eng_r = r\n                    eng_j = j\n            if eng_j is None:\n                break\n            tk = merge(tk, eng_j, merges[eng_j])\n        natija = natija + tk\n    return natija\n\n\n# ---- Dars 14–15 ----\ndef normallashtir(matn):\n    matn = unicodedata.normalize(\"NFC\", matn)\n    belgilar = list(matn)\n    for i in range(len(belgilar)):\n        if belgilar[i] in APOSTROFLAR:\n            oldingi = \"\"\n            keyingi = \"\"\n            if i > 0:\n                oldingi = belgilar[i - 1]\n            if i < len(belgilar) - 1:\n                keyingi = belgilar[i + 1]\n            if oldingi in [\"g\", \"G\"]:\n                belgilar[i] = OKINA\n            elif oldingi in [\"o\", \"O\"] and keyingi.isalpha():\n                belgilar[i] = OKINA\n            elif oldingi.isalpha() and keyingi.isalpha():\n                belgilar[i] = TUTUQ\n    return \"\".join(belgilar)\n\n\ndef kirill_ulushi(matn):\n    harflar = 0\n    kirill = 0\n    for belgi in matn:\n        if belgi.isalpha():\n            harflar += 1\n            if ord(belgi) >= 1024 and ord(belgi) <= 1279:\n                kirill += 1\n    if harflar == 0:\n        return 0\n    return kirill / harflar\n\n\ndef kalit(matn):\n    matn = normallashtir(matn)\n    matn = matn.lower()\n    matn = \" \".join(matn.split())\n    return hashlib.md5(matn.encode(\"utf-8\")).hexdigest()\n\n\n# ---- Dars 16 ----\ndef boshlar_sana(matn, naqsh):\n    hisob = {}\n    for b in re.findall(naqsh, matn):\n        hisob[b] = hisob.get(b, 0) + 1\n    return hisob\n\n\ndef eng_juft(stats):\n    eng_son = max(stats.values())\n    nomzodlar = []\n    for juft in stats:\n        if stats[juft] == eng_son:\n            nomzodlar.append(juft)\n    return min(nomzodlar)\n\n\ndef train_tez2(matn, vocab_size, naqsh):\n    hisob = boshlar_sana(matn, naqsh)\n    sozlar = []\n    sonlar = []\n    for b in hisob:\n        sozlar.append(kodla(b))\n        sonlar.append(hisob[b])\n\n    stats = {}\n    qayerda = {}\n    for i in range(len(sozlar)):\n        soz = sozlar[i]\n        for juft in zip(soz, soz[1:]):\n            stats[juft] = stats.get(juft, 0) + sonlar[i]\n            if juft not in qayerda:\n                qayerda[juft] = set()\n            qayerda[juft].add(i)\n\n    merges = {}\n    vocab = {}\n    for i in range(256):\n        vocab[i] = bytes([i])\n    tarix = []\n\n    for yangi_id in range(256, vocab_size):\n        if len(stats) == 0:\n            break\n        eng = eng_juft(stats)\n        tarix.append(stats[eng])\n\n        for i in qayerda[eng]:\n            eski = sozlar[i]\n            yangi = merge(eski, eng, yangi_id)\n            if len(yangi) == len(eski):\n                continue\n            for j in zip(eski, eski[1:]):\n                stats[j] -= sonlar[i]\n                if stats[j] == 0:\n                    del stats[j]\n            for j in zip(yangi, yangi[1:]):\n                stats[j] = stats.get(j, 0) + sonlar[i]\n                if j not in qayerda:\n                    qayerda[j] = set()\n                qayerda[j].add(i)\n            sozlar[i] = yangi\n\n        del qayerda[eng]\n        merges[eng] = yangi_id\n        vocab[yangi_id] = vocab[eng[0]] + vocab[eng[1]]\n\n    return merges, vocab, tarix\n\n\ndef encode_tez(matn, merges, naqsh):\n    kesh = {}\n    natija = []\n    for bosh in re.findall(naqsh, matn):\n        if bosh not in kesh:\n            kesh[bosh] = encode_regex(bosh, merges, naqsh)\n        natija.extend(kesh[bosh])\n    return natija\n\n\n# ---- 1. Yuklab olish va tozalash ----\nurllib.request.urlretrieve(MANZIL, \"uz_jumlalar.txt\")\nwith open(\"uz_jumlalar.txt\", encoding=\"utf-8\") as f:\n    jumlalar = f.read().split(\"\\n\")\n\ntoza = []\nkorilgan = set()\nfor j in jumlalar:\n    j = j.replace(\"\\u00ad\", \"\").replace(\"\\u200b\", \"\").strip()\n    if j == \"\" or kirill_ulushi(j) > 0.3:\n        continue\n    k = kalit(j)\n    if k in korilgan:\n        continue\n    korilgan.add(k)\n    toza.append(j)\n\nwith open(\"korpus.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"\\n\".join(toza))\nprint(\"jumlalar:\", len(toza))\n\n# ---- 2. Trening ----\nmatn = normallashtir(\"\\n\".join(toza))\nt0 = time.perf_counter()\nmerges, vocab, tarix = train_tez2(matn, 16384, NAQSH)\nprint(f\"trening: {(time.perf_counter() - t0) / 60:.1f} daqiqa\")\n\nroyxat = []\nfor juft in merges:\n    royxat.append([juft[0], juft[1], merges[juft]])\nwith open(\"merges_16k.json\", \"w\", encoding=\"utf-8\") as f:\n    f.write(json.dumps(royxat))\n\n# ---- 3. Oʻlchash ----\ntokenlar_hammasi = encode_tez(matn, merges, NAQSH)\nprint(\"round-trip:\", decode(tokenlar_hammasi, vocab) == matn)\nprint(\"fertility:\", round(len(tokenlar_hammasi) / len(matn.split()), 3))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "jumlalar: 148102\ntrening: 5.3 daqiqa\nround-trip: True\nfertility: 1.782",
+              "label": "Kutilgan natija (vaqt sizda boshqacha boʻladi)"
+            }
+          ]
+        },
+        {
+          "id": "13-ozingiz-yozing",
+          "title": "13. Oʻzingiz yozing",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "`train_tez2` ning yuragi — tanlangan juftni birlashtirib, faqat tegilgan soʻzlarni yangilaydigan qism. Uni toʻldiring:"
+            },
+            {
+              "kind": "code",
+              "code": "for i in qayerda[eng]:\n    eski = sozlar[i]\n    yangi = ___(eski, eng, yangi_id)\n    if len(yangi) == len(eski):\n        ___\n    for j in zip(eski, eski[1:]):\n        stats[j] ___ sonlar[i]\n        if stats[j] == 0:\n            ___ stats[j]\n    for j in zip(yangi, yangi[1:]):\n        stats[j] = stats.___(j, 0) + sonlar[i]\n        if j not in qayerda:\n            qayerda[j] = ___()\n        qayerda[j].___(i)\n    sozlar[i] = ___",
+              "lang": "python",
+              "mode": "template"
+            },
+            {
+              "kind": "reveal",
+              "summary": "Yechimni koʻrsatish",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "# train_tez2 ichidagi qism\nfor i in qayerda[eng]:\n    eski = sozlar[i]\n    yangi = merge(eski, eng, yangi_id)\n    if len(yangi) == len(eski):\n        continue\n    for j in zip(eski, eski[1:]):\n        stats[j] -= sonlar[i]\n        if stats[j] == 0:\n            del stats[j]\n    for j in zip(yangi, yangi[1:]):\n        stats[j] = stats.get(j, 0) + sonlar[i]\n        if j not in qayerda:\n            qayerda[j] = set()\n        qayerda[j].add(i)\n    sozlar[i] = yangi",
+                  "lang": "py",
+                  "mode": "static"
+                },
+                {
+                  "kind": "text",
+                  "text": "Tekshirish uchun — 6-boʻlimdagi sinov: `train_tez1` va `train_tez2` ning natijalari bir xil boʻlishi kerak."
+                },
+                {
+                  "kind": "text",
+                  "text": "Eng koʻp qilinadigan xatolar:"
+                },
+                {
+                  "kind": "steps",
+                  "items": [
+                    "`-=` oʻrniga `-= 1` — soʻz necha marta uchragan boʻlsa, shuncha ayirish kerak. Natija: `stats` asta-sekin notoʻgʻri boʻlib boradi, va sinov bir necha oʻn qadamdan keyin buziladi.",
+                    "`qayerda[j] = set()` ni har safar yozish (`if` siz) — oldingi soʻzlar roʻyxati oʻchib ketadi. Keyingi birlashtirishlar baʼzi soʻzlarga **tegmay** qoladi.",
+                    "`sozlar[i] = yangi` ni unutish — soʻz oʻzgarmaydi, keyingi qadamda yana eski juftlar ayiriladi va `stats` manfiy sonlarga tushadi."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "14-mashqlar",
+          "title": "14. Mashqlar",
+          "blocks": [
+            {
+              "kind": "exercise",
+              "label": "Mashq 1",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Ishga tushirmasdan ayting: `boshlar_sana(\" va va bilan va\", NAQSH)` nima qaytaradi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "print(boshlar_sana(\" va va bilan va\", NAQSH))",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "{' va': 3, ' bilan': 1}"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Regex `\" ?\\w+\"` — boʻshliq **soʻz bilan birga** olinadi (Dars 13). Shuning uchun\nboʻlaklar: ` va`, ` va`, ` bilan`, ` va`. Noyoblari — ikkita. ` va` — 3 marta."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 2",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`encode_tez` ning kesh i qanchalik foydali? Butun korpusda `encode_regex` necha marta chaqiriladi, va kesh necha marta ishga tushadi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "jami = len(re.findall(NAQSH, matn))\nnoyob = len(boshlar_sana(matn, NAQSH))\n\nprint(\"boʻlaklar:\", jami)\nprint(\"encode_regex chaqiriladi:\", noyob)\nprint(f\"keshdan olinadi: {jami - noyob} ({(jami - noyob) / jami:.1%})\")",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "boʻlaklar: 1331204\nencode_regex chaqiriladi: 153567\nkeshdan olinadi: 1177637 (88.5%)"
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "`:.1%` — f-satrda sonni **foiz** qilib, bir xona aniqlikda chiqaradi."
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Har 10 ta boʻlakdan 9 tasi — keshdan. Bu tasodif emas. Tilda bir necha yuz soʻz (` va`, ` bilan`, ` bu`, `.`) matnning katta qismini tashkil qiladi — 5-boʻlimdagi roʻyxatni eslang. Har qanday tilda shunday. Kesh aynan shu notekislikdan foyda oladi."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 3",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`tarix` roʻyxatidan foydalanib toping: nechanchi birlashtirishdan boshlab tanlangan juft **100 martadan kam** uchraydi? Bu nimani anglatadi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "for k in range(len(tarix)):\n    if tarix[k] < 100:\n        print(f\"{k + 1}-birlashtirish: {tarix[k]} marta\")\n        break\n\nkam = 0\nfor son in tarix:\n    if son < 100:\n        kam += 1\nprint(\"100 dan kam:\", kam, \"ta birlashtirish\")",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "4199-birlashtirish: 99 marta\n100 dan kam: 11930 ta birlashtirish"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "4 199-birlashtirishdan boshlab — hammasi 100 martadan kam. 16 128 tadan **11 930 tasi** — 74%. Lugʻatning katta qismi — korpusda 100 martadan kam uchragan juftlar. Bir million soʻzda 100 marta — bu har 10 000 soʻzda bir marta."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Bunday tokenlar xavfli tomonga ogʻishi mumkin: ular **shu korpusdagi** kamyob soʻzlarni yodlaydi (`Oʻzsanoatqurilishbank`). Boshqa matnda ular deyarli ishlatilmaydi. Bu Dars 17 ning savoliga bogʻlanadi."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 4",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "10-boʻlimdagi jadvaldan: lugʻat har ikki barobar oshganda fertility necha foizga kamaydi? Qaysi qadamda yutuq eng kichik?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "oldingi = None\nfor hajm in [1024, 2048, 4096, 8192, 16384]:\n    qisqa = {}\n    for juft in merges:\n        if merges[juft] < hajm:\n            qisqa[juft] = merges[juft]\n    f = len(encode_tez(matn, qisqa, NAQSH)) / sozlar_soni\n    if oldingi is None:\n        print(f\"{hajm:6d} | {f:.3f}\")\n    else:\n        print(f\"{hajm:6d} | {f:.3f} | {(oldingi - f) / oldingi:.1%} kamaydi\")\n    oldingi = f",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "  1024 | 3.141\n  2048 | 2.652 | 15.6% kamaydi\n  4096 | 2.282 | 14.0% kamaydi\n  8192 | 1.998 | 12.4% kamaydi\n 16384 | 1.782 | 10.8% kamaydi"
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "`oldingi is None` — \"hali oldingi qiymat yoʻqmi?\" (`None` — Dars 12 dagi `eng_j = None` kabi)."
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Har ikki barobarda yutuq kichrayib boradi. Bu — **kamayuvchi qaytim**: lugʻatga qoʻshilgan har bir yangi token avvalgisidan kamroq uchraydigan narsani ifodalaydi (Mashq 3)."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 5 (eng muhimi)",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "3-boʻlimda 0 dan katta, lekin 0.3 dan kichik kirill ulushiga ega jumlalarni qoldirdik. Ulardan biri:"
+                },
+                {
+                  "kind": "pre",
+                  "text": "Eshikdan chiqayotib, Аzizaning yalt etgan hurkak nigohini sezdi."
+                },
+                {
+                  "kind": "text",
+                  "text": "Bu jumlada nima gʻalati? Koʻz bilan topib boʻlmaydi — kod bilan toping. Keyin bunday jumlalar korpusda nechta ekanini sanang va tokenizatorimiz `Аzizaning` ni qanday kodlashini koʻring."
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "jumla = \"Eshikdan chiqayotib, \\u0410zizaning yalt etgan hurkak nigohini sezdi.\"\n\nfor belgi in jumla:\n    if ord(belgi) >= 1024 and ord(belgi) <= 1279:\n        print(repr(belgi), ord(belgi), unicodedata.name(belgi))",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "'А' 1040 CYRILLIC CAPITAL LETTER A"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`Аzizaning` dagi birinchi harf — lotincha `A` (65) emas, **kirillcha** `А` (1040). Koʻzga — aynan bir xil. Bunday harflar **gomoglif** deyiladi: shakli bir xil, raqami boshqa. Odamlar ikki tilli klaviaturada yozganda tez-tez uchraydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Korpusda nechta?"
+                  },
+                  {
+                    "kind": "code",
+                    "code": "lotin_ichida = 0\nfor j in toza:\n    for i in range(1, len(j) - 1):\n        oldingi = j[i - 1]\n        keyingi = j[i + 1]\n        if (ord(j[i]) >= 1024 and ord(j[i]) <= 1279\n                and oldingi.isascii() and oldingi.isalpha()\n                and keyingi.isascii() and keyingi.isalpha()):\n            lotin_ichida += 1\n            break\nprint(\"lotin soʻz ichida kirill harfi bor jumlalar:\", lotin_ichida)\n\nfor s in [\"\\u0410zizaning\", \"Azizaning\"]:\n    t = encode_tez(normallashtir(\" \" + s), merges, NAQSH)\n    qismlar = []\n    for x in t:\n        qismlar.append(decode([x], vocab))\n    print(repr(s), len(t), \"token:\", qismlar)\n\nkirill_tokenlar = []\nfor tid in range(256, len(vocab)):\n    t = decode([tid], vocab)\n    if kirill_ulushi(t) > 0:\n        kirill_tokenlar.append(t)\nprint(\"lugʻatdagi kirill tokenlar:\", kirill_tokenlar)",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "lotin soʻz ichida kirill harfi bor jumlalar: 34\n'Аzizaning' 3 token: [' А', 'ziz', 'aning']\n'Azizaning' 3 token: [' A', 'ziz', 'aning']\nlugʻatdagi kirill tokenlar: ['А', ' А', ' Аmir']"
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "`.isascii()` — belgi oddiy lotin klaviaturasidagi (0–127) belgimi?",
+                      "Uzun shart qavs ichida bir necha qatorga boʻlingan — Python qavs ichida qator koʻchishiga ruxsat beradi.",
+                      "Bizning sanoq faqat soʻz **ichidagi** gomogliflarni topadi (ikki tomonida lotin harfi). `Аzizaning` dagi kabi soʻz **boshidagilari** ham bor — ularni sanash uchun shartni kengaytirish kerak. Sinab koʻring."
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Token soni bir xil — lekin tokenlar **boshqa**: ` А` va ` A`. Model uchun `Аziza` va `Aziza` — ikki xil ism, va u ularni bir-biriga bogʻlay olmaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Oxirgi qatorga qarang: lugʻatda **uchta** kirill token bor — `А`, ` А` va **` Аmir`**. Amir Temur haqidagi jumlalarda kimdir `А` ni kirillcha yozgan — va bu xato shunchalik koʻp takrorlanganki, 16 384 ta joydan biri unga ketdi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Tuzatish** — Dars 14 dagi kabi normalizatsiya: lotin harflari orasidagi kirillcha `А`, `о`, `е`, `с`, `р` … ni lotinchasiga almashtirish. Lekin ehtiyot boʻling: rus tilidagi iqtibos ichidagi harflarga tegmaslik kerak (Dars 15 dagi `«Спасибо всем!»`). Shuning uchun qoida harfning **atrofiga** qarashi kerak — xuddi apostrof qoidasidek."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Bu mashqning saboqi: tozalash hech qachon tugamaydi. Har safar korpusga yangi koʻz bilan qarasangiz — yangi narsa topasiz."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "15-xulosa",
+          "title": "15. Xulosa",
+          "blocks": [
+            {
+              "kind": "steps",
+              "items": [
+                "**Common Voice** — 148 391 ta oʻzbekcha jumla, **CC0**. Versiya raqami bilan yuklab olsangiz — hammada bir xil fayl, bir xil raqamlar.",
+                "Bu korpusda ham `‘` — eng koʻp apostrof. Normalizatsiyadan keyin yana **283** dublikat chiqdi.",
+                "**Koʻrinmas belgilar** (`\\u00ad`, `\\u200b`) — haqiqatan koʻrinmas devor. Oʻchiriladi.",
+                "`train_regex` butun korpusda — **17 soatdan ortiq**.",
+                "**Behuda ish №1:** bir xil boʻlaklarni qayta-qayta sanash. Yechim — noyob boʻlak + soni. 1.33 mln → 153 ming.",
+                "**Behuda ish №2:** har qadamda hamma soʻzni qayta sanash. Yechim — `qayerda` indeksi va faqat **tegilgan** soʻzlarni yangilash.",
+                "Tez versiya **aynan bir xil** natija berishi kerak — buni sinov bilan isbotlang.",
+                "**Durang** — tasodifiy tartibga bogʻliq. Qoidani aniq yozing: eng koʻp; teng boʻlsa — raqami kichigi.",
+                "Kodlash ham: `natija + tk` → `.extend`, va **kesh**.",
+                "16 384 token, fertility — 2 dan kam. Lekin bu raqam **oʻqitilgan matnda** oʻlchangan."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "keyingi-dars",
+          "title": "Keyingi dars",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "**Dars 17 — Halol baholash: ifloslanish.** Tokenizatorni koʻrmagan matnda qanday oʻlchash kerak? Matnni ikkiga qanday boʻlish kerak — va nima uchun alifbo tartibidagi korpusni \"boshidan 90%\" deb boʻlish xato? Va men oʻz modelimni solishtirganda qilgan xato — test matnim trening matni ichida boʻlib chiqqani."
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi darsning savoli: *agar tokenizatorni oʻqitgan matnimizda emas, boshqa matnda oʻlchasak, fertility yaxshilanadimi yoki yomonlashadimi — va qanchaga?*"
+            }
+          ]
+        }
+      ],
+      "exercises": [],
+      "needs": "Dars 01–15. `kodla`, `merge`, `decode`, `train_regex`, `encode_regex`, `NAQSH` (Dars 06–13), `normallashtir` (Dars 14), `kirill_ulushi`, `kalit` (Dars 15)"
+    },
+    {
+      "id": "dars-17",
+      "n": 17,
+      "title": "Halol baholash: ifloslanish",
+      "subtitle": "",
+      "minutes": 80,
+      "status": "ready",
+      "intro": [],
+      "sections": [
+        {
+          "id": "bu-darsdan-keyin-siz",
+          "title": "Bu darsdan keyin siz...",
+          "blocks": [
+            {
+              "kind": "goals",
+              "items": [
+                "**tushunasiz** nima uchun oʻqitgan matningizda oʻlchangan raqam ishonchsiz;",
+                "**boʻlasiz** korpusni `train` va `test` ga — toʻgʻri vaqtda va toʻgʻri usulda;",
+                "**koʻrasiz** alifbo tartibidagi korpusni \"oxirgi 10%\" deb boʻlish nimaga olib kelishini;",
+                "**tekshirasiz** test matnini trening ichidan qidirib — va bu tekshiruv qachon aldashini;",
+                "**oʻlchaysiz** test matnining **imlosi** solishtiruvni qanday oʻzgartirishini;",
+                "**yozasiz** boshqalar (va olti oydan keyin oʻzingiz) tekshira oladigan hisobot."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1-bitta-savol",
+          "title": "1. Bitta savol",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 16 oxirida savol qoldirgan edim:"
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Agar tokenizatorni oʻqitgan matnimizda emas, boshqa matnda oʻlchasak, fertility yaxshilanadimi yoki yomonlashadimi — va qanchaga?"
+            },
+            {
+              "kind": "text",
+              "text": "Bu darsda unga javob beramiz. Lekin avval — nima uchun bu savol men uchun shaxsiy."
+            }
+          ]
+        },
+        {
+          "id": "2-mening-xatoyim",
+          "title": "2. Mening xatoyim",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Men oʻzbek tili uchun tokenizator va kichkina til modeli qurdim, keyin ularni boshqalari bilan solishtirdim: GPT-4o, mGPT, XLM-R va boshqalar. Raqamlarni oʻlchadim, jadvallar tuzdim, maqola yozdim."
+            },
+            {
+              "kind": "text",
+              "text": "Keyin, butunlay boshqa narsani tuzatayotib, oʻzimga oddiy savol berdim: **mening test matnim haqiqatan \"koʻrilmagan\"mi?**"
+            },
+            {
+              "kind": "text",
+              "text": "Javob — yoʻq. Va bitta xato emas, uchta."
+            },
+            {
+              "kind": "h3",
+              "id": "1-xato-test-trening-matnining-boshi",
+              "text": "1-xato: test — trening matnining boshi"
+            },
+            {
+              "kind": "text",
+              "text": "Test toʻplamini korpusning **birinchi 200 000 soʻzidan** olgan edim. Lekin korpus trening va validatsiyaga **joylashuv boʻyicha** boʻlingan edi: birinchi 90% — trening. Demak mening \"testim\" — trening matnining **boshi** edi."
+            },
+            {
+              "kind": "text",
+              "text": "Tekshirdim: testdan 32 tokenli 12 ta parcha olib, trening faylidan qidirdim. **12 tadan 11 tasi** u yerda bor edi — xuddi oʻsha joylarda. Model imtihon savollarini oldindan koʻrgan edi."
+            },
+            {
+              "kind": "media",
+              "id": "p1",
+              "title": "12 tadan 11 tasi"
+            },
+            {
+              "kind": "h3",
+              "id": "2-xato-internet-ozini-takrorlaydi",
+              "text": "2-xato: internet oʻzini takrorlaydi"
+            },
+            {
+              "kind": "text",
+              "text": "Testni validatsiya qismidan oldim. Endi toza boʻlishi kerak edi. Lekin 16 ta parchadan **6 tasi** baribir trening ichida topildi — har xil joylarda. Sababi — Dars 15 da koʻrganimiz: internetda bir xil sahifa koʻp marta uchraydi."
+            },
+            {
+              "kind": "text",
+              "text": "Shunda trening matnining **har bir 24 tokenli oynasiga** barmoq izi yasadim — 27.4 million iz. Validatsiya hujjatlarini birma-bir tekshirdim: bitta ham umumiy izi boʻlsa — tashladim. **780 hujjatdan 306 tasi — 39.2% — tashlandi.** 474 tasi qoldi."
+            },
+            {
+              "kind": "text",
+              "text": "Va mustaqil tekshiruv: qolgan hujjatlardan 16 ta parcha — trening ichida **bittasi ham** topilmadi."
+            },
+            {
+              "kind": "h3",
+              "id": "3-xato-test-matni-mening-imlomda-edi",
+              "text": "3-xato: test matni mening imlomda edi"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 14 da \"bu xatoni men oʻzim qilganman\" degan edim. Mana u."
+            },
+            {
+              "kind": "text",
+              "text": "Validatsiya fayli matnni **mening normalizatorimdan oʻtgan** holda saqlagan edi. Demak test hujjatlaridagi hamma apostroflar — mening tokenizatorim yaxshi koʻradigan shaklda. Boshqa tokenizatorlar esa internetdagi imloda oʻrgangan."
+            },
+            {
+              "kind": "text",
+              "text": "Haqiqiy internet nusxasini FineWeb-2 dan tikladim. U 474 hujjatda `oʻ` va `gʻ` dagi belgilar mana bunday yozilgan ekan:"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Belgi",
+                "Ulushi"
+              ],
+              "rows": [
+                [
+                  "`'`",
+                  "70%"
+                ],
+                [
+                  "`‘`",
+                  "19%"
+                ],
+                [
+                  "`’`",
+                  "6%"
+                ],
+                [
+                  "`ʻ` (toʻgʻri)",
+                  "**5%**"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Mening testimda esa — 100% `ʻ`. Uy maydonida oʻynagan ekanman."
+            },
+            {
+              "kind": "h3",
+              "id": "natija",
+              "text": "Natija"
+            },
+            {
+              "kind": "text",
+              "text": "Hammasini toza test matnida, asl internet imlosida qayta oʻlchadim. Mana tokenizatorlar jadvali — 474 hujjat, 200 818 soʻz:"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Tokenizator",
+                "Lugʻat",
+                "Fertility ↓"
+              ],
+              "rows": [
+                [
+                  "**uzbek-bpe-16k** (meniki)",
+                  "16 384",
+                  "**1.749**"
+                ],
+                [
+                  "XLM-RoBERTa",
+                  "250 002",
+                  "2.218"
+                ],
+                [
+                  "GPT-4o",
+                  "200 019",
+                  "2.578"
+                ],
+                [
+                  "mGPT",
+                  "100 000",
+                  "3.159"
+                ],
+                [
+                  "GPT-2",
+                  "50 257",
+                  "3.426"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Tartib oʻzgarmadi. Lekin endi **bu raqamlarga ishonsa boʻladi**."
+            },
+            {
+              "kind": "text",
+              "text": "Eng katta zarba esa modelga tushdi. mGPT modelini oʻzbek matnida qoʻshimcha oʻqitish (*fine-tuning*) eski, ifloslangan testda **katta foyda** bergandek koʻringan edi. Toza testda — **deyarli hech qanday**: 0.041 dan 0.003 ga tushdi. Chunki uning oʻqitish matni ham eski test bilan ustma-ust tushgan ekan. Bu raqamlar nimani anglatishini Kurs 2 da koʻrasiz. Hozircha muhimi: **xulosam notoʻgʻri edi**, va buni hech kim sezmasdi."
+            },
+            {
+              "kind": "text",
+              "text": "Bu darsda uchala xatoni **oʻz kompyuteringizda** qaytarasiz — va har birini tuzatasiz."
+            }
+          ]
+        },
+        {
+          "id": "3-qoida",
+          "title": "3. Qoida",
+          "blocks": [
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Tokenizatorni (yoki modelni) oʻqitgan matningizda baholasangiz, olgan raqamingiz yolgʻon boʻladi.**"
+            },
+            {
+              "kind": "text",
+              "text": "Toʻgʻri tartib:"
+            },
+            {
+              "kind": "pre",
+              "text": "tozalash  →  boʻlish  →  oʻqitish (faqat train)  →  baholash (faqat test)"
+            },
+            {
+              "kind": "text",
+              "text": "Test — **muhrlangan konvert**. Uni boʻlgandan keyin oʻqitishda ham, sozlashda ham ishlatmaysiz. Faqat oxirida, bir marta — oʻlchash uchun."
+            },
+            {
+              "kind": "text",
+              "text": "Dars 16 da biz bu qoidani buzdik: tokenizatorni **butun** korpusda oʻqitdik va fertility ni oʻsha korpusda oʻlchadik. Konvert ochilgan edi. Endi boshidan boshlaymiz — toʻgʻri tartibda."
+            },
+            {
+              "kind": "media",
+              "id": "p2",
+              "title": "Muhrlangan konvert"
+            }
+          ]
+        },
+        {
+          "id": "4-tayyorgarlik",
+          "title": "4. Tayyorgarlik",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 16 dagi funksiyalar va tozalangan korpus kerak. Agar Colab sessiyangiz yangi boʻlsa — quyidagi katakni ishga tushiring: u funksiyalarni yaratadi va korpusni qaytadan yuklab, tozalaydi."
+            },
+            {
+              "kind": "reveal",
+              "summary": "Dars 14–16 dagi kod (ochib, nusxa qiling)",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "import re\nimport json\nimport time\nimport random\nimport hashlib\nimport unicodedata\nimport urllib.request\n\nNAQSH = r\" ?\\w+| ?[^\\s\\w]+|\\s+\"\nOKINA = \"\\u02bb\"\nTUTUQ = \"\\u02bc\"\nAPOSTROFLAR = \"'\\u2018\\u2019`\\u02bb\\u02bc\"\nMANZIL = (\"https://raw.githubusercontent.com/common-voice/common-voice/\"\n          \"57f42edbf6f6d3b128e0bcd3f916360af0d328b6/server/data/uz/sentence-collector.txt\")\n\n\ndef kodla(matn):\n    return list(matn.encode(\"utf-8\"))\n\n\ndef merge(tokenlar, juftlik, yangi_id):\n    yangi = []\n    i = 0\n    while i < len(tokenlar):\n        if i < len(tokenlar) - 1 and tokenlar[i] == juftlik[0] and tokenlar[i + 1] == juftlik[1]:\n            yangi.append(yangi_id)\n            i += 2\n        else:\n            yangi.append(tokenlar[i])\n            i += 1\n    return yangi\n\n\ndef decode(ids, vocab):\n    qismlar = []\n    for tid in ids:\n        qismlar.append(vocab[tid])\n    return b\"\".join(qismlar).decode(\"utf-8\", errors=\"replace\")\n\n\ndef encode_regex(matn, merges, naqsh):\n    natija = []\n    for bosh in re.findall(naqsh, matn):\n        tk = kodla(bosh)\n        while len(tk) >= 2:\n            stats = {}\n            for juft in zip(tk, tk[1:]):\n                stats[juft] = stats.get(juft, 0) + 1\n            eng_j = None\n            eng_r = float(\"inf\")\n            for j in stats:\n                r = merges.get(j, float(\"inf\"))\n                if r < eng_r:\n                    eng_r = r\n                    eng_j = j\n            if eng_j is None:\n                break\n            tk = merge(tk, eng_j, merges[eng_j])\n        natija = natija + tk\n    return natija\n\n\ndef normallashtir(matn):\n    matn = unicodedata.normalize(\"NFC\", matn)\n    belgilar = list(matn)\n    for i in range(len(belgilar)):\n        if belgilar[i] in APOSTROFLAR:\n            oldingi = \"\"\n            keyingi = \"\"\n            if i > 0:\n                oldingi = belgilar[i - 1]\n            if i < len(belgilar) - 1:\n                keyingi = belgilar[i + 1]\n            if oldingi in [\"g\", \"G\"]:\n                belgilar[i] = OKINA\n            elif oldingi in [\"o\", \"O\"] and keyingi.isalpha():\n                belgilar[i] = OKINA\n            elif oldingi.isalpha() and keyingi.isalpha():\n                belgilar[i] = TUTUQ\n    return \"\".join(belgilar)\n\n\ndef kirill_ulushi(matn):\n    harflar = 0\n    kirill = 0\n    for belgi in matn:\n        if belgi.isalpha():\n            harflar += 1\n            if ord(belgi) >= 1024 and ord(belgi) <= 1279:\n                kirill += 1\n    if harflar == 0:\n        return 0\n    return kirill / harflar\n\n\ndef kalit(matn):\n    matn = normallashtir(matn)\n    matn = matn.lower()\n    matn = \" \".join(matn.split())\n    return hashlib.md5(matn.encode(\"utf-8\")).hexdigest()\n\n\ndef ngrammalar(matn, n=5):\n    sozlar = normallashtir(matn).lower().split()\n    natija = set()\n    for i in range(len(sozlar) - n + 1):\n        natija.add(\" \".join(sozlar[i:i + n]))\n    return natija\n\n\ndef boshlar_sana(matn, naqsh):\n    hisob = {}\n    for b in re.findall(naqsh, matn):\n        hisob[b] = hisob.get(b, 0) + 1\n    return hisob\n\n\ndef eng_juft(stats):\n    eng_son = max(stats.values())\n    nomzodlar = []\n    for juft in stats:\n        if stats[juft] == eng_son:\n            nomzodlar.append(juft)\n    return min(nomzodlar)\n\n\ndef train_tez2(matn, vocab_size, naqsh):\n    hisob = boshlar_sana(matn, naqsh)\n    sozlar = []\n    sonlar = []\n    for b in hisob:\n        sozlar.append(kodla(b))\n        sonlar.append(hisob[b])\n\n    stats = {}\n    qayerda = {}\n    for i in range(len(sozlar)):\n        soz = sozlar[i]\n        for juft in zip(soz, soz[1:]):\n            stats[juft] = stats.get(juft, 0) + sonlar[i]\n            if juft not in qayerda:\n                qayerda[juft] = set()\n            qayerda[juft].add(i)\n\n    merges = {}\n    vocab = {}\n    for i in range(256):\n        vocab[i] = bytes([i])\n    tarix = []\n\n    for yangi_id in range(256, vocab_size):\n        if len(stats) == 0:\n            break\n        eng = eng_juft(stats)\n        tarix.append(stats[eng])\n        for i in qayerda[eng]:\n            eski = sozlar[i]\n            yangi = merge(eski, eng, yangi_id)\n            if len(yangi) == len(eski):\n                continue\n            for j in zip(eski, eski[1:]):\n                stats[j] -= sonlar[i]\n                if stats[j] == 0:\n                    del stats[j]\n            for j in zip(yangi, yangi[1:]):\n                stats[j] = stats.get(j, 0) + sonlar[i]\n                if j not in qayerda:\n                    qayerda[j] = set()\n                qayerda[j].add(i)\n            sozlar[i] = yangi\n        del qayerda[eng]\n        merges[eng] = yangi_id\n        vocab[yangi_id] = vocab[eng[0]] + vocab[eng[1]]\n\n    return merges, vocab, tarix\n\n\ndef encode_tez(matn, merges, naqsh):\n    kesh = {}\n    natija = []\n    for bosh in re.findall(naqsh, matn):\n        if bosh not in kesh:\n            kesh[bosh] = encode_regex(bosh, merges, naqsh)\n        natija.extend(kesh[bosh])\n    return natija\n\n\n# ---- korpus (Dars 16, 3-boʻlim) ----\nurllib.request.urlretrieve(MANZIL, \"uz_jumlalar.txt\")\nwith open(\"uz_jumlalar.txt\", encoding=\"utf-8\") as f:\n    jumlalar = f.read().split(\"\\n\")\n\ntoza = []\nkorilgan = set()\nfor j in jumlalar:\n    j = j.replace(\"\\u00ad\", \"\").replace(\"\\u200b\", \"\").strip()\n    if j == \"\" or kirill_ulushi(j) > 0.3:\n        continue\n    k = kalit(j)\n    if k in korilgan:\n        continue\n    korilgan.add(k)\n    toza.append(j)\n\nwith open(\"korpus.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"\\n\".join(toza))\nprint(\"tayyor:\", len(toza), \"ta jumla\")",
+                  "lang": "python",
+                  "mode": "copy"
+                },
+                {
+                  "kind": "output",
+                  "text": "tayyor: 148102 ta jumla"
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Korpusni oʻqiymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "with open(\"korpus.txt\", encoding=\"utf-8\") as f:\n    korpus = f.read().split(\"\\n\")\n\nprint(\"jumlalar:\", len(korpus))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "jumlalar: 148102"
+            },
+            {
+              "kind": "text",
+              "text": "Bitta yangi funksiya kerak — fertility ni oʻlchaydigan:"
+            },
+            {
+              "kind": "code",
+              "code": "def fertility(jumlalar, merges):\n    matn = normallashtir(\"\\n\".join(jumlalar))\n    tokenlar = encode_tez(matn, merges, NAQSH)\n    return len(tokenlar) / len(matn.split())",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 16 dagi hisob — faqat funksiyaga oʻralgan: jumlalarni birlashtirib, normallashtirib, kodlaydi va **token / soʻz** ni qaytaradi."
+            }
+          ]
+        },
+        {
+          "id": "5-qanday-bolish-kerak",
+          "title": "5. Qanday boʻlish kerak?",
+          "blocks": [
+            {
+              "kind": "h3",
+              "id": "birinchi-urinish-joylashuv-boyicha",
+              "text": "Birinchi urinish: joylashuv boʻyicha"
+            },
+            {
+              "kind": "text",
+              "text": "Eng oddiy gʻoya — mening 1-xatoyimga olib kelgan gʻoya: birinchi 90% — train, oxirgi 10% — test."
+            },
+            {
+              "kind": "code",
+              "code": "chegara = int(len(korpus) * 0.9)\n\ntrain_joy = korpus[:chegara]\ntest_joy = korpus[chegara:]\n\nprint(\"train:\", len(train_joy), \"| test:\", len(test_joy))\nprint(\"test boshi:\", repr(test_joy[0][:45]))\nprint(\"test oxiri:\", repr(test_joy[-1][:45]))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "train: 133291 | test: 14811\ntest boshi: '— Asfalosofilinda turkiy tuzemetslar uchun ta'\ntest oxiri: '\\uf0d8 yagona interaktiv davlat xizmatlari portali'"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`int(...)` — sonning **butun** qismi: `int(13329.8)` → `13329`. Roʻyxat indeksi kasr boʻla olmaydi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Test `—` bilan boshlanadi. Nima uchun? Dars 16 ni eslang: korpus **alifbo tartibida**. Oxirgi 10% — alifbodan keyin keladigan belgilar bilan boshlangan jumlalar. Test qismidagi jumlalar qaysi belgi bilan boshlanadi — sanaymiz:"
+            },
+            {
+              "kind": "code",
+              "code": "boshlar = {}\nfor j in test_joy:\n    boshlar[j[0]] = boshlar.get(j[0], 0) + 1\n\nfor b in sorted(boshlar, key=boshlar.get, reverse=True)[:5]:\n    print(repr(b), boshlar[b])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "'•' 7908\n'—' 5357\n'“' 1491\n'…' 37\n'„' 5"
+            },
+            {
+              "kind": "text",
+              "text": "Test qismi — deyarli butunlay **maqollar** (`•` bilan boshlangan roʻyxat) va **dialoglar** (`—`). Train qismida esa maqollar umuman yoʻq — hammasi oxiriga tushgan. Biz tokenizatorni yangiliklar va hikoyalarda oʻqitib, maqollarda imtihon olgan boʻlardik."
+            },
+            {
+              "kind": "text",
+              "text": "Bu ifloslanish emas — buning teskarisi. Lekin xulosa bir xil: **raqam yolgʻon**. Faqat bu safar u qaysi tomonga yolgʻon gapirishini bilmaymiz."
+            },
+            {
+              "kind": "text",
+              "text": "Mening holatimda yana yomonroq boʻlgan: test **boshidan** olingan, trening ham **boshidan**. Ikkalasi ustma-ust tushgan."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Fayl tartibiga hech qachon ishonmang.** Alifbo, sana, sayt — har qanday tartib boʻlishi mumkin. Boʻlishdan oldin — aralashtiring."
+            },
+            {
+              "kind": "h3",
+              "id": "random-tasodifiy-aralashtirish",
+              "text": "`random` — tasodifiy aralashtirish"
+            },
+            {
+              "kind": "text",
+              "text": "Python'da tasodif bilan ishlaydigan modul — `random`:"
+            },
+            {
+              "kind": "code",
+              "code": "import random\n\nrandom.seed(42)\nsonlar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nrandom.shuffle(sonlar)\nprint(sonlar)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "[8, 4, 3, 9, 6, 7, 10, 5, 1, 2]"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`random.shuffle(roʻyxat)` — roʻyxatni **joyida** aralashtiradi (yangi roʻyxat qaytarmaydi).",
+                "`random.seed(42)` — tasodifning **urugʻi**. Kompyuterning \"tasodifi\" aslida formula: bir xil urugʻdan — har doim bir xil ketma-ketlik."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Tekshiramiz — oʻsha urugʻ, oʻsha natija:"
+            },
+            {
+              "kind": "code",
+              "code": "random.seed(42)\nsonlar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nrandom.shuffle(sonlar)\nprint(sonlar)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "[8, 4, 3, 9, 6, 7, 10, 5, 1, 2]"
+            },
+            {
+              "kind": "text",
+              "text": "Aynan bir xil. Nima uchun bu muhim? Chunki boʻlinishni **yozib qoʻyishimiz** kerak. \"Tasodifiy boʻldim\" — tekshirib boʻlmaydigan gap. \"`random.seed(0)` bilan aralashtirib, 90/10 boʻldim\" — har kim qaytara oladigan gap."
+            },
+            {
+              "kind": "text",
+              "text": "Uchinchi funksiya — `random.sample`: roʻyxatdan tasodifiy bir nechtasini oladi (roʻyxatning oʻziga tegmaydi):"
+            },
+            {
+              "kind": "code",
+              "code": "random.seed(7)\nprint(random.sample([\"olma\", \"nok\", \"uzum\", \"anor\", \"behi\"], 2))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "['uzum', 'nok']"
+            },
+            {
+              "kind": "h3",
+              "id": "togri-bolish",
+              "text": "Toʻgʻri boʻlish"
+            },
+            {
+              "kind": "code",
+              "code": "aralash = list(korpus)\nrandom.seed(0)\nrandom.shuffle(aralash)\n\ntrain = aralash[:chegara]\ntest = aralash[chegara:]\n\nprint(\"train:\", len(train), \"| test:\", len(test))\nprint(\"test boshi:\", repr(test[0][:45]))\n\nboshlar = {}\nfor j in test:\n    boshlar[j[0]] = boshlar.get(j[0], 0) + 1\nfor b in sorted(boshlar, key=boshlar.get, reverse=True)[:5]:\n    print(repr(b), boshlar[b])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "train: 133291 | test: 14811\ntest boshi: 'Jahonga sochilgan durdonalar'\n'B' 1530\n'S' 1138\n'O' 1027\n'A' 797\n'M' 790"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`list(korpus)` — roʻyxatning **nusxasi**. `random.shuffle` roʻyxatni joyida oʻzgartiradi; nusxa olmasak, `korpus` ning oʻzi aralashib ketardi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Endi test qismi — korpusning kichik nusxasi: `B`, `S`, `O` bilan boshlangan oddiy jumlalar koʻp, maqollar va dialoglar esa oʻz ulushida."
+            },
+            {
+              "kind": "text",
+              "text": "Ikkala qismni faylga yozamiz:"
+            },
+            {
+              "kind": "code",
+              "code": "with open(\"train.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"\\n\".join(train))\nwith open(\"test.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"\\n\".join(test))\n\nprint(\"saqlandi\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "saqlandi"
+            },
+            {
+              "kind": "text",
+              "text": "**`test.txt` — muhrlangan konvert.** Uni 8-boʻlimgacha ochmaymiz."
+            }
+          ]
+        },
+        {
+          "id": "6-oqitamiz-faqat-trainda",
+          "title": "6. Oʻqitamiz — faqat train'da",
+          "blocks": [
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Bu katak Dars 16 dagidek bir necha daqiqa ishlaydi."
+            },
+            {
+              "kind": "code",
+              "code": "t0 = time.perf_counter()\nmerges, vocab, tarix = train_tez2(normallashtir(\"\\n\".join(train)), 16384, NAQSH)\nprint(f\"vaqt: {(time.perf_counter() - t0) / 60:.1f} daqiqa\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "vaqt: 4.7 daqiqa"
+            },
+            {
+              "kind": "text",
+              "text": "Tokenizator `test` dagi **bitta ham** jumlani koʻrmadi."
+            }
+          ]
+        },
+        {
+          "id": "7-jonli-namoyish-korgan-va-kormagan-matn",
+          "title": "7. Jonli namoyish: koʻrgan va koʻrmagan matn",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi Dars 16 dagi savolga javob. Bitta tokenizator — ikki xil matnda:"
+            },
+            {
+              "kind": "code",
+              "code": "f_train = fertility(train, merges)\nf_test = fertility(test, merges)\n\nprint(f\"oʻqitgan matnida (train): {f_train:.3f}\")\nprint(f\"koʻrmagan matnida (test): {f_test:.3f}\")\nprint(f\"farq: {(f_test - f_train) / f_train:.1%}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "oʻqitgan matnida (train): 1.781\nkoʻrmagan matnida (test): 1.798\nfarq: 1.0%"
+            },
+            {
+              "kind": "text",
+              "text": "**Koʻrmagan matnda — yomonroq.** Dars 16 dagi savolning javobi: yomonlashadi."
+            },
+            {
+              "kind": "text",
+              "text": "Va halol aytaman: farq **kichik** — 1% atrofida. Nega bunchalik kichik? Chunki bir million soʻzlik korpusda tokenizator asosan **umumiy** boʻlaklarni oʻrganadi — `lar`, `ning`, ` bilan` — ular har qanday matnda bor. Yodlangan narsalar (`Oʻzsanoatqurilishbank`) — lugʻatning kichik qismi."
+            },
+            {
+              "kind": "h3",
+              "id": "farq-qachon-katta-boladi",
+              "text": "Farq qachon katta boʻladi?"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 10 ni eslang: **kichik matn + katta lugʻat = yodlash**. Sinab koʻramiz — faqat 5 000 ta jumlada, 4 096 hajmli lugʻat bilan:"
+            },
+            {
+              "kind": "code",
+              "code": "kichik = train[:5000]\nm_kichik, _, _ = train_tez2(normallashtir(\"\\n\".join(kichik)), 4096, NAQSH)\n\nf1 = fertility(kichik, m_kichik)\nf2 = fertility(test, m_kichik)\nprint(f\"oʻqitgan matnida: {f1:.3f}\")\nprint(f\"koʻrmagan matnida: {f2:.3f}\")\nprint(f\"farq: {(f2 - f1) / f1:.1%}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "oʻqitgan matnida: 2.230\nkoʻrmagan matnida: 2.342\nfarq: 5.0%"
+            },
+            {
+              "kind": "text",
+              "text": "Farq **besh barobar** kattalashdi. Kichik korpusda tokenizator matnning oʻziga xos soʻzlarini yodlaydi — va ular test'da yoʻq."
+            },
+            {
+              "kind": "text",
+              "text": "Uchta xulosa:"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "**Yoʻnalish doim bir xil.** Oʻqitgan matningizdagi raqam — har doim sizning foydangizga yolgʻon.",
+                "**Hajmi — oldindan nomaʼlum.** Bizning katta korpusda 1%, kichigida 5%. Uni bilishning yagona yoʻli — **oʻlchash**.",
+                "**Modellar uchun yolgʻon ancha katta.** Tokenizator faqat boʻlaklarni yodlaydi. Model esa **butun jumlalarni** yodlay oladi. 2-boʻlimdagi 0.041 → 0.003 — aynan shuning natijasi."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "8-yashirin-ifloslanish-dublikatlar",
+          "title": "8. Yashirin ifloslanish: dublikatlar",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Esingizdami, Dars 15 da dublikatlarni nega bunchalik sinchiklab olib tashlaganimizni \"Dars 17 da bilasiz\" degan edim? Mana sababi."
+            },
+            {
+              "kind": "text",
+              "text": "Agar bitta jumla korpusda **ikki marta** boʻlsa, tasodifiy boʻlishda ulardan biri train'ga, ikkinchisi test'ga tushishi mumkin. Shunda test'dagi jumla — aslida trening matni. Konvert muhrlangan, lekin ichidagi xat — nusxa."
+            },
+            {
+              "kind": "text",
+              "text": "Dars 16 da normallashtirilgan dublikatlarni (283 ta) olib tashladik. Ammo **qisman** dublikatlarni — Dars 15 dagi 6-bosqichni — 11 milliard juft tufayli qila olmadik. Endi tekshiramiz: test'ga trening nusxalari tushdimi?"
+            },
+            {
+              "kind": "h3",
+              "id": "tekshiruv-1-test-jumlalarini-train-ichidan-qidirish",
+              "text": "Tekshiruv №1: test jumlalarini train ichidan qidirish"
+            },
+            {
+              "kind": "text",
+              "text": "Rejadagi oddiy usul: test'dan tasodifiy **20 ta** jumla olib, train matni ichidan qidiramiz."
+            },
+            {
+              "kind": "text",
+              "text": "Avval tekshiruvning oʻzini tekshiramiz — **mening 1-xatoyimni** qaytaramiz. Test deb korpusning **boshini** olamiz, train esa — birinchi 90%:"
+            },
+            {
+              "kind": "code",
+              "code": "buzuq_test = korpus[:10000]\ntrain_joy_matn = \"\\n\".join(train_joy)\n\nrandom.seed(1)\nnamuna = random.sample(buzuq_test, 20)\n\ntopildi = 0\nfor j in namuna:\n    if j in train_joy_matn:\n        topildi += 1\nprint(\"buzuq boʻlinish:\", topildi, \"/ 20 topildi\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "buzuq boʻlinish: 20 / 20 topildi"
+            },
+            {
+              "kind": "text",
+              "text": "**20 tadan 20 tasi.** Tekshiruv ishlaydi: bunday xatoni darhol topadi. Mening holatimda — 12 tadan 11 tasi edi."
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`j in matn` — Dars 04 dagi `in`, lekin satr uchun: \"`j` matnning **ichida** bormi?\""
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Endi bizning toʻgʻri boʻlinishimiz:"
+            },
+            {
+              "kind": "code",
+              "code": "train_matn = \"\\n\".join(train)\n\nrandom.seed(1)\nnamuna = random.sample(test, 20)\n\nfor j in namuna:\n    if j in train_matn:\n        print(\"topildi:\", repr(j))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "topildi: 'Shayx xafa bo‘lmaydi.'"
+            },
+            {
+              "kind": "text",
+              "text": "Bitta topildi! Boʻlinish buzilganmi? Qaraymiz — u train'da **qayerda**?"
+            },
+            {
+              "kind": "code",
+              "code": "for j in train:\n    if \"Shayx xafa bo\\u2018lmaydi.\" in j:\n        print(repr(j))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "'Shayx xafa bo‘lmaydi. Umuman, xafa bo‘lishni bilmaydi. Iljayadi.'"
+            },
+            {
+              "kind": "text",
+              "text": "**Yolgʻon signal.** Test jumlasi — qisqa: `Shayx xafa bo‘lmaydi.` U train'dagi **boshqa, uzunroq** jumlaning ichida turibdi. Bu — dublikat emas, shunchaki bir xil soʻzlar."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Tekshiruv ham xato qilishi mumkin.** Satr ichidan qidirish qisqa jumlalarda yolgʻon signal beradi. Butun jumlani butun jumla bilan solishtirish kerak."
+            },
+            {
+              "kind": "text",
+              "text": "Toʻgʻrisi — toʻplam bilan (Dars 15):"
+            },
+            {
+              "kind": "code",
+              "code": "train_toplam = set(train)\n\ntopildi = 0\nfor j in namuna:\n    if j in train_toplam:\n        topildi += 1\nprint(\"butun jumla sifatida topildi:\", topildi, \"/ 20\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "butun jumla sifatida topildi: 0 / 20"
+            },
+            {
+              "kind": "text",
+              "text": "Toza."
+            },
+            {
+              "kind": "h3",
+              "id": "tekshiruv-2-barmoq-izlari",
+              "text": "Tekshiruv №2: barmoq izlari"
+            },
+            {
+              "kind": "text",
+              "text": "20 ta jumla — oz. Agar test'ning 2% i ifloslangan boʻlsa, 20 talik namunada uni topmasligimiz ehtimoli katta (Mashq 2 da hisoblaysiz). Mening 39.2% li holatimda 20 ta yetardi. Kichik ifloslanish uchun esa — **hammasini** tekshirish kerak."
+            },
+            {
+              "kind": "text",
+              "text": "Mening usulim: trening matnining har bir **oynasiga** barmoq izi. Men 24 tokenli oyna ishlatganman. Bizning jumlalar qisqa — **8 soʻzli** oyna olamiz. Dars 15 dagi `ngrammalar` aynan shu ishni qiladi, faqat `n=8` bilan:"
+            },
+            {
+              "kind": "code",
+              "code": "izlar = {}\nfor i in range(len(train)):\n    for oyna in ngrammalar(train[i], 8):\n        if oyna not in izlar:\n            izlar[oyna] = i\n\nprint(\"train'dagi 8 soʻzli oynalar:\", len(izlar))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "train'dagi 8 soʻzli oynalar: 123038"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`izlar` — lugʻat: oyna → u birinchi uchragan train jumlasining raqami. Toʻplam ham yetardi, lekin raqam bilan **qaysi** jumlaga oʻxshashini koʻrsata olamiz."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Endi test'ning **har bir** jumlasini tekshiramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "ifloslangan = []\ntekshirildi = 0\nfor j in test:\n    oynalar = ngrammalar(j, 8)\n    if len(oynalar) == 0:\n        continue\n    tekshirildi += 1\n    for oyna in sorted(oynalar):\n        if oyna in izlar:\n            ifloslangan.append((j, train[izlar[oyna]]))\n            break\n\nprint(\"tekshirildi (8+ soʻzli):\", tekshirildi)\nprint(f\"ifloslangan: {len(ifloslangan)} ({len(ifloslangan) / tekshirildi:.1%})\")\nprint()\nfor t, tr in ifloslangan[:3]:\n    print(\"test: \", t)\n    print(\"train:\", tr)\n    print()",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "tekshirildi (8+ soʻzli): 5230\nifloslangan: 98 (1.9%)\n\ntest:  Tokio Olimpiadasi sovrindori Bekzod Abdurahmonov va O‘zbekiston bayroqdori Nigora Tursunqulova turmush qurdi\ntrain: Tokio Olimpiadasi sovrindori Bekzod Abdurahmonov va O‘zbekiston bayroqdori Nigora Tursunqulova turmush quradi\n\ntest:  Sergelida kuchli ta’sir qiluvchi dori vositalarini noqonuniy sotayotgan dorixona aniqlandi\ntrain: Chilonzorda kuchli ta’sir qiluvchi dori vositalarini noqonuniy sotayotgan dorixona aniqlandi\n\ntest:  Ayniqsa, mahalliy millatlarning orasiga rahna solinishi, din va qadriyatlarning tahqirlanishi hamda kelajakda\ntrain: Ayniqsa, mahalliy millatlarning orasiga rahna solinishi, din va qadriyatlarning tahqirlanishi"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`if len(oynalar) == 0: continue` — 8 soʻzdan qisqa jumlada 8 soʻzli oyna yoʻq. Ularni bu usul tekshira olmaydi.",
+                "`sorted(oynalar)` — toʻplamning tartibi har ishga tushirishda boshqacha boʻlishi mumkin (Dars 15). Tartiblasak, hammada bir xil misollar chiqadi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Misollarga qarang. Birinchisi — bir xil yangilikning **ikki xil sarlavhasi** (`qurdi` va `quradi`). Uchinchisi — bitta jumlaning qisqartirilgan nusxasi. Ikkinchisi esa\nqiziq: **boshqa** tumandagi **boshqa** voqea, lekin aynan bir xil qolipda yozilgan. Dublikatmi? Matn jihatidan — deyarli. Test uchun xavfsizroq yoʻl — uni ham chiqarish. Dars 15 dagi metro maqolasi — faqat haqiqiy."
+            },
+            {
+              "kind": "text",
+              "text": "Bizda — 1.9%. Mening internet korpusimda — 39.2%. Farq tushunarli: men butun **hujjatlarni** tekshirganman (uzun matnda bitta umumiy oyna topilish ehtimoli katta), va internet sahifalari jumlalardan koʻra koʻproq koʻchiriladi."
+            },
+            {
+              "kind": "h3",
+              "id": "tozalaymiz",
+              "text": "Tozalaymiz"
+            },
+            {
+              "kind": "text",
+              "text": "Men qilgandek — ifloslangan test jumlalarini **test'dan** olib tashlaymiz. Train'ga\ntegmaymiz: tokenizator allaqachon oʻqitilgan."
+            },
+            {
+              "kind": "code",
+              "code": "iflos_toplam = set()\nfor t, tr in ifloslangan:\n    iflos_toplam.add(t)\n\ntest_toza = []\nfor j in test:\n    if j not in iflos_toplam:\n        test_toza.append(j)\n\nprint(\"toza test:\", len(test_toza))\nprint(f\"fertility: {fertility(test_toza, merges):.3f}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "toza test: 14713\nfertility: 1.800"
+            },
+            {
+              "kind": "text",
+              "text": "Fertility deyarli oʻzgarmadi — bu ifloslanish tokenizator raqamiga sezilarli taʼsir qilmagan. Lekin buni **bilish uchun tekshirish kerak edi**. Endi \"test toza\" deb aytsak — buning dalili bor: 8 soʻzli oyna boʻyicha nol umumiy iz."
+            },
+            {
+              "kind": "media",
+              "id": "p3",
+              "title": "Barmoq izlari"
+            }
+          ]
+        },
+        {
+          "id": "9-imlo-kimning-uyida-oynaymiz",
+          "title": "9. Imlo: kimning uyida oʻynaymiz?",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Mening 3-xatoyim — test matni mening normalizatorimdan oʻtgan edi. Buni ham qaytaramiz."
+            },
+            {
+              "kind": "text",
+              "text": "Bizga **raqib** kerak — normalizatsiya qilmaydigan tokenizator. GPT-4o kabi: u matnni qanday yozilgan boʻlsa, shunday oladi. Uni oʻsha train matnida, oʻsha hajmda oʻqitamiz — faqat `normallashtir` siz:"
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Yana bir necha daqiqa."
+            },
+            {
+              "kind": "code",
+              "code": "t0 = time.perf_counter()\nm_raqib, v_raqib, _ = train_tez2(\"\\n\".join(train), 16384, NAQSH)\nprint(f\"vaqt: {(time.perf_counter() - t0) / 60:.1f} daqiqa\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "vaqt: 4.5 daqiqa"
+            },
+            {
+              "kind": "text",
+              "text": "Endi ikkala tokenizatorni test'ning **ikki xil yozuvida** oʻlchaymiz:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "**asl** — internetda odamlar yozgandek (`‘`, `’`, `` ` ``, `'` aralash);",
+                "**normallashtirilgan** — mening xatoyimdagidek, hammasi `ʻ` va `ʼ`."
+              ]
+            },
+            {
+              "kind": "code",
+              "code": "def fertility_raqib(jumlalar, merges):\n    matn = \"\\n\".join(jumlalar)\n    tokenlar = encode_tez(matn, merges, NAQSH)\n    return len(tokenlar) / len(matn.split())\n\n\ntest_norm = []\nfor j in test_toza:\n    test_norm.append(normallashtir(j))\n\nfor nom, jumlalar_ in [(\"asl imlo\", test_toza), (\"normallashtirilgan\", test_norm)]:\n    biz = fertility(jumlalar_, merges)\n    raqib = fertility_raqib(jumlalar_, m_raqib)\n    print(f\"{nom:20s} biz: {biz:.3f} | raqib: {raqib:.3f} | raqib {(raqib - biz) / biz:.1%} koʻproq token\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "asl imlo             biz: 1.800 | raqib: 2.042 | raqib 13.4% koʻproq token\nnormallashtirilgan   biz: 1.800 | raqib: 1.858 | raqib 3.2% koʻproq token"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`fertility_raqib` — `fertility` ning aynan oʻzi, faqat `normallashtir` siz. Raqib matnni oʻzgartirmaydi.",
+                "Bizning tokenizator ikkala holatda ham bir xil natija beradi — u baribir hammasini normallashtiradi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "**Toʻxtang va oxirgi ustunga qarang.**"
+            },
+            {
+              "kind": "text",
+              "text": "Ikkala tokenizator — **bir xil**. Test jumlalari — **bir xil**. Faqat apostroflar boshqacha yozilgan. Va \"bizning ustunligimiz\" bir necha barobar oʻzgardi."
+            },
+            {
+              "kind": "text",
+              "text": "Nima boʻldi? Normallashtirilgan test'da biz raqibga **oʻz normalizatorimizni tekin berdik**. Uning ishining eng qiyin qismi — `o‘zbek`, `o'zbek`, `o’zbek` ni tanish — oldindan bajarib qoʻyilgan. Dars 14 dagi devorlar unga xalaqit bermadi."
+            },
+            {
+              "kind": "text",
+              "text": "Qaysi raqam haqiqat? **Foydalanuvchi yozadigan matndagisi** — asl imlo. Internetda odamlar aynan shunday yozadi (Dars 14: toʻgʻri `ʻ` — ozchilik)."
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**Test matnining imlosi — natijaning bir qismi.** U solishtiruvni ham bizning foydamizga, ham zararimizga burishi mumkin. Bu yerda u bizning ustunligimizni **yashirdi**. Mening maqolamda esa (u yerda raqiblar boshqa tokenizatorlar va modellar edi) — **oshirib koʻrsatdi**. Ikkala holatda ham yechim bitta: test matnini **asl** holida saqlang, va qaysi imloda oʻlchaganingizni yozing."
+            },
+            {
+              "kind": "media",
+              "id": "p4",
+              "title": "Kimning uyida?"
+            }
+          ]
+        },
+        {
+          "id": "10-yozib-qoyish",
+          "title": "10. Yozib qoʻyish",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Rejadagi oxirgi qadam — eng zerikarli koʻrinadigan, lekin eng muhimi. Mening uchala xatoyim ham **yozilmagan qaror** tufayli boʻlgan: \"test qayerdan olingan?\", \"fayl qanday tartibda?\", \"matn qaysi imloda saqlangan?\""
+            },
+            {
+              "kind": "code",
+              "code": "with open(\"test.txt\", encoding=\"utf-8\") as f:\n    test_iz = hashlib.md5(f.read().encode(\"utf-8\")).hexdigest()\n\nhisobot = {\n    \"manba\": MANZIL,\n    \"tozalash\": \"Dars 16: koʻrinmas belgilar, kirill > 0.3, kalit boʻyicha dublikatlar\",\n    \"jumlalar\": len(korpus),\n    \"boʻlish\": {\"usul\": \"random.shuffle\", \"seed\": 0, \"train\": len(train), \"test\": len(test)},\n    \"test_md5\": test_iz,\n    \"tekshiruv\": {\n        \"aniq_jumla_20_ta\": \"0 / 20\",\n        \"oyna\": \"8 soʻz\",\n        \"ifloslangan_olib_tashlandi\": len(ifloslangan),\n        \"toza_test\": len(test_toza),\n    },\n    \"test_imlosi\": \"asl (normallashtirilmagan)\",\n    \"lugʻat\": len(vocab),\n    \"fertility_test\": round(fertility(test_toza, merges), 3),\n}\n\nwith open(\"hisobot.json\", \"w\", encoding=\"utf-8\") as f:\n    f.write(json.dumps(hisobot, ensure_ascii=False, indent=2))\n\nprint(json.dumps(hisobot[\"boʻlish\"]))\nprint(hisobot[\"test_md5\"])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "{\"usul\": \"random.shuffle\", \"seed\": 0, \"train\": 133291, \"test\": 14811}\na1d49c3a0c6b6b4c8fc2d6070b33b6ff"
+            },
+            {
+              "kind": "text",
+              "text": "Har bir maydon — bitta savolga javob:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "**`manba`** — versiya raqami bilan. Bir yildan keyin ham aynan shu faylni olish mumkin.",
+                "**`boʻlish`** + **`seed`** — boʻlinishni har kim qaytara oladi.",
+                "**`test_md5`** — test faylining barmoq izi (Dars 15). Kimdir \"men ham sizning test'ingizda oʻlchadim\" desa — izni solishtirasiz. Bitta harf farq qilsa ham iz boshqacha.",
+                "**`tekshiruv`** — \"test toza\" degan gapning **dalili**.",
+                "**`test_imlosi`** — 9-boʻlimdagi saboq."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Bularsiz natijangizni hech kim tekshira olmaydi. **Olti oydan keyin — siz ham.**"
+            }
+          ]
+        },
+        {
+          "id": "11-muammo",
+          "title": "11. Muammo",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi qoʻlimizda halol oʻlchangan tokenizator bor. Lekin u **tarqoq**: `merges` lugʻati, `vocab` lugʻati, `normallashtir`, `NAQSH`, `encode_tez`, `decode` — hammasi alohida. Colab sessiyasi tugasa — hammasi yoʻqoladi. Boshqa odamga bersangiz — qaysi funksiyani qaysi tartibda chaqirishni tushuntirishingiz kerak."
+            },
+            {
+              "kind": "text",
+              "text": "Va eng qiziq savol hali ochiq: bizning tokenizator **mening haqiqiy tokenizatorim** — `uzbek-bpe-16k` — bilan solishtirganda qanday?"
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi — Kurs 1 ning oxirgi darsi."
+            }
+          ]
+        },
+        {
+          "id": "12-toliq-kod",
+          "title": "12. Toʻliq kod",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "4-boʻlimdagi funksiyalardan keyin:"
+            },
+            {
+              "kind": "code",
+              "code": "def fertility(jumlalar, merges):\n    matn = normallashtir(\"\\n\".join(jumlalar))\n    tokenlar = encode_tez(matn, merges, NAQSH)\n    return len(tokenlar) / len(matn.split())\n\n\n# ---- 1. Boʻlish: avval aralashtir, keyin boʻl ----\nwith open(\"korpus.txt\", encoding=\"utf-8\") as f:\n    korpus = f.read().split(\"\\n\")\n\naralash = list(korpus)\nrandom.seed(0)\nrandom.shuffle(aralash)\nchegara = int(len(aralash) * 0.9)\ntrain = aralash[:chegara]\ntest = aralash[chegara:]\n\n# ---- 2. Oʻqitish: faqat train ----\nmerges, vocab, tarix = train_tez2(normallashtir(\"\\n\".join(train)), 16384, NAQSH)\n\n# ---- 3. Ifloslanish tekshiruvi: 8 soʻzli oynalar ----\nizlar = set()\nfor j in train:\n    for oyna in ngrammalar(j, 8):\n        izlar.add(oyna)\n\ntest_toza = []\nfor j in test:\n    iflos = False\n    for oyna in ngrammalar(j, 8):\n        if oyna in izlar:\n            iflos = True\n            break\n    if not iflos:\n        test_toza.append(j)\n\n# ---- 4. Baholash: faqat test, asl imloda ----\nprint(\"train:\", len(train), \"| test:\", len(test), \"| toza test:\", len(test_toza))\nprint(f\"fertility (train): {fertility(train, merges):.3f}\")\nprint(f\"fertility (toza test): {fertility(test_toza, merges):.3f}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "train: 133291 | test: 14811 | toza test: 14713\nfertility (train): 1.781\nfertility (toza test): 1.800",
+              "label": "Kutilgan natija"
+            }
+          ]
+        },
+        {
+          "id": "13-ozingiz-yozing",
+          "title": "13. Oʻzingiz yozing",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Boʻlish va ifloslanish tekshiruvini toʻldiring:"
+            },
+            {
+              "kind": "code",
+              "code": "aralash = ___(korpus)\nrandom.___(0)\nrandom.___(aralash)\nchegara = ___(len(aralash) * 0.9)\ntrain = aralash[___:chegara]\ntest = aralash[chegara___]\n\nizlar = ___()\nfor j in train:\n    for oyna in ngrammalar(j, ___):\n        izlar.___(oyna)\n\ntest_toza = []\nfor j in test:\n    iflos = False\n    for oyna in ngrammalar(j, 8):\n        if oyna ___ izlar:\n            iflos = True\n            ___\n    if ___ iflos:\n        test_toza.append(j)\n\nprint(len(test_toza))     # 12-boʻlimdagi bilan bir xil boʻlishi kerak",
+              "lang": "python",
+              "mode": "template"
+            },
+            {
+              "kind": "reveal",
+              "summary": "Yechimni koʻrsatish",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "aralash = list(korpus)\nrandom.seed(0)\nrandom.shuffle(aralash)\nchegara = int(len(aralash) * 0.9)\ntrain = aralash[:chegara]\ntest = aralash[chegara:]\n\nizlar = set()\nfor j in train:\n    for oyna in ngrammalar(j, 8):\n        izlar.add(oyna)\n\ntest_toza = []\nfor j in test:\n    iflos = False\n    for oyna in ngrammalar(j, 8):\n        if oyna in izlar:\n            iflos = True\n            break\n    if not iflos:\n        test_toza.append(j)\n\nprint(len(test_toza))",
+                  "lang": "python",
+                  "mode": "static"
+                },
+                {
+                  "kind": "output",
+                  "text": "14713"
+                },
+                {
+                  "kind": "text",
+                  "text": "Eng koʻp qilinadigan xatolar:"
+                },
+                {
+                  "kind": "steps",
+                  "items": [
+                    "`aralash = korpus` (`list` siz) — nusxa emas, **oʻsha** roʻyxat. `shuffle` `korpus` ning oʻzini aralashtirib yuboradi, va keyingi hamma kod boshqa tartibni koʻradi.",
+                    "`random.seed` ni `shuffle` dan **keyin** yozish — urugʻ hech narsaga taʼsir qilmaydi, har safar boshqa boʻlinish chiqadi.",
+                    "`train = aralash[:chegara + 1]` — bitta jumla ikkala qismga ham tushadi. Kichik xato — lekin aynan \"ifloslanish\" deb ataladigan narsa."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "14-mashqlar",
+          "title": "14. Mashqlar",
+          "blocks": [
+            {
+              "kind": "exercise",
+              "label": "Mashq 1",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "5-boʻlimda joylashuv boʻyicha boʻlinishda test'ning qanchasi maqol (`•`) va dialog (`—`) edi? Tasodifiy boʻlinishda-chi? Butun korpusda-chi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "def ulush(jumlalar):\n    son = 0\n    for j in jumlalar:\n        if j[0] == \"\\u2022\" or j[0] == \"\\u2014\":   # \"•\" va \"—\"\n            son += 1\n    return son / len(jumlalar)\n\n\nprint(f\"joylashuv test: {ulush(test_joy):.1%}\")\nprint(f\"tasodifiy test: {ulush(test):.1%}\")\nprint(f\"butun korpus:   {ulush(korpus):.1%}\")",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "joylashuv test: 89.6%\ntasodifiy test: 9.1%\nbutun korpus:   9.5%"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Tasodifiy test — korpusning **kichik nusxasi**: ulush deyarli bir xil. Joylashuv boʻyicha test esa — butunlay boshqa matn. Bu test boʻlinishining eng oddiy\ntekshiruvi: **test train'ga oʻxshaydimi?** Har qanday oddiy belgini (jumla uzunligi, birinchi harf, mavzu) solishtiring."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 2",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Test'ning `p` qismi ifloslangan boʻlsa, 20 talik tasodifiy namunada **bittasi ham** topilmaslik ehtimoli — `(1 - p) ** 20`. Uni p = 39.2% (mening holatim), 10% va 1.9% (bizning holat) uchun hisoblang. Xulosa?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "for p in [0.392, 0.10, 0.019]:\n    print(f\"p = {p:.1%} | hech narsa topmaslik ehtimoli: {(1 - p) ** 20:.1%}\")",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "p = 39.2% | hech narsa topmaslik ehtimoli: 0.0%\np = 10.0% | hech narsa topmaslik ehtimoli: 12.2%\np = 1.9% | hech narsa topmaslik ehtimoli: 68.1%"
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "`**` — darajaga koʻtarish: `2 ** 3` → `8`."
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "39.2% da — 20 ta parcha **deyarli doim** ifloslanishni topadi. Shuning uchun men oddiy namuna bilan topdim."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "1.9% da esa — **koʻpincha topmaydi**. 20 talik tekshiruv \"toza\" deydi, lekin test ifloslangan. Shuning uchun 8-boʻlimda **hamma** jumlalarni barmoq izi bilan tekshirdik."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Namuna — tez tekshiruv. Toʻliq tekshiruv — dalil."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 3",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "8 soʻzli oyna oʻrniga 4, 6 va 12 soʻzli oyna olsak, nechta test jumlasi \"ifloslangan\" deb topiladi? 4 soʻzli oyna topgan misollarga qarang — ular haqiqatan dublikatmi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "for n in [4, 6, 8, 12]:\n    izlar_n = set()\n    for j in train:\n        for oyna in ngrammalar(j, n):\n            izlar_n.add(oyna)\n    topildi = 0\n    misol = None\n    for j in test:\n        for oyna in sorted(ngrammalar(j, n)):\n            if oyna in izlar_n:\n                topildi += 1\n                if misol is None:\n                    misol = (j, oyna)\n                break\n    print(f\"{n:2d} soʻz: {topildi:5d} ta | misol: {misol[1]!r}\")",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": " 4 soʻz:  1037 ta | misol: 'bor va soʻz bor.'\n 6 soʻz:   297 ta | misol: 'bor, siz bor va soʻz bor.'\n 8 soʻz:    98 ta | misol: 'bekzod abdurahmonov va oʻzbekiston bayroqdori nigora tursunqulova turmush'\n12 soʻz:     4 ta | misol: 'falak gardishi bilan vujudning bir aʼzosi kasallansa, albatta, boshqa aʼzolar ham ziyon'"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Qisqa oyna — **koʻp** topadi, lekin topganlarining katta qismi dublikat emas: oddiy iboralar (*\"bor va soʻz bor.\"*), maqollardagi umumiy boshlanishlar. Bu — **yolgʻon signal**."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Uzun oyna — **kam** topadi, lekin topgani deyarli aniq nusxa. Biroq u qisqa jumlalarni umuman tekshira olmaydi (12 soʻzdan qisqa jumlada 12 soʻzli oyna yoʻq)."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Har bir oyna uzunligi — savdo. Men 24 tokenli oynani tanlaganman: hujjatlarim uzun edi, va 24 token — oddiy ibora uchun juda uzun, nusxa uchun esa yetarli."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 4",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Nima uchun 7-boʻlimdagi farq atigi 1%? Test matnidagi regex boʻlaklarining qanchasi train'da **umuman uchramagan**? Ular uchun nechtadan token ketadi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "train_boshlar = boshlar_sana(normallashtir(\"\\n\".join(train)), NAQSH)\ntest_boshlar = boshlar_sana(normallashtir(\"\\n\".join(test_toza)), NAQSH)\n\nkorilgan_son = 0\nkorilgan_token = 0\nyangi_son = 0\nyangi_token = 0\nfor b in test_boshlar:\n    t = len(encode_regex(b, merges, NAQSH)) * test_boshlar[b]\n    if b in train_boshlar:\n        korilgan_son += test_boshlar[b]\n        korilgan_token += t\n    else:\n        yangi_son += test_boshlar[b]\n        yangi_token += t\n\njami = korilgan_son + yangi_son\nprint(f\"train'da koʻrilgan boʻlaklar: {korilgan_son / jami:.1%} | {korilgan_token / korilgan_son:.2f} token\")\nprint(f\"train'da koʻrilmagan:         {yangi_son / jami:.1%} | {yangi_token / yangi_son:.2f} token\")",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "train'da koʻrilgan boʻlaklar: 92.8% | 1.22 token\ntrain'da koʻrilmagan:         7.2% | 2.67 token"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Test boʻlaklarining **93%** i train'da allaqachon uchragan — ular uchun tokenizator\ntayyor: 1.22 token. Koʻrilmagan boʻlaklar esa **ikki barobardan koʻp** qimmat — 2.67 token. Lekin ular atigi 7%."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Mana nima uchun farq kichik: katta korpusda \"yangi soʻz\" — kamyob hodisa. Kichik korpusda (7-boʻlimdagi 5 000 jumla) koʻrilmagan boʻlaklar ancha koʻp — va farq besh barobar katta."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Bu oʻzbek tili uchun alohida muhim: qoʻshimchalar tufayli bitta soʻzning yuzlab shakli bor. Korpus qanchalik kichik boʻlsa — test'da shunchalik koʻp \"yangi\" shakl."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 5 (eng muhimi)",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Hisobotingiz haqiqatan ishlaydimi? Faraz qiling: siz faqat `hisobot.json` va `korpus.txt` ni oldingiz. Boʻlinishni **qaytadan yasang** va test faylining barmoq izi hisobotdagiga mos kelishini tekshiring. Keyin — `seed` ni 1 qilib xuddi shuni qiling."
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "with open(\"hisobot.json\", encoding=\"utf-8\") as f:\n    h = json.loads(f.read())\n\nwith open(\"korpus.txt\", encoding=\"utf-8\") as f:\n    k = f.read().split(\"\\n\")\n\nfor seed in [h[\"boʻlish\"][\"seed\"], 1]:\n    a = list(k)\n    random.seed(seed)\n    random.shuffle(a)\n    c = int(len(a) * 0.9)\n    qayta_test = \"\\n\".join(a[c:])\n    iz = hashlib.md5(qayta_test.encode(\"utf-8\")).hexdigest()\n    print(f\"seed {seed}: {iz} | hisobotga mos: {iz == h['test_md5']}\")",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "seed 0: a1d49c3a0c6b6b4c8fc2d6070b33b6ff | hisobotga mos: True\nseed 1: 03c933221cc6bdfe39e951c2db53b86e | hisobotga mos: False"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`seed 0` — **aynan** oʻsha test. Bitta fayl, bitta urugʻ, bitta qoida — va boshqa odam sizning boʻlinishingizni harfma-harf qaytardi. Natijangizni tekshirish mumkin."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`seed 1` — butunlay boshqa test. Agar hisobotda urugʻ yozilmaganida, hech kim (siz ham) qaysi boʻlinishda oʻlchaganingizni bilmasdi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Mening maqolamdagi tuzatishlarni tekshirib boʻlgani ham shu sababli: men eski test toʻplamini tuzatilgan baholash kodi bilan qayta oʻlchadim — va u avval eʼlon qilgan raqamlarimni **toʻrtta xona aniqligida** qaytardi. Shundan keyingina \"yangi raqamlar — tuzatishning natijasi, tasodif emas\" deb ayta oldim."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "15-xulosa",
+          "title": "15. Xulosa",
+          "blocks": [
+            {
+              "kind": "steps",
+              "items": [
+                "Oʻqitgan matningizda oʻlchangan raqam — **har doim** sizning foydangizga yolgʻon. Hajmi — oldindan nomaʼlum. Uni oʻlchash kerak.",
+                "Tartib: **tozalash → boʻlish → oʻqitish (train) → baholash (test)**. Test — muhrlangan konvert.",
+                "**Fayl tartibiga ishonmang.** Alifbo tartibidagi korpusda \"oxirgi 10%\" — maqollar va dialoglar. Avval aralashtiring.",
+                "`random.seed` + `random.shuffle` — tasodifiy, lekin **qaytariladigan** boʻlinish.",
+                "Bizning tokenizatorda koʻrgan va koʻrmagan matn farqi — **1%**. Kichik korpusda — **5%**. Modelda — ancha katta.",
+                "**Dublikatlar — yashirin ifloslanish.** Shuning uchun Dars 15 dagi ish kerak edi.",
+                "20 talik namuna katta ifloslanishni topadi, kichigini — yoʻq. Toʻliq tekshiruv — **barmoq izlari** (oyna boʻyicha).",
+                "Tekshiruv ham xato qiladi: satr ichidan qidirish — yolgʻon signal; qisqa oyna — yolgʻon signal.",
+                "**Test imlosi** — natijaning bir qismi. Asl imloda saqlang va buni yozing.",
+                "**Hisobot**: manba (versiya bilan), boʻlish (seed bilan), test izi, tekshiruv natijasi, imlo. Bularsiz natijani hech kim tekshira olmaydi."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "keyingi-dars",
+          "title": "Keyingi dars",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "**Dars 18 — Bitta klass + haqiqiy tokenizator.** Hamma tarqoq funksiyalarni bitta **klassga** yigʻamiz: `train`, `encode`, `decode`, `save`, `load`. Keyin mening `uzbek-bpe-16k` tokenizatorimni yuklab olib, uni oʻz tokenizatoringiz bilan **halol** solishtirasiz — bugungi qoidalar bilan."
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi darsning savoli: *Colab sessiyasi tugaganda ham tokenizator yoʻqolmasligi uchun uni qanday saqlash kerak — va saqlangan fayldan aynan oʻsha tokenizatorni qaytarib olganingizni qanday isbotlaysiz?*"
+            }
+          ]
+        }
+      ],
+      "exercises": [],
+      "needs": "Dars 01–16. `train_tez2`, `encode_tez`, `boshlar_sana`, `eng_juft` (Dars 16), `normallashtir` (Dars 14), `ngrammalar`, `kalit` (Dars 15)"
+    },
+    {
+      "id": "dars-18",
+      "n": 18,
+      "title": "Bitta klass va haqiqiy tokenizator",
+      "subtitle": "",
+      "minutes": 80,
+      "status": "ready",
+      "intro": [],
+      "sections": [
+        {
+          "id": "bu-darsdan-keyin-siz",
+          "title": "Bu darsdan keyin siz...",
+          "blocks": [
+            {
+              "kind": "goals",
+              "items": [
+                "**yozasiz** birinchi **klassingizni** — va tushunasiz `self` nima ekanini;",
+                "**yigʻasiz** butun tokenizatorni bitta `Tokenizator` klassiga;",
+                "**saqlaysiz** uni faylga va **isbotlaysiz** qaytarib olingani aynan oʻsha ekanini;",
+                "**yuklab olasiz** mening haqiqiy tokenizatorimni — `uzbek-bpe-16k` — va uni `AutoTokenizer` bilan ishlatasiz;",
+                "**solishtirasiz** ikkalasini **halol** — Dars 17 qoidalari bilan;",
+                "**tuzatasiz** haqiqiy tokenizatordagi xatoni — qayta oʻqitmasdan."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1-bitta-savol",
+          "title": "1. Bitta savol",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Dars 17 oxirida savol qoldirgan edim:"
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Colab sessiyasi tugaganda ham tokenizator yoʻqolmasligi uchun uni qanday saqlash kerak — va saqlangan fayldan **aynan oʻsha** tokenizatorni qaytarib olganingizni qanday isbotlaysiz?"
+            },
+            {
+              "kind": "text",
+              "text": "Avval boshqa muammoni hal qilamiz — busiz saqlash ham chalkash boʻladi."
+            }
+          ]
+        },
+        {
+          "id": "2-muammo-tarqoq-kod",
+          "title": "2. Muammo: tarqoq kod",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Bitta jumlani kodlash uchun hozir nimalarni eslab qolishingiz kerak?"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "`normallashtir` ni chaqirish — **oʻqitishda ham, kodlashda ham** (Dars 14);",
+                "`NAQSH` — aynan oʻsha regex (Dars 13);",
+                "`merges` lugʻati — trening natijasi;",
+                "`vocab` lugʻati — `decode` uchun;",
+                "`encode_tez` — `encode_regex` emas, aks holda sekin (Dars 16);",
+                "`kesh` — har safar yangidan;",
+                "`decode(ids, vocab)` — `vocab` ni ham berish."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Yettita narsa. Bittasini unutsangiz — xato. Va eng yomoni — **jim** xato: masalan, `normallashtir` siz kodlasangiz, dastur ishlaydi, faqat natija boshqacha chiqadi."
+            },
+            {
+              "kind": "text",
+              "text": "Bularning hammasi **bitta narsaga** tegishli: tokenizatorga. Python'da bir-biriga tegishli maʼlumot va funksiyalarni bitta joyga yigʻish usuli bor — **klass**."
+            },
+            {
+              "kind": "media",
+              "id": "p1",
+              "title": "Yetti narsa, bitta quti"
+            }
+          ]
+        },
+        {
+          "id": "3-klass-bosh-joyda",
+          "title": "3. Klass — boʻsh joyda",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Avval tokenizatorsiz, oddiy misolda."
+            },
+            {
+              "kind": "h3",
+              "id": "birinchi-klass",
+              "text": "Birinchi klass"
+            },
+            {
+              "kind": "code",
+              "code": "class Sanagich:\n    def __init__(self):\n        self.son = 0\n\n    def qosh(self):\n        self.son += 1\n\n\na = Sanagich()\na.qosh()\na.qosh()\na.qosh()\nprint(a.son)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "3"
+            },
+            {
+              "kind": "text",
+              "text": "Qator-qator:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`class Sanagich:` — yangi **klass**. Klass — **qolip**: \"sanagich qanday boʻladi\" degan tavsif. Oʻzi hech narsa sanamaydi.",
+                "`def __init__(self):` — klassdan yangi nusxa yaratilganda **avtomatik** ishlaydigan funksiya. Ikki pastki chiziq — Python'ning maxsus nomi.",
+                "`self` — \"**men oʻzim**\". Har bir nusxa oʻzi haqida gapirganda `self` deydi.",
+                "`self.son = 0` — nusxaning **oʻz** oʻzgaruvchisi (*atribut*). Har bir nusxada — alohida.",
+                "`def qosh(self):` — klass ichidagi funksiya (*metod*). Birinchi parametri doim `self`.",
+                "`a = Sanagich()` — qolipdan **nusxa** (*obyekt*) yasaymiz. Shu paytda `__init__` ishlaydi.",
+                "`a.qosh()` — `a` ning metodini chaqiramiz. Python `self` oʻrniga `a` ni oʻzi qoʻyadi."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "har-bir-nusxa-oziniki",
+              "text": "Har bir nusxa — oʻziniki"
+            },
+            {
+              "kind": "code",
+              "code": "a = Sanagich()\nb = Sanagich()\n\na.qosh()\na.qosh()\nb.qosh()\n\nprint(\"a:\", a.son, \"| b:\", b.son)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "a: 2 | b: 1"
+            },
+            {
+              "kind": "text",
+              "text": "Bitta qolip — ikkita mustaqil sanagich. `a` ning soni `b` ga taʼsir qilmaydi. Tokenizatorlar uchun bu aynan kerak: 7-boʻlimda ikkita tokenizatorni yonma-yon ishlatamiz."
+            },
+            {
+              "kind": "h3",
+              "id": "parametrli-init",
+              "text": "Parametrli `__init__`"
+            },
+            {
+              "kind": "code",
+              "code": "class Kitob:\n    def __init__(self, nom, sahifa):\n        self.nom = nom\n        self.sahifa = sahifa\n        self.oqilgan = 0\n\n    def oqi(self, n):\n        self.oqilgan += n\n\n    def qoldi(self):\n        return self.sahifa - self.oqilgan\n\n\nk = Kitob(\"Oʻtgan kunlar\", 384)\nk.oqi(100)\nk.oqi(50)\nprint(k.nom, \"— qoldi:\", k.qoldi(), \"sahifa\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "Oʻtgan kunlar — qoldi: 234 sahifa"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`Kitob(\"Oʻtgan kunlar\", 384)` — qavs ichidagilar `__init__` ga ketadi: `nom` va `sahifa`. `self` ni Python oʻzi qoʻyadi.",
+                "`self.nom = nom` — chap tomon — nusxaning atributi, oʻng tomon — parametr. Nomlari bir xil, lekin ular **ikki boshqa** narsa.",
+                "`qoldi` metodi `return` qiladi — oddiy funksiyadek."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "ataylab-xato-self-ni-unutish",
+              "text": "Ataylab xato: `self` ni unutish"
+            },
+            {
+              "kind": "code",
+              "code": "class Xato:\n    def salom():\n        print(\"salom\")\n\n\nXato().salom()",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "TypeError: Xato.salom() takes 0 positional arguments but 1 was given",
+              "error": true
+            },
+            {
+              "kind": "text",
+              "text": "Xatoni oʻqiymiz: \"`salom()` 0 ta argument oladi, lekin 1 ta berildi.\" Biz hech qanday argument bermadikku? **Berdik** — Python `Xato().salom()` ni chaqirganda nusxaning oʻzini (`self`) birinchi argument qilib **jim** uzatadi. Metodda unga joy yoʻq edi."
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Klass ichidagi har bir metodning birinchi parametri — `self`."
+            }
+          ]
+        },
+        {
+          "id": "4-tokenizator-klassi",
+          "title": "4. `Tokenizator` klassi",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi 2-boʻlimdagi yettita narsani bitta qolipga yigʻamiz. Dars 14–17 dagi funksiyalar kerak — yangi sessiyada quyidagi katakni ishga tushiring:"
+            },
+            {
+              "kind": "reveal",
+              "summary": "Dars 14–17 dagi kod (ochib, nusxa qiling)",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "import re\nimport json\nimport time\nimport random\nimport hashlib\nimport unicodedata\nimport urllib.request\n\nNAQSH = r\" ?\\w+| ?[^\\s\\w]+|\\s+\"\nOKINA = \"\\u02bb\"\nTUTUQ = \"\\u02bc\"\nAPOSTROFLAR = \"'\\u2018\\u2019`\\u02bb\\u02bc\"\nMANZIL = (\"https://raw.githubusercontent.com/common-voice/common-voice/\"\n          \"57f42edbf6f6d3b128e0bcd3f916360af0d328b6/server/data/uz/sentence-collector.txt\")\n\n\ndef kodla(matn):\n    return list(matn.encode(\"utf-8\"))\n\n\ndef merge(tokenlar, juftlik, yangi_id):\n    yangi = []\n    i = 0\n    while i < len(tokenlar):\n        if i < len(tokenlar) - 1 and tokenlar[i] == juftlik[0] and tokenlar[i + 1] == juftlik[1]:\n            yangi.append(yangi_id)\n            i += 2\n        else:\n            yangi.append(tokenlar[i])\n            i += 1\n    return yangi\n\n\ndef decode(ids, vocab):\n    qismlar = []\n    for tid in ids:\n        qismlar.append(vocab[tid])\n    return b\"\".join(qismlar).decode(\"utf-8\", errors=\"replace\")\n\n\ndef encode_regex(matn, merges, naqsh):\n    natija = []\n    for bosh in re.findall(naqsh, matn):\n        tk = kodla(bosh)\n        while len(tk) >= 2:\n            stats = {}\n            for juft in zip(tk, tk[1:]):\n                stats[juft] = stats.get(juft, 0) + 1\n            eng_j = None\n            eng_r = float(\"inf\")\n            for j in stats:\n                r = merges.get(j, float(\"inf\"))\n                if r < eng_r:\n                    eng_r = r\n                    eng_j = j\n            if eng_j is None:\n                break\n            tk = merge(tk, eng_j, merges[eng_j])\n        natija = natija + tk\n    return natija\n\n\ndef normallashtir(matn):\n    matn = unicodedata.normalize(\"NFC\", matn)\n    belgilar = list(matn)\n    for i in range(len(belgilar)):\n        if belgilar[i] in APOSTROFLAR:\n            oldingi = \"\"\n            keyingi = \"\"\n            if i > 0:\n                oldingi = belgilar[i - 1]\n            if i < len(belgilar) - 1:\n                keyingi = belgilar[i + 1]\n            if oldingi in [\"g\", \"G\"]:\n                belgilar[i] = OKINA\n            elif oldingi in [\"o\", \"O\"] and keyingi.isalpha():\n                belgilar[i] = OKINA\n            elif oldingi.isalpha() and keyingi.isalpha():\n                belgilar[i] = TUTUQ\n    return \"\".join(belgilar)\n\n\ndef kirill_ulushi(matn):\n    harflar = 0\n    kirill = 0\n    for belgi in matn:\n        if belgi.isalpha():\n            harflar += 1\n            if ord(belgi) >= 1024 and ord(belgi) <= 1279:\n                kirill += 1\n    if harflar == 0:\n        return 0\n    return kirill / harflar\n\n\ndef kalit(matn):\n    matn = normallashtir(matn)\n    matn = matn.lower()\n    matn = \" \".join(matn.split())\n    return hashlib.md5(matn.encode(\"utf-8\")).hexdigest()\n\n\ndef ngrammalar(matn, n=5):\n    sozlar = normallashtir(matn).lower().split()\n    natija = set()\n    for i in range(len(sozlar) - n + 1):\n        natija.add(\" \".join(sozlar[i:i + n]))\n    return natija\n\n\ndef boshlar_sana(matn, naqsh):\n    hisob = {}\n    for b in re.findall(naqsh, matn):\n        hisob[b] = hisob.get(b, 0) + 1\n    return hisob\n\n\ndef eng_juft(stats):\n    eng_son = max(stats.values())\n    nomzodlar = []\n    for juft in stats:\n        if stats[juft] == eng_son:\n            nomzodlar.append(juft)\n    return min(nomzodlar)\n\n\ndef train_tez2(matn, vocab_size, naqsh):\n    hisob = boshlar_sana(matn, naqsh)\n    sozlar = []\n    sonlar = []\n    for b in hisob:\n        sozlar.append(kodla(b))\n        sonlar.append(hisob[b])\n\n    stats = {}\n    qayerda = {}\n    for i in range(len(sozlar)):\n        soz = sozlar[i]\n        for juft in zip(soz, soz[1:]):\n            stats[juft] = stats.get(juft, 0) + sonlar[i]\n            if juft not in qayerda:\n                qayerda[juft] = set()\n            qayerda[juft].add(i)\n\n    merges = {}\n    vocab = {}\n    for i in range(256):\n        vocab[i] = bytes([i])\n    tarix = []\n\n    for yangi_id in range(256, vocab_size):\n        if len(stats) == 0:\n            break\n        eng = eng_juft(stats)\n        tarix.append(stats[eng])\n        for i in qayerda[eng]:\n            eski = sozlar[i]\n            yangi = merge(eski, eng, yangi_id)\n            if len(yangi) == len(eski):\n                continue\n            for j in zip(eski, eski[1:]):\n                stats[j] -= sonlar[i]\n                if stats[j] == 0:\n                    del stats[j]\n            for j in zip(yangi, yangi[1:]):\n                stats[j] = stats.get(j, 0) + sonlar[i]\n                if j not in qayerda:\n                    qayerda[j] = set()\n                qayerda[j].add(i)\n            sozlar[i] = yangi\n        del qayerda[eng]\n        merges[eng] = yangi_id\n        vocab[yangi_id] = vocab[eng[0]] + vocab[eng[1]]\n\n    return merges, vocab, tarix\n\n\ndef encode_tez(matn, merges, naqsh):\n    kesh = {}\n    natija = []\n    for bosh in re.findall(naqsh, matn):\n        if bosh not in kesh:\n            kesh[bosh] = encode_regex(bosh, merges, naqsh)\n        natija.extend(kesh[bosh])\n    return natija\n\n\n# ---- korpus (Dars 16, 3-boʻlim) ----\nurllib.request.urlretrieve(MANZIL, \"uz_jumlalar.txt\")\nwith open(\"uz_jumlalar.txt\", encoding=\"utf-8\") as f:\n    jumlalar = f.read().split(\"\\n\")\n\ntoza = []\nkorilgan = set()\nfor j in jumlalar:\n    j = j.replace(\"\\u00ad\", \"\").replace(\"\\u200b\", \"\").strip()\n    if j == \"\" or kirill_ulushi(j) > 0.3:\n        continue\n    k = kalit(j)\n    if k in korilgan:\n        continue\n    korilgan.add(k)\n    toza.append(j)\n\nwith open(\"korpus.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"\\n\".join(toza))\nprint(\"tayyor:\", len(toza), \"ta jumla\")",
+                  "lang": "python",
+                  "mode": "copy"
+                },
+                {
+                  "kind": "output",
+                  "text": "tayyor: 148102 ta jumla"
+                }
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Va klass:"
+            },
+            {
+              "kind": "code",
+              "code": "class Tokenizator:\n    def __init__(self):\n        self.merges = {}\n        self.vocab = {}\n        for i in range(256):\n            self.vocab[i] = bytes([i])\n        self.kesh = {}\n\n    def train(self, matn, vocab_size):\n        self.merges, self.vocab, _ = train_tez2(normallashtir(matn), vocab_size, NAQSH)\n        self.kesh = {}\n\n    def encode(self, matn):\n        natija = []\n        for bosh in re.findall(NAQSH, normallashtir(matn)):\n            if bosh not in self.kesh:\n                self.kesh[bosh] = encode_regex(bosh, self.merges, NAQSH)\n            natija.extend(self.kesh[bosh])\n        return natija\n\n    def decode(self, ids):\n        qismlar = []\n        for tid in ids:\n            qismlar.append(self.vocab[tid])\n        return b\"\".join(qismlar).decode(\"utf-8\", errors=\"replace\")\n\n    def qismlar(self, matn):\n        natija = []\n        for tid in self.encode(matn):\n            natija.append(self.decode([tid]))\n        return natija",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Har bir metod — 2-boʻlimdagi bitta muammoning yechimi:"
+            },
+            {
+              "kind": "table",
+              "head": [
+                "Metod",
+                "Nima qiladi",
+                "Qaysi muammo yoʻqoldi"
+              ],
+              "rows": [
+                [
+                  "`__init__`",
+                  "boʻsh tokenizator: 256 bayt, kesh",
+                  "`vocab` ni qoʻlda qurish"
+                ],
+                [
+                  "`train`",
+                  "**har doim** `normallashtir` bilan oʻqitadi",
+                  "1, 3, 4"
+                ],
+                [
+                  "`encode`",
+                  "**har doim** `normallashtir`, `NAQSH`, kesh",
+                  "1, 2, 5, 6"
+                ],
+                [
+                  "`decode`",
+                  "oʻz `vocab` idan foydalanadi",
+                  "7"
+                ],
+                [
+                  "`qismlar`",
+                  "tokenlarni matn boʻlaklari qilib koʻrsatadi",
+                  "(qulaylik)"
+                ]
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Endi normalizatsiyani **unutib boʻlmaydi** — u klassning ichida. Ishlatuvchi faqat `tok.encode(matn)` deydi."
+            },
+            {
+              "kind": "text",
+              "text": "Ikki nozik joy:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`self.kesh` — kesh endi **nusxaning** ichida yashaydi. Dars 16 dagi `encode_tez` har chaqiruvda keshni noldan boshlardi. Endi u chaqiruvlar orasida saqlanadi: ikkinchi jumla birinchisining kesh idan foydalanadi.",
+                "`train` keshni tozalaydi (`self.kesh = {}`). Nima uchun? Yangi `merges` bilan eski kesh **notoʻgʻri** tokenlar beradi."
+              ]
+            },
+            {
+              "kind": "h3",
+              "id": "oqitamiz-dars-17-qoidalari-bilan",
+              "text": "Oʻqitamiz — Dars 17 qoidalari bilan"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 17 dagi boʻlinish: `seed 0`, 90/10, keyin test'dan 8 soʻzli oynalar boʻyicha ifloslanganlarni olib tashlash."
+            },
+            {
+              "kind": "code",
+              "code": "with open(\"korpus.txt\", encoding=\"utf-8\") as f:\n    korpus = f.read().split(\"\\n\")\n\naralash = list(korpus)\nrandom.seed(0)\nrandom.shuffle(aralash)\nchegara = int(len(aralash) * 0.9)\ntrain = aralash[:chegara]\ntest = aralash[chegara:]\n\nizlar = set()\nfor j in train:\n    for oyna in ngrammalar(j, 8):\n        izlar.add(oyna)\n\ntest_toza = []\nfor j in test:\n    iflos = False\n    for oyna in ngrammalar(j, 8):\n        if oyna in izlar:\n            iflos = True\n            break\n    if not iflos:\n        test_toza.append(j)\n\nprint(\"train:\", len(train), \"| toza test:\", len(test_toza))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "train: 133291 | toza test: 14713"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 17 dagi raqamlar — aynan oʻsha. `seed` shuning uchun kerak edi."
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Bu katak bir necha daqiqa ishlaydi."
+            },
+            {
+              "kind": "code",
+              "code": "tok = Tokenizator()\n\nt0 = time.perf_counter()\ntok.train(\"\\n\".join(train), 16384)\nprint(f\"vaqt: {(time.perf_counter() - t0) / 60:.1f} daqiqa\")\nprint(\"lugʻat:\", len(tok.vocab))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "vaqt: 4.2 daqiqa\nlugʻat: 16384"
+            },
+            {
+              "kind": "text",
+              "text": "Sinab koʻramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "jumla = \"O'zbekiston Respublikasi Prezidenti farmon imzoladi.\"\n\nids = tok.encode(jumla)\nprint(ids)\nprint(tok.qismlar(jumla))\nprint(tok.decode(ids))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "[537, 3252, 2798, 8930, 6359, 46]\n['Oʻzbekiston', ' Respublikasi', ' Prezidenti', ' farmon', ' imzoladi', '.']\nOʻzbekiston Respublikasi Prezidenti farmon imzoladi."
+            },
+            {
+              "kind": "text",
+              "text": "Uchta qator — uchta metod. `O'zbekiston` dagi oddiy `'` — `ʻ` ga aylandi: klass normalizatsiyani oʻzi qildi."
+            }
+          ]
+        },
+        {
+          "id": "5-saqlash",
+          "title": "5. Saqlash",
+          "blocks": [
+            {
+              "kind": "h3",
+              "id": "ataylab-xato-json-va-kortej",
+              "text": "Ataylab xato: JSON va kortej"
+            },
+            {
+              "kind": "text",
+              "text": "Eng oddiy gʻoya — `merges` ni toʻgʻridan-toʻgʻri JSON qilish:"
+            },
+            {
+              "kind": "code",
+              "code": "json.dumps(tok.merges)",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "TypeError: keys must be str, int, float, bool or None, not tuple",
+              "error": true
+            },
+            {
+              "kind": "text",
+              "text": "\"Kalitlar matn, son, ... boʻlishi kerak — **kortej emas**.\" Dars 16 da buni chetlab oʻtgan edik: har bir birlashtirishni `[a, b, yangi_id]` roʻyxati qilib yozdik. Endi shuni klassning metodiga aylantiramiz."
+            },
+            {
+              "kind": "h3",
+              "id": "save-va-yukla",
+              "text": "`save` va `yukla`"
+            },
+            {
+              "kind": "code",
+              "code": "def save(self, fayl):\n    royxat = []\n    for juft in self.merges:\n        royxat.append([juft[0], juft[1], self.merges[juft]])\n    malumot = {\"versiya\": 1, \"naqsh\": NAQSH, \"merges\": royxat}\n    with open(fayl, \"w\", encoding=\"utf-8\") as f:\n        f.write(json.dumps(malumot))\n\n\ndef yukla(fayl):\n    with open(fayl, encoding=\"utf-8\") as f:\n        malumot = json.loads(f.read())\n    if malumot[\"naqsh\"] != NAQSH:\n        print(\"DIQQAT: fayldagi naqsh boshqa!\")\n    yangi = Tokenizator()\n    for a, b, tid in malumot[\"merges\"]:\n        yangi.merges[(a, b)] = tid\n        yangi.vocab[tid] = yangi.vocab[a] + yangi.vocab[b]\n    return yangi\n\n\nTokenizator.save = save",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "text",
+              "text": "Qator-qator:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`save` — `self` bilan yozilgan, demak u **metod**. `Tokenizator.save = save` — tayyor klassga yangi metod qoʻshdik. (Toʻliq kodda u klassning ichida turadi; bu yerda klassni qayta yozmaslik uchun shunday qildik.)",
+                "`\"versiya\": 1` — fayl formatining raqami. Ertaga formatni oʻzgartirsangiz, eski fayllarni ajrata olasiz.",
+                "`\"naqsh\": NAQSH` — regex ham saqlanadi. Dars 13: naqsh oʻqitishda va kodlashda **bir xil** boʻlishi shart. Boshqa naqsh bilan yuklangan merges — jim xato.",
+                "`yukla` — **oddiy funksiya**, metod emas: u tokenizatordan emas, **fayldan** boshlaydi va yangi tokenizator qaytaradi.",
+                "`yangi.vocab[tid] = yangi.vocab[a] + yangi.vocab[b]` — `vocab` ni qayta quramiz (Dars 11). Bu faqat merges **tartib bilan** kelgani uchun ishlaydi: `a` va `b` doim `tid` dan oldin yaratilgan. JSON roʻyxati tartibni saqlaydi."
+              ]
+            },
+            {
+              "kind": "code",
+              "code": "tok.save(\"tokenizator.json\")\n\nwith open(\"tokenizator.json\", encoding=\"utf-8\") as f:\n    hajm = len(f.read().encode(\"utf-8\"))\nprint(\"fayl:\", hajm, \"bayt\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "fayl: 304645 bayt"
+            },
+            {
+              "kind": "text",
+              "text": "Bir necha yuz kilobayt — 16 384 tokenli tokenizator. 5 daqiqalik trening endi bitta faylda."
+            },
+            {
+              "kind": "h3",
+              "id": "isbot-aynan-oshami",
+              "text": "Isbot: aynan oʻshami?"
+            },
+            {
+              "kind": "text",
+              "text": "Endi asosiy savol. Uchta tekshiruv — har biri avvalgisidan kuchliroq:"
+            },
+            {
+              "kind": "code",
+              "code": "tok2 = yukla(\"tokenizator.json\")\n\n# 1. merges bir xilmi?\nprint(\"merges:\", tok2.merges == tok.merges)\n\n# 2. butun toza test bir xil kodlanadimi?\ntest_matn = \"\\n\".join(test_toza)\nprint(\"encode:\", tok2.encode(test_matn) == tok.encode(test_matn))\n\n# 3. qayta saqlansa — fayl harfma-harf bir xilmi?\ntok2.save(\"tokenizator_2.json\")\nizlar_fayl = []\nfor fayl in [\"tokenizator.json\", \"tokenizator_2.json\"]:\n    with open(fayl, encoding=\"utf-8\") as f:\n        izlar_fayl.append(hashlib.md5(f.read().encode(\"utf-8\")).hexdigest())\nprint(\"fayl izi:\", izlar_fayl[0] == izlar_fayl[1], izlar_fayl[0])",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "merges: True\nencode: True\nfayl izi: True ec70ecd6094a456ec956989c64a3c4e6"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "**1-tekshiruv** — lugʻatlar bir xil. Lekin `vocab` ham toʻgʻri qurildimi?",
+                "**2-tekshiruv** — 14 ming jumla, 100 mingga yaqin soʻz — hammasi aynan bir xil tokenlarga aylandi. Bu `merges` ni ham, `vocab` ni ham, `encode` ni ham tekshiradi.",
+                "**3-tekshiruv** — **saqla → yukla → yana saqla**: ikki fayl — harfma-harf bir xil (Dars 15 dagi barmoq izi). Yuklashda hech narsa yoʻqolmadi, hech narsa qoʻshilmadi."
+              ]
+            },
+            {
+              "kind": "media",
+              "id": "p2",
+              "title": "Saqla → yukla → yana saqla"
+            },
+            {
+              "kind": "text",
+              "text": "Bu izni Dars 17 dagi hisobotga yozsangiz — \"men aynan shu tokenizator bilan oʻlchadim\" degan gapning dalili boʻladi."
+            }
+          ]
+        },
+        {
+          "id": "6-haqiqiy-tokenizator-uzbek-bpe-16k",
+          "title": "6. Haqiqiy tokenizator: `uzbek-bpe-16k`",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi mening tokenizatorim. U Hugging Face'da `IslombekT/uzbek-bpe-16k` nomi bilan turibdi, va aynan oʻsha fayl GitHub'da ham bor. Biz GitHub'dan — versiya raqami bilan (Dars 16) — yuklab olamiz: hisob ham, internet tezligi ham muammo boʻlmaydi."
+            },
+            {
+              "kind": "code",
+              "code": "import os\n\nGITHUB = (\"https://raw.githubusercontent.com/TurdiyevIslombek/uzbek-tokenizer/\"\n          \"f34493144a630162d6167aaf99c351bd6931e7ac/\")\n\nos.makedirs(\"uzbek-bpe-16k\", exist_ok=True)\nfor fayl in [\"tokenizer.json\", \"tokenizer_config.json\"]:\n    urllib.request.urlretrieve(GITHUB + fayl, \"uzbek-bpe-16k/\" + fayl)\n\nprint(sorted(os.listdir(\"uzbek-bpe-16k\")))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "['tokenizer.json', 'tokenizer_config.json']"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`os` — Python'ning fayl va papkalar bilan ishlaydigan moduli.",
+                "`os.makedirs(papka, exist_ok=True)` — papka yaratadi; `exist_ok=True` — \"bor boʻlsa, xato berma\".",
+                "`os.listdir(papka)` — papkadagi fayllar roʻyxati. Uning tartibi kompyuterga qarab boshqacha boʻlishi mumkin — shuning uchun `sorted` (Dars 15)."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "`tokenizer.json` — bizning `tokenizator.json` ning \"katta akasi\": unda merges ham, normalizator ham, regex ham — hammasi bor. Bu format **Hugging Face** kutubxonalari uchun standart."
+            },
+            {
+              "kind": "h3",
+              "id": "autotokenizer",
+              "text": "`AutoTokenizer`"
+            },
+            {
+              "kind": "text",
+              "text": "`transformers` — Hugging Face'ning kutubxonasi. Colab'da u oʻrnatilgan."
+            },
+            {
+              "kind": "code",
+              "code": "from transformers import AutoTokenizer\n\nhf = AutoTokenizer.from_pretrained(\"uzbek-bpe-16k\")\nprint(len(hf))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "16384"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`AutoTokenizer.from_pretrained(papka)` — papkadagi `tokenizer.json` ni oʻqib, tayyor tokenizator qaytaradi. \"Auto\" — qaysi turdagi tokenizator ekanini faylning oʻzidan aniqlaydi.",
+                "Papka oʻrniga `\"IslombekT/uzbek-bpe-16k\"` yozsangiz, Hugging Face'dan toʻgʻridan- toʻgʻri yuklaydi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "16 384 — xuddi biznikidek."
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Eski `transformers` versiyasida bu qator xato berishi mumkin. Unda: `from tokenizers import Tokenizer` va `Tokenizer.from_file(\"uzbek-bpe-16k/tokenizer.json\")` — natija bir xil."
+            },
+            {
+              "kind": "h3",
+              "id": "ichiga-qaraymiz",
+              "text": "Ichiga qaraymiz"
+            },
+            {
+              "kind": "code",
+              "code": "jumla = \"Oʻzbekiston Respublikasi Prezidenti farmon imzoladi.\"\n\nids = hf.encode(jumla, add_special_tokens=False)\nprint(ids)\nprint(hf.convert_ids_to_tokens(ids))\nprint(hf.decode(ids))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "[1879, 806, 1719, 10031, 13811, 14]\n['OÊ»zbekiston', 'ĠRespublikasi', 'ĠPrezidenti', 'Ġfarmon', 'Ġimzoladi', '.']\nOʻzbekiston Respublikasi Prezidenti farmon imzoladi."
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`add_special_tokens=False` — maxsus tokenlar (masalan, matn oxiri belgisi) qoʻshma. Bizga faqat matnning oʻzi kerak.",
+                "`convert_ids_to_tokens` — har bir tokenning **ichki** yozuvi."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Ikkinchi qatorga qarang: `ĠRespublikasi`, `OÊ»zbekiston`. Tanish koʻrinyaptimi?"
+            },
+            {
+              "kind": "text",
+              "text": "`OÊ»zbek` — **Dars 15 dagi mojibake!** `ʻ` ning ikki bayti (202, 187) bitta-bittadan harf sifatida koʻrsatilgan. Bu yerda bu xato emas: Hugging Face baytli tokenlarni **ichkarida** shunday yozadi — har bir baytni bitta koʻrinadigan belgi bilan. `Ġ` — boʻshliq (32-bayt). `decode` esa baytlarni toʻgʻri yigʻadi — uchinchi qatorda matn toza."
+            },
+            {
+              "kind": "text",
+              "text": "Bizning tokenizatorimiz bilan solishtiring — 4-boʻlimda ham aynan 6 ta token, aynan shu boʻlaklar edi. Ikki tokenizator turli korpusda, turli dasturda oʻqitilgan — lekin oʻzbek tilida bir xil soʻzlarni topgan."
+            },
+            {
+              "kind": "h3",
+              "id": "mening-tokenizatorimdagi-ikkita-xato",
+              "text": "Mening tokenizatorimdagi ikkita xato"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 14 da aytgan edim: mening haqiqiy tokenizatorimda ikkita boʻshliq bor. Mana ular — oʻz koʻzingiz bilan:"
+            },
+            {
+              "kind": "code",
+              "code": "for s in [\"O\\u2018zbekiston\", \"U 'dunyo' dedi\"]:\n    a = hf.encode(s, add_special_tokens=False)\n    b = tok.encode(s)\n    print(repr(s))\n    print(\"   uzbek-bpe-16k:\", len(a), hf.convert_ids_to_tokens(a), \"->\", repr(hf.decode(a)))\n    print(\"   bizniki:      \", len(b), tok.qismlar(s), \"->\", repr(tok.decode(b)))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "'O‘zbekiston'\n   uzbek-bpe-16k: 3 ['O', 'âĢĺ', 'zbekiston'] -> 'O‘zbekiston'\n   bizniki:       1 ['Oʻzbekiston'] -> 'Oʻzbekiston'\n\"U 'dunyo' dedi\"\n   uzbek-bpe-16k: 6 ['U', \"Ġ'\", 'd', 'un', 'yoÊ»', 'Ġdedi'] -> \"U 'dunyoʻ dedi\"\n   bizniki:       6 ['U', ' ', \"'\", 'dunyo', \"'\", ' dedi'] -> \"U 'dunyo' dedi\""
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "**`‘` tanilmaydi.** Mening normalizatorim `’`, `` ` `` va `'` ni biladi — lekin internetdagi **eng koʻp** uchraydigan `‘` ni emas (Dars 14 senzusi: 34%). Natija — Dars 14 dagi devor: `O` | `‘` | `zbekiston`, 3 token.",
+                "**`'dunyo'` buziladi.** Qoʻshtirnoq ichidagi `dunyo` — `dunyoʻ` boʻlib qoldi. Mening qoidam \"`o` dan keyingi `'`\" ni **har doim** `ʻ` qiladi — Dars 14 dagi \"keyin harf\" sharti yoʻq."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Sizning tokenizatoringizda ikkalasi ham **yoʻq**: Dars 14 da biz aynan shu xatolarni tuzatgan edik. Talaba ustozidan oʻzdi — kichik joyda, lekin haqiqatan."
+            }
+          ]
+        },
+        {
+          "id": "7-halol-solishtiruv",
+          "title": "7. Halol solishtiruv",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Endi asosiy savol: qaysi biri yaxshiroq?"
+            },
+            {
+              "kind": "text",
+              "text": "Dars 17 qoidalari:"
+            },
+            {
+              "kind": "steps",
+              "items": [
+                "**Bir xil test** — ikkalasi uchun.",
+                "**Asl imlo** — har biri oʻz normalizatsiyasini oʻzi qilsin.",
+                "**Koʻrilmagan matn** — test ikkalasining treningida ham boʻlmasligi kerak."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Uchinchisida bitta halol eʼtiroz bor: bizniki Common Voice'ning **train** qismida oʻqitilgan — test'ni koʻrmagan. Mening tokenizatorim esa FineWeb-2 da oʻqitilgan. Common Voice'dagi yangilik sarlavhalari internetda ham bor — demak ulardan baʼzilari mening treningimga tushgan boʻlishi **mumkin**. Buni tekshira olmaymiz: FineWeb-2 ning 4.45 GB ini bu yerda qidirib boʻlmaydi. Yozib qoʻyamiz va davom etamiz."
+            },
+            {
+              "kind": "code",
+              "code": "def fertility_hf(matn, hf):\n    ids = hf.encode(matn, add_special_tokens=False)\n    return len(ids) / len(matn.split())\n\n\ndef fertility_tok(matn, tok):\n    return len(tok.encode(matn)) / len(matn.split())\n\n\nprint(f\"bizniki:        {fertility_tok(test_matn, tok):.3f}\")\nprint(f\"uzbek-bpe-16k:  {fertility_hf(test_matn, hf):.3f}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "bizniki:        1.800\nuzbek-bpe-16k:  2.119"
+            },
+            {
+              "kind": "text",
+              "text": "**Bizniki yutdi** — va katta farq bilan. Kurs boshida yozgan birinchi qatoringizdan 18 dars oʻtib — mening maqoladagi tokenizatorimni yengdingiz."
+            },
+            {
+              "kind": "text",
+              "text": "Lekin xursand boʻlishdan oldin — Dars 17 savoli: **nima uchun?**"
+            },
+            {
+              "kind": "h3",
+              "id": "sabab-1",
+              "text": "Sabab №1: `‘`"
+            },
+            {
+              "kind": "text",
+              "text": "Test'da `‘` qancha?"
+            },
+            {
+              "kind": "code",
+              "code": "print(test_matn.count(\"\\u2018\"))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "9289"
+            },
+            {
+              "kind": "text",
+              "text": "Common Voice'da `‘` — apostroflarning 61% i (Dars 16 senzusi). Mening tokenizatorim uni tanimaydi — demak test'ning katta qismida Dars 14 devorlari turibdi."
+            },
+            {
+              "kind": "text",
+              "text": "Buni oʻlchash mumkin. **Faqat tashxis uchun** (sarlavha raqami emas!) — mening tokenizatorimga sizning normalizatoringizdan oʻtgan matnni beramiz:"
+            },
+            {
+              "kind": "code",
+              "code": "print(f\"uzbek-bpe-16k, normallashtirilgan matnda: {fertility_hf(normallashtir(test_matn), hf):.3f}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "uzbek-bpe-16k, normallashtirilgan matnda: 1.949"
+            },
+            {
+              "kind": "text",
+              "text": "Farqning katta qismi — bitta belgi: `‘`. (Mashq 5 da buni mening tokenizatorimning **oʻzida** tuzatasiz.)"
+            },
+            {
+              "kind": "h3",
+              "id": "sabab-2-kimning-uyida",
+              "text": "Sabab №2: kimning uyida?"
+            },
+            {
+              "kind": "text",
+              "text": "Qolgan farq-chi? Bizniki **Common Voice** jumlalarida oʻqitilgan va Common Voice jumlalarida oʻlchanmoqda. Bu — uy maydoni. Mening tokenizatorim esa internet **hujjatlarida** oʻqitilgan: yangiliklar, maqolalar, Vikipediya."
+            },
+            {
+              "kind": "text",
+              "text": "Tekshirish uchun — teskari tajriba: ikkalasi ham **koʻrmagan**, lekin internet yangiliklariga oʻxshash matn kerak. Bizda bunday matn bor: **Dars 15 dagi oʻquv korpusi**. U kurs uchun yozilgan — demak hech qanday tokenizatorning treningida **boʻlishi mumkin emas**."
+            },
+            {
+              "kind": "note",
+              "tone": "tip",
+              "text": "Agar `toza_korpus.jsonl` yoʻq boʻlsa — Dars 15 dagi Ilova A va Toʻliq kod kataklarini ishga tushiring."
+            },
+            {
+              "kind": "code",
+              "code": "hujjatlar = []\nwith open(\"toza_korpus.jsonl\", encoding=\"utf-8\") as f:\n    for qator in f:\n        hujjatlar.append(json.loads(qator)[\"text\"])\nyangilik = \"\\n\\n\".join(hujjatlar)\n\nprint(\"soʻzlar:\", len(yangilik.split()))\nprint(f\"bizniki:        {fertility_tok(yangilik, tok):.3f}\")\nprint(f\"uzbek-bpe-16k:  {fertility_hf(yangilik, hf):.3f}\")",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "soʻzlar: 607\nbizniki:        1.745\nuzbek-bpe-16k:  1.643"
+            },
+            {
+              "kind": "text",
+              "text": "**Natija teskari.** Yangiliklarga oʻxshash matnda mening tokenizatorim yutadi."
+            },
+            {
+              "kind": "text",
+              "text": "(Bu matn kichik — 607 soʻz. Bitta jumla ham natijani biroz siljitadi. Lekin yoʻnalishi aniq.)"
+            },
+            {
+              "kind": "note",
+              "tone": "key",
+              "text": "**\"Eng yaxshi tokenizator\" degan narsa yoʻq. Faqat \"shu matn uchun eng yaxshi\" bor.** Har bir tokenizator oʻz korpusiga oʻxshash matnda kuchli."
+            },
+            {
+              "kind": "media",
+              "id": "p3",
+              "title": "Uy maydoni"
+            },
+            {
+              "kind": "text",
+              "text": "Shuning uchun mening maqoladagi 1.749 ni bizning 1.8 bilan **solishtirmang**: ular **boshqa matnda** oʻlchangan. Turli test'dagi raqamlar — turli imtihondagi baholar."
+            }
+          ]
+        },
+        {
+          "id": "8-kurs-1-nima-qurdik",
+          "title": "8. Kurs 1 — nima qurdik",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "18 dars oldin siz `print(\"Salom\")` deb yozgan edingiz. Mana nima qurdingiz:"
+            },
+            {
+              "kind": "pre",
+              "text": "matn\n  │  normallashtir        Dars 14  — oʻ besh xil yozilsa ham, bitta\n  ▼\nboʻlaklar               Dars 13  — regex: soʻz chegarasidan oʻtilmaydi\n  │\n  ▼\nbaytlar                 Dars 05–07 — har qanday belgi, hech qanday \"notanish\" yoʻq\n  │  BPE (merges)        Dars 08–12 — eng koʻp juft → yangi token\n  ▼\ntokenlar  →  decode  →  matn         Dars 11"
+            },
+            {
+              "kind": "text",
+              "text": "Va bu zanjir atrofida:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "**maʼlumot** — qayerdan, qaysi litsenziya bilan, qanday tozalanadi (Dars 15);",
+                "**tezlik** — 17 soatlik trening 5 daqiqada (Dars 16);",
+                "**halollik** — boʻlish, ifloslanish, imlo, hisobot (Dars 17);",
+                "**bitta klass**, saqlash va isbot (Dars 18)."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Kurs boshidagi savol: \"nega oʻzbek tili AI uchun qimmat?\" Endi javobni **raqamda** bilasiz — va uni qanday kamaytirishni **qoʻlingiz bilan** qila olasiz."
+            }
+          ]
+        },
+        {
+          "id": "9-muammo",
+          "title": "9. Muammo",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Tokenizator matnni raqamlarga aylantiradi. Lekin raqamlar hech narsani **tushunmaydi**. `[537, 3252, 2798]` — bu \"Oʻzbekiston Respublikasi Prezidenti\" ekanini biz bilamiz, kompyuter esa — yoʻq."
+            },
+            {
+              "kind": "text",
+              "text": "Keyingi tokenni **taxmin qiladigan** narsa kerak. Shu raqamlarni oʻqib, \"keyin nima keladi?\" degan savolga javob beradigan narsa."
+            },
+            {
+              "kind": "text",
+              "text": "**Endi tokenlar bor. Ularni oʻqiydigan model qurish kerak.**"
+            }
+          ]
+        },
+        {
+          "id": "10-toliq-kod-tokenizator-py",
+          "title": "10. Toʻliq kod — `tokenizator.py`",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "Kurs 1 ning butun natijasi — bitta fayl. Uni `tokenizator.py` deb saqlang."
+            },
+            {
+              "kind": "code",
+              "code": "import re\nimport json\nimport hashlib\nimport unicodedata\n\nNAQSH = r\" ?\\w+| ?[^\\s\\w]+|\\s+\"\nOKINA = \"\\u02bb\"\nTUTUQ = \"\\u02bc\"\nAPOSTROFLAR = \"'\\u2018\\u2019`\\u02bb\\u02bc\"\n\n\ndef normallashtir(matn):\n    matn = unicodedata.normalize(\"NFC\", matn)\n    belgilar = list(matn)\n    for i in range(len(belgilar)):\n        if belgilar[i] in APOSTROFLAR:\n            oldingi = \"\"\n            keyingi = \"\"\n            if i > 0:\n                oldingi = belgilar[i - 1]\n            if i < len(belgilar) - 1:\n                keyingi = belgilar[i + 1]\n            if oldingi in [\"g\", \"G\"]:\n                belgilar[i] = OKINA\n            elif oldingi in [\"o\", \"O\"] and keyingi.isalpha():\n                belgilar[i] = OKINA\n            elif oldingi.isalpha() and keyingi.isalpha():\n                belgilar[i] = TUTUQ\n    return \"\".join(belgilar)\n\n\ndef merge(tokenlar, juftlik, yangi_id):\n    yangi = []\n    i = 0\n    while i < len(tokenlar):\n        if i < len(tokenlar) - 1 and tokenlar[i] == juftlik[0] and tokenlar[i + 1] == juftlik[1]:\n            yangi.append(yangi_id)\n            i += 2\n        else:\n            yangi.append(tokenlar[i])\n            i += 1\n    return yangi\n\n\ndef eng_juft(stats):\n    eng_son = max(stats.values())\n    nomzodlar = []\n    for juft in stats:\n        if stats[juft] == eng_son:\n            nomzodlar.append(juft)\n    return min(nomzodlar)\n\n\nclass Tokenizator:\n    def __init__(self):\n        self.merges = {}\n        self.vocab = {}\n        for i in range(256):\n            self.vocab[i] = bytes([i])\n        self.kesh = {}\n\n    def train(self, matn, vocab_size):\n        hisob = {}\n        for b in re.findall(NAQSH, normallashtir(matn)):\n            hisob[b] = hisob.get(b, 0) + 1\n        sozlar = []\n        sonlar = []\n        for b in hisob:\n            sozlar.append(list(b.encode(\"utf-8\")))\n            sonlar.append(hisob[b])\n\n        stats = {}\n        qayerda = {}\n        for i in range(len(sozlar)):\n            soz = sozlar[i]\n            for juft in zip(soz, soz[1:]):\n                stats[juft] = stats.get(juft, 0) + sonlar[i]\n                if juft not in qayerda:\n                    qayerda[juft] = set()\n                qayerda[juft].add(i)\n\n        for yangi_id in range(256, vocab_size):\n            if len(stats) == 0:\n                break\n            eng = eng_juft(stats)\n            for i in qayerda[eng]:\n                eski = sozlar[i]\n                yangi = merge(eski, eng, yangi_id)\n                if len(yangi) == len(eski):\n                    continue\n                for j in zip(eski, eski[1:]):\n                    stats[j] -= sonlar[i]\n                    if stats[j] == 0:\n                        del stats[j]\n                for j in zip(yangi, yangi[1:]):\n                    stats[j] = stats.get(j, 0) + sonlar[i]\n                    if j not in qayerda:\n                        qayerda[j] = set()\n                    qayerda[j].add(i)\n                sozlar[i] = yangi\n            del qayerda[eng]\n            self.merges[eng] = yangi_id\n            self.vocab[yangi_id] = self.vocab[eng[0]] + self.vocab[eng[1]]\n        self.kesh = {}\n\n    def _bolakni_kodla(self, bosh):\n        tk = list(bosh.encode(\"utf-8\"))\n        while len(tk) >= 2:\n            eng_j = None\n            eng_r = float(\"inf\")\n            for j in zip(tk, tk[1:]):\n                r = self.merges.get(j, float(\"inf\"))\n                if r < eng_r:\n                    eng_r = r\n                    eng_j = j\n            if eng_j is None:\n                break\n            tk = merge(tk, eng_j, self.merges[eng_j])\n        return tk\n\n    def encode(self, matn):\n        natija = []\n        for bosh in re.findall(NAQSH, normallashtir(matn)):\n            if bosh not in self.kesh:\n                self.kesh[bosh] = self._bolakni_kodla(bosh)\n            natija.extend(self.kesh[bosh])\n        return natija\n\n    def decode(self, ids):\n        qismlar = []\n        for tid in ids:\n            qismlar.append(self.vocab[tid])\n        return b\"\".join(qismlar).decode(\"utf-8\", errors=\"replace\")\n\n    def qismlar(self, matn):\n        natija = []\n        for tid in self.encode(matn):\n            natija.append(self.decode([tid]))\n        return natija\n\n    def save(self, fayl):\n        royxat = []\n        for juft in self.merges:\n            royxat.append([juft[0], juft[1], self.merges[juft]])\n        malumot = {\"versiya\": 1, \"naqsh\": NAQSH, \"merges\": royxat}\n        with open(fayl, \"w\", encoding=\"utf-8\") as f:\n            f.write(json.dumps(malumot))\n\n\ndef yukla(fayl):\n    with open(fayl, encoding=\"utf-8\") as f:\n        malumot = json.loads(f.read())\n    if malumot[\"naqsh\"] != NAQSH:\n        print(\"DIQQAT: fayldagi naqsh boshqa!\")\n    yangi = Tokenizator()\n    for a, b, tid in malumot[\"merges\"]:\n        yangi.merges[(a, b)] = tid\n        yangi.vocab[tid] = yangi.vocab[a] + yangi.vocab[b]\n    return yangi\n\n\n# ---- Ishlatish ----\n# Oʻqitish (bir marta, bir necha daqiqa):\n#     tok = Tokenizator()\n#     tok.train(open(\"train.txt\", encoding=\"utf-8\").read(), 16384)\n#     tok.save(\"tokenizator.json\")\n\ntok = yukla(\"tokenizator.json\")\njumla = \"O‘zbekiston Respublikasi Prezidenti farmon imzoladi.\"\nprint(tok.qismlar(jumla))\nprint(tok.decode(tok.encode(jumla)))",
+              "lang": "python",
+              "mode": "type"
+            },
+            {
+              "kind": "output",
+              "text": "['Oʻzbekiston', ' Respublikasi', ' Prezidenti', ' farmon', ' imzoladi', '.']\nOʻzbekiston Respublikasi Prezidenti farmon imzoladi.",
+              "label": "Kutilgan natija"
+            },
+            {
+              "kind": "text",
+              "text": "Bir nechta oʻzgarish, 4-boʻlimdagi klassga nisbatan:"
+            },
+            {
+              "kind": "bullets",
+              "items": [
+                "`train` endi **oʻzi** hamma ishni qiladi (Dars 16 dagi `train_tez2` ning ichi) — fayl boshqa funksiyalarga bogʻliq emas.",
+                "`_bolakni_kodla` — Dars 12 dagi `encode` ning bitta boʻlak uchun qismi. Nom oldidagi `_` — \"bu ichki metod, tashqaridan chaqirmang\" degan kelishuv. Python buni taqiqlamaydi, faqat ishora qiladi. U Dars 12 dagidan biroz qisqa: juftlarni sanash shart emas — bizga faqat **qaysi juftlar borligi** va ularning darajasi kerak.",
+                "`save` — klassning ichida."
+              ]
+            },
+            {
+              "kind": "text",
+              "text": "Tokenizator fayldan bir zumda yuklandi. 5 daqiqalik trening shart emas."
+            }
+          ]
+        },
+        {
+          "id": "11-ozingiz-yozing",
+          "title": "11. Oʻzingiz yozing",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "`save` va `yukla` ni toʻldiring:"
+            },
+            {
+              "kind": "code",
+              "code": "def save(self, fayl):\n    royxat = []\n    for juft in self.___:\n        royxat.append([juft[___], juft[___], self.merges[___]])\n    malumot = {\"versiya\": 1, \"naqsh\": ___, \"merges\": royxat}\n    with open(fayl, \"___\", encoding=\"utf-8\") as f:\n        f.write(json.___(malumot))\n\n\ndef yukla(fayl):\n    with open(fayl, encoding=\"utf-8\") as f:\n        malumot = json.___(f.read())\n    yangi = ___()\n    for a, b, tid in malumot[\"___\"]:\n        yangi.merges[(a, b)] = ___\n        yangi.vocab[tid] = yangi.vocab[___] + yangi.vocab[___]\n    return ___",
+              "lang": "python",
+              "mode": "template"
+            },
+            {
+              "kind": "reveal",
+              "summary": "Yechimni koʻrsatish",
+              "blocks": [
+                {
+                  "kind": "code",
+                  "code": "def save(self, fayl):\n    royxat = []\n    for juft in self.merges:\n        royxat.append([juft[0], juft[1], self.merges[juft]])\n    malumot = {\"versiya\": 1, \"naqsh\": NAQSH, \"merges\": royxat}\n    with open(fayl, \"w\", encoding=\"utf-8\") as f:\n        f.write(json.dumps(malumot))\n\n\ndef yukla(fayl):\n    with open(fayl, encoding=\"utf-8\") as f:\n        malumot = json.loads(f.read())\n    yangi = Tokenizator()\n    for a, b, tid in malumot[\"merges\"]:\n        yangi.merges[(a, b)] = tid\n        yangi.vocab[tid] = yangi.vocab[a] + yangi.vocab[b]\n    return yangi\n\n\nTokenizator.save = save\ntok_t = yukla(\"tokenizator.json\")\nprint(tok_t.encode(\"Salom, dunyo!\") == tok.encode(\"Salom, dunyo!\"))",
+                  "lang": "python",
+                  "mode": "static"
+                },
+                {
+                  "kind": "output",
+                  "text": "True"
+                },
+                {
+                  "kind": "text",
+                  "text": "Eng koʻp qilinadigan xatolar:"
+                },
+                {
+                  "kind": "steps",
+                  "items": [
+                    "`yangi.merges[a, b] = tid` oʻrniga `yangi.merges[[a, b]] = tid` — roʻyxat lugʻat kaliti boʻla olmaydi: `TypeError: unhashable type: 'list'`. JSON kortejni roʻyxat qilib qaytaradi — uni yana kortejga aylantirish kerak: `(a, b)`.",
+                    "`vocab` ni qayta qurishni unutish — `encode` ishlaydi (u faqat `merges` dan foydalanadi), lekin `decode` `KeyError` beradi. Yarim ishlaydigan tokenizator — eng xavflisi: 5-boʻlimdagi 2-tekshiruv uni ushlaydi, 1-tekshiruv — yoʻq.",
+                    "`\"w\"` oʻrniga `\"a\"` (qoʻshish rejimi) — fayl oxiriga ikkinchi JSON yoziladi va `json.loads` xato beradi."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "12-mashqlar",
+          "title": "12. Mashqlar",
+          "blocks": [
+            {
+              "kind": "exercise",
+              "label": "Mashq 1",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Ishga tushirmasdan ayting: nima chop etiladi?"
+                },
+                {
+                  "kind": "pre",
+                  "text": "s = Sanagich()\nt = s\nt.qosh()\nt.qosh()\nprint(s.son)"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "s = Sanagich()\nt = s\nt.qosh()\nt.qosh()\nprint(s.son)",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "2"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**2**, nol emas. `t = s` — **yangi nusxa yasamaydi**. `t` va `s` — bitta sanagichning ikki nomi. Yangi nusxa faqat `Sanagich()` — qavs bilan — yasaladi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Dars 17 dagi `list(korpus)` ni eslang — aynan shu sabab: `aralash = korpus` deb yozsangiz, `shuffle` `korpus` ning oʻzini aralashtirardi."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 2",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "`Tokenizator` ga `siqish(matn)` metodini qoʻshing: matnning **bayt** soni / **token** soni (bitta token oʻrtacha necha baytni bosadi). Uni ikkala tokenizator uchun test'da hisoblang."
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "def siqish(self, matn):\n    return len(normallashtir(matn).encode(\"utf-8\")) / len(self.encode(matn))\n\n\nTokenizator.siqish = siqish\n\nprint(f\"bizniki:       {tok.siqish(test_matn):.3f} bayt/token\")\nhf_ids = hf.encode(test_matn, add_special_tokens=False)\nprint(f\"uzbek-bpe-16k: {len(test_matn.encode('utf-8')) / len(hf_ids):.3f} bayt/token\")",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "bizniki:       4.539 bayt/token\nuzbek-bpe-16k: 3.903 bayt/token"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Bu — maqolalardagi ikkinchi koʻrsatkich (*bytes per token*). Fertility \"soʻzga nechta token\" deydi, bu esa \"tokenga necha bayt\". Biri kattaroq — yaxshi, ikkinchisi kichikroq — yaxshi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Eʼtibor bering: bizniki baytni **normallashtirilgan** matndan sanaydi. `ʻ` 2 bayt, `'` 1 bayt — demak normalizatsiya matnni biroz **uzaytiradi**. Bu kichik farq — lekin halol solishtiruvda uni ham bilish kerak. Fertility esa soʻzlarni sanaydi va bu muammodan holi — shuning uchun bu kursda asosiy oʻlchov — fertility."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 3",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Saqlangan fayldagi **bitta** birlashtirishni oʻzgartiring (masalan, 1000-sining raqamlarini almashtiring) va yuklang. 5-boʻlimdagi uchta tekshiruvdan qaysilari buni ushlaydi?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "with open(\"tokenizator.json\", encoding=\"utf-8\") as f:\n    malumot = json.loads(f.read())\n\na, b, tid = malumot[\"merges\"][1000]\nmalumot[\"merges\"][1000] = [b, a, tid]\n\nwith open(\"buzuq.json\", \"w\", encoding=\"utf-8\") as f:\n    f.write(json.dumps(malumot))\n\ntok3 = yukla(\"buzuq.json\")\nprint(\"merges:\", tok3.merges == tok.merges)\nprint(\"encode:\", tok3.encode(test_matn) == tok.encode(test_matn))\nprint(\"decode:\", tok3.decode(tok3.encode(test_matn)) == normallashtir(test_matn))",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "merges: False\nencode: False\ndecode: True"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "16 128 tadan **bitta** birlashtirish oʻzgardi — va `merges` ham, `encode` ham buni darhol koʻrsatdi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Lekin oxirgi qatorga qarang: **round-trip** (Dars 11) baribir `True`! Buzuq tokenizator matnni baribir toʻgʻri qaytaradi — chunki `vocab` ham \"buzuq\" tartibda qurildi va har bir token oʻzining (notoʻgʻri) baytlariga toʻgʻri qaytadi. Round-trip — tokenizator **ishlashini** tekshiradi, u **aynan oʻsha** ekanini emas."
+                  },
+                  {
+                    "kind": "note",
+                    "tone": "tip",
+                    "text": "\"Ishlaydi\" va \"aynan oʻsha\" — ikki xil savol. Ikkinchisi uchun — barmoq izi va natijalarni solishtirish."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 4",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "Mening tokenizatorimda maxsus token bor: `<|endoftext|>`. Uni kodlab koʻring — ikkala tokenizatorda. Farq nima, va nima uchun model uchun bunday token kerak?"
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "code",
+                    "code": "belgi = \"<|endoftext|>\"\n\nprint(\"uzbek-bpe-16k:\", hf.encode(belgi, add_special_tokens=False))\nprint(\"bizniki:      \", tok.encode(belgi))\nprint(tok.qismlar(belgi))",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "uzbek-bpe-16k: [0]\nbizniki:       [60, 124, 325, 100, 611, 116, 2688, 116, 124, 62]\n['<', '|', 'en', 'd', 'of', 't', 'ex', 't', '|', '>']"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Mening tokenizatorimda u — **bitta** token, raqami 0. Biznikida — **10 ta** oddiy\nboʻlak: `<`, `|`, `en`, `d`, `of`… — chunki biz bunday tokenni hech qachon qoʻshmaganmiz, va bu belgilar oʻzbekcha jumlalarda deyarli uchramaydi."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Nima uchun kerak? Model oʻqiganda hujjatlar ketma-ket tizilgan boʻladi: maqola, keyin boshqa maqola, keyin yana. Model **qayerda bitta matn tugab, boshqasi boshlanganini** bilishi kerak — aks holda u metro haqidagi maqoladan keyin palov retsepti kelishini \"oʻrganib\" oladi. `<|endoftext|>` — shu chegara."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Bu Kurs 2 ning birinchi qadamlaridan biri."
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "exercise",
+              "label": "Mashq 5 (eng muhimi)",
+              "blocks": [
+                {
+                  "kind": "text",
+                  "text": "7-boʻlimda mening tokenizatorim `‘` tufayli yutqazdi. Uni **qayta oʻqitmasdan** tuzating. `hf.backend_tokenizer.normalizer` — uning normalizatori. Dars 14 dagi qoidalarni Hugging Face normalizatori qilib yozing va oʻrniga qoʻying. Keyin fertility ni qayta oʻlchang va `'dunyo'` ni tekshiring."
+                }
+              ],
+              "answer": {
+                "summary": "Javobni koʻrsatish",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "Avval — hozirgi normalizator nima qiladi:"
+                  },
+                  {
+                    "kind": "code",
+                    "code": "misol = \"O\\u2018zbekiston o\\u2019qish g`alaba U 'dunyo' dedi ma'no\"\nprint(hf.backend_tokenizer.normalizer.normalize_str(misol))",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "O‘zbekiston oʻqish gʻalaba U 'dunyoʻ dedi maʼno"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "`‘` — oʻzgarmadi. `'dunyo'` — `'dunyoʻ` boʻldi. Endi Dars 14 qoidalari bilan yangi normalizator:"
+                  },
+                  {
+                    "kind": "code",
+                    "code": "from tokenizers import normalizers, Regex\n\nyangi_norm = normalizers.Sequence([\n    normalizers.Replace(\"\\u2018\", \"'\"),\n    normalizers.Replace(\"\\u2019\", \"'\"),\n    normalizers.Replace(\"`\", \"'\"),\n    normalizers.Replace(\"g'\", \"g\\u02bb\"),\n    normalizers.Replace(\"G'\", \"G\\u02bb\"),\n    normalizers.Replace(Regex(\"o'(?=\\\\p{L})\"), \"o\\u02bb\"),\n    normalizers.Replace(Regex(\"O'(?=\\\\p{L})\"), \"O\\u02bb\"),\n    normalizers.Replace(Regex(\"(?<=\\\\p{L})'(?=\\\\p{L})\"), \"\\u02bc\"),\n])\n\nhf.backend_tokenizer.normalizer = yangi_norm\nprint(hf.backend_tokenizer.normalizer.normalize_str(misol))\nprint(f\"uzbek-bpe-16k (tuzatilgan): {fertility_hf(test_matn, hf):.3f}\")",
+                    "lang": "python",
+                    "mode": "static"
+                  },
+                  {
+                    "kind": "output",
+                    "text": "Oʻzbekiston oʻqish gʻalaba U 'dunyo' dedi maʼno\nuzbek-bpe-16k (tuzatilgan): 1.951"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Qator-qator:"
+                  },
+                  {
+                    "kind": "bullets",
+                    "items": [
+                      "`normalizers.Sequence([...])` — normalizatorlar zanjiri, tartib bilan (Dars 14: tartib muhim!).",
+                      "Birinchi uchta qator — hamma variantlarni bitta `'` ga yigʻadi. **`‘` — yangi.**",
+                      "`g'` → `gʻ` — **har doim** (Dars 14, 1-qoida).",
+                      "`Regex(\"o'(?=\\\\p{L})\")` — `o'`, faqat **keyin harf** kelsa. `(?=...)` — \"oldinda shu boʻlsin, lekin uni olma\". Bu — Dars 14 dagi `keyingi.isalpha()` sharti. `'dunyo'` endi buzilmaydi.",
+                      "Oxirgisi — ikki harf orasidagi `'` → tutuq `ʼ` (3-qoida). `(?<=\\\\p{L})` — \"orqada harf boʻlsin\"."
+                    ]
+                  },
+                  {
+                    "kind": "text",
+                    "text": "**Natija:** fertility 2.119 dan **1.951** ga tushdi va `'dunyo'` tuzaldi. Tokenizatorning **bitta ham** birlashtirishi oʻzgarmadi — faqat uning oldidagi qoidalar."
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Dars 14 dagi xulosa: **normalizatsiya — eng arzon richag.** Bu safar siz uni boshqa odamning — kurs muallifining — tokenizatoriga qoʻlladingiz."
+                  },
+                  {
+                    "kind": "media",
+                    "id": "p4",
+                    "title": "Qayta oʻqitmasdan"
+                  },
+                  {
+                    "kind": "text",
+                    "text": "Ushbu tuzatish xotirada: `hf` ni qayta yuklasangiz, eski normalizator qaytadi. Saqlash uchun — `hf.save_pretrained(\"uzbek-bpe-16k-tuzatilgan\")`."
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "13-xulosa",
+          "title": "13. Xulosa",
+          "blocks": [
+            {
+              "kind": "steps",
+              "items": [
+                "**Klass** — qolip. **Obyekt** — undan yasalgan nusxa. `self` — \"men oʻzim\". `__init__` — yaratilganda ishlaydi.",
+                "Har bir metodning birinchi parametri — `self`. Unutsangiz — `takes 0 positional arguments but 1 was given`.",
+                "`Tokenizator` — 7 ta tarqoq narsa bitta joyda. Normalizatsiyani endi unutib boʻlmaydi.",
+                "JSON kortej kalitni saqlay olmaydi — `[a, b, id]` roʻyxati. **Naqsh** va **versiya** ham faylga yoziladi.",
+                "Isbot: **saqla → yukla → yana saqla** — fayl izi bir xil; butun test bir xil kodlanadi. Round-trip — yetarli emas (Mashq 3).",
+                "`AutoTokenizer.from_pretrained` — Hugging Face formatidagi tokenizatorni yuklaydi. `Ġ` va `Ê»` — ichki baytli yozuv, xato emas.",
+                "`uzbek-bpe-16k` da ikki xato bor: `‘` tanilmaydi, `'dunyo'` buziladi. Ikkalasi ham normalizatorni almashtirish bilan, **qayta oʻqitmasdan** tuzaladi.",
+                "Common Voice test'da — bizniki yutadi; yangiliklarga oʻxshash matnda — meniki. **\"Eng yaxshi tokenizator\" yoʻq — faqat \"shu matn uchun eng yaxshi\" bor.**",
+                "Turli test'dagi raqamlarni solishtirmang."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "keyingi-qadam-kurs-2",
+          "title": "Keyingi qadam — Kurs 2",
+          "blocks": [
+            {
+              "kind": "text",
+              "text": "**Kurs 2 — Til modeli.** Tokenlarni oʻqib, keyingi tokenni taxmin qiladigan model: eng oddiy hisoblagichdan boshlab, oʻz GPT ingizgacha — xuddi shu `tokenizator.py` ustida."
+            },
+            {
+              "kind": "text",
+              "text": "Kurs 2 ning birinchi savoli: *agar faqat oldingi **bitta** tokenga qarab keyingisini taxmin qilsak — bu qanchalik yomon ishlaydi?*"
+            }
+          ]
+        }
+      ],
+      "exercises": [],
+      "needs": "Dars 01–17. Dars 17 dagi boʻlinish (`seed 0`, 90/10) va toza test"
     }
   ]
 };

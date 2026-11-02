@@ -196,7 +196,7 @@ print(royxat, len(royxat))
 
 **Naqsh (pattern) — buni yodlab oling:**
 
-```python
+```
 natija = []              # 1. boʻsh roʻyxat yasa
 # ... bu yerda toʻldirasan ...
 natija.append(nimadir)   # 2. har safar bittadan qoʻsh

@@ -189,7 +189,7 @@ Barmoq ro'yxat ichida turgan ekan — davom etamiz.
 
 ### Shart — uchta qism
 
-```python
+```
 if i < len(tokenlar) - 1 and tokenlar[i] == juftlik[0] and tokenlar[i + 1] == juftlik[1]:
 ```
 
@@ -201,7 +201,7 @@ Uchta shart `and` bilan bog'langan. **Hammasi rost bo'lishi kerak:**
 
 ### Ha bo'lsa
 
-```python
+```
 yangi.append(yangi_id)
 i += 2
 ```
@@ -211,7 +211,7 @@ iste'mol qilindi.
 
 ### Yo'q bo'lsa
 
-```python
+```
 yangi.append(tokenlar[i])
 i += 1
 ```
@@ -446,7 +446,7 @@ o'rgatmadi — Dars 08 dagi kabi, u faqat sanaydi.
 
 **16 128 marta takrorlansa**, sizning lug'atingizda `lar`, `lari`, `larida`,
 `bolalar`, `kitoblar` kabi tokenlar paydo bo'ladi. Aynan shuning uchun
-`fertility` 8.938 dan 1.839 gacha tushadi.
+`fertility` 8.938 dan 1.749 gacha tushadi.
 
 <!-- animatsiya: k3 | lar yasaldi -->
 

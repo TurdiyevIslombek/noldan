@@ -544,7 +544,7 @@ Bu tasodif emas. Til — takrorlanadigan naqshlardan iborat, va eng ko'p takrorl
 naqshlar aynan qo'shimchalar, o'zaklar va ko'p ishlatiladigan so'zlar. **Statistika
 grammatikani o'zi topadi.**
 
-Dars 15 da siz tokenizatorni haqiqiy katta o'zbek matnida o'qitasiz. U birinchi
+Dars 16 da siz tokenizatorni haqiqiy katta o'zbek matnida o'qitasiz. U birinchi
 o'rganadigan tokenlar taxminan shular bo'ladi:
 
 ```
@@ -875,7 +875,7 @@ qo'shimchalar ulanadi.
 uchun qurilgan tokenizator o'zbekchada yomon ishlaydi — u `-lar` va `-da` ni hech
 qachon ko'rmagan, shuning uchun ularni har safar bo'laklab yuboradi.
 
-Dars 01 dagi `1.839` va `2.724` raqamlari — aynan shu farqning o'lchovi.
+Dars 01 dagi `1.749` va `2.578` raqamlari — aynan shu farqning o'lchovi.
 </details>
 
 ---

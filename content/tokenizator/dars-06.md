@@ -462,11 +462,11 @@ belgilar: 28 | baytlar: 29
 
 **29 ta token** — bitta qisqa jumla uchun.
 
-Dars 01 dagi jadvalni eslang: yaxshi tokenizatorda `fertility` **1.839** edi,
-ya'ni har bir so'z uchun ~2 token. Bu jumlada 3 ta so'z bor, demak yaxshi
-tokenizator ~6 token ishlatishi kerak.
+Dars 01 dagi jadvalni eslang: yaxshi tokenizatorda `fertility` **1.749** edi,
+ya'ni har bir so'z uchun ~2 tokendan kam. Bu jumlada 3 ta so'z bor, demak yaxshi
+tokenizator ~5 token ishlatishi kerak.
 
-Bizniki 29 ta ishlatyapti. **Besh barobar ko'p.**
+Bizniki 29 ta ishlatyapti. **Besh barobardan ko'p.**
 
 Nima uchun bu yomon:
 - model har bir tokenni alohida ishlashi kerak — besh barobar sekin

@@ -208,11 +208,11 @@ fertility: 8.938
 | Tokenizator | Lug'at | Fertility (o'zbekcha) |
 |---|---|---|
 | **bizning bayt tokenizatorimiz** | **256** | **8.938** |
-| GPT-2 | 50 257 | 3.584 |
-| GPT-4o | 200 019 | 2.724 |
-| uzbek-bpe-16k | 16 384 | **1.839** |
+| GPT-2 | 50 257 | 3.426 |
+| GPT-4o | 200 019 | 2.578 |
+| uzbek-bpe-16k | 16 384 | **1.749** |
 
-Bizniki eng yomoni. GPT-4o dan **uch barobar**, maqsaddan **besh barobar** yomon.
+Bizniki eng yomoni. GPT-4o dan **uch yarim barobar**, maqsaddan **besh barobar** yomon.
 
 ---
 
@@ -227,22 +227,22 @@ Shu 1024 tokenga nechta o'zbek so'zi sig'adi?
 
 ```python
 print("bayt tokenizator :", round(1024 / 8.938), "ta soʻz")
-print("GPT-4o           :", round(1024 / 2.724), "ta soʻz")
-print("uzbek-bpe-16k    :", round(1024 / 1.839), "ta soʻz")
+print("GPT-4o           :", round(1024 / 2.578), "ta soʻz")
+print("uzbek-bpe-16k    :", round(1024 / 1.749), "ta soʻz")
 ```
 
 **Natija:**
 
 ```
 bayt tokenizator : 115 ta soʻz
-GPT-4o           : 376 ta soʻz
-uzbek-bpe-16k    : 557 ta soʻz
+GPT-4o           : 397 ta soʻz
+uzbek-bpe-16k    : 585 ta soʻz
 ```
 
 **115 ta so'z.** Bu taxminan yarim sahifa. Model bundan ortig'ini bir vaqtda
 ko'ra olmaydi.
 
-Bir xil model, bir xil xotira — lekin yaxshi tokenizator bilan **beshdan bir
+Bir xil model, bir xil xotira — lekin yaxshi tokenizator bilan **besh barobar
 ko'proq matn** sig'adi. Hech qanday qo'shimcha hisob, hech qanday qo'shimcha
 parametr. Faqat tokenizator.
 
@@ -251,7 +251,7 @@ parametr. Faqat tokenizator.
 ### Zarar 2 — hamma narsa sekinroq va qimmatroq
 
 Model har bir tokenni **alohida** ishlaydi. 29 ta token = 29 ta qadam.
-6 ta token = 6 ta qadam.
+5 ta token = 5 ta qadam.
 
 Trening ham, javob berish ham shunga proporsional. Dars 01 dagi "uch barobar
 qimmat" — bu yerda **besh barobar** bo'ladi.
@@ -606,7 +606,7 @@ Bitta birlashtirish uchun 0.438 yaxshilanish. Kichik.
 oldingilarining ustiga quriladi: `la` bitta token bo'lgach, `lar` ni yasash
 uchun endi faqat bitta qo'shimcha birlashtirish kerak (`la` + `r`), uchta emas.
 
-Shuning uchun natija 8.938 dan 1.839 gacha tushadi — chizig'iy emas,
+Shuning uchun natija 8.938 dan 1.749 gacha tushadi — chizig'iy emas,
 to'planib boradi.
 </details>
 
@@ -631,8 +631,8 @@ Nimani anglatadi:
 - Uzun savolga javob bera olmaydi
 - Hikoyaning boshini eslay olmaydi
 
-`uzbek-bpe-16k` bilan esa 300 so'z = 552 token — **sig'adi**, hatto yarmidan
-ko'p joy qoladi.
+`uzbek-bpe-16k` bilan esa 300 so'z = 525 token — **sig'adi**, va kontekstning
+deyarli yarmi bo'sh qoladi.
 
 **Bu kursning butun ma'nosi shu yerda.** Tokenizator "kichik texnik detal" emas.
 U modelning nimani ko'ra olishini va nimani ko'ra olmasligini hal qiladi.
@@ -649,8 +649,8 @@ Shuning uchun ishni undan boshlash kerak.
 
 1. Bizda **to'liq ishlaydigan tokenizator** bor: 256 token, `kodla`, `dekodla`,
    round-trip to'g'ri, hamma tilda ishlaydi.
-2. **Fertility** — sifat o'lchovi. Bizniki **8.938**, GPT-4o 2.724,
-   maqsad **1.839**.
+2. **Fertility** — sifat o'lchovi. Bizniki **8.938**, GPT-4o 2.578,
+   maqsad **1.749**.
 3. Uchta zarar: kontekst 5 barobar kam (115 so'z), hisob 5 barobar qimmat,
    model so'zni umuman ko'rmaydi.
 4. O'zbek tili bayt darajasida ham 50% ko'proq to'laydi (8.938 vs 5.962).

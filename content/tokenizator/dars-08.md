@@ -85,7 +85,7 @@ for a, b in zip(tokenlar, tokenlar[1:]):
 
 Endi shunday:
 
-```python
+```
 for juftlik in zip(tokenlar, tokenlar[1:]):
 ```
 
@@ -778,7 +778,7 @@ Shuning uchun ingliz tili uchun qurilgan tokenizator o'zbekchada yomon ishlaydi:
 u so'zlarni butunicha yodlashga o'rgangan, o'zbek tilida esa so'zlar deyarli
 hech qachon takrorlanmaydi — takrorlanadigan narsa **qo'shimchalar**.
 
-Dars 01 dagi `1.839` va `2.724` farqining haqiqiy sababi shu.
+Dars 01 dagi `1.749` va `2.578` farqining haqiqiy sababi shu.
 </details>
 
 ---

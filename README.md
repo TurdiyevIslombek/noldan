@@ -17,9 +17,10 @@ tokenizer for Uzbek themselves, line by line.
 
 ## What is in it
 
-- **Kurs 1 — Tokenizator qurish** (free): lessons 01–09 so far, from a first
-  `print` to a working byte-level BPE `merge`. Every lesson is real Python that
-  the student types and runs.
+- **Kurs 1 — Tokenizator qurish** (free): all 18 lessons, from a first
+  `print` to a byte-level BPE tokenizer trained on real Uzbek text and measured
+  honestly against unseen data. Every lesson is real Python that the student
+  types and runs.
 - **Kurs 2 — Transformer (GPT) qurish** (paid, in preparation).
 
 ## How the site works
@@ -110,7 +111,12 @@ npm run build           # type-check, build, pre-render every page
   timeouts, against an in-process Postgres (PGlite) loaded with the real
   schema.
 - **Lessons** ([`scripts/check-lessons.py`](scripts/check-lessons.py)) —
-  155 code blocks across nine lessons, run in order in one Python session.
+  every code block of the course, run in order in one Python session, the
+  way a student types along. `npm run check:lessons` covers lessons 01–15
+  (296 blocks, under a minute; this is what CI runs).
+  `npm run check:lessons -- --full` adds 16–18, which download the Common
+  Voice corpus and train 16 384-token tokenizers: 396 blocks in about an
+  hour, and it needs `pip install transformers datasets`.
 
 GitHub Actions runs all of it, plus the production build, on every push.
 

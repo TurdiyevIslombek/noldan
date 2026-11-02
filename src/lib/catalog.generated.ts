@@ -88,6 +88,78 @@ export const CATALOG: CourseMeta[] = [
         "subtitle": "",
         "minutes": 55,
         "status": "ready"
+      },
+      {
+        "id": "dars-10",
+        "n": 10,
+        "title": "Trening tsikli",
+        "subtitle": "",
+        "minutes": 50,
+        "status": "ready"
+      },
+      {
+        "id": "dars-11",
+        "n": 11,
+        "title": "decode: raqamdan matnga",
+        "subtitle": "",
+        "minutes": 45,
+        "status": "ready"
+      },
+      {
+        "id": "dars-12",
+        "n": 12,
+        "title": "encode: matndan raqamga",
+        "subtitle": "",
+        "minutes": 55,
+        "status": "ready"
+      },
+      {
+        "id": "dars-13",
+        "n": 13,
+        "title": "So'z chegarasi va regex",
+        "subtitle": "",
+        "minutes": 55,
+        "status": "ready"
+      },
+      {
+        "id": "dars-14",
+        "n": 14,
+        "title": "Oʻzbek apostrofi: bitta harf, besh xil yozuv",
+        "subtitle": "",
+        "minutes": 55,
+        "status": "ready"
+      },
+      {
+        "id": "dars-15",
+        "n": 15,
+        "title": "Maʼlumot: qayerdan olish va qanday tozalash",
+        "subtitle": "",
+        "minutes": 75,
+        "status": "ready"
+      },
+      {
+        "id": "dars-16",
+        "n": 16,
+        "title": "Haqiqiy matnda trening: takror ishni bir marta qiling",
+        "subtitle": "",
+        "minutes": 80,
+        "status": "ready"
+      },
+      {
+        "id": "dars-17",
+        "n": 17,
+        "title": "Halol baholash: ifloslanish",
+        "subtitle": "",
+        "minutes": 80,
+        "status": "ready"
+      },
+      {
+        "id": "dars-18",
+        "n": 18,
+        "title": "Bitta klass va haqiqiy tokenizator",
+        "subtitle": "",
+        "minutes": 80,
+        "status": "ready"
       }
     ]
   },

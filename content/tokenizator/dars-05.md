@@ -721,15 +721,25 @@ Uchalasida ham **faqat ikkinchi raqam** farq qiladi: **699**, **39**, **8216**.
 
 Qolgan hamma narsa bir xil. Bitta raqam — va tokenizator uchun bu uch xil so'z.
 
-**Nima uchun bu falokat:** tasavvur qiling, internetdagi o'zbek matnining 40%
-ida `'` (39), 30% ida `‘` (8216), 30% ida `ʻ` (699) ishlatilgan. Tokenizator
-bu uchtasini uch xil so'z deb o'rganadi, va har birini uchdan bir ma'lumot bilan
-o'rganadi.
+**Nima uchun bu muammo:** buning haqiqiy raqamlari bor. 3 000 ta haqiqiy
+oʻzbekcha veb-hujjatda `oʻ` va `gʻ` dagi belgi shunday yozilgan:
 
-Normalizatsiyadan keyin esa uchalasi **bitta** so'z bo'ladi va butun ma'lumot
-bir joyga yig'iladi. Shuning uchun Dars 14 dagi ikki qator kod tokenizator
-sifatini sezilarli oshiradi — u modelga uch barobar ko'p ma'lumot beradi,
-hech narsa qo'shmasdan.
+| Belgi | Raqami | Ulushi |
+|---|---|---|
+| `‘` | 8216 | **34%** |
+| `ʻ` — toʻgʻri | 699 | 23% |
+| `'` | 39 | 19% |
+| `’` | 8217 | 18% |
+| `` ` `` | 96 | 6% |
+
+Toʻgʻri belgi — atigi **23%**. Eng koʻp ishlatiladigani esa umuman boshqa belgi.
+
+Normalizatsiyasiz tokenizator `oʻ` haqidagi bilimini besh xil variantga boʻlib
+oʻrganadi, va toʻgʻri yozilgani uchun maʼlumotning faqat toʻrtdan biri qoladi.
+Normalizatsiyadan keyin beshalasi **bitta** boʻladi va hamma maʼlumot bir joyga
+yigʻiladi.
+
+Bu amalda qanchalik farq qiladi — Dars 14 da raqam bilan oʻlchaymiz.
 </details>
 
 ---
